@@ -91,7 +91,7 @@
 - [ ] Crear moodboard visual (referencia para toda la UI).
 
 ### 0.6 Creación del blog en Blogger
-- [ ] Crear blog nuevo en Blogger (con subdominio blogspot o dominio propio).
+- [x] Crear blog nuevo en Blogger con dominio propio. Dominio: `www.mibiblia365`
 - [ ] Configurar zona horaria, idioma (español), región.
 - [ ] Desactivar comentarios en páginas.
 - [ ] Configurar opciones de búsqueda y meta descripciones.
