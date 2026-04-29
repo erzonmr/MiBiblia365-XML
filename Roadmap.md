@@ -31,6 +31,7 @@
 5. **Iterar con feedback real.** Después de Fase 2, usar el sitio personalmente antes de seguir.
 6. **No optimizar antes de tiempo.** Backend solo cuando se justifique.
 7. **Foco en lectura bíblica pura.** No se integran comentarios ni datasets de la API en el producto inicial, aunque la Free Use Bible API los ofrezca.
+8. **Tareas manuales.** Si surgen tareas que se deban realizar de manera manual, se debe dejar registro e instrucciones claras en el archivo `Instrucciones.md`. 
 
 ---
 
@@ -95,7 +96,7 @@
 - [x] Configurar zona horaria, idioma (español), región.
 - [x] Desactivar comentarios en páginas.
 - [ ] Configurar opciones de búsqueda y meta descripciones.
-- [ ] Crear las páginas estáticas vacías (sin contenido, solo estructura):
+- [x] Crear las páginas estáticas vacías (sin contenido, solo estructura):
   - [x] `/p/leer-hoy.html`
   - [x] `/p/planes.html`
   - [x] `/p/plan-completo.html`
@@ -110,7 +111,7 @@
 - [ ] Subir `versions.json` (subconjunto curado desde `available_translations.json`).
 - [ ] Crear `plans.json` con catálogo de planes previstos.
 - [ ] Crear `config.json` con valores por defecto (incluyendo `defaultTranslationId` y `leapYearMode`).
-- [ ] Subir a GitHub y validar acceso por jsDelivr.
+- [ ] Subir a GitHub y validar acceso por jsDelivr. **Nota:** Verificar carpeta `json/`, ahí dentro están los .json de los planes y los versículos diarios.  
 
 ## Entregables Fase 0
 - Repositorio GitHub inicial operativo.
@@ -589,7 +590,7 @@ Iniciar Fase 6 cuando ocurra alguno de estos:
 
 # Fases opcionales a futuro
 
-Ideas que podrían implementarse si el proyecto crece:
+Ideas que podrían implementarse (Solo bajo aprovación clara y específica) si el proyecto crece:
 
 ### Fase 7 — Audio bíblico
 - Integración con API de audio bíblico.
