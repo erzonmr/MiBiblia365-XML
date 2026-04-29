@@ -1,0 +1,9 @@
+{
+  "defaultTranslationId": "rv1960",
+  "defaultPlanId": "plan-anual",
+  "leapYearMode": "clamp_to_365",
+  "apiSources": {
+    "primary": "https://docs-bible-api.netlify.app/api",
+    "secondary": "https://bible.helloao.org/api"
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MiBiblia365 · Fase 0 API Test</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; margin:24px; line-height:1.4}
+    button{padding:.6rem 1rem; margin-right:.5rem}
+    pre{background:#111;color:#e8e8e8;padding:12px;border-radius:8px;overflow:auto;max-height:280px}
+    .ok{color:#0a7a0a}.err{color:#b00020}
+  </style>
+</head>
+<body>
+  <h1>Fase 0 · Validación de APIs</h1>
+  <p>Prueba rápida de catálogos, filtro de español, capítulo y fallback.</p>
+  <button id="run">Ejecutar pruebas</button>
+  <div id="log"></div>
+  <script>
+    const SOURCES = {
+      hello: 'https://bible.helloao.org/api',
+      netlify: 'https://docs-bible-api.netlify.app/api'
+    };
+    const out = document.getElementById('log');
+    const print = (msg, cls='') => {
+      const p = document.createElement('p'); p.className = cls; p.textContent = msg; out.appendChild(p);
+    };
+    const dump = (obj) => { const pre = document.createElement('pre'); pre.textContent = JSON.stringify(obj, null, 2); out.appendChild(pre); };
+
+    async function fetchJSON(url){
+      const t0 = performance.now();
+      const res = await fetch(url, {cache:'default'});
+      const dt = Math.round(performance.now()-t0);
+      if(!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+      return { data: await res.json(), ms: dt };
+    }
+
+    async function run(){
+      out.innerHTML = '';
+      try {
+        const helloTrans = await fetchJSON(`${SOURCES.hello}/available_translations.json`);
+        const netlifyVersions = await fetchJSON(`${SOURCES.netlify}/versions`);
+        const helloSpa = (helloTrans.data || []).filter(v => String(v.language || '').toLowerCase().startsWith('spa'));
+        const netlifySpa = (netlifyVersions.data || []).filter(v => String(v.language || '').toLowerCase().includes('spa') || String(v.id||'').toLowerCase().includes('rv') || String(v.id||'').toLowerCase().includes('nvi'));
+        print(`HelloAO traducciones: ${helloTrans.data.length} (spa: ${helloSpa.length}) en ${helloTrans.ms}ms`, 'ok');
+        print(`Netlify versiones: ${netlifyVersions.data.length} (spa aprox: ${netlifySpa.length}) en ${netlifyVersions.ms}ms`, 'ok');
+        dump({helloSpa: helloSpa.slice(0,10), netlifySpa: netlifySpa.slice(0,10)});
+
+        const chapterFallback = async () => {
+          try {
+            return await fetchJSON(`${SOURCES.netlify}/chapter/RV1960/GEN/1`);
+          } catch {
+            return await fetchJSON(`${SOURCES.hello}/RVR1909/GEN/1.json`);
+          }
+        };
+
+        const chapter = await chapterFallback();
+        print(`Capítulo cargado con fallback en ${chapter.ms}ms`, 'ok');
+        dump(chapter.data);
+      } catch (e) {
+        print(`Error: ${e.message}`, 'err');
+      }
+    }
+
+    document.getElementById('run').addEventListener('click', run);
+  </script>
+</body>
+</html>

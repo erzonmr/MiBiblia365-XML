@@ -1,0 +1,42 @@
+[
+  {
+    "id": "rv1960",
+    "name": "Reina Valera 1960",
+    "shortName": "RV60",
+    "language": "spa",
+    "default": true,
+    "sources": ["netlify"]
+  },
+  {
+    "id": "rv1995",
+    "name": "Reina Valera 1995",
+    "shortName": "RV95",
+    "language": "spa",
+    "default": false,
+    "sources": ["netlify"]
+  },
+  {
+    "id": "nvi",
+    "name": "Nueva Versión Internacional",
+    "shortName": "NVI",
+    "language": "spa",
+    "default": false,
+    "sources": ["netlify"]
+  },
+  {
+    "id": "dhh",
+    "name": "Dios Habla Hoy",
+    "shortName": "DHH",
+    "language": "spa",
+    "default": false,
+    "sources": ["netlify"]
+  },
+  {
+    "id": "pdt",
+    "name": "Palabra de Dios para Todos",
+    "shortName": "PDT",
+    "language": "spa",
+    "default": false,
+    "sources": ["netlify"]
+  }
+]

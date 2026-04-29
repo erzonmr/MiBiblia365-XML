@@ -1,0 +1,8 @@
+[
+  {"id":"plan-anual","name":"Plan Anual","days":365,"file":"/json/Plan_Anual.json"},
+  {"id":"plan-cronologico","name":"Plan Cronológico","days":365,"file":"/json/Plan_Cronologico.json"},
+  {"id":"plan-canonico","name":"Plan Canónico","days":365,"file":"/json/Plan_Canónico.json"},
+  {"id":"plan-180-nt-salmos","name":"Plan 180 NT + Salmos","days":180,"file":"/json/Plan_180_NT_Salmos.json"},
+  {"id":"plan-combinado","name":"Plan Combinado","days":365,"file":"/json/Plan_Combinado.json"},
+  {"id":"plan-trimestral","name":"Plan Trimestral","days":90,"file":"/json/Plan_Trimestral.json"}
+]
