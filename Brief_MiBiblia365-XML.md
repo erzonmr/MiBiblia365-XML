@@ -23,7 +23,7 @@ Plataforma web construida sobre **Blogger con plantilla XML personalizada**, dis
 
 ### Lo que hace
 - Permite leer la Biblia diariamente siguiendo planes estructurados.
-- Ofrece varias versiones en español, obtenidas desde la **Free Use Bible API** (catálogo de más de 1000 traducciones filtradas por idioma).
+- Ofrece varias versiones en español, obtenidas desde dos APIs complementarias: **Free Use Bible API** y **Bible API Docs Netlify App**.
 - Gestiona progreso personal, favoritos y notas en localStorage.
 - Entrega un versículo diario independiente del plan, con línea temática anual.
 - Ofrece un espacio personal (Mi espacio) como eje central del recorrido espiritual del usuario.
@@ -70,7 +70,7 @@ Diseñar una plataforma moderna, clara y espiritual que permita al usuario:
 - Sitio basado en publicaciones periódicas.
 
 ### Principio rector
-> Blogger es el contenedor visual. La app vive en JavaScript, los datos en JSON externos, el contenido bíblico en la Free Use Bible API, y la experiencia personal en localStorage.
+> Blogger es el contenedor visual. La app vive en JavaScript, los datos en JSON externos, el contenido bíblico en dos APIs complementarias, y la experiencia personal en localStorage.
 
 ---
 
@@ -96,8 +96,8 @@ Diseñar una plataforma moderna, clara y espiritual que permita al usuario:
 | Plataforma base | Blogger con plantilla XML personalizada |
 | Sin posts | Confirmado |
 | Páginas fijas de Blogger | Confirmado |
-| API bíblica externa | **Free Use Bible API (bible.helloao.org)** — única fuente |
-| Autenticación en API | No requerida (API pública sin API key) |
+| API bíblica externa | **Doble fuente complementaria**: Free Use Bible API + Bible API Docs Netlify |
+| Autenticación en API | No requerida (ambas APIs públicas sin API key) |
 | Solo versiones en español (filtradas del catálogo) | Confirmado |
 | Comentarios y datasets de la API | **No se usarán** |
 | Datos JSON externos en GitHub + jsDelivr | Confirmado |
@@ -114,47 +114,56 @@ Diseñar una plataforma moderna, clara y espiritual que permita al usuario:
 | **JavaScript** | Router por página, consumo de API, render, estado, progreso, favoritos, notas, respaldo |
 | **JSON externos (jsDelivr)** | Planes de lectura, versículos diarios, configuración general, catálogo curado de versiones |
 | **localStorage** | Datos personales del usuario (progreso, notas, favoritos, configuración) |
-| **Free Use Bible API** | Texto bíblico dinámico por traducción, libro y capítulo |
+| **APIs bíblicas (2)** | Catálogo, libros, capítulos, versículos y búsqueda con fallback por cobertura de versiones |
 
 ---
 
 ## 7. API bíblica del proyecto
 
-### 7.1 API seleccionada: Free Use Bible API
+### 7.1 APIs seleccionadas (complementarias)
 
-**URL base:** `https://bible.helloao.org/api/`
-**Documentación:** `https://bible.helloao.org/docs/`
+**API A — Free Use Bible API**
+- URL base: `https://bible.helloao.org/api/`
+- Documentación: `https://bible.helloao.org/docs/`
 
-La **Free Use Bible API** será la **única fuente de texto bíblico** del proyecto. Se trata de una API basada en archivos JSON estáticos alojados en AWS, lo que garantiza baja latencia y disponibilidad global. Se consume exclusivamente mediante peticiones **HTTP GET**.
+**API B — Bible API Docs Netlify App**
+- URL base: `https://docs-bible-api.netlify.app/api`
+- Documentación: `https://docs-bible-api.netlify.app/`
 
-### 7.2 Por qué esta API
+Mi Biblia 365 consumirá **ambas APIs** para cubrir mejor las versiones en español. Si una versión no está disponible en una API, se intentará con la otra.
+
+### 7.2 Por qué esta estrategia dual
 
 | Criterio | Beneficio |
 |---|---|
+| Cobertura complementaria | Algunas versiones en español aparecen en una API y en la otra no |
 | Sin autenticación | No requiere API key ni registro |
-| Sin límites de uso | Sin cuotas ni rate limits |
-| Licencia libre | Uso comercial permitido, sin restricciones |
-| Distribución AWS | Alta disponibilidad y baja latencia |
-| JSON estático | Fácil de cachear en navegador y CDN |
-| 1000+ traducciones | Amplia cobertura multilingüe |
+| Mayor resiliencia | Fallback entre fuentes ante ausencia de versión o fallo puntual |
+| Escalabilidad | Permite extender búsqueda/capítulos con menor fricción |
 
 ### 7.3 Regla de licencia a respetar
 Si el proyecto modifica el contenido de alguna traducción (por ejemplo, alterando puntuación, formato o texto), **debe cambiar el nombre** de esa traducción en la interfaz para evitar confusión con la versión original. Mi Biblia 365 **no modificará el contenido bíblico**, por lo que se mostrarán los nombres originales de cada traducción.
 
 ### 7.4 Endpoints que sí se usarán en el proyecto
 
-#### 7.4.1 Catálogo de traducciones disponibles
+#### 7.4.1 Catálogo de traducciones disponibles (Free Use)
 - **Endpoint:** `GET https://bible.helloao.org/api/available_translations.json`
 - **Uso:** descargar el catálogo completo una sola vez, filtrar por idioma español en el cliente, y guardar el subconjunto curado en `versions.json` dentro del repositorio del proyecto.
 - **Nota:** la API no admite parámetros de consulta (`?lang=es`), por lo que el filtrado se hace en el frontend/backend inspeccionando las propiedades del JSON devuelto.
 
-#### 7.4.2 Libros de una traducción
+#### 7.4.2 Libros y catálogo complementario (Netlify)
+- **Endpoints:**
+  - `GET https://docs-bible-api.netlify.app/api/versions`
+  - `GET https://docs-bible-api.netlify.app/api/books`
+- **Uso:** ampliar y validar cobertura de versiones/libros en español para catálogo unificado.
+
+#### 7.4.3 Libros de una traducción (Free Use)
 - **Endpoint:** `GET https://bible.helloao.org/api/{translation}/books.json`
 - **Parámetros:**
   - `{translation}`: ID de la traducción (ejemplo: `BSB`, `RVR1909`, etc.)
 - **Uso:** poblar el selector de libros en las páginas **Biblia** y **Leer hoy**.
 
-#### 7.4.3 Contenido de un capítulo
+#### 7.4.4 Contenido de un capítulo (Free Use)
 - **Endpoint:** `GET https://bible.helloao.org/api/{translation}/{book}/{chapter}.json`
 - **Parámetros:**
   - `{translation}`: ID de la traducción (ej. `RVR1909`)
@@ -162,13 +171,20 @@ Si el proyecto modifica el contenido de alguna traducción (por ejemplo, alteran
   - `{chapter}`: número de capítulo (ej. `1`)
 - **Uso:** endpoint principal durante la lectura diaria. El JSON devuelto incluye formato básico y posibles notas al pie.
 
-#### 7.4.4 Traducción completa (opcional)
+#### 7.4.5 Capítulo, versículo y búsqueda (Netlify)
+- **Endpoints:**
+  - `GET https://docs-bible-api.netlify.app/api/chapter`
+  - `GET https://docs-bible-api.netlify.app/api/verses`
+  - `GET https://docs-bible-api.netlify.app/api/search`
+- **Uso:** lectura/búsqueda cuando la versión esté disponible en Netlify o como fallback.
+
+#### 7.4.6 Traducción completa (opcional)
 - **Endpoint:** `GET https://bible.helloao.org/api/{translation}/complete.json`
 - **Uso previsto:** no se utilizará en la experiencia del usuario final (por el peso del archivo), pero queda disponible para tareas administrativas como precargar texto bíblico en un caché o generar índices de búsqueda offline en el futuro.
 
 ### 7.5 Endpoints que NO se usarán
 
-Se descartan explícitamente los siguientes recursos de la Free Use Bible API, aunque estén disponibles:
+Se descartan explícitamente los recursos de comentarios y datasets de Free Use Bible API, aunque estén disponibles:
 
 - ❌ **Comentarios bíblicos** (`/api/available_commentaries.json`, `/api/c/{commentary}/...`)
 - ❌ **Perfiles** dentro de comentarios (`/api/c/{commentary}/profiles.json`)
@@ -179,16 +195,17 @@ Se descartan explícitamente los siguientes recursos de la Free Use Bible API, a
 ### 7.6 Estrategia de versiones en español
 
 #### Proceso
-1. Descargar una sola vez `available_translations.json`.
-2. Filtrar manualmente (o con script) las traducciones cuyo idioma sea español (`"language": "spa"` o equivalente según la estructura real de la API).
-3. Curar una lista final con las versiones que se ofrecerán al usuario.
-4. Guardar esta lista curada en `versions.json` dentro del repositorio del proyecto (sección 15.1), para evitar que el cliente descargue el catálogo completo cada vez.
+1. Consultar catálogos de ambas APIs (`available_translations.json` y `/versions`).
+2. Filtrar manualmente (o con script) solo traducciones en español.
+3. Unificar IDs mediante un mapeo canónico interno (ej. `RV1960`).
+4. Curar lista final de versiones y su disponibilidad por fuente.
+5. Guardar catálogo curado en `versions.json` dentro del repositorio del proyecto (sección 15.1).
 
 #### Criterio de selección
 - Priorizar versiones ampliamente usadas en contextos evangélicos hispanos.
-- Incluir por defecto una versión **Reina Valera** (la disponible en la API como traducción de uso libre, por ejemplo RVR1909 o la variante equivalente que exponga el catálogo).
+- Incluir por defecto **Reina Valera 1960 (`RV1960`)**.
 - Incluir al menos 2-3 versiones modernas en español para dar variedad al lector.
-- La versión **predeterminada** del sitio será la Reina Valera disponible en la API, marcada como `default: true` en `versions.json`.
+- La versión **predeterminada** del sitio será **RV1960**, marcada como `default: true` en `versions.json`.
 
 ### 7.7 Arquitectura del servicio API en JS (`bibleService.js`)
 
@@ -196,7 +213,10 @@ El servicio debe encapsular toda la lógica de consumo de la API, exponiendo una
 
 ```javascript
 // services/bibleService.js
-const API_BASE = 'https://bible.helloao.org/api';
+const API_SOURCES = {
+  primary: 'https://docs-bible-api.netlify.app/api',
+  secondary: 'https://bible.helloao.org/api'
+};
 
 const cache = new Map(); // caché en memoria durante la sesión
 
@@ -209,16 +229,16 @@ async function fetchJSON(url) {
   return data;
 }
 
-export async function getAvailableTranslations() {
-  return fetchJSON(`${API_BASE}/available_translations.json`);
+function fromSource(source, path) {
+  return fetchJSON(`${source}${path}`);
 }
 
-export async function getBooks(translationId) {
-  return fetchJSON(`${API_BASE}/${translationId}/books.json`);
-}
-
-export async function getChapter(translationId, bookId, chapter) {
-  return fetchJSON(`${API_BASE}/${translationId}/${bookId}/${chapter}.json`);
+export async function getChapterWithFallback(pathInPrimary, pathInSecondary) {
+  try {
+    return await fromSource(API_SOURCES.primary, pathInPrimary);
+  } catch (_) {
+    return fromSource(API_SOURCES.secondary, pathInSecondary);
+  }
 }
 
 // Utilidad para obtener varias referencias (ej. "Génesis 1", "Salmos 1", "Mateo 1")
@@ -235,15 +255,16 @@ export async function getMultipleReadings(translationId, readings) {
 **Ventajas del diseño:**
 - Caché en memoria reduce llamadas repetidas durante la sesión.
 - Interfaz limpia: otras capas no conocen detalles de la API.
-- Fácil de migrar a otra API si es necesario, editando un solo archivo.
+- Soporta múltiples fuentes sin cambiar la UI.
 - Compatible con `Promise.all` para cargar varias lecturas del día en paralelo.
 
 ### 7.8 Consideraciones de resiliencia
 
-Aunque la API está alojada en AWS y tiene alta disponibilidad, se recomienda:
+Como hay dos fuentes disponibles, se recomienda:
 
 - **Manejo de errores amigable** en la UI: mostrar mensaje del tipo "No pudimos cargar la lectura. Verifica tu conexión e intenta de nuevo." con botón de reintento.
 - **Caché opcional en localStorage** para capítulos ya leídos, de modo que si el usuario está offline o la API falla, pueda seguir leyendo lo ya descargado.
+- **Regla de fallback explícita:** si una API falla o no tiene la versión solicitada, intentar automáticamente la otra.
 - **Pre-carga de la lectura del día siguiente** (cuando el usuario esté en "Leer hoy"), para mejorar la sensación de velocidad.
 
 ---
@@ -273,7 +294,7 @@ Los JSON deben considerarse **estables antes de publicarse**, porque jsDelivr ca
 | `versiculos-diarios.json` | Versículo diario con línea temática anual |
 | `config.json` | Configuración general del sitio |
 
-> Nota: los archivos de planes y versículos diarios contienen **referencias bíblicas** (ej. `"Génesis 1"`), no el texto bíblico completo. El texto se obtiene en tiempo real desde la Free Use Bible API.
+> Nota: los archivos de planes y versículos diarios contienen **referencias bíblicas** (ej. `"Génesis 1"`), no el texto bíblico completo. El texto se obtiene en tiempo real desde las APIs configuradas.
 
 ---
 
@@ -324,7 +345,7 @@ El `versiculos-diarios.json` define 366 entradas (1 al 366), permitiendo usar el
 Sistema **independiente** del plan de lectura, orientado a inspiración devocional breve. Disponible aun cuando el usuario no haya iniciado ningún plan.
 
 ### 10.2 Fuente
-Archivo: `versiculos-diarios.json` (366 entradas con **referencias**; el texto bíblico se obtiene desde la Free Use Bible API en el momento del render).
+Archivo: `versiculos-diarios.json` (366 entradas con **referencias**; el texto bíblico se obtiene desde las APIs configuradas en el momento del render).
 
 ### 10.3 Estructura por entrada
 ```json
@@ -667,17 +688,21 @@ Este archivo es un **subconjunto curado** del catálogo devuelto por `available_
 
 ```json
 {
-  "source": "https://bible.helloao.org/api/available_translations.json",
+  "sources": [
+    "https://docs-bible-api.netlify.app/api/versions",
+    "https://bible.helloao.org/api/available_translations.json"
+  ],
   "curatedAt": "2026-04-20",
-  "defaultTranslationId": "RVR1909",
+  "defaultTranslationId": "RV1960",
   "versions": [
     {
-      "id": "RVR1909",
-      "name": "Reina Valera (1909)",
-      "shortName": "RV1909",
+      "id": "RV1960",
+      "name": "Reina Valera 1960",
+      "shortName": "RV1960",
       "language": "spa",
       "active": true,
-      "default": true
+      "default": true,
+      "availableIn": ["netlify", "helloao"]
     },
     {
       "id": "OTRA_VERSION_ES",
@@ -690,7 +715,7 @@ Este archivo es un **subconjunto curado** del catálogo devuelto por `available_
 }
 ```
 
-> **Nota:** los IDs reales de cada versión (`RVR1909`, etc.) deben verificarse inspeccionando el JSON devuelto por `available_translations.json` antes de publicar este archivo. La versión marcada como `default: true` será la **Reina Valera** disponible en la API, coherente con el uso pastoral del proyecto.
+> **Nota:** los IDs reales de cada versión deben verificarse contra ambas APIs antes de publicar este archivo. La versión marcada como `default: true` será **RV1960** y debe incluir su disponibilidad por fuente (`availableIn`).
 
 ### 15.2 Catálogo de planes (`plans.json`)
 ```json
@@ -741,7 +766,7 @@ Este archivo es un **subconjunto curado** del catálogo devuelto por `available_
   "version": "1.0",
   "lastSync": "2026-04-20",
   "config": {
-    "preferredTranslationId": "RVR1909",
+  "preferredTranslationId": "RV1960",
     "darkMode": false,
     "fontSize": "medium",
     "activePlanId": "biblia-anual",
@@ -764,7 +789,7 @@ Este archivo es un **subconjunto curado** del catálogo devuelto por `available_
     {
       "id": "fav-001",
       "reference": "Jeremías 29:11",
-      "translationId": "RVR1909",
+      "translationId": "RV1960",
       "savedAt": "2026-04-19",
       "type": "verse",
       "note": ""
@@ -1000,6 +1025,8 @@ El proyecto debe transmitir que la lectura bíblica no es una tarea mecánica, s
 
 ## 21. Estructura sugerida de archivos del proyecto
 
+> Implementación actual del repo: los planes y versículos están en la carpeta `json/` y conservan sus nombres actuales (`Plan_Anual.json`, `Plan_Cronologico.json`, etc.). La estructura siguiente se mantiene como referencia objetivo para modularización progresiva.
+
 ```
 mibiblia365/
 ├── blogger/
@@ -1107,7 +1134,7 @@ mibiblia365/
 
 | Riesgo | Impacto | Mitigación |
 |---|---|---|
-| Caída de la Free Use Bible API | Alto | API alojada en AWS (alta disponibilidad); caché en memoria + caché opcional de capítulos ya leídos en localStorage; mensajes de error amigables con reintento |
+| Caída de una API bíblica | Medio | Estrategia dual con fallback automático entre Netlify y HelloAO; caché en memoria + caché opcional de capítulos ya leídos en localStorage; mensajes de error amigables con reintento |
 | Cambios en el esquema JSON de la API | Medio | Encapsular toda la lógica de API en `bibleService.js` para aislar el resto de la app |
 | Pocas versiones en español disponibles en el catálogo | Medio | Curar con cuidado el subconjunto inicial; documentar claramente qué versiones se ofrecen; abrir posibilidad a incluir más traducciones si la API las agrega en el futuro |
 | Pérdida de datos por borrado de navegador | Alto | Recordatorio de respaldo + Fase 6 (backend) |
@@ -1134,7 +1161,7 @@ El proyecto será exitoso si:
 
 ## 25. Definición final del proyecto
 
-> **Mi Biblia 365** es una plataforma web tipo app devocional construida sobre Blogger, que permite a los cristianos leer la Biblia mediante múltiples planes y versiones en español, apoyándose en la **Free Use Bible API** (única fuente de texto bíblico), datos JSON servidos por jsDelivr, y un espacio personal completo para gestionar progreso, favoritos y notas. El proyecto no depende de posts, funciona sin registro en su primera fase, se puede instalar como acceso directo en cualquier dispositivo, y está diseñado con el propósito pastoral de acompañar al creyente en su perseverancia devocional. Los recursos adicionales de la API (comentarios y datasets) quedan explícitamente fuera del alcance del producto.
+> **Mi Biblia 365** es una plataforma web tipo app devocional construida sobre Blogger, que permite a los cristianos leer la Biblia mediante múltiples planes y versiones en español, apoyándose en dos APIs bíblicas complementarias (Free Use Bible API + Bible API Docs Netlify App), datos JSON servidos por jsDelivr, y un espacio personal completo para gestionar progreso, favoritos y notas. El proyecto no depende de posts, funciona sin registro en su primera fase, se puede instalar como acceso directo en cualquier dispositivo, y está diseñado con el propósito pastoral de acompañar al creyente en su perseverancia devocional. Los recursos adicionales de la API (comentarios y datasets) quedan explícitamente fuera del alcance del producto.
 
 ---
 
@@ -1154,4 +1181,4 @@ El proyecto será exitoso si:
 
 ---
 
-*Documento unificado. Versión 3.1 — Migración a Free Use Bible API. Abril 2026.*
+*Documento unificado. Versión 3.2 — Estrategia dual de APIs bíblicas en español. Abril 2026.*

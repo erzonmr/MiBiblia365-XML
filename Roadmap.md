@@ -3,7 +3,7 @@
 ### Plataforma Web tipo App sobre Blogger (XML)
 
 > Hoja de ruta de desarrollo, de la validación inicial hasta la expansión con backend.
-> Versión 2.0 — Migración a Free Use Bible API. Abril 2026.
+> Versión 2.1 — Estrategia dual de APIs bíblicas en español. Abril 2026.
 
 ---
 
@@ -42,23 +42,23 @@
 
 ## Tareas
 
-### 0.1 Validación de la Free Use Bible API
+### 0.1 Validación de APIs bíblicas (doble fuente)
 - [ ] Crear archivo HTML de prueba local (`test-api.html`).
 - [ ] Consumir `GET https://bible.helloao.org/api/available_translations.json`.
+- [ ] Consumir `GET https://docs-bible-api.netlify.app/api/versions`.
 - [ ] Filtrar en JS las traducciones con idioma español (`language: "spa"` o equivalente según el esquema real).
 - [ ] Documentar el listado de versiones en español disponibles (esperadas: al menos una Reina Valera de dominio público y algunas modernas).
-- [ ] Consumir `GET /api/{translation}/books.json` para una versión española. Verificar estructura y nombres de libros en español.
-- [ ] Consumir `GET /api/{translation}/{book}/{chapter}.json` con ejemplos concretos: Juan 3, Génesis 1, Salmos 23.
+- [ ] Consumir libros/capítulos en ambas APIs para una versión española y verificar estructura.
 - [ ] Verificar tiempo de respuesta (objetivo: < 1 segundo por capítulo).
 - [ ] Confirmar soporte CORS desde dominio externo (Blogger / localhost).
 - [ ] Documentar el **esquema real del JSON de capítulo**: cómo vienen los versículos, notas al pie, formato, encabezados de sección.
 - [ ] Probar caché del navegador en llamadas repetidas.
 - [ ] Probar el endpoint `/complete.json` de una traducción para evaluar peso y uso futuro en el buscador.
 
-**Criterio de éxito:** se pueden cargar capítulos en al menos 2 versiones en español desde un navegador común, sin errores CORS, en menos de 1 segundo.
+**Criterio de éxito:** se pueden cargar capítulos en al menos 2 versiones en español desde navegador común, usando fallback entre APIs cuando sea necesario.
 
 ### 0.2 Curaduría inicial de versiones en español
-- [ ] A partir del filtrado de `available_translations.json`, seleccionar el subconjunto final de versiones que se ofrecerán.
+- [ ] A partir de `available_translations.json` + `/versions`, seleccionar el subconjunto final de versiones que se ofrecerán.
 - [ ] Criterio: priorizar versiones ampliamente usadas en contextos evangélicos hispanos.
 - [ ] Incluir una versión **Reina Valera** disponible en la API como predeterminada.
 - [ ] Documentar el ID exacto de cada versión (`id`, `name`, `shortName`, `language`) como aparece en la API.
@@ -68,10 +68,10 @@
 
 ### 0.3 Setup del repositorio GitHub
 - [x] Crear repo público: `MiBiblia365-XML`. (Link del repo: `https://github.com/erzonmr/MiBiblia365-XML`)
-- [ ] Estructura de carpetas base (`data/`, `css/`, `js/`).
+- [ ] Estructura de carpetas base (`json/`, `CDN/css/`, `CDN/js/`).
 - [ ] README inicial con propósito del repo.
 - [ ] Licencia (sugerido: MIT para el código).
-- [ ] Aclarar en README que el texto bíblico proviene de **Free Use Bible API** (`bible.helloao.org`) y que el contenido es de uso libre según las traducciones originales.
+- [ ] Aclarar en README que el texto bíblico se consume desde **Free Use Bible API** y **Bible API Docs Netlify App**, ambas para versiones en español.
 - [ ] Nota explícita en el README: "Este proyecto no modifica el contenido de las traducciones bíblicas."
 
 ### 0.4 Validación de jsDelivr
@@ -119,11 +119,11 @@
 - JSON base servidos por jsDelivr.
 - Blog en Blogger con páginas estáticas creadas.
 - Íconos y paleta visual definida.
-- Pruebas de la Free Use Bible API documentadas y funcionando.
+- Pruebas de ambas APIs bíblicas documentadas y funcionando.
 - Lista definitiva de versiones en español seleccionadas.
 
 ## Checklist de salida Fase 0
-- [ ] La Free Use Bible API responde correctamente para al menos 3 versiones en español.
+- [ ] El flujo dual de APIs responde correctamente para al menos 3 versiones en español.
 - [ ] El esquema del JSON de capítulo está documentado.
 - [ ] jsDelivr entrega los JSON sin problemas.
 - [ ] Blogger tiene la estructura de páginas lista.
@@ -144,7 +144,7 @@
 - [ ] Agregar Open Graph y Twitter Cards.
 - [ ] Configurar favicon y apple-touch-icon.
 - [ ] Preparar puntos de inserción de CSS y JS externos.
-- [ ] Incluir `<link rel="preconnect" href="https://bible.helloao.org">` para mejorar tiempo de primera llamada a la API.
+- [ ] Incluir preconnect a `https://bible.helloao.org` y `https://docs-bible-api.netlify.app`.
 
 ### 1.2 Sistema de diseño (design tokens)
 - [ ] Definir CSS variables en `:root` (colores, espaciados, tipografías).
@@ -212,17 +212,18 @@
 ## Tareas
 
 ### 2.1 Servicio de API bíblica
-- [ ] Crear `bibleService.js` con interfaz limpia sobre la Free Use Bible API.
-- [ ] Implementar `getAvailableTranslations()` → `GET /api/available_translations.json`.
-- [ ] Implementar `getBooks(translationId)` → `GET /api/{translation}/books.json`.
-- [ ] Implementar `getChapter(translationId, bookId, chapter)` → `GET /api/{translation}/{book}/{chapter}.json`.
+- [ ] Crear `bibleService.js` con interfaz limpia sobre ambas APIs.
+- [ ] Implementar catálogo unificado de versiones en español (`available_translations.json` + `/versions`).
+- [ ] Implementar `getBooks(translationId)` con fallback por fuente.
+- [ ] Implementar `getChapter(translationId, bookId, chapter)` con fallback por fuente.
 - [ ] Implementar `getMultipleReadings(translationId, readings)` con `Promise.all` para cargar varias referencias en paralelo (p. ej. las 3 lecturas de un día del plan).
 - [ ] Caché en memoria (`Map`) durante la sesión para evitar llamadas repetidas.
 - [ ] Caché opcional en localStorage para capítulos ya leídos (mejora experiencia offline parcial).
 - [ ] Manejo de errores con mensajes amigables y botón de reintento.
+- [ ] Normalizar IDs de versión en un mapeo canónico (`RV1960`, etc.).
 - [ ] Pre-carga (prefetch) de la lectura del día siguiente cuando el usuario está en "Leer hoy".
 
-**Nota:** la Free Use Bible API es la única fuente. Al estar alojada en AWS como JSON estático, no requiere fallback secundario.
+**Nota:** las dos APIs son complementarias; algunas versiones solo existen en una de las fuentes. El fallback es obligatorio.
 
 ### 2.2 Servicio de planes
 - [ ] Crear `planService.js`.
@@ -283,7 +284,7 @@
 
 ## Entregables Fase 2
 - Usuario puede elegir un plan e iniciar la lectura.
-- Texto bíblico se carga desde la Free Use Bible API con cambio de versión.
+- Texto bíblico se carga con estrategia dual de APIs y cambio de versión.
 - Versículo diario visible en Inicio.
 - Caché en memoria reduce llamadas repetidas durante la sesión.
 - Manejo correcto del año bisiesto.
@@ -291,7 +292,7 @@
 ## Checklist de salida Fase 2
 - [ ] Leer hoy muestra el contenido correcto para el día correcto.
 - [ ] Cambiar de versión funciona sin recargar (nueva llamada a la API transparente).
-- [ ] La racha y el progreso se actualizan al marcar como leído.
+- [ ] El progreso se actualiza al marcar como leído.
 - [ ] Los atrasos se manejan con las dos opciones.
 - [ ] El 29 de febrero funciona según la configuración elegida.
 - [ ] Errores de red muestran un mensaje amigable con opción de reintento.
@@ -377,6 +378,7 @@
 
 ## Checklist de salida Fase 3
 - [ ] Puedo leer, guardar favorito, escribir nota y ver todo en Mi espacio.
+- [ ] La racha se actualiza al marcar como leído.
 - [ ] La racha funciona correctamente con regla de gracia.
 - [ ] Exportar e importar conserva todos los datos.
 - [ ] Modo oscuro se aplica a toda la app.
@@ -650,7 +652,7 @@ Estas tareas no son de una fase específica sino continuas:
 
 | Hito | Fase | Valor entregado |
 |---|---|---|
-| Free Use Bible API validada | Fase 0 | Base técnica sólida |
+| APIs bíblicas validadas | Fase 0 | Base técnica sólida |
 | XML de Blogger publicado | Fase 1 | Sitio navegable |
 | Primer usuario lee un día real | Fase 2 | Producto utilizable |
 | Mi espacio funcional | Fase 3 | Producto con valor personal |
@@ -660,7 +662,7 @@ Estas tareas no son de una fase específica sino continuas:
 
 ### Criterios de decisión
 
-- **No avanzar a Fase 2** sin haber validado la Free Use Bible API y tener el subconjunto de versiones en español curado.
+- **No avanzar a Fase 2** sin haber validado ambas APIs y tener el subconjunto de versiones en español curado.
 - **No avanzar a Fase 3** sin haber usado Leer hoy personalmente durante al menos 7 días reales.
 - **No lanzar Fase 5** sin beta real con al menos 2 personas externas.
 - **No iniciar Fase 6** sin demanda clara.
@@ -668,4 +670,4 @@ Estas tareas no son de una fase específica sino continuas:
 
 ---
 
-*Roadmap v2.0 — Migración a Free Use Bible API. Abril 2026. Este documento es vivo y se actualiza al final de cada fase.*
+*Roadmap v2.1 — Estrategia dual de APIs bíblicas en español. Abril 2026. Este documento es vivo y se actualiza al final de cada fase.*

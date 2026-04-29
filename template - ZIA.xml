@@ -905,7 +905,7 @@
               Versículo del día
             </span>
             <p class='verse-text' id='verse-text'>Lámpara es a mis pies tu palabra, y lumbrera a mi camino.</p>
-            <p class='verse-reference' id='verse-reference'>Salmos 119:105 (RV60)</p>
+            <p class='verse-reference' id='verse-reference'>Salmos 119:105 (RV1960)</p>
           </section>
           
           <!-- Progreso (visible si hay plan activo) -->
@@ -1017,12 +1017,16 @@
     // Configuración
     // ==========================================
     const CONFIG = {
-      CDN_BASE: 'https://cdn.jsdelivr.net/gh/tu-usuario/mibiblia365@main',
+      CDN_BASE: 'https://cdn.jsdelivr.net/gh/erzonmr/MiBiblia365-XML@main',
       API_BASE: 'https://docs-bible-api.netlify.app/api',
-      API_BACKUP: 'https://api.scripture.api.bible/v1',
-      API_KEY: 'lKDNAnTqVMi4Mc32rwonP',
-      DEFAULT_VERSION: 'rv1960',
-      STORAGE_KEY: 'mibiblia365_data'
+      API_SOURCES: {
+        primary: 'https://docs-bible-api.netlify.app/api',
+        secondary: 'https://bible.helloao.org/api'
+      },
+      DEFAULT_VERSION: 'RV1960',
+      SOURCE_PREFERENCE: 'auto',
+      STORAGE_KEY: 'mibiblia365_data',
+      STORAGE_LEGACY_PREFIX: 'mibiblia365-'
     };
     
     // ==========================================
@@ -1161,8 +1165,65 @@
         console.error('Error saving user data:', e);
       }
     }
+
+    function migrateLegacyStorage() {
+      try {
+        if (localStorage.getItem(CONFIG.STORAGE_KEY)) return;
+
+        const legacyData = {
+          config: {
+            preferredVersion: localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'preferredVersion') || CONFIG.DEFAULT_VERSION,
+            sourcePreference: CONFIG.SOURCE_PREFERENCE,
+            darkMode: state.theme === 'dark',
+            fontSize: 'medium',
+            activePlanId: null,
+            leapYearMode: 'gracia'
+          },
+          plans: [],
+          favorites: [],
+          notes: [],
+          history: {
+            readings: [],
+            searches: [],
+            chapters: []
+          }
+        };
+
+        const legacyActivePlan = localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'activePlan');
+        const legacyProgress = localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'progress');
+        const legacyFavorites = localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'favorites');
+        const legacyNotes = localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'notes');
+
+        if (legacyActivePlan) {
+          legacyData.config.activePlanId = JSON.parse(legacyActivePlan);
+        }
+        if (legacyProgress) {
+          legacyData.history.readings = JSON.parse(legacyProgress).completed || [];
+        }
+        if (legacyFavorites) {
+          legacyData.favorites = JSON.parse(legacyFavorites);
+        }
+        if (legacyNotes) {
+          legacyData.notes = JSON.parse(legacyNotes);
+        }
+
+        const hasLegacyContent = legacyActivePlan || legacyProgress || legacyFavorites || legacyNotes;
+        if (!hasLegacyContent) return;
+
+        const migrated = {
+          version: '1.0',
+          lastSync: new Date().toISOString().split('T')[0],
+          ...legacyData
+        };
+
+        saveUserData(migrated);
+      } catch (e) {
+        console.warn('Legacy storage migration skipped:', e);
+      }
+    }
     
     function initUserData() {
+      migrateLegacyStorage();
       const data = getUserData();
       
       if (!data) {
@@ -1172,6 +1233,7 @@
           lastSync: new Date().toISOString().split('T')[0],
           config: {
             preferredVersion: CONFIG.DEFAULT_VERSION,
+            sourcePreference: CONFIG.SOURCE_PREFERENCE,
             darkMode: state.theme === 'dark',
             fontSize: 'medium',
             activePlanId: null,
@@ -1190,6 +1252,8 @@
         saveUserData(initialData);
         state.user = initialData;
       } else {
+        if (!data.config) data.config = {};
+        if (!data.config.sourcePreference) data.config.sourcePreference = CONFIG.SOURCE_PREFERENCE;
         state.user = data;
         state.version = data.config.preferredVersion || CONFIG.DEFAULT_VERSION;
       }
