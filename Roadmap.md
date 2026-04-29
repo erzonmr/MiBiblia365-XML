@@ -32,6 +32,7 @@
 6. **No optimizar antes de tiempo.** Backend solo cuando se justifique.
 7. **Foco en lectura bíblica pura.** No se integran comentarios ni datasets de la API en el producto inicial, aunque la Free Use Bible API los ofrezca.
 8. **Tareas manuales.** Si surgen tareas que se deban realizar de manera manual, se debe dejar registro e instrucciones claras en el archivo `Instrucciones.md`. 
+9. **XML de Trabajo.** Dentro del repositorio está el archivo `template - ZIA.xml`, ese es el archivo XML donde se va a trabajar. Este será el archivo que se subirá a Blogger.  
 
 ---
 
