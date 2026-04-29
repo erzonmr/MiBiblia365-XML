@@ -591,7 +591,7 @@ Iniciar Fase 6 cuando ocurra alguno de estos:
 
 # Fases opcionales a futuro
 
-Ideas que podrían implementarse (Solo bajo aprovación clara y específica) si el proyecto crece:
+Ideas que podrían implementarse (Solo bajo aprobación clara y específica) si el proyecto crece:
 
 ### Fase 7 — Audio bíblico
 - Integración con API de audio bíblico.
