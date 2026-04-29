@@ -1040,6 +1040,10 @@
         pdt: { id: 'PDT', name: 'Palabra de Dios para Todos' }
       }
     };
+
+    const RUNTIME_FLAGS = {
+      netlifyCorsBlocked: false
+    };
     
     // ==========================================
     // Estado global
@@ -1097,10 +1101,21 @@
         const key = 'json:' + url;
         if (memoryCache.has(key)) return memoryCache.get(key);
 
-        const res = await withTimeout(url);
+        let res;
+        try {
+          res = await withTimeout(url);
+        } catch (e) {
+          if (url.indexOf('docs-bible-api.netlify.app') !== -1) {
+            RUNTIME_FLAGS.netlifyCorsBlocked = true;
+          }
+          throw e;
+        }
         if (!res.ok) {
           const err = new Error('HTTP ' + res.status + ' at ' + url);
           err.status = res.status;
+          if (url.indexOf('docs-bible-api.netlify.app') !== -1 && (res.status === 0 || res.type === 'opaque')) {
+            RUNTIME_FLAGS.netlifyCorsBlocked = true;
+          }
           throw err;
         }
 
@@ -1179,6 +1194,20 @@
             number: Number(v.verse || v.number || i + 1),
             text: String(v.text || v.content || '').trim()
           }));
+          return out;
+        }
+
+        if (payload && typeof payload.verses === 'object') {
+          const keys = Object.keys(payload.verses).sort((a, b) => Number(a) - Number(b));
+          out.verses = keys.map((k, i) => ({
+            number: Number(k || i + 1),
+            text: String(payload.verses[k] || '').trim()
+          }));
+          return out;
+        }
+
+        if (payload && typeof payload.text === 'string') {
+          out.verses = [{ number: 1, text: payload.text.trim() }];
         }
         return out;
       }
@@ -1203,6 +1232,7 @@
       }
 
       async function netlifyVersions() {
+        if (RUNTIME_FLAGS.netlifyCorsBlocked) return [];
         const payload = await fetchJSON(CONFIG.API_SOURCES.primary + '/versions');
         const list = Array.isArray(payload) ? payload : (payload.versions || payload.data || []);
         return list.map(v => {
@@ -1262,13 +1292,16 @@
 
         const output = Object.keys(merged).map(k => merged[k]).sort((a, b) => a.name.localeCompare(b.name, 'es'));
         if (output.length === 0) {
-          return [{ id: CONFIG.DEFAULT_VERSION, name: 'Reina Valera 1960', language: 'spa', availableIn: ['netlify', 'helloao'], default: true }];
+          return [{ id: CONFIG.DEFAULT_VERSION, name: 'Reina Valera 1960', language: 'spa', availableIn: ['helloao'], default: true }];
         }
 
         return output.map(v => ({ ...v, default: v.id === CONFIG.DEFAULT_VERSION }));
       }
 
       async function getChapterFromNetlify(versionId, bookValue, chapter) {
+        if (RUNTIME_FLAGS.netlifyCorsBlocked) {
+          throw new Error('Netlify API bloqueada por CORS en este origen');
+        }
         const params = new URLSearchParams({ version: versionId, book: String(bookValue), chapter: String(chapter) });
         const url = CONFIG.API_SOURCES.primary + '/chapter?' + params.toString();
         const payload = await fetchJSON(url);
@@ -1288,7 +1321,11 @@
 
         const normalized = normalizeVersionId((versionRecord && versionRecord.id) || CONFIG.DEFAULT_VERSION);
         const map = {
-          'RV1960': ['RV1960', 'RVR1960', 'RV60', 'RVR60', 'rv1960', 'rvr1960'],
+          'RV1960': ['RV1960', 'RVR1960', 'RV60', 'RVR60', 'rv1960', 'rvr1960', 'RVA', 'rva'],
+          'RV1995': ['RV1995', 'RVR1995', 'rv1995', 'rvr1995'],
+          'NVI': ['NVI', 'nvi'],
+          'DHH': ['DHH', 'dhh'],
+          'PDT': ['PDT', 'pdt'],
           'RVR1909': ['RVR1909', 'RV1909', 'rvr1909']
         };
 
@@ -1312,7 +1349,7 @@
         const allVersions = await getVersions();
         const versionRecord = allVersions.find(v => v.id === normalizedVersion) || {
           id: normalizedVersion,
-          availableIn: ['netlify', 'helloao'],
+          availableIn: RUNTIME_FLAGS.netlifyCorsBlocked ? ['helloao'] : ['netlify', 'helloao'],
           sourceIds: { netlify: [], helloao: [] }
         };
 
