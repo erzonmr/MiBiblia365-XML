@@ -65,7 +65,7 @@
 **Criterio de éxito:** hay al menos 3 versiones en español confirmadas, con sus IDs reales validados contra la API.
 
 ### 0.3 Setup del repositorio GitHub
-- [x] Crear repo público: `MiBiblia365-XML`.
+- [x] Crear repo público: `MiBiblia365-XML`. (Link del repo: `https://github.com/erzonmr/MiBiblia365-XML`)
 - [ ] Estructura de carpetas base (`data/`, `css/`, `js/`).
 - [ ] README inicial con propósito del repo.
 - [ ] Licencia (sugerido: MIT para el código).
@@ -83,11 +83,11 @@
 - [ ] Definir paleta de colores del proyecto (sugerido: azul profundo + dorado suave + crema).
 - [ ] Elegir tipografía principal (sugerido: Inter, Nunito o Poppins).
 - [ ] Crear logo/ícono base.
-- [ ] Generar favicon en múltiples tamaños:
-  - [ ] `favicon.ico` (32×32)
-  - [ ] `favicon-192.png` (192×192)
-  - [ ] `favicon-512.png` (512×512)
-  - [ ] `apple-touch-icon.png` (180×180)
+- [x] Generar favicon en múltiples tamaños (Servidas desde Postimg `https://postimg.cc/`):
+  - [x] `favicon.ico` (32×32). (`https://i.postimg.cc/FRX2rRWT/favicon.png`)
+  - [x] `favicon-192.png` (192×192). (`https://i.postimg.cc/K8X7sM1S/icon-192.png`)
+  - [x] `favicon-512.png` (512×512). (`https://i.postimg.cc/qvXKbZff/icon-512.png`)
+  - [x] `apple-touch-icon.png` (180×180). (`https://i.postimg.cc/yx6MC7Zr/apple-touch-icon.png`)
 - [ ] Crear moodboard visual (referencia para toda la UI).
 
 ### 0.6 Creación del blog en Blogger
