@@ -1197,6 +1197,7 @@
         const list = Array.isArray(payload) ? payload : (payload.versions || payload.data || []);
         return list.map(v => ({
           id: normalizeVersionId(v.id || v.version || v.abbreviation || v.shortName),
+          rawId: String(v.id || v.version || v.abbreviation || v.shortName || '').trim(),
           name: v.name || v.title || v.version || v.id || 'Version',
           language: String(v.language || v.lang || 'spa').toLowerCase(),
           availableIn: ['netlify']
@@ -1208,6 +1209,7 @@
         const list = Array.isArray(payload) ? payload : (payload.translations || payload.data || []);
         return list.map(v => ({
           id: normalizeVersionId(v.id || v.shortName || v.name),
+          rawId: String(v.id || v.shortName || v.name || '').trim(),
           name: v.name || v.shortName || v.id || 'Version',
           language: String(v.language || v.lang || 'spa').toLowerCase(),
           availableIn: ['helloao']
@@ -1225,12 +1227,16 @@
                 id: v.id,
                 name: v.name,
                 language: v.language,
-                availableIn: []
+                availableIn: [],
+                sourceIds: { netlify: [], helloao: [] }
               };
             }
             v.availableIn.forEach(src => {
               if (merged[v.id].availableIn.indexOf(src) === -1) {
                 merged[v.id].availableIn.push(src);
+              }
+              if (v.rawId && merged[v.id].sourceIds[src].indexOf(v.rawId) === -1) {
+                merged[v.id].sourceIds[src].push(v.rawId);
               }
             });
           });
@@ -1247,11 +1253,11 @@
         return output.map(v => ({ ...v, default: v.id === CONFIG.DEFAULT_VERSION }));
       }
 
-      async function getChapterFromNetlify(versionId, bookId, chapter) {
-        const params = new URLSearchParams({ version: versionId, book: String(bookId).toUpperCase(), chapter: String(chapter) });
+      async function getChapterFromNetlify(versionId, bookValue, chapter) {
+        const params = new URLSearchParams({ version: versionId, book: String(bookValue), chapter: String(chapter) });
         const url = CONFIG.API_SOURCES.primary + '/chapter?' + params.toString();
         const payload = await fetchJSON(url);
-        return parseNetlifyChapter(payload, versionId, bookId, chapter);
+        return parseNetlifyChapter(payload, versionId, bookValue, chapter);
       }
 
       async function getChapterFromHello(versionId, bookId, chapter) {
@@ -1260,12 +1266,39 @@
         return parseHelloChapter(payload, versionId, bookId, chapter);
       }
 
-      async function getChapter(versionId, bookId, chapter) {
+      function getVersionCandidatesForSource(versionRecord, source) {
+        const direct = versionRecord && versionRecord.sourceIds && versionRecord.sourceIds[source]
+          ? versionRecord.sourceIds[source].slice()
+          : [];
+
+        const normalized = normalizeVersionId((versionRecord && versionRecord.id) || CONFIG.DEFAULT_VERSION);
+        const map = {
+          'RV1960': ['RV1960', 'RVR1960', 'RV60', 'RVR60', 'rv1960', 'rvr1960'],
+          'RVR1909': ['RVR1909', 'RV1909', 'rvr1909']
+        };
+
+        const alias = map[normalized] || [normalized, normalized.toLowerCase()];
+        const all = direct.concat(alias);
+        return all.filter((v, i) => v && all.indexOf(v) === i);
+      }
+
+      function getBookCandidates(source, bookId, options) {
+        const out = [String(bookId).toUpperCase()];
+        const bookName = options && options.bookName ? String(options.bookName).trim() : '';
+        if (source === 'netlify' && bookName) {
+          out.push(bookName);
+          out.push(bookName.toLowerCase());
+        }
+        return out.filter((v, i) => v && out.indexOf(v) === i);
+      }
+
+      async function getChapter(versionId, bookId, chapter, options) {
         const normalizedVersion = normalizeVersionId(versionId || CONFIG.DEFAULT_VERSION);
         const allVersions = await getVersions();
         const versionRecord = allVersions.find(v => v.id === normalizedVersion) || {
           id: normalizedVersion,
-          availableIn: ['netlify', 'helloao']
+          availableIn: ['netlify', 'helloao'],
+          sourceIds: { netlify: [], helloao: [] }
         };
 
         const order = orderSources(versionRecord);
@@ -1273,17 +1306,26 @@
 
         for (let i = 0; i < order.length; i += 1) {
           const source = order[i];
-          const cached = getCachedChapter(source, normalizedVersion, bookId, chapter);
-          if (cached) return cached;
+          const versionCandidates = getVersionCandidatesForSource(versionRecord, source);
+          const bookCandidates = getBookCandidates(source, bookId, options);
 
-          try {
-            const data = source === 'netlify'
-              ? await getChapterFromNetlify(normalizedVersion, bookId, chapter)
-              : await getChapterFromHello(normalizedVersion, bookId, chapter);
-            setCachedChapter(source, normalizedVersion, bookId, chapter, data);
-            return data;
-          } catch (e) {
-            errors.push({ source: source, message: e.message, status: e.status || null });
+          for (let v = 0; v < versionCandidates.length; v += 1) {
+            const sourceVersion = versionCandidates[v];
+            for (let b = 0; b < bookCandidates.length; b += 1) {
+              const sourceBook = bookCandidates[b];
+              const cached = getCachedChapter(source, sourceVersion, sourceBook, chapter);
+              if (cached) return cached;
+
+              try {
+                const data = source === 'netlify'
+                  ? await getChapterFromNetlify(sourceVersion, sourceBook, chapter)
+                  : await getChapterFromHello(sourceVersion, sourceBook, chapter);
+                setCachedChapter(source, sourceVersion, sourceBook, chapter, data);
+                return data;
+              } catch (e) {
+                errors.push({ source: source, version: sourceVersion, book: sourceBook, message: e.message, status: e.status || null });
+              }
+            }
           }
         }
 
@@ -1546,7 +1588,7 @@
       );
 
       try {
-        const chapterData = await BibleService.getChapter(preferredVersion, 'PSA', 119);
+        const chapterData = await BibleService.getChapter(preferredVersion, 'PSA', 119, { bookName: 'Salmos' });
         const verses = Array.isArray(chapterData.verses) ? chapterData.verses : [];
         const verse = verses.find(v => Number(v.number) === 105);
 
@@ -1690,7 +1732,7 @@
 
         let currentReadingIndex = 0;
         const firstReading = parsedReadings[currentReadingIndex];
-        const chapterData = await BibleService.getChapter(selectedVersion, firstReading.bookId, firstReading.chapter);
+        const chapterData = await BibleService.getChapter(selectedVersion, firstReading.bookId, firstReading.chapter, { bookName: firstReading.bookName });
 
         dynamic.innerHTML = [
           '<div class="page-container">',
@@ -1738,7 +1780,7 @@
 
           if (versesBox) versesBox.innerHTML = '<p class="text-muted">Cargando capítulo...</p>';
           try {
-            const currentChapter = await BibleService.getChapter(currentVersion, reading.bookId, reading.chapter);
+            const currentChapter = await BibleService.getChapter(currentVersion, reading.bookId, reading.chapter, { bookName: reading.bookName });
             if (versesBox) versesBox.innerHTML = renderChapterVerses(currentChapter.verses);
           } catch (_) {
             if (versesBox) versesBox.innerHTML = '<p class="text-muted">No se pudo cargar la lectura. Intenta otra versión.</p>';
