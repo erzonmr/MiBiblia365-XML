@@ -1026,7 +1026,9 @@
       DEFAULT_VERSION: 'RV1960',
       SOURCE_PREFERENCE: 'auto',
       STORAGE_KEY: 'mibiblia365_data',
-      STORAGE_LEGACY_PREFIX: 'mibiblia365-'
+      STORAGE_LEGACY_PREFIX: 'mibiblia365-',
+      CHAPTER_CACHE_KEY: 'mibiblia365_chapter_cache_v1',
+      REQUEST_TIMEOUT_MS: 12000
     };
     
     // ==========================================
@@ -1058,6 +1060,244 @@
     function hide(el) {
       if (el) el.classList.add('hidden');
     }
+
+    function normalizeVersionId(versionId) {
+      const raw = String(versionId || '').trim().toUpperCase();
+      const map = {
+        'RV60': 'RV1960',
+        'RVR60': 'RV1960',
+        'RVR1960': 'RV1960',
+        'RV-1960': 'RV1960',
+        'RVR-1960': 'RV1960'
+      };
+      return map[raw] || raw;
+    }
+
+    const BibleService = (function() {
+      const memoryCache = new Map();
+
+      function withTimeout(url) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), CONFIG.REQUEST_TIMEOUT_MS);
+        return fetch(url, { signal: controller.signal })
+          .finally(() => clearTimeout(timeoutId));
+      }
+
+      async function fetchJSON(url) {
+        const key = 'json:' + url;
+        if (memoryCache.has(key)) return memoryCache.get(key);
+
+        const res = await withTimeout(url);
+        if (!res.ok) {
+          const err = new Error('HTTP ' + res.status + ' at ' + url);
+          err.status = res.status;
+          throw err;
+        }
+
+        const data = await res.json();
+        memoryCache.set(key, data);
+        return data;
+      }
+
+      function readChapterCache() {
+        try {
+          const raw = localStorage.getItem(CONFIG.CHAPTER_CACHE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (_) {
+          return {};
+        }
+      }
+
+      function writeChapterCache(cache) {
+        try {
+          localStorage.setItem(CONFIG.CHAPTER_CACHE_KEY, JSON.stringify(cache));
+        } catch (_) {}
+      }
+
+      function setCachedChapter(sourceKey, versionId, bookId, chapter, payload) {
+        const key = [sourceKey, normalizeVersionId(versionId), String(bookId).toUpperCase(), Number(chapter)].join('|');
+        const cache = readChapterCache();
+        cache[key] = { at: Date.now(), data: payload };
+        writeChapterCache(cache);
+      }
+
+      function getCachedChapter(sourceKey, versionId, bookId, chapter) {
+        const key = [sourceKey, normalizeVersionId(versionId), String(bookId).toUpperCase(), Number(chapter)].join('|');
+        const cache = readChapterCache();
+        return cache[key] ? cache[key].data : null;
+      }
+
+      function normalizeSourceKey(sourceKey) {
+        return sourceKey === 'netlify' ? 'netlify' : 'helloao';
+      }
+
+      function orderSources(versionRecord) {
+        const pref = state.user && state.user.config && state.user.config.sourcePreference
+          ? state.user.config.sourcePreference
+          : CONFIG.SOURCE_PREFERENCE;
+
+        const available = versionRecord && Array.isArray(versionRecord.availableIn)
+          ? versionRecord.availableIn.slice()
+          : ['netlify', 'helloao'];
+
+        const normalized = available.map(normalizeSourceKey);
+        if (pref === 'netlify-first') return ['netlify', 'helloao'].filter(s => normalized.indexOf(s) !== -1);
+        if (pref === 'helloao-first') return ['helloao', 'netlify'].filter(s => normalized.indexOf(s) !== -1);
+        return ['netlify', 'helloao'].filter(s => normalized.indexOf(s) !== -1);
+      }
+
+      function parseHelloChapter(payload, versionId, bookId, chapter) {
+        const out = {
+          source: 'helloao',
+          versionId: normalizeVersionId(versionId),
+          bookId: String(bookId).toUpperCase(),
+          chapter: Number(chapter),
+          verses: []
+        };
+
+        if (Array.isArray(payload)) {
+          out.verses = payload.map((v, i) => ({
+            number: Number(v.verse || v.number || i + 1),
+            text: String(v.text || v.content || '').trim()
+          }));
+          return out;
+        }
+
+        const list = payload.verses || payload.data || payload.chapter || [];
+        if (Array.isArray(list)) {
+          out.verses = list.map((v, i) => ({
+            number: Number(v.verse || v.number || i + 1),
+            text: String(v.text || v.content || '').trim()
+          }));
+        }
+        return out;
+      }
+
+      function parseNetlifyChapter(payload, versionId, bookId, chapter) {
+        const out = {
+          source: 'netlify',
+          versionId: normalizeVersionId(versionId),
+          bookId: String(bookId).toUpperCase(),
+          chapter: Number(chapter),
+          verses: []
+        };
+
+        const list = payload.verses || payload.data || payload.results || [];
+        if (Array.isArray(list)) {
+          out.verses = list.map((v, i) => ({
+            number: Number(v.verse || v.number || i + 1),
+            text: String(v.text || v.content || '').trim()
+          }));
+        }
+        return out;
+      }
+
+      async function netlifyVersions() {
+        const payload = await fetchJSON(CONFIG.API_SOURCES.primary + '/versions');
+        const list = Array.isArray(payload) ? payload : (payload.versions || payload.data || []);
+        return list.map(v => ({
+          id: normalizeVersionId(v.id || v.version || v.abbreviation || v.shortName),
+          name: v.name || v.title || v.version || v.id || 'Version',
+          language: String(v.language || v.lang || 'spa').toLowerCase(),
+          availableIn: ['netlify']
+        })).filter(v => v.id && (v.language.indexOf('spa') !== -1 || v.language.indexOf('es') !== -1));
+      }
+
+      async function helloVersions() {
+        const payload = await fetchJSON(CONFIG.API_SOURCES.secondary + '/available_translations.json');
+        const list = Array.isArray(payload) ? payload : (payload.translations || payload.data || []);
+        return list.map(v => ({
+          id: normalizeVersionId(v.id || v.shortName || v.name),
+          name: v.name || v.shortName || v.id || 'Version',
+          language: String(v.language || v.lang || 'spa').toLowerCase(),
+          availableIn: ['helloao']
+        })).filter(v => v.id && (v.language.indexOf('spa') !== -1 || v.language.indexOf('es') !== -1));
+      }
+
+      async function getVersions() {
+        const [netlifyList, helloList] = await Promise.allSettled([netlifyVersions(), helloVersions()]);
+        const merged = {};
+
+        function upsert(list) {
+          list.forEach(v => {
+            if (!merged[v.id]) {
+              merged[v.id] = {
+                id: v.id,
+                name: v.name,
+                language: v.language,
+                availableIn: []
+              };
+            }
+            v.availableIn.forEach(src => {
+              if (merged[v.id].availableIn.indexOf(src) === -1) {
+                merged[v.id].availableIn.push(src);
+              }
+            });
+          });
+        }
+
+        if (netlifyList.status === 'fulfilled') upsert(netlifyList.value);
+        if (helloList.status === 'fulfilled') upsert(helloList.value);
+
+        const output = Object.keys(merged).map(k => merged[k]).sort((a, b) => a.name.localeCompare(b.name, 'es'));
+        if (output.length === 0) {
+          return [{ id: CONFIG.DEFAULT_VERSION, name: 'Reina Valera 1960', language: 'spa', availableIn: ['netlify', 'helloao'], default: true }];
+        }
+
+        return output.map(v => ({ ...v, default: v.id === CONFIG.DEFAULT_VERSION }));
+      }
+
+      async function getChapterFromNetlify(versionId, bookId, chapter) {
+        const params = new URLSearchParams({ version: versionId, book: String(bookId).toUpperCase(), chapter: String(chapter) });
+        const url = CONFIG.API_SOURCES.primary + '/chapter?' + params.toString();
+        const payload = await fetchJSON(url);
+        return parseNetlifyChapter(payload, versionId, bookId, chapter);
+      }
+
+      async function getChapterFromHello(versionId, bookId, chapter) {
+        const url = CONFIG.API_SOURCES.secondary + '/' + encodeURIComponent(versionId) + '/' + encodeURIComponent(String(bookId).toUpperCase()) + '/' + encodeURIComponent(String(chapter)) + '.json';
+        const payload = await fetchJSON(url);
+        return parseHelloChapter(payload, versionId, bookId, chapter);
+      }
+
+      async function getChapter(versionId, bookId, chapter) {
+        const normalizedVersion = normalizeVersionId(versionId || CONFIG.DEFAULT_VERSION);
+        const allVersions = await getVersions();
+        const versionRecord = allVersions.find(v => v.id === normalizedVersion) || {
+          id: normalizedVersion,
+          availableIn: ['netlify', 'helloao']
+        };
+
+        const order = orderSources(versionRecord);
+        const errors = [];
+
+        for (let i = 0; i < order.length; i += 1) {
+          const source = order[i];
+          const cached = getCachedChapter(source, normalizedVersion, bookId, chapter);
+          if (cached) return cached;
+
+          try {
+            const data = source === 'netlify'
+              ? await getChapterFromNetlify(normalizedVersion, bookId, chapter)
+              : await getChapterFromHello(normalizedVersion, bookId, chapter);
+            setCachedChapter(source, normalizedVersion, bookId, chapter, data);
+            return data;
+          } catch (e) {
+            errors.push({ source: source, message: e.message, status: e.status || null });
+          }
+        }
+
+        const err = new Error('No se pudo cargar el capitulo solicitado desde ninguna API.');
+        err.details = errors;
+        throw err;
+      }
+
+      return {
+        getVersions,
+        getChapter,
+        normalizeVersionId
+      };
+    })();
     
     // ==========================================
     // Sistema de temas
@@ -1253,6 +1493,7 @@
         state.user = initialData;
       } else {
         if (!data.config) data.config = {};
+        data.config.preferredVersion = normalizeVersionId(data.config.preferredVersion || CONFIG.DEFAULT_VERSION);
         if (!data.config.sourcePreference) data.config.sourcePreference = CONFIG.SOURCE_PREFERENCE;
         state.user = data;
         state.version = data.config.preferredVersion || CONFIG.DEFAULT_VERSION;
@@ -1301,6 +1542,8 @@
     function init() {
       initTheme();
       initUserData();
+      window.MiBiblia365Services = window.MiBiblia365Services || {};
+      window.MiBiblia365Services.bible = BibleService;
       
       state.currentPage = detectCurrentPage();
       updateActiveNav();
