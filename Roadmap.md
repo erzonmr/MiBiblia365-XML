@@ -44,13 +44,13 @@
 
 ### 0.1 Validación de APIs bíblicas (doble fuente)
 - [ ] Crear archivo HTML de prueba local (`test-api.html`).
-- [ ] Consumir `GET https://bible.helloao.org/api/available_translations.json`.
-- [ ] Consumir `GET https://docs-bible-api.netlify.app/api/versions`.
-- [ ] Filtrar en JS las traducciones con idioma español (`language: "spa"` o equivalente según el esquema real).
+- [x] Consumir `GET https://bible.helloao.org/api/available_translations.json`.
+- [x] Consumir `GET https://docs-bible-api.netlify.app/api/versions`.
+- [x] Filtrar en JS las traducciones con idioma español (`language: "spa"` o equivalente según el esquema real).
 - [ ] Documentar el listado de versiones en español disponibles (esperadas: al menos una Reina Valera de dominio público y algunas modernas).
-- [ ] Consumir libros/capítulos en ambas APIs para una versión española y verificar estructura.
+- [x] Consumir libros/capítulos en ambas APIs para una versión española y verificar estructura.
 - [ ] Verificar tiempo de respuesta (objetivo: < 1 segundo por capítulo).
-- [ ] Confirmar soporte CORS desde dominio externo (Blogger / localhost).
+- [x] Confirmar soporte CORS desde dominio externo (Blogger / localhost).
 - [ ] Documentar el **esquema real del JSON de capítulo**: cómo vienen los versículos, notas al pie, formato, encabezados de sección.
 - [ ] Probar caché del navegador en llamadas repetidas.
 - [ ] Probar el endpoint `/complete.json` de una traducción para evaluar peso y uso futuro en el buscador.
@@ -58,9 +58,9 @@
 **Criterio de éxito:** se pueden cargar capítulos en al menos 2 versiones en español desde navegador común, usando fallback entre APIs cuando sea necesario.
 
 ### 0.2 Curaduría inicial de versiones en español
-- [ ] A partir de `available_translations.json` + `/versions`, seleccionar el subconjunto final de versiones que se ofrecerán.
+- [x] A partir de `available_translations.json` + `/versions`, seleccionar el subconjunto final de versiones que se ofrecerán.
 - [ ] Criterio: priorizar versiones ampliamente usadas en contextos evangélicos hispanos.
-- [ ] Incluir una versión **Reina Valera** disponible en la API como predeterminada.
+- [x] Incluir una versión **Reina Valera** disponible en la API como predeterminada.
 - [ ] Documentar el ID exacto de cada versión (`id`, `name`, `shortName`, `language`) como aparece en la API.
 - [ ] Construir el primer borrador de `versions.json` (formato definido en brief sección 15.1).
 
@@ -68,10 +68,10 @@
 
 ### 0.3 Setup del repositorio GitHub
 - [x] Crear repo público: `MiBiblia365-XML`. (Link del repo: `https://github.com/erzonmr/MiBiblia365-XML`)
-- [ ] Estructura de carpetas base (`json/`, `CDN/css/`, `CDN/js/`).
-- [ ] README inicial con propósito del repo.
+- [x] Estructura de carpetas base (`json/`, `CDN/css/`, `CDN/js/`).
+- [x] README inicial con propósito del repo.
 - [ ] Licencia (sugerido: MIT para el código).
-- [ ] Aclarar en README que el texto bíblico se consume desde **Free Use Bible API** y **Bible API Docs Netlify App**, ambas para versiones en español.
+- [x] Aclarar en README que el texto bíblico se consume desde **Free Use Bible API** y **Bible API Docs Netlify App**, ambas para versiones en español.
 - [ ] Nota explícita en el README: "Este proyecto no modifica el contenido de las traducciones bíblicas."
 
 ### 0.4 Validación de jsDelivr
@@ -126,8 +126,17 @@
 - [ ] El flujo dual de APIs responde correctamente para al menos 3 versiones en español.
 - [ ] El esquema del JSON de capítulo está documentado.
 - [ ] jsDelivr entrega los JSON sin problemas.
-- [ ] Blogger tiene la estructura de páginas lista.
+- [x] Blogger tiene la estructura de páginas lista.
 - [ ] El diseño visual tiene dirección clara.
+
+## Registro de avance (sin tiempos)
+
+- [x] Se consolidó `template - ZIA.xml` como MVP activo y archivo principal de ejecución.
+- [x] Se implementó capa dual de APIs con fallback en runtime dentro del MVP.
+- [x] Se verificó bloqueo CORS de Netlify desde Blogger y se aplicó degradación automática hacia HelloAO.
+- [x] Se definió política de versiones en español: Netlify por whitelist (`rv1960`, `rv1995`, `nvi`, `dhh`, `pdt`) y HelloAO por `language === "spa"`.
+- [x] Se conectó `/p/leer-hoy.html` con lectura real: plan anual, selector de versión, navegación por porciones y marcado de lectura.
+- [x] Se actualizó documentación de alineación técnica en `README.md`, `Brief_MiBiblia365-XML.md` y `Roadmap.md`.
 
 ---
 

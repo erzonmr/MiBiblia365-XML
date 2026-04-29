@@ -8,6 +8,7 @@ Repositorio del proyecto **Mi Biblia 365**: app web tipo dashboard devocional so
 - `Templates XML/` es solo referencia histórica; no es fuente de verdad técnica.
 - Lógica JS standalone adicional en `CDN/js/app.js` (compatibilidad/iteraciones).
 - Datos de planes y versículos en `json/` con nombres actuales del repositorio.
+- Inicio formal de Fase 0 en curso (registro sin estimaciones de tiempo).
 
 ## Arquitectura vigente
 
@@ -67,3 +68,4 @@ En `template - ZIA.xml`:
 
 - `Instrucciones.md` se mantiene vacío por ahora y se llenará a medida que avancen fases con tareas manuales.
 - Antes de publicar cambios de datos en CDN, considerar caché de jsDelivr.
+- Este proyecto no modifica el contenido original de las traducciones bíblicas.
