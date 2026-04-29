@@ -91,20 +91,20 @@
 - [ ] Crear moodboard visual (referencia para toda la UI).
 
 ### 0.6 Creación del blog en Blogger
-- [x] Crear blog nuevo en Blogger con dominio propio. Dominio: `www.mibiblia365`
-- [ ] Configurar zona horaria, idioma (español), región.
-- [ ] Desactivar comentarios en páginas.
+- [x] Crear blog nuevo en Blogger con dominio propio. Dominio: `www.mibiblia365.com`
+- [x] Configurar zona horaria, idioma (español), región.
+- [x] Desactivar comentarios en páginas.
 - [ ] Configurar opciones de búsqueda y meta descripciones.
 - [ ] Crear las páginas estáticas vacías (sin contenido, solo estructura):
-  - [ ] `/p/leer-hoy.html`
-  - [ ] `/p/planes.html`
-  - [ ] `/p/plan-completo.html`
-  - [ ] `/p/biblia.html`
-  - [ ] `/p/buscar.html`
-  - [ ] `/p/mi-espacio.html`
-  - [ ] `/p/acerca.html`
-  - [ ] `/p/preguntas-frecuentes.html`
-  - [ ] `/p/instalar.html`
+  - [x] `/p/leer-hoy.html`
+  - [x] `/p/planes.html`
+  - [x] `/p/plan-completo.html`
+  - [x] `/p/biblia.html`
+  - [x] `/p/buscar.html`
+  - [x] `/p/mi-espacio.html`
+  - [x] `/p/acerca.html`
+  - [x] `/p/preguntas-frecuentes.html`
+  - [x] `/p/instalar.html`
 
 ### 0.7 JSON iniciales
 - [ ] Subir `versions.json` (subconjunto curado desde `available_translations.json`).
