@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/blogger/2008' xmlns:data='http://www.google.com/blogger/2008/data' xmlns:expr='http://www.google.com/blogger/2008/expr'>
+<head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <title><data:blog.pageTitle/></title>
+    
+    <!-- ESTILOS CSS (Dentro de b:skin para que Blogger lo lea) -->
+    <b:skin><![CDATA[
+    /* Variables de Color */
+    :root {
+        --primary: #2c3e50;
+        --secondary: #34495e;
+        --bg: #f5f5f5;
+        --text: #333;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        background-color: var(--bg);
+        color: var(--text);
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        background-color: var(--primary);
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+    nav {
+        background-color: var(--secondary);
+        overflow: hidden;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        display: block;
+    }
+    nav ul li a:hover {
+        background-color: #576a7f;
+    }
+    .content {
+        background: white;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+    .btn {
+        display: inline-block;
+        background: var(--primary);
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    footer {
+        text-align: center;
+        padding: 20px 0;
+        background: var(--primary);
+        color: white;
+        margin-top: 40px;
+    }
+    /* Mobile Nav */
+    .mobile-nav { display: none; }
+    @media (max-width: 768px) {
+        nav { display: none; }
+        .mobile-nav {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--secondary);
+            z-index: 999;
+            justify-content: space-around;
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+        }
+        .mobile-nav li a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            text-align: center;
+        }
+        body { padding-bottom: 60px; }
+    }
+    ]]></b:skin>
+</head>
+<body>
+
+    <header>
+        <div class='container'>
+            <h1>Mi Biblia 365</h1>
+            <p>Un Año con La Palabra</p>
+        </div>
+    </header>
+
+    <!-- Navegación Desktop -->
+    <nav>
+        <ul>
+            <li><a href='/'>Inicio</a></li>
+            <li><a href='#'>Leer Hoy</a></li>
+            <li><a href='#'>Planes</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal (Editable desde Diseño en Blogger) -->
+    <div class='container'>
+        <b:section id='main' showaddelement='yes'>
+            <b:widget id='HTML1' locked='false' title='Bienvenida' type='HTML'>
+                <b:includable id='main'>
+                    <div class='content'>
+                        <h2>Bienvenido a Mi Biblia 365</h2>
+                        <p>Comienza tu recorrido espiritual hoy mismo. Este es tu espacio para crecer.</p>
+                        <a class='btn' href='#'>Empezar Plan de Lectura</a>
+                    </div>
+                </b:includable>
+            </b:widget>
+        </b:section>
+    </div>
+
+    <!-- Navegación Móvil -->
+    <ul class='mobile-nav'>
+        <li><a href='/'>Inicio</a></li>
+        <li><a href='#'>Hoy</a></li>
+        <li><a href='#'>Planes</a></li>
+    </ul>
+
+    <footer>
+        <div class='container'>
+            <!-- AQUÍ ESTÁ EL ARREGLO: &#169; en vez de &copy; -->
+            <p>&#169; 2026 Mi Biblia 365. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

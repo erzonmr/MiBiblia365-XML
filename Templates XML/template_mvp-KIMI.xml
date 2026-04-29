@@ -1,0 +1,1483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+  <meta name="apple-mobile-web-app-title" content="Mi Biblia 365"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="theme-color" content="#1a2a3a"/>
+  <title>Mi Biblia 365 — Un Año con La Palabra</title>
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/mibiblia365/assets@main/icon-192.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/mibiblia365/assets@main/icon-192.png"/>
+
+  <b:skin><![CDATA[
+    /* ============================================
+       MI BIBLIA 365 — MVP CSS
+       Mobile-first, dark mode, app-like
+       ============================================ */
+    :root {
+      --bg: #f5f1eb;
+      --surface: #ffffff;
+      --surface-2: #f0ece6;
+      --text: #1a1a1a;
+      --text-2: #5c5c5c;
+      --text-3: #8a8a8a;
+      --primary: #2c3e50;
+      --primary-light: #3d5266;
+      --accent: #c9a84c;
+      --accent-light: #dbbc68;
+      --success: #4a7c59;
+      --danger: #a44a4a;
+      --warning: #c9a84c;
+      --border: #e0d8cc;
+      --shadow: rgba(0,0,0,0.06);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --bottom-nav-h: 64px;
+      --top-nav-h: 56px;
+      --max-w: 720px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1419;
+      --surface: #1a2028;
+      --surface-2: #252d38;
+      --text: #e8e4de;
+      --text-2: #a8a29e;
+      --text-3: #78716c;
+      --primary: #94a3b8;
+      --primary-light: #cbd5e1;
+      --accent: #d4b76a;
+      --accent-light: #e8d5a3;
+      --border: #2d3748;
+      --shadow: rgba(0,0,0,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+      padding-bottom: calc(var(--bottom-nav-h) + 16px);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* Ocultar elementos nativos de Blogger */
+    .navbar, .blog-feeds, .post-feeds, .blog-pager, .blog-posts.hfeed, 
+    .sidebar, .columns.fauxcolumns, .fauxcolumn-outer, 
+    #Attribution1, #Header1, #BlogArchive1, #Profile1, #Followers1 {
+      display: none !important;
+    }
+
+    #wrapper { max-width: 100%; margin: 0 auto; }
+
+    /* Top Header */
+    .app-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      height: var(--top-nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .app-header .logo {
+      font-weight: 700; font-size: 1.1rem; color: var(--primary);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .app-header .logo span { color: var(--accent); }
+    .app-header .actions { display: flex; gap: 8px; align-items: center; }
+
+    /* Buttons & Icons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 10px 18px; border-radius: var(--radius-sm);
+      border: none; font-family: inherit; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; text-decoration: none;
+      background: var(--surface-2); color: var(--text);
+      min-height: 44px;
+    }
+    .btn:active { transform: scale(0.96); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-accent { background: var(--accent); color: #1a1a1a; }
+    .btn-ghost { background: transparent; border: 1px solid var(--border); }
+    .btn-sm { padding: 6px 12px; font-size: 0.85rem; min-height: 36px; }
+    .btn-block { width: 100%; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface-2); border: none; color: var(--text-2);
+      cursor: pointer; font-size: 1.2rem;
+    }
+
+    /* Main Content */
+    .main-content { max-width: var(--max-w); margin: 0 auto; padding: 16px; }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card-hover:active { transform: scale(0.99); }
+    .card-title { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .card-sub { font-size: 0.85rem; color: var(--text-3); margin-bottom: 12px; }
+
+    /* Verse Styles */
+    .verse-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .verse-box::before {
+      content: '"'; position: absolute; top: 10px; left: 14px;
+      font-size: 4rem; opacity: 0.15; font-family: Georgia, serif; line-height: 1;
+    }
+    .verse-text { font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.7; position: relative; z-index: 1; }
+    .verse-ref { margin-top: 12px; font-size: 0.85rem; opacity: 0.9; font-weight: 600; }
+    .verse-theme { margin-top: 4px; font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Reading View */
+    .reading-header { margin-bottom: 20px; }
+    .reading-title { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+    .reading-meta { font-size: 0.85rem; color: var(--text-3); margin-top: 4px; }
+    .passage-text {
+      font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.85;
+      color: var(--text); margin: 20px 0;
+    }
+    .passage-text .verse-num {
+      font-family: var(--font); font-size: 0.7rem; font-weight: 700;
+      color: var(--accent); vertical-align: super; margin-right: 4px;
+    }
+    .passage-text p { margin-bottom: 1em; }
+
+    /* Progress */
+    .progress-wrap { margin: 16px 0; }
+    .progress-bar-bg {
+      height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      border-radius: 4px; transition: width 0.5s ease;
+    }
+    .progress-text { font-size: 0.8rem; color: var(--text-3); margin-top: 6px; text-align: right; }
+
+    /* Plan Grid */
+    .plan-grid { display: grid; gap: 12px; }
+    .plan-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .plan-card.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-light)40; }
+    .plan-name { font-weight: 700; font-size: 1.05rem; }
+    .plan-desc { font-size: 0.85rem; color: var(--text-2); }
+    .plan-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag { font-size: 0.7rem; padding: 3px 8px; border-radius: 20px; background: var(--surface-2); color: var(--text-2); font-weight: 600; }
+    .tag.accent { background: var(--accent); color: #1a1a1a; }
+
+    /* Calendar Grid */
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 12px; }
+    .cal-day {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600;
+      background: var(--surface-2); color: var(--text-2); cursor: pointer;
+    }
+    .cal-day.completed { background: var(--success); color: #fff; }
+    .cal-day.today { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .cal-day.has-note::after { content: ''; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; position: absolute; bottom: 4px; }
+
+    /* Forms */
+    input, textarea, select {
+      width: 100%; padding: 12px 14px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); font-family: inherit; font-size: 1rem;
+      outline: none; transition: border 0.2s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+    textarea { min-height: 120px; resize: vertical; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--text-2); }
+
+    /* Search Results */
+    .result-item {
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+      cursor: pointer; transition: background 0.2s;
+    }
+    .result-item:hover { background: var(--surface-2); margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: var(--radius-sm); }
+    .result-ref { font-weight: 700; color: var(--primary); font-size: 0.9rem; }
+    .result-snippet { font-size: 0.9rem; color: var(--text-2); margin-top: 4px; }
+    .result-snippet mark { background: var(--accent-light); color: #1a1a1a; padding: 0 2px; border-radius: 2px; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab { padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+      background: var(--surface-2); color: var(--text-2); border: none; cursor: pointer; white-space: nowrap; }
+    .tab.active { background: var(--primary); color: #fff; }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: var(--bottom-nav-h); background: var(--surface);
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-around; align-items: center;
+      z-index: 100; padding-bottom: env(safe-area-inset-bottom);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-item {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+      padding: 6px 0; color: var(--text-3); text-decoration: none; font-size: 0.65rem; font-weight: 600;
+      transition: color 0.2s; border: none; background: none; cursor: pointer;
+    }
+    .nav-item .nav-icon { font-size: 1.4rem; line-height: 1; }
+    .nav-item.active { color: var(--accent); }
+    .nav-item:active { transform: scale(0.9); }
+
+    /* Desktop Nav (hidden on mobile) */
+    .desktop-nav { display: none; }
+
+    /* Page transitions */
+    .page { display: none; animation: fadeIn 0.3s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Empty State */
+    .empty-state { text-align: center; padding: 40px 20px; color: var(--text-3); }
+    .empty-state .icon { font-size: 3rem; margin-bottom: 12px; opacity: 0.5; }
+
+    /* Streak Badge */
+    .streak-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--accent); color: #1a1a1a;
+      padding: 4px 10px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 700;
+    }
+
+    /* Modal / Overlay */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      z-index: 200; display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .overlay.active { display: flex; }
+    .modal {
+      background: var(--surface); border-radius: var(--radius);
+      max-width: 480px; width: 100%; max-height: 80vh; overflow-y: auto;
+      padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .modal-title { font-size: 1.1rem; font-weight: 700; }
+
+    /* Toasts */
+    .toast-container {
+      position: fixed; top: calc(var(--top-nav-h) + 10px); left: 50%; transform: translateX(-50%);
+      z-index: 300; display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+    }
+    .toast {
+      background: var(--primary); color: #fff;
+      padding: 12px 20px; border-radius: var(--radius-sm);
+      font-size: 0.9rem; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s ease;
+      pointer-events: auto;
+    }
+    .toast.success { background: var(--success); }
+    .toast.error { background: var(--danger); }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Utility */
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 8px; }
+    .gap-3 { gap: 12px; }
+    .mt-2 { margin-top: 8px; }
+    .mt-3 { margin-top: 12px; }
+    .mt-4 { margin-top: 16px; }
+    .mb-2 { margin-bottom: 8px; }
+    .mb-3 { margin-bottom: 12px; }
+    .text-center { text-align: center; }
+    .text-sm { font-size: 0.85rem; }
+    .text-xs { font-size: 0.75rem; }
+    .font-bold { font-weight: 700; }
+    .text-primary { color: var(--primary); }
+    .text-accent { color: var(--accent); }
+    .text-muted { color: var(--text-3); }
+    .hidden { display: none !important; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    /* Responsive Desktop */
+    @media (min-width: 768px) {
+      body { padding-bottom: 16px; }
+      .bottom-nav { display: none; }
+      .desktop-nav {
+        display: flex; gap: 8px; align-items: center;
+      }
+      .desktop-nav a {
+        padding: 8px 14px; border-radius: var(--radius-sm);
+        text-decoration: none; color: var(--text-2); font-size: 0.9rem; font-weight: 600;
+        transition: all 0.2s;
+      }
+      .desktop-nav a:hover, .desktop-nav a.active { background: var(--surface-2); color: var(--text); }
+      .main-content { padding: 24px; }
+      .plan-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Loading Skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
+      background-size: 200% 100%; animation: shimmer 1.5s infinite;
+      border-radius: var(--radius-sm);
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  ]]></b:skin>
+</head>
+
+<body expr:class='data:blog.pageType'>
+  <b:section id='hidden-widgets' class='hidden-widgets' showaddelement='no' style='display:none;'>
+    <b:widget id='Blog1' locked='true' title='Blog' type='Blog' version='2' visible='true'>
+      <b:includable id='main'>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+  <div id="wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span>📖</span> Mi Biblia <span>365</span>
+      </div>
+      <div class="actions">
+        <button class="icon-btn" id="themeToggle" title="Cambiar tema">🌙</button>
+        <div class="desktop-nav" id="desktopNav">
+          <a href="/" data-page="home">Inicio</a>
+          <a href="/p/leer-hoy.html" data-page="leer-hoy">Leer hoy</a>
+          <a href="/p/planes.html" data-page="planes">Planes</a>
+          <a href="/p/biblia.html" data-page="biblia">Biblia</a>
+          <a href="/p/mi-espacio.html" data-page="mi-espacio">Mi espacio</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent">
+
+      <!-- PAGE: HOME -->
+      <section class="page active" id="page-home">
+        <div class="verse-box" id="dailyVerseBox">
+          <div class="verse-text" id="dailyVerseText">Cargando versículo del día...</div>
+          <div class="verse-ref" id="dailyVerseRef"></div>
+          <div class="verse-theme" id="dailyVerseTheme"></div>
+        </div>
+
+        <div class="card" id="homeProgressCard" style="display:none;">
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="card-title" id="homePlanName">Plan activo</div>
+              <div class="card-sub" id="homePlanDay">Día 1 de 365</div>
+            </div>
+            <div class="streak-badge" id="homeStreak">🔥 0 días</div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="homeProgressBar" style="width:0%"></div></div>
+            <div class="progress-text" id="homeProgressText">0% completado</div>
+          </div>
+          <a href="/p/leer-hoy.html" class="btn btn-primary btn-block mt-3" id="btnContinue">Continuar donde quedé</a>
+        </div>
+
+        <div class="card" id="homeNoPlanCard">
+          <div class="text-center">
+            <div style="font-size:3rem; margin-bottom:12px;">✨</div>
+            <div class="card-title">Comienza tu recorrido</div>
+            <p class="text-muted mb-3">Elige un plan de lectura y empieza tu año en la Palabra.</p>
+            <a href="/p/planes.html" class="btn btn-accent btn-block">Ver planes de lectura</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Acceso rápido</div>
+          <div class="flex gap-2 mt-2" style="flex-wrap:wrap;">
+            <a href="/p/biblia.html" class="btn btn-ghost">📚 Biblia</a>
+            <a href="/p/buscar.html" class="btn btn-ghost">🔍 Buscar</a>
+            <a href="/p/mi-espacio.html" class="btn btn-ghost">👤 Mi espacio</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Versión bíblica</div>
+          <select id="homeVersionSelect" class="mt-2"></select>
+        </div>
+      </section>
+
+      <!-- PAGE: LEER HOY -->
+      <section class="page" id="page-leer-hoy">
+        <div class="reading-header">
+          <div class="reading-title" id="ltTitle">Leer hoy</div>
+          <div class="reading-meta" id="ltMeta">Selecciona un plan para comenzar</div>
+        </div>
+
+        <div id="ltNoPlan" class="card text-center">
+          <div class="empty-state">
+            <div class="icon">📖</div>
+            <div class="card-title">No tienes un plan activo</div>
+            <p class="text-muted">Elige un plan de lectura para ver tu pasaje de hoy.</p>
+            <a href="/p/planes.html" class="btn btn-primary btn-block mt-3">Elegir plan</a>
+          </div>
+        </div>
+
+        <div id="ltContent" style="display:none;">
+          <div class="card">
+            <div class="flex justify-between items-center mb-2">
+              <div class="card-title" id="ltDayTitle">Día 1</div>
+              <div class="streak-badge" id="ltStreak">🔥 0</div>
+            </div>
+            <div class="card-sub" id="ltRefs">Génesis 1</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-bg"><div class="progress-bar-fill" id="ltProgress" style="width:0%"></div></div>
+            </div>
+          </div>
+
+          <div class="card" id="ltPassageCard">
+            <div class="passage-text" id="ltPassage">Cargando...</div>
+            <div class="flex gap-2 mt-3" style="flex-wrap:wrap;">
+              <button class="btn btn-primary" id="ltMarkRead">✓ Marcar como leído</button>
+              <button class="btn btn-ghost" id="ltFavorite">⭐ Favorito</button>
+              <button class="btn btn-ghost" id="ltNote">📝 Nota</button>
+            </div>
+          </div>
+
+          <div class="card" id="ltDevotionalCard" style="display:none;">
+            <div class="card-title">🕊️ Reflexión</div>
+            <div class="text-sm text-muted mt-2" id="ltDevotional"></div>
+          </div>
+
+          <div class="flex justify-between mt-3">
+            <button class="btn btn-ghost" id="ltPrev">← Anterior</button>
+            <button class="btn btn-ghost" id="ltNext">Siguiente →</button>
+          </div>
+        </div>
+
+        <!-- Note Modal -->
+        <div class="overlay" id="noteOverlay">
+          <div class="modal">
+            <div class="modal-header">
+              <div class="modal-title">📝 Añadir nota</div>
+              <button class="icon-btn" id="closeNoteModal">✕</button>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Referencia</label>
+              <input type="text" id="noteRef" readonly="readonly"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tu nota</label>
+              <textarea id="noteContent" placeholder="Escribe tu reflexión aquí..."></textarea>
+            </div>
+            <button class="btn btn-primary btn-block" id="saveNote">Guardar nota</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: PLANES -->
+      <section class="page" id="page-planes">
+        <div class="reading-header">
+          <div class="reading-title">Planes de lectura</div>
+          <div class="reading-meta">Elige el recorrido que mejor se adapte a ti</div>
+        </div>
+        <div class="plan-grid" id="plansGrid"></div>
+      </section>
+
+      <!-- PAGE: BIBLIA -->
+      <section class="page" id="page-biblia">
+        <div class="reading-header">
+          <div class="reading-title">Biblia</div>
+          <div class="reading-meta">Lectura libre por libro y capítulo</div>
+        </div>
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label">Versión</label>
+            <select id="bibVersion"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Libro</label>
+            <select id="bibBook"><option value="">Selecciona un libro</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Capítulo</label>
+            <select id="bibChapter" disabled="disabled"><option value="">—</option></select>
+          </div>
+        </div>
+        <div class="card" id="bibReader" style="display:none;">
+          <div class="passage-text" id="bibPassage"></div>
+          <div class="flex gap-2 mt-3">
+            <button class="btn btn-ghost" id="bibPrev">← Cap. anterior</button>
+            <button class="btn btn-ghost" id="bibNext">Cap. siguiente →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: BUSCAR -->
+      <section class="page" id="page-buscar">
+        <div class="reading-header">
+          <div class="reading-title">Buscar en la Biblia</div>
+        </div>
+        <div class="card">
+          <div class="flex gap-2">
+            <input type="text" id="searchInput" placeholder="Palabra o frase..."/>
+            <button class="btn btn-primary" id="searchBtn">🔍</button>
+          </div>
+          <div class="form-group mt-2">
+            <label class="form-label">Versión</label>
+            <select id="searchVersion"></select>
+          </div>
+        </div>
+        <div id="searchResults"></div>
+      </section>
+
+      <!-- PAGE: MI ESPACIO -->
+      <section class="page" id="page-mi-espacio">
+        <div class="reading-header">
+          <div class="reading-title">Mi espacio</div>
+          <div class="reading-meta">Tu recorrido personal</div>
+        </div>
+
+        <div class="tabs" id="meTabs">
+          <button class="tab active" data-tab="resumen">Resumen</button>
+          <button class="tab" data-tab="planes">Planes</button>
+          <button class="tab" data-tab="favoritos">Favoritos</button>
+          <button class="tab" data-tab="notas">Notas</button>
+          <button class="tab" data-tab="config">Configuración</button>
+        </div>
+
+        <div id="meContent">
+          <!-- Resumen -->
+          <div class="tab-panel active" id="tab-resumen">
+            <div class="card">
+              <div class="card-title">Progreso general</div>
+              <div class="progress-wrap mt-2">
+                <div class="progress-bar-bg"><div class="progress-bar-fill" id="meProgress" style="width:0%"></div></div>
+                <div class="progress-text" id="meProgressText">Sin plan activo</div>
+              </div>
+              <div class="flex gap-3 mt-3 text-center" style="flex-wrap:wrap;">
+                <div style="flex:1; min-width:80px;">
+                  <div class="font-bold text-lg" id="meStreak">0</div>
+                  <div class="text-xs text-muted">Racha</div>
+                </div>
+                <div style="flex:1; min-width:80px;">
+                  <div class="font-bold text-lg" id="meFavCount">0</div>
+                  <div class="text-xs text-muted">Favoritos</div>
+                </div>
+                <div style="flex:1; min-width:80px;">
+                  <div class="font-bold text-lg" id="meNoteCount">0</div>
+                  <div class="text-xs text-muted">Notas</div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Versículo de hoy</div>
+              <div class="text-sm text-muted mt-2" id="meDailyVerse">—</div>
+            </div>
+            <div class="card">
+              <div class="card-title">Respaldo de datos</div>
+              <p class="text-sm text-muted mt-2 mb-3">Tus datos se guardan solo en este dispositivo. Exporta regularmente para no perderlos.</p>
+              <div class="flex gap-2">
+                <button class="btn btn-primary" id="btnExport">⬇️ Exportar JSON</button>
+                <button class="btn btn-ghost" id="btnImport">⬆️ Importar JSON</button>
+              </div>
+              <input type="file" id="importFile" accept=".json" class="hidden"/>
+            </div>
+          </div>
+
+          <!-- Planes -->
+          <div class="tab-panel" id="tab-planes">
+            <div id="mePlansList"></div>
+          </div>
+
+          <!-- Favoritos -->
+          <div class="tab-panel" id="tab-favoritos">
+            <div id="meFavsList"></div>
+          </div>
+
+          <!-- Notas -->
+          <div class="tab-panel" id="tab-notas">
+            <div id="meNotesList"></div>
+          </div>
+
+          <!-- Configuración -->
+          <div class="tab-panel" id="tab-config">
+            <div class="card">
+              <div class="form-group">
+                <label class="form-label">Versión preferida</label>
+                <select id="cfgVersion"></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tamaño de texto</label>
+                <select id="cfgFontSize">
+                  <option value="small">Pequeño</option>
+                  <option value="medium" selected="selected">Mediano</option>
+                  <option value="large">Grande</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Modo 29 de febrero</label>
+                <select id="cfgLeap">
+                  <option value="gracia" selected="selected">Día de gracia (devocional especial)</option>
+                  <option value="repetir">Repetir día anterior</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label flex items-center gap-2">
+                  <input type="checkbox" id="cfgDark"/> Modo oscuro
+                </label>
+              </div>
+              <button class="btn btn-danger btn-block" id="btnReset">⚠️ Borrar todos mis datos</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: PLAN COMPLETO (simplified) -->
+      <section class="page" id="page-plan-completo">
+        <div class="reading-header">
+          <div class="reading-title">Plan completo</div>
+          <div class="reading-meta" id="pcMeta">Vista general</div>
+        </div>
+        <div class="card">
+          <div class="calendar-grid" id="pcCalendar"></div>
+        </div>
+      </section>
+
+      <!-- PAGE: ACERCA -->
+      <section class="page" id="page-acerca">
+        <div class="reading-header">
+          <div class="reading-title">Acerca del proyecto</div>
+        </div>
+        <div class="card">
+          <p style="margin-bottom:12px;"><strong>Mi Biblia 365</strong> es una plataforma devocional diseñada para acompañarte en la lectura bíblica diaria.</p>
+          <p style="margin-bottom:12px;">No requiere registro. Tu progreso se guarda localmente en tu dispositivo.</p>
+          <p class="text-muted text-sm">Versículo guía: "Lámpara es a mis pies tu palabra, y lumbrera a mi camino." — Salmos 119:105 (RV60)</p>
+        </div>
+      </section>
+
+      <!-- PAGE: INSTALAR -->
+      <section class="page" id="page-instalar">
+        <div class="reading-header">
+          <div class="reading-title">Instalar como app</div>
+        </div>
+        <div class="card">
+          <div class="card-title">📱 Android</div>
+          <ol class="text-sm text-muted mt-2" style="padding-left:18px;">
+            <li>Abre el sitio en Chrome/Edge/Brave.</li>
+            <li>Toca el menú ⋮ arriba a la derecha.</li>
+            <li>Selecciona "Agregar a pantalla de inicio".</li>
+            <li>Confirma con "Agregar".</li>
+          </ol>
+        </div>
+        <div class="card">
+          <div class="card-title">🍎 iPhone / iPad</div>
+          <ol class="text-sm text-muted mt-2" style="padding-left:18px;">
+            <li>Abre el sitio en Safari.</li>
+            <li>Toca el botón Compartir (cuadrado con flecha).</li>
+            <li>Baja y selecciona "Agregar al inicio".</li>
+            <li>Toca "Agregar".</li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Mobile Nav -->
+    <nav class="bottom-nav" id="bottomNav">
+      <button class="nav-item active" data-page="home">
+        <span class="nav-icon">🏠</span>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-item" data-page="leer-hoy">
+        <span class="nav-icon">📖</span>
+        <span>Leer hoy</span>
+      </button>
+      <button class="nav-item" data-page="planes">
+        <span class="nav-icon">🗓️</span>
+        <span>Planes</span>
+      </button>
+      <button class="nav-item" data-page="biblia">
+        <span class="nav-icon">📚</span>
+        <span>Biblia</span>
+      </button>
+      <button class="nav-item" data-page="mi-espacio">
+        <span class="nav-icon">👤</span>
+        <span>Mi espacio</span>
+      </button>
+    </nav>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+  </div>
+
+  <script>
+  <![CDATA[
+  // ============================================
+  // MI BIBLIA 365 — MVP JAVASCRIPT
+  // ============================================
+  (function() {
+    'use strict';
+
+    // ===== DATOS INLINE (MVP) =====
+    const VERSIONS = [
+      { id: 'rv1960', name: 'Reina Valera 1960', api: 'principal', active: true, default: true },
+      { id: 'rv1995', name: 'Reina Valera 1995', api: 'principal', active: true },
+      { id: 'nvi', name: 'Nueva Versión Internacional', api: 'principal', active: true },
+      { id: 'dhh', name: 'Dios Habla Hoy', api: 'principal', active: true },
+      { id: 'pdt', name: 'Palabra de Dios para Todos', api: 'principal', active: true },
+      { id: 'ntv', name: 'Nueva Traducción Viviente', api: 'apibible', bibleId: '826f63861180e056-01', active: true },
+      { id: 'nbla', name: 'Nueva Biblia de las Américas', api: 'apibible', bibleId: 'ce11b813f9a27e20-01', active: true },
+      { id: 'lbla', name: 'La Biblia de las Américas', api: 'apibible', bibleId: 'e3f420b9665abaeb-01', active: true }
+    ];
+
+    const PLANS_CATALOG = [
+      { id: 'biblia-anual', name: 'Biblia en un año', description: 'Lectura completa de la Biblia en 365 días, combinando AT y NT.', duration: 365, category: 'completo', readingsPerDay: 3, active: true },
+      { id: 'plan-nt', name: 'Nuevo Testamento', description: 'Solo el Nuevo Testamento en un año, ideal para profundizar.', duration: 365, category: 'nt', readingsPerDay: 1, active: true },
+      { id: 'plan-salmos', name: 'Salmos y Proverbios', description: 'Salmo del día + capítulo de Proverbios. Se repite mensualmente.', duration: 31, category: 'recurrente', readingsPerDay: 2, active: true },
+      { id: 'plan-90', name: 'Plan de 90 días', description: 'Biblia completa en 3 meses. Intenso pero transformador.', duration: 90, category: 'completo', readingsPerDay: 4, active: true },
+      { id: 'plan-nuevos', name: 'Nuevos creyentes', description: 'Recorrido esencial para quien empieza: fundamentos de la fe.', duration: 30, category: 'intro', readingsPerDay: 2, active: true }
+    ];
+
+    // Plan anual: primeros 10 días de ejemplo (MVP)
+    const PLAN_ANUAL = {
+      id: 'biblia-anual', name: 'Biblia en un año', duration: 365,
+      days: [
+        { day: 1, title: 'El principio', readings: ['Génesis 1','Salmos 1','Mateo 1'], devotional: 'En el principio creó Dios los cielos y la tierra. Este versículo fundacional nos recuerda que Dios es el origen de todo. Al empezar este plan, reconocemos que Él es el autor de nuestra vida y de nuestra fe.', reflection: '¿Reconoces hoy a Dios como el principio de tu existencia?', prayer: 'Señor, que este año en Tu Palabra transforme mi corazón y me acerque más a Ti.' },
+        { day: 2, title: 'La creación del hombre', readings: ['Génesis 2','Salmos 2','Mateo 2'], devotional: 'Dios formó al hombre del polvo de la tierra y sopló en su nariz aliento de vida. Fuimos creados a imagen de Dios, con propósito y dignidad.', reflection: '¿Vives consciente de que llevas el aliento de Dios dentro de ti?', prayer: 'Padre, ayúdame a valorar la vida que me has dado y a usarla para Tu gloria.' },
+        { day: 3, title: 'La caída', readings: ['Génesis 3','Salmos 3','Mateo 3'], devotional: 'La tentación llegó por medio de la duda. Eva dudó de la bondad de Dios y desobedeció. Pero incluso en la caída, Dios ya tenía un plan de redención.', reflection: '¿En qué áreas dudas hoy de la bondad de Dios?', prayer: 'Señor, fortalece mi fe para resistir la tentación y confiar en Tu palabra.' },
+        { day: 4, title: 'Caín y Abel', readings: ['Génesis 4','Salmos 4','Mateo 4'], devotional: 'Dos ofrendas, dos corazones. Dios mira la intención, no solo el acto. Caín se enojó porque su corazón no era recto.', reflection: '¿Cuál es la motivación detrás de lo que haces para Dios?', prayer: 'Dios, purifica mis motivaciones. Quiero agradarte de corazón, no por obligación.' },
+        { day: 5, title: 'La genealogía y el juicio', readings: ['Génesis 5','Salmos 5','Mateo 5'], devotional: 'Génesis 5 muestra que la muerte es la consecuencia del pecado, pero también anticipa a Enoc, que caminó con Dios y no vio muerte. Un rayo de esperanza.', reflection: '¿Caminas con Dios diariamente como lo hizo Enoc?', prayer: 'Señor, quiero caminar contigo cada día de mi vida.' },
+        { day: 6, title: 'El diluvio', readings: ['Génesis 6','Salmos 6','Mateo 6'], devotional: 'Noé encontró gracia ante los ojos de Dios en una generación corrupta. Su fe se demostró con obediencia: construyó el arca aunque no había llovido.', reflection: '¿Obedeces a Dios aun cuando no entiendes el porqué?', prayer: 'Padre, dame la fe de Noé para obedecerte sin reservas.' },
+        { day: 7, title: 'Día de descanso', readings: ['Génesis 7','Salmos 7','Mateo 7'], devotional: 'El arca flotaba sobre las aguas del juicio, pero dentro había vida. Dios preserva a los suyos aun cuando el mundo se juzga.', reflection: '¿Confías en que Dios te preserva en medio de las tormentas?', prayer: 'Gracias Señor, porque en Ti tengo refugio seguro.' },
+        { day: 8, title: 'Nuevos comienzos', readings: ['Génesis 8','Salmos 8','Mateo 8'], devotional: 'Las aguas se retiraron. Noé salió del arca y construyó un altar. Después del juicio viene la restauración, y la primera respuesta es la adoración.', reflection: '¿Cuál es tu primera respuesta después de una prueba?', prayer: 'Señor, que mi corazón siempre vuelva a la adoración después de la tormenta.' },
+        { day: 9, title: 'El arcoíris', readings: ['Génesis 9','Salmos 9','Mateo 9'], devotional: 'El arcoíris es la primera señal de pacto en la Biblia. Dios se compromete con la humanidad a pesar de conocer nuestro corazón.', reflection: '¿Confías en las promesas de Dios, aun cuando fallas?', prayer: 'Gracias porque Tus promesas no dependen de mi fidelidad, sino de la Tuya.' },
+        { day: 10, title: 'Torre de Babel', readings: ['Génesis 10','Salmos 10','Mateo 10'], devotional: 'La humanidad buscó hacerse un nombre sin Dios. La ambición desordenada siempre termina en confusión. Dios descentra para protegernos.', reflection: '¿Para quién vives: para tu nombre o para el de Dios?', prayer: 'Señor, que mi ambición sea glorificarte, no engrandecerme.' }
+      ]
+    };
+
+    // Versículos diarios: 10 de ejemplo (MVP)
+    const DAILY_VERSES = [
+      { dayOfYear: 1, month: 1, theme: 'proposito', subtheme: 'inicio_de_ano', reference: 'Jeremías 29:11', label: 'Inicio de año', highlight: 'Dios tiene propósito para tu vida' },
+      { dayOfYear: 2, month: 1, theme: 'proposito', subtheme: 'confianza', reference: 'Proverbios 3:5-6', label: 'Confía en el Señor', highlight: 'En todos tus caminos reconoce a Dios' },
+      { dayOfYear: 3, month: 1, theme: 'proposito', subtheme: 'direccion', reference: 'Salmos 32:8', label: 'Dirección', highlight: 'Te haré entender, te enseñaré el camino' },
+      { dayOfYear: 4, month: 1, theme: 'proposito', subtheme: 'nuevos_comienzos', reference: 'Isaías 43:19', label: 'Nueva temporada', highlight: 'Haré camino en el desierto' },
+      { dayOfYear: 5, month: 1, theme: 'proposito', subtheme: 'perseverancia', reference: 'Filipenses 1:6', label: 'Obra comenzada', highlight: 'El que comenzó la buena obra la perfeccionará' },
+      { dayOfYear: 6, month: 1, theme: 'proposito', subtheme: 'fe', reference: 'Hebreos 11:1', label: 'Fe', highlight: 'La fe es la certeza de lo que se espera' },
+      { dayOfYear: 7, month: 1, theme: 'proposito', subtheme: 'descanso', reference: 'Mateo 11:28', label: 'Descanso', highlight: 'Vengan a mí los que están cansados' },
+      { dayOfYear: 8, month: 1, theme: 'proposito', subtheme: 'esperanza', reference: 'Romanos 15:13', label: 'Esperanza', highlight: 'El Dios de esperanza os llene de gozo' },
+      { dayOfYear: 9, month: 1, theme: 'proposito', subtheme: 'gratitud', reference: '1 Tesalonicenses 5:18', label: 'Gratitud', highlight: 'Dad gracias en todo, porque es la voluntad de Dios' },
+      { dayOfYear: 10, month: 1, theme: 'proposito', subtheme: 'amor', reference: '1 Corintios 16:14', label: 'Amor', highlight: 'Hágalo todo con amor' }
+    ];
+
+    // Libros bíblicos simplificados (MVP)
+    const BOOKS = [
+      { id: 'GEN', name: 'Génesis', chapters: 50, testament: 'OT' },
+      { id: 'EXO', name: 'Éxodo', chapters: 40, testament: 'OT' },
+      { id: 'PSA', name: 'Salmos', chapters: 150, testament: 'OT' },
+      { id: 'PRO', name: 'Proverbios', chapters: 31, testament: 'OT' },
+      { id: 'ISA', name: 'Isaías', chapters: 66, testament: 'OT' },
+      { id: 'MAT', name: 'Mateo', chapters: 28, testament: 'NT' },
+      { id: 'MRK', name: 'Marcos', chapters: 16, testament: 'NT' },
+      { id: 'LUK', name: 'Lucas', chapters: 24, testament: 'NT' },
+      { id: 'JHN', name: 'Juan', chapters: 21, testament: 'NT' },
+      { id: 'ACT', name: 'Hechos', chapters: 28, testament: 'NT' },
+      { id: 'ROM', name: 'Romanos', chapters: 16, testament: 'NT' },
+      { id: '1CO', name: '1 Corintios', chapters: 16, testament: 'NT' },
+      { id: 'GAL', name: 'Gálatas', chapters: 6, testament: 'NT' },
+      { id: 'EPH', name: 'Efesios', chapters: 6, testament: 'NT' },
+      { id: 'PHP', name: 'Filipenses', chapters: 4, testament: 'NT' },
+      { id: 'REV', name: 'Apocalipsis', chapters: 22, testament: 'NT' }
+    ];
+
+    // Cache de API en memoria
+    const API_CACHE = {};
+
+    // ===== UTILIDADES =====
+    function $(sel) { return document.querySelector(sel); }
+    function $$(sel) { return document.querySelectorAll(sel); }
+    function getToday() { return new Date(); }
+    function getDayOfYear(date) {
+      const start = new Date(date.getFullYear(), 0, 0);
+      const diff = date - start;
+      return Math.floor(diff / (1000 * 60 * 60 * 24));
+    }
+    function esBisiesto(year) { return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0); }
+    function fmtDate(d) { return d.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); }
+    function generateId() { return 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9); }
+
+    // ===== STORAGE SERVICE =====
+    const Storage = {
+      KEY: 'mibiblia365_data',
+      get() {
+        try {
+          const raw = localStorage.getItem(this.KEY);
+          if (!raw) return this.defaultData();
+          return JSON.parse(raw);
+        } catch(e) { return this.defaultData(); }
+      },
+      set(data) { localStorage.setItem(this.KEY, JSON.stringify(data)); },
+      defaultData() {
+        return {
+          version: '1.0',
+          lastSync: new Date().toISOString().split('T')[0],
+          config: { preferredVersion: 'rv1960', darkMode: false, fontSize: 'medium', activePlanId: null, leapYearMode: 'gracia' },
+          plans: [],
+          favorites: [],
+          notes: [],
+          history: { readings: [], searches: [], chapters: [] }
+        };
+      },
+      getPlanState(planId) {
+        const d = this.get();
+        return d.plans.find(p => p.planId === planId) || null;
+      },
+      savePlanState(state) {
+        const d = this.get();
+        const idx = d.plans.findIndex(p => p.planId === state.planId);
+        if (idx >= 0) d.plans[idx] = state; else d.plans.push(state);
+        this.set(d);
+      },
+      addFavorite(fav) {
+        const d = this.get();
+        if (!d.favorites.find(f => f.reference === fav.reference && f.version === fav.version)) {
+          d.favorites.unshift({ ...fav, id: generateId(), savedAt: new Date().toISOString().split('T')[0] });
+          this.set(d);
+        }
+      },
+      removeFavorite(id) {
+        const d = this.get();
+        d.favorites = d.favorites.filter(f => f.id !== id);
+        this.set(d);
+      },
+      addNote(note) {
+        const d = this.get();
+        d.notes.unshift({ ...note, id: generateId(), createdAt: new Date().toISOString().split('T')[0], updatedAt: new Date().toISOString().split('T')[0] });
+        this.set(d);
+      },
+      updateNote(id, content) {
+        const d = this.get();
+        const n = d.notes.find(x => x.id === id);
+        if (n) { n.content = content; n.updatedAt = new Date().toISOString().split('T')[0]; this.set(d); }
+      },
+      removeNote(id) {
+        const d = this.get();
+        d.notes = d.notes.filter(n => n.id !== id);
+        this.set(d);
+      },
+      export() {
+        const d = this.get();
+        const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'mibiblia365-respaldo-' + d.lastSync + '.json';
+        a.click(); URL.revokeObjectURL(url);
+        toast('Datos exportados correctamente', 'success');
+      },
+      import(file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          try {
+            const data = JSON.parse(e.target.result);
+            if (!data.config || !data.plans) throw new Error('Formato inválido');
+            data.lastSync = new Date().toISOString().split('T')[0];
+            this.set(data);
+            toast('Datos importados. Recarga la página.', 'success');
+            setTimeout(() => location.reload(), 1500);
+          } catch(err) { toast('Error al importar: ' + err.message, 'error'); }
+        };
+        reader.readAsText(file);
+      }
+    };
+
+    // ===== BIBLE SERVICE =====
+    const BibleService = {
+      async fetchText(reference, versionId) {
+        const ver = VERSIONS.find(v => v.id === versionId) || VERSIONS.find(v => v.default);
+        const cacheKey = reference + '|' + ver.id;
+        if (API_CACHE[cacheKey]) return API_CACHE[cacheKey];
+
+        let result = null;
+        if (ver.api === 'principal') {
+          result = await this.fetchPrincipal(reference, ver.id);
+        } else {
+          result = await this.fetchApiBible(reference, ver.bibleId);
+        }
+        if (!result && ver.api === 'principal') {
+          // Fallback a API.Bible con RV60
+          result = await this.fetchApiBible(reference, '592420522e16049f-01');
+        }
+        if (result) API_CACHE[cacheKey] = result;
+        return result;
+      },
+
+      async fetchPrincipal(ref, verId) {
+        try {
+          // docs-bible-api.netlify.app
+          const url = `https://docs-bible-api.netlify.app/api/verses?version=${verId}&reference=${encodeURIComponent(ref)}`;
+          const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+          if (!res.ok) return null;
+          const data = await res.json();
+          return this.formatPrincipal(data, ref);
+        } catch(e) { return null; }
+      },
+
+      async fetchApiBible(ref, bibleId) {
+        try {
+          const url = `https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query=${encodeURIComponent(ref)}&limit=50`;
+          const res = await fetch(url, {
+            headers: { 'api-key': 'lKDNAnTqVMi4Mc32rwonP' },
+            signal: AbortSignal.timeout(8000)
+          });
+          if (!res.ok) return null;
+          const data = await res.json();
+          return this.formatApiBible(data, ref);
+        } catch(e) { return null; }
+      },
+
+      formatPrincipal(data, ref) {
+        // Adaptador según respuesta real de docs-bible-api
+        if (data && data.text) {
+          return { reference: ref, html: `<p>${data.text}</p>`, verses: [] };
+        }
+        if (data && data.verses) {
+          const html = data.verses.map(v => `<p><span class="verse-num">${v.verse}</span>${v.text}</p>`).join('');
+          return { reference: ref, html, verses: data.verses };
+        }
+        return null;
+      },
+
+      formatApiBible(data, ref) {
+        if (!data.data || !data.data.verses) return null;
+        const html = data.data.verses.map(v => `<p><span class="verse-num">${v.reference.split(':').pop()}</span>${v.text}</p>`).join('');
+        return { reference: ref, html, verses: data.data.verses };
+      },
+
+      async search(query, versionId) {
+        const ver = VERSIONS.find(v => v.id === versionId) || VERSIONS[0];
+        if (ver.api === 'apibible') {
+          try {
+            const url = `https://api.scripture.api.bible/v1/bibles/${ver.bibleId}/search?query=${encodeURIComponent(query)}&limit=20`;
+            const res = await fetch(url, { headers: { 'api-key': 'lKDNAnTqVMi4Mc32rwonP' }, signal: AbortSignal.timeout(8000) });
+            if (!res.ok) return [];
+            const data = await res.json();
+            return (data.data.verses || []).map(v => ({
+              reference: v.reference,
+              text: v.text,
+              html: v.text.replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>')
+            }));
+          } catch(e) { return []; }
+        }
+        // Principal API search (simulado MVP)
+        return [];
+      }
+    };
+
+    // ===== PLAN SERVICE =====
+    const PlanService = {
+      getCatalog() { return PLANS_CATALOG; },
+      getPlanData(planId) {
+        if (planId === 'biblia-anual') return PLAN_ANUAL;
+        // MVP: retornar plan anual para todos los planes completos, o datos mínimos
+        return PLAN_ANUAL;
+      },
+      getDayPlan(planId, dayNum) {
+        const plan = this.getPlanData(planId);
+        if (!plan || !plan.days) return null;
+        return plan.days.find(d => d.day === dayNum) || null;
+      },
+      calculateDay(planId, startDateStr) {
+        const start = new Date(startDateStr + 'T00:00:00');
+        const today = getToday();
+        const diff = Math.floor((today - start) / (1000 * 60 * 60 * 24)) + 1;
+        const plan = this.getPlanData(planId);
+        const maxDays = plan ? plan.duration : 365;
+        if (diff < 1) return 1;
+        if (diff > maxDays) return maxDays;
+        return diff;
+      },
+      isLeapDay() {
+        const today = getToday();
+        return today.getMonth() === 1 && today.getDate() === 29;
+      }
+    };
+
+    // ===== UI HELPERS =====
+    function toast(msg, type='') {
+      const container = $('#toastContainer');
+      const t = document.createElement('div');
+      t.className = 'toast ' + type;
+      t.textContent = msg;
+      container.appendChild(t);
+      setTimeout(() => { t.remove(); }, 3000);
+    }
+
+    function populateVersionSelects() {
+      const active = VERSIONS.filter(v => v.active);
+      const opts = active.map(v => `<option value="${v.id}"${v.default ? ' selected' : ''}>${v.name}</option>`).join('');
+      $$('select').forEach(sel => {
+        if (sel.id && (sel.id.includes('Version') || sel.id.includes('version') || sel.id === 'cfgVersion')) {
+          sel.innerHTML = opts;
+          const saved = Storage.get().config.preferredVersion;
+          if (saved) sel.value = saved;
+        }
+      });
+    }
+
+    function applyTheme(dark) {
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      $('#themeToggle').textContent = dark ? '☀️' : '🌙';
+    }
+
+    function applyFontSize(size) {
+      const sizes = { small: '14px', medium: '16px', large: '18px' };
+      document.body.style.fontSize = sizes[size] || '16px';
+    }
+
+    // ===== RENDER PAGES =====
+    function renderHome() {
+      const data = Storage.get();
+      const dayOfYear = getDayOfYear(getToday());
+      const verse = DAILY_VERSES.find(v => v.dayOfYear === dayOfYear) || DAILY_VERSES[0];
+
+      if (verse) {
+        $('#dailyVerseText').textContent = verse.highlight;
+        $('#dailyVerseRef').textContent = verse.reference + ' — ' + verse.label;
+        $('#dailyVerseTheme').textContent = 'Tema: ' + verse.theme;
+      }
+
+      const activePlan = data.plans.find(p => p.status === 'active');
+      if (activePlan) {
+        $('#homeProgressCard').style.display = 'block';
+        $('#homeNoPlanCard').style.display = 'none';
+        const planCat = PLANS_CATALOG.find(p => p.id === activePlan.planId);
+        $('#homePlanName').textContent = planCat ? planCat.name : 'Plan activo';
+        $('#homePlanDay').textContent = `Día ${activePlan.lastOpenedDay || 1} de ${planCat ? planCat.duration : 365}`;
+        $('#homeStreak').textContent = '🔥 ' + (activePlan.streak || 0) + ' días';
+        const pct = planCat ? Math.round(((activePlan.lastOpenedDay || 1) / planCat.duration) * 100) : 0;
+        $('#homeProgressBar').style.width = pct + '%';
+        $('#homeProgressText').textContent = pct + '% completado';
+      } else {
+        $('#homeProgressCard').style.display = 'none';
+        $('#homeNoPlanCard').style.display = 'block';
+      }
+    }
+
+    async function renderLeerHoy() {
+      const data = Storage.get();
+      const activePlan = data.plans.find(p => p.status === 'active');
+
+      if (!activePlan) {
+        $('#ltNoPlan').style.display = 'block';
+        $('#ltContent').style.display = 'none';
+        return;
+      }
+
+      $('#ltNoPlan').style.display = 'none';
+      $('#ltContent').style.display = 'block';
+
+      const planId = activePlan.planId;
+      const dayNum = PlanService.calculateDay(planId, activePlan.startDate);
+      const planData = PlanService.getPlanData(planId);
+      const dayData = PlanService.getDayPlan(planId, dayNum) || planData.days[0];
+
+      $('#ltTitle').textContent = 'Leer hoy';
+      $('#ltMeta').textContent = fmtDate(getToday());
+      $('#ltDayTitle').textContent = `Día ${dayNum}: ${dayData ? dayData.title : 'Lectura del día'}`;
+      $('#ltRefs').textContent = dayData ? dayData.readings.join(' • ') : '—';
+      $('#ltStreak').textContent = '🔥 ' + (activePlan.streak || 0);
+
+      const pct = planData ? Math.round((dayNum / planData.duration) * 100) : 0;
+      $('#ltProgress').style.width = pct + '%';
+
+      // Render passage
+      const version = data.config.preferredVersion;
+      $('#ltPassage').innerHTML = '<div class="skeleton" style="height:200px;"></div>';
+
+      if (dayData && dayData.readings.length > 0) {
+        const results = await Promise.all(dayData.readings.map(ref => BibleService.fetchText(ref, version)));
+        const html = results.map((r, i) => {
+          if (!r) return `<p style="color:var(--text-3); font-style:italic;">No se pudo cargar ${dayData.readings[i]}. Intenta cambiar de versión.</p>`;
+          return `<div style="margin-bottom:20px;"><div style="font-weight:700; color:var(--primary); margin-bottom:8px; font-size:1.05rem;">${dayData.readings[i]}</div>${r.html}</div>`;
+        }).join('<hr style="border:none; border-top:1px solid var(--border); margin:20px 0;">');
+        $('#ltPassage').innerHTML = html;
+      }
+
+      // Devotional
+      if (dayData && dayData.devotional) {
+        $('#ltDevotionalCard').style.display = 'block';
+        $('#ltDevotional').innerHTML = `<p><strong>${dayData.title}</strong></p><p>${dayData.devotional}</p><p style="margin-top:8px; font-style:italic; color:var(--accent);">💭 ${dayData.reflection}</p><p style="margin-top:8px; color:var(--text-2);">🙏 ${dayData.prayer}</p>`;
+      } else {
+        $('#ltDevotionalCard').style.display = 'none';
+      }
+
+      // Buttons
+      $('#ltMarkRead').onclick = () => {
+        if (!activePlan.completedDays.includes(dayNum)) {
+          activePlan.completedDays.push(dayNum);
+          activePlan.lastOpenedDay = dayNum;
+          activePlan.lastReadDate = new Date().toISOString().split('T')[0];
+          // streak logic
+          const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+          const yStr = yesterday.toISOString().split('T')[0];
+          if (activePlan.lastReadDate === yStr || activePlan.streak === 0) activePlan.streak++;
+          Storage.savePlanState(activePlan);
+          toast('¡Día marcado como leído! Bien hecho.', 'success');
+          renderHome();
+        }
+      };
+
+      $('#ltFavorite').onclick = () => {
+        if (dayData) {
+          dayData.readings.forEach(ref => {
+            Storage.addFavorite({ reference: ref, version: version, type: 'passage', note: '' });
+          });
+          toast('Pasaje añadido a favoritos', 'success');
+        }
+      };
+
+      $('#ltNote').onclick = () => {
+        $('#noteRef').value = dayData ? dayData.readings.join(', ') : '';
+        $('#noteContent').value = '';
+        $('#noteOverlay').classList.add('active');
+      };
+
+      $('#ltPrev').onclick = () => { /* MVP: no navega días previos por simplicidad */ };
+      $('#ltNext').onclick = () => { /* MVP */ };
+    }
+
+    function renderPlanes() {
+      const data = Storage.get();
+      const grid = $('#plansGrid');
+      grid.innerHTML = PLANS_CATALOG.map(plan => {
+        const state = data.plans.find(p => p.planId === plan.id);
+        const isActive = state && state.status === 'active';
+        const btnText = isActive ? 'Continuar' : (state ? 'Reiniciar' : 'Iniciar');
+        return `
+          <div class="plan-card ${isActive ? 'active' : ''}">
+            <div class="plan-name">${plan.name}</div>
+            <div class="plan-desc">${plan.description}</div>
+            <div class="plan-tags">
+              <span class="tag">${plan.duration} días</span>
+              <span class="tag">${plan.readingsPerDay} lectura${plan.readingsPerDay>1?'s':''}/día</span>
+              ${isActive ? '<span class="tag accent">Activo</span>' : ''}
+            </div>
+            <div class="flex gap-2 mt-2">
+              <button class="btn btn-primary btn-sm" onclick="MVP.startPlan('${plan.id}')">${btnText}</button>
+              ${state ? `<button class="btn btn-ghost btn-sm" onclick="MVP.archivePlan('${plan.id}')">Archivar</button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function renderBiblia() {
+      const bookSel = $('#bibBook');
+      if (bookSel.options.length <= 1) {
+        bookSel.innerHTML = '<option value="">Selecciona un libro</option>' +
+          BOOKS.map(b => `<option value="${b.id}">${b.name}</option>`).join('');
+      }
+
+      bookSel.onchange = () => {
+        const book = BOOKS.find(b => b.id === bookSel.value);
+        const chapSel = $('#bibChapter');
+        if (book) {
+          chapSel.disabled = false;
+          chapSel.innerHTML = Array.from({length: book.chapters}, (_, i) => `<option value="${i+1}">Capítulo ${i+1}</option>`).join('');
+        } else { chapSel.disabled = true; chapSel.innerHTML = '<option value="">—</option>'; }
+      };
+
+      $('#bibChapter').onchange = async () => {
+        const book = $('#bibBook').value;
+        const chap = $('#bibChapter').value;
+        if (!book || !chap) return;
+        const bookName = BOOKS.find(b => b.id === book).name;
+        const ref = `${bookName} ${chap}`;
+        const ver = Storage.get().config.preferredVersion;
+        $('#bibReader').style.display = 'block';
+        $('#bibPassage').innerHTML = '<div class="skeleton" style="height:200px;"></div>';
+        const result = await BibleService.fetchText(ref, ver);
+        $('#bibPassage').innerHTML = result ? result.html : '<p style="color:var(--text-3)">No se pudo cargar el capítulo. Intenta otra versión.</p>';
+
+        // History
+        const d = Storage.get();
+        d.history.chapters.unshift(ref); if (d.history.chapters.length > 20) d.history.chapters.pop();
+        Storage.set(d);
+      };
+    }
+
+    async function renderBuscar() {
+      $('#searchBtn').onclick = async () => {
+        const q = $('#searchInput').value.trim();
+        if (!q) return;
+        const ver = $('#searchVersion').value || Storage.get().config.preferredVersion;
+        $('#searchResults').innerHTML = '<div class="card"><div class="skeleton" style="height:100px;"></div></div>';
+        const results = await BibleService.search(q, ver);
+        if (results.length === 0) {
+          $('#searchResults').innerHTML = '<div class="card text-center"><p class="text-muted">No se encontraron resultados.</p></div>';
+          return;
+        }
+        $('#searchResults').innerHTML = '<div class="card">' + results.map(r => `
+          <div class="result-item" onclick="MVP.goToRef('${r.reference}')">
+            <div class="result-ref">${r.reference}</div>
+            <div class="result-snippet">${r.html}</div>
+          </div>
+        `).join('') + '</div>';
+      };
+      $('#searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') $('#searchBtn').click(); });
+    }
+
+    function renderMiEspacio() {
+      const d = Storage.get();
+
+      // Resumen
+      const active = d.plans.find(p => p.status === 'active');
+      if (active) {
+        const plan = PlanService.getPlanData(active.planId);
+        const pct = plan ? Math.round(((active.lastOpenedDay || 1) / plan.duration) * 100) : 0;
+        $('#meProgress').style.width = pct + '%';
+        $('#meProgressText').textContent = pct + '% del plan activo';
+      } else {
+        $('#meProgress').style.width = '0%';
+        $('#meProgressText').textContent = 'Sin plan activo';
+      }
+      $('#meStreak').textContent = active ? (active.streak || 0) : 0;
+      $('#meFavCount').textContent = d.favorites.length;
+      $('#meNoteCount').textContent = d.notes.length;
+
+      const dayOfYear = getDayOfYear(getToday());
+      const verse = DAILY_VERSES.find(v => v.dayOfYear === dayOfYear);
+      $('#meDailyVerse').textContent = verse ? `${verse.reference} — "${verse.highlight}"` : '—';
+
+      // Planes tab
+      $('#mePlansList').innerHTML = d.plans.length === 0 ? '<div class="card empty-state"><div class="icon">🗓️</div><p class="text-muted">No tienes planes iniciados.</p></div>' :
+        d.plans.map(p => {
+          const cat = PLANS_CATALOG.find(c => c.id === p.planId);
+          return `<div class="card"><div class="flex justify-between items-center"><div><div class="font-bold">${cat ? cat.name : p.planId}</div><div class="text-xs text-muted">Iniciado: ${p.startDate} • Día ${p.lastOpenedDay || 1}</div></div><span class="tag ${p.status==='active'?'accent':''}">${p.status==='active'?'Activo':'Archivado'}</span></div></div>`;
+        }).join('');
+
+      // Favoritos tab
+      $('#meFavsList').innerHTML = d.favorites.length === 0 ? '<div class="card empty-state"><div class="icon">⭐</div><p class="text-muted">No tienes favoritos guardados.</p></div>' :
+        d.favorites.map(f => `<div class="card"><div class="flex justify-between items-center"><div><div class="font-bold">${f.reference}</div><div class="text-xs text-muted">${f.version} • ${f.savedAt}</div></div><button class="btn btn-ghost btn-sm" onclick="MVP.removeFav('${f.id}')">Eliminar</button></div></div>`).join('');
+
+      // Notas tab
+      $('#meNotesList').innerHTML = d.notes.length === 0 ? '<div class="card empty-state"><div class="icon">📝</div><p class="text-muted">No tienes notas aún.</p></div>' :
+        d.notes.map(n => `<div class="card"><div class="font-bold">${n.reference || 'Nota'}</div><div class="text-sm text-muted mt-1">${n.content.substring(0,100)}${n.content.length>100?'...':''}</div><div class="text-xs text-muted mt-2">${n.createdAt}</div></div>`).join('');
+
+      // Config
+      $('#cfgVersion').value = d.config.preferredVersion;
+      $('#cfgFontSize').value = d.config.fontSize;
+      $('#cfgLeap').value = d.config.leapYearMode;
+      $('#cfgDark').checked = d.config.darkMode;
+    }
+
+    function renderPlanCompleto() {
+      const d = Storage.get();
+      const active = d.plans.find(p => p.status === 'active');
+      const plan = active ? PlanService.getPlanData(active.planId) : null;
+      $('#pcMeta').textContent = plan ? `${plan.name} — ${plan.duration} días` : 'Sin plan activo';
+      if (!plan) { $('#pcCalendar').innerHTML = ''; return; }
+
+      const completed = active.completedDays || [];
+      $('#pcCalendar').innerHTML = Array.from({length: plan.duration}, (_, i) => {
+        const day = i + 1;
+        const isDone = completed.includes(day);
+        const isToday = day === (active.lastOpenedDay || 1);
+        return `<div class="cal-day ${isDone ? 'completed' : ''} ${isToday ? 'today' : ''}" onclick="MVP.goToDay(${day})">${day}</div>`;
+      }).join('');
+    }
+
+    // ===== ROUTER =====
+    const ROUTES = {
+      '': 'home',
+      '/': 'home',
+      '/p/leer-hoy.html': 'leer-hoy',
+      '/p/planes.html': 'planes',
+      '/p/plan-completo.html': 'plan-completo',
+      '/p/biblia.html': 'biblia',
+      '/p/buscar.html': 'buscar',
+      '/p/mi-espacio.html': 'mi-espacio',
+      '/p/acerca.html': 'acerca',
+      '/p/instalar.html': 'instalar'
+    };
+
+    function getPageFromUrl() {
+      const path = location.pathname;
+      return ROUTES[path] || 'home';
+    }
+
+    function navigate(page, push=true) {
+      $$('.page').forEach(p => p.classList.remove('active'));
+      $$('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === page));
+      $$('.desktop-nav a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+      const el = $('#page-' + page);
+      if (el) el.classList.add('active');
+
+      // Render page
+      if (page === 'home') renderHome();
+      if (page === 'leer-hoy') renderLeerHoy();
+      if (page === 'planes') renderPlanes();
+      if (page === 'biblia') renderBiblia();
+      if (page === 'buscar') renderBuscar();
+      if (page === 'mi-espacio') renderMiEspacio();
+      if (page === 'plan-completo') renderPlanCompleto();
+
+      window.scrollTo(0, 0);
+    }
+
+    // ===== EVENTS =====
+    function initEvents() {
+      // Nav
+      $$('.nav-item, .desktop-nav a').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          const page = el.dataset.page;
+          const path = Object.keys(ROUTES).find(k => ROUTES[k] === page) || '/';
+          if (page === 'home') history.pushState({}, '', '/'); else history.pushState({}, '', path);
+          navigate(page);
+        });
+      });
+
+      window.addEventListener('popstate', () => navigate(getPageFromUrl(), false));
+
+      // Theme
+      $('#themeToggle').onclick = () => {
+        const d = Storage.get();
+        d.config.darkMode = !d.config.darkMode;
+        Storage.set(d);
+        applyTheme(d.config.darkMode);
+      };
+
+      // Note modal
+      $('#closeNoteModal').onclick = () => $('#noteOverlay').classList.remove('active');
+      $('#saveNote').onclick = () => {
+        const ref = $('#noteRef').value;
+        const content = $('#noteContent').value.trim();
+        if (!content) return;
+        const active = Storage.get().plans.find(p => p.status === 'active');
+        Storage.addNote({
+          planId: active ? active.planId : null,
+          day: active ? active.lastOpenedDay : null,
+          reference: ref,
+          content: content
+        });
+        $('#noteOverlay').classList.remove('active');
+        toast('Nota guardada', 'success');
+      };
+
+      // Config changes
+      $('#cfgVersion').onchange = e => { const d=Storage.get(); d.config.preferredVersion=e.target.value; Storage.set(d); };
+      $('#cfgFontSize').onchange = e => { const d=Storage.get(); d.config.fontSize=e.target.value; Storage.set(d); applyFontSize(e.target.value); };
+      $('#cfgLeap').onchange = e => { const d=Storage.get(); d.config.leapYearMode=e.target.value; Storage.set(d); };
+      $('#cfgDark').onchange = e => { const d=Storage.get(); d.config.darkMode=e.target.checked; Storage.set(d); applyTheme(e.target.checked); };
+
+      // Backup
+      $('#btnExport').onclick = () => Storage.export();
+      $('#btnImport').onclick = () => $('#importFile').click();
+      $('#importFile').onchange = e => { if (e.target.files[0]) Storage.import(e.target.files[0]); };
+
+      // Reset
+      $('#btnReset').onclick = () => {
+        if (confirm('¿Estás seguro? Se borrarán todos tus datos permanentemente.')) {
+          localStorage.removeItem(Storage.KEY);
+          toast('Datos borrados. Recargando...', 'success');
+          setTimeout(() => location.reload(), 1500);
+        }
+      };
+
+      // Tabs Mi Espacio
+      $$('#meTabs .tab').forEach(tab => {
+        tab.onclick = () => {
+          $$('#meTabs .tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          $$('.tab-panel').forEach(p => p.classList.remove('active'));
+          $('#tab-' + tab.dataset.tab).classList.add('active');
+        };
+      });
+    }
+
+    // ===== PUBLIC API (exposed for inline onclick) =====
+    window.MVP = {
+      startPlan(planId) {
+        const d = Storage.get();
+        // Archive other active
+        d.plans.forEach(p => { if (p.status === 'active') p.status = 'archived'; });
+        const existing = d.plans.find(p => p.planId === planId);
+        if (existing) {
+          existing.status = 'active';
+          existing.startDate = new Date().toISOString().split('T')[0];
+          existing.lastOpenedDay = 1;
+          existing.completedDays = [];
+          existing.streak = 0;
+        } else {
+          d.plans.push({
+            planId: planId,
+            startDate: new Date().toISOString().split('T')[0],
+            lastOpenedDay: 1,
+            completedDays: [],
+            favorites: [],
+            notes: [],
+            status: 'active',
+            streak: 0,
+            lastReadDate: null
+          });
+        }
+        d.config.activePlanId = planId;
+        Storage.set(d);
+        toast('Plan iniciado. ¡Que el Señor te guíe!', 'success');
+        setTimeout(() => { history.pushState({}, '', '/p/leer-hoy.html'); navigate('leer-hoy'); }, 800);
+      },
+      archivePlan(planId) {
+        const d = Storage.get();
+        const p = d.plans.find(x => x.planId === planId);
+        if (p) { p.status = 'archived'; if (d.config.activePlanId === planId) d.config.activePlanId = null; Storage.set(d); toast('Plan archivado', 'success'); renderPlanes(); }
+      },
+      removeFav(id) { Storage.removeFavorite(id); renderMiEspacio(); toast('Favorito eliminado', 'success'); },
+      goToRef(ref) { /* MVP: ir a biblia con referencia */ history.pushState({}, '', '/p/biblia.html'); navigate('biblia'); toast('Navegando a ' + ref, 'success'); },
+      goToDay(day) { toast('Día ' + day + ' seleccionado', 'success'); }
+    };
+
+    // ===== INIT =====
+    function init() {
+      populateVersionSelects();
+      const data = Storage.get();
+      applyTheme(data.config.darkMode);
+      applyFontSize(data.config.fontSize);
+      initEvents();
+      navigate(getPageFromUrl(), false);
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+
+  })();
+  ]]>
+  </script>
+</body>
+</html>

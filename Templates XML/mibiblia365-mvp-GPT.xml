@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/blogger/2008' xmlns:data='http://www.google.com/blogger/2008/data' xmlns:expr='http://www.google.com/blogger/2008/expr'>
+
+<head>
+  <meta content='width=device-width, initial-scale=1, viewport-fit=cover' name='viewport'/>
+  <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+  <meta content='yes' name='apple-mobile-web-app-capable'/>
+  <meta content='default' name='apple-mobile-web-app-status-bar-style'/>
+  <meta content='Mi Biblia 365' name='apple-mobile-web-app-title'/>
+  <meta content='yes' name='mobile-web-app-capable'/>
+  <meta content='#2c3e50' name='theme-color'/>
+  <meta content='Plataforma devocional para leer la Biblia en un año.' name='description'/>
+  <meta content='Mi Biblia 365, Biblia en un año, lectura bíblica, devocional' name='keywords'/>
+
+  <title><data:blog.pageTitle/></title>
+
+  <b:include data='blog' name='all-head-content'/>
+
+  <link href='assets/favicon-192.svg' rel='icon' type='image/svg+xml'/>
+
+  <b:skin><![CDATA[
+    :root{
+      --bg:#f6f1e8;
+      --surface:#fffdf9;
+      --surface-2:#f2ebe0;
+      --text:#1f2a37;
+      --muted:#5e6b78;
+      --primary:#2c3e50;
+      --primary-2:#38516b;
+      --accent:#d4af37;
+      --accent-soft:#f1e4b6;
+      --border:#e6dccd;
+      --success:#1f7a4d;
+      --danger:#a63d40;
+      --shadow:0 10px 30px rgba(19,27,35,.08);
+      --radius:18px;
+      --radius-sm:12px;
+      --header-h:72px;
+      --bottom-nav-h:74px;
+      --content-w:1180px;
+      --font-main: Inter, Nunito, Arial, sans-serif;
+    }
+
+    body.dark{
+      --bg:#121921;
+      --surface:#18222d;
+      --surface-2:#1f2c39;
+      --text:#eef3f7;
+      --muted:#aeb8c2;
+      --primary:#8fb3d9;
+      --primary-2:#c4d8ee;
+      --accent:#d9b44a;
+      --accent-soft:#483b17;
+      --border:#2c3b4b;
+      --success:#4fba7d;
+      --danger:#cf6c70;
+      --shadow:0 10px 30px rgba(0,0,0,.28);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--font-main);
+      min-height:100vh;
+      line-height:1.55;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,input,select,textarea{font:inherit}
+
+    .is-hidden{display:none!important}
+    .app-shell{min-height:100vh;padding-bottom:var(--bottom-nav-h)}
+    .app-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      height:var(--header-h);
+      backdrop-filter:blur(14px);
+      background:rgba(255,253,249,0.88);
+      border-bottom:1px solid var(--border);
+    }
+
+    .app-header__inner,
+    .app-main,
+    .app-footer__inner,
+    .mobile-nav__inner{
+      width:min(100% - 24px, var(--content-w));
+      margin:0 auto;
+    }
+
+    .app-header__inner{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand__mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#fff;
+      font-weight:700;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .brand__text{
+      min-width:0;
+    }
+
+    .brand__title{
+      margin:0;
+      font-size:1rem;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .brand__subtitle{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:.82rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+    }
+
+    .icon-btn{
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:14px;
+      background:var(--surface-2);
+      color:var(--text);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow:var(--shadow);
+    }
+
+    .desktop-nav{
+      display:none;
+      gap:8px;
+      align-items:center;
+      margin-left:20px;
+    }
+
+    .desktop-nav a{
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .desktop-nav a:hover,
+    .desktop-nav a.is-active{
+      background:var(--surface-2);
+      color:var(--primary);
+    }
+
+    .app-main{
+      padding:24px 0 40px;
+    }
+
+    .hero{
+      background:linear-gradient(180deg, rgba(44,62,80,0.09), var(--surface));
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero__eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:var(--primary);
+      font-size:.85rem;
+      font-weight:700;
+    }
+
+    .hero h1{
+      margin:16px 0 10px;
+      font-size:clamp(1.8rem, 4vw, 3rem);
+      line-height:1.08;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      max-width:760px;
+    }
+
+    .hero__actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:14px;
+      font-weight:700;
+      box-shadow:var(--shadow);
+    }
+
+    .btn--primary{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn--secondary{
+      background:var(--surface-2);
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+
+    .btn--ghost{
+      background:transparent;
+      color:var(--primary);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+
+    .grid{
+      display:grid;
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .grid--home{
+      grid-template-columns:1fr;
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .card__body{padding:20px}
+    .card__title{
+      margin:0 0 8px;
+      font-size:1.05rem;
+      font-weight:800;
+    }
+
+    .card__text{
+      margin:0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .stat-row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .stat{
+      padding:14px;
+      border-radius:16px;
+      background:var(--surface-2);
+      border:1px solid var(--border);
+    }
+
+    .stat__label{
+      color:var(--muted);
+      font-size:.82rem;
+      margin-bottom:6px;
+    }
+
+    .stat__value{
+      font-weight:800;
+      font-size:1.12rem;
+    }
+
+    .verse-card{
+      padding:20px;
+      background:
+        linear-gradient(160deg, rgba(212,175,55,0.18) 0%, var(--surface) 80%);
+    }
+
+    .verse-card blockquote{
+      margin:0;
+      font-size:1.02rem;
+      font-weight:600;
+      line-height:1.75;
+    }
+
+    .verse-card cite{
+      display:block;
+      margin-top:14px;
+      color:var(--muted);
+      font-style:normal;
+      font-weight:700;
+    }
+
+    .section-title{
+      margin:30px 0 12px;
+      font-size:1.12rem;
+      font-weight:800;
+    }
+
+    .plan-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .plan-item{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      box-shadow:var(--shadow);
+    }
+
+    .plan-item__meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      color:var(--muted);
+      font-size:.86rem;
+      margin-top:4px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--surface-2);
+      font-size:.82rem;
+      font-weight:700;
+    }
+
+    .progress{
+      width:100%;
+      height:10px;
+      border-radius:999px;
+      background:var(--surface-2);
+      overflow:hidden;
+      border:1px solid var(--border);
+      margin-top:12px;
+    }
+
+    .progress > span{
+      display:block;
+      height:100%;
+      width:32%;
+      background:linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .reading-area{
+      padding:20px;
+      border-radius:var(--radius);
+      background:var(--surface);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
+    .reading-area__toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .field{
+      flex:1 1 180px;
+      min-width:0;
+    }
+
+    .field label{
+      display:block;
+      font-size:.84rem;
+      color:var(--muted);
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    .field select,
+    .field input,
+    .field textarea{
+      width:100%;
+      border:1px solid var(--border);
+      background:var(--surface-2);
+      color:var(--text);
+      border-radius:14px;
+      min-height:46px;
+      padding:12px 14px;
+    }
+
+    .passage{
+      padding:18px;
+      border-radius:18px;
+      background:var(--surface-2);
+      border:1px solid var(--border);
+      white-space:pre-line;
+    }
+
+    .page-section{
+      margin-top:22px;
+    }
+
+    .page-title{
+      margin:0 0 8px;
+      font-size:1.5rem;
+      font-weight:800;
+    }
+
+    .page-lead{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      overflow:auto;
+      padding-bottom:4px;
+      margin:18px 0 0;
+    }
+
+    .tab{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      white-space:nowrap;
+      font-weight:700;
+      color:var(--muted);
+    }
+
+    .tab.is-active{
+      color:#fff;
+      background:var(--primary);
+      border-color:var(--primary);
+    }
+
+    .list-simple{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .list-simple li{
+      padding:16px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:var(--surface-2);
+    }
+
+    .app-footer{
+      padding:28px 0 110px;
+      color:var(--muted);
+    }
+
+    .app-footer__inner{
+      text-align:center;
+      font-size:.92rem;
+    }
+
+    .mobile-nav{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:60;
+      padding:10px 0 calc(10px + env(safe-area-inset-bottom));
+      background:rgba(255,253,249,0.92);
+      backdrop-filter:blur(16px);
+      border-top:1px solid var(--border);
+    }
+
+    .mobile-nav__inner{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
+    }
+
+    .mobile-nav a{
+      min-height:54px;
+      border-radius:16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      font-size:.73rem;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .mobile-nav a.is-active{
+      background:var(--surface-2);
+      color:var(--primary);
+    }
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    .blogger-section-fallback{
+      display:none;
+    }
+
+    @media (min-width: 860px){
+      .desktop-nav{display:flex}
+      .grid--home{grid-template-columns:1.2fr .8fr}
+      .plan-item{
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+      }
+      .plan-item__content{max-width:65%}
+    }
+
+    @media (min-width: 1180px){
+      .grid--home{
+        grid-template-columns:1.1fr .9fr;
+      }
+    }
+
+    @media (max-width: 859px){
+      .header-actions .hide-mobile{display:none}
+    }
+  ]]></b:skin>
+</head>
+
+<body expr:class='data:view.isHomepage ? "page-home" : "page-inner"'>
+
+  <div class='app-shell' id='app-shell'>
+    <header class='app-header'>
+      <div class='app-header__inner'>
+        <div class='brand'>
+          <a class='brand__mark' expr:href='data:blog.homepageUrl'>M</a>
+          <div class='brand__text'>
+            <p class='brand__title'>Mi Biblia 365</p>
+            <p class='brand__subtitle'>Un año con la Palabra</p>
+          </div>
+
+          <nav class='desktop-nav' aria-label='Navegación principal'>
+            <a expr:class='data:view.isHomepage ? "is-active" : ""' expr:href='data:blog.homepageUrl'>Inicio</a>
+            <a href='/p/leer-hoy.html'>Leer hoy</a>
+            <a href='/p/planes.html'>Planes</a>
+            <a href='/p/biblia.html'>Biblia</a>
+            <a href='/p/buscar.html'>Buscar</a>
+            <a href='/p/mi-espacio.html'>Mi espacio</a>
+            <a href='/p/acerca.html'>Acerca</a>
+          </nav>
+        </div>
+
+        <div class='header-actions'>
+          <button aria-label='Cambiar modo oscuro' class='icon-btn' id='theme-toggle' type='button'>☾</button>
+          <a class='btn btn--secondary hide-mobile' href='/p/leer-hoy.html'>Leer hoy</a>
+        </div>
+      </div>
+    </header>
+
+    <main class='app-main' id='app-main'>
+      <b:if cond='data:view.isHomepage'>
+        <section class='hero'>
+          <span class='hero__eyebrow'>📖 Devocional diario</span>
+          <h1>Lee la Biblia con orden, claridad y perseverancia.</h1>
+          <p>
+            Este MVP convierte Blogger en una web app devocional: lectura diaria, planes, progreso personal,
+            versículo del día y un espacio para continuar donde quedaste.
+          </p>
+          <div class='hero__actions'>
+            <a class='btn btn--primary' href='/p/leer-hoy.html'>Leer hoy</a>
+            <a class='btn btn--secondary' href='/p/planes.html'>Ver planes</a>
+            <a class='btn btn--ghost' href='/p/mi-espacio.html'>Mi espacio</a>
+          </div>
+        </section>
+
+        <div class='grid grid--home'>
+          <section class='card'>
+            <div class='card__body'>
+              <h2 class='card__title'>Resumen de tu recorrido</h2>
+              <p class='card__text'>
+                Estos datos son de ejemplo. Luego serán reemplazados por JavaScript y localStorage.
+              </p>
+
+              <div class='stat-row'>
+                <div class='stat'>
+                  <div class='stat__label'>Plan activo</div>
+                  <div class='stat__value'>Biblia en un año</div>
+                </div>
+                <div class='stat'>
+                  <div class='stat__label'>Día actual</div>
+                  <div class='stat__value'>110 / 365</div>
+                </div>
+                <div class='stat'>
+                  <div class='stat__label'>Racha</div>
+                  <div class='stat__value'>5 días</div>
+                </div>
+                <div class='stat'>
+                  <div class='stat__label'>Versión</div>
+                  <div class='stat__value'>RV60</div>
+                </div>
+              </div>
+
+              <div class='progress' aria-label='Progreso de lectura'>
+                <span></span>
+              </div>
+
+              <div class='hero__actions'>
+                <a class='btn btn--primary' href='/p/leer-hoy.html'>Continuar donde quedé</a>
+                <a class='btn btn--secondary' href='/p/plan-completo.html'>Ver plan completo</a>
+              </div>
+            </div>
+          </section>
+
+          <aside class='card verse-card'>
+            <div class='card__body'>
+              <h2 class='card__title'>Versículo diario</h2>
+              <blockquote>
+                Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito,
+                para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.
+              </blockquote>
+              <cite>Juan 3:16 · RV60</cite>
+              <div class='hero__actions'>
+                <a class='btn btn--secondary' href='/p/biblia.html'>Abrir en Biblia</a>
+                <a class='btn btn--ghost' href='/p/mi-espacio.html'>Guardar favorito</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section class='page-section'>
+          <h2 class='section-title'>Planes destacados</h2>
+          <div class='plan-list'>
+            <article class='plan-item'>
+              <div class='plan-item__content'>
+                <h3 class='card__title'>Biblia en un año</h3>
+                <p class='card__text'>Lectura completa en 365 días con Antiguo Testamento, Salmos y Nuevo Testamento.</p>
+                <div class='plan-item__meta'>
+                  <span class='chip'>365 días</span>
+                  <span class='chip'>3 lecturas por día</span>
+                  <span class='chip'>Plan principal</span>
+                </div>
+              </div>
+              <div class='hero__actions'>
+                <a class='btn btn--primary' href='/p/planes.html'>Iniciar</a>
+                <a class='btn btn--secondary' href='/p/plan-completo.html'>Explorar</a>
+              </div>
+            </article>
+
+            <article class='plan-item'>
+              <div class='plan-item__content'>
+                <h3 class='card__title'>Nuevo Testamento en un año</h3>
+                <p class='card__text'>Ideal para nuevos creyentes o para un recorrido más enfocado en Cristo y la iglesia.</p>
+                <div class='plan-item__meta'>
+                  <span class='chip'>365 días</span>
+                  <span class='chip'>Lectura ligera</span>
+                </div>
+              </div>
+              <div class='hero__actions'>
+                <a class='btn btn--primary' href='/p/planes.html'>Elegir plan</a>
+              </div>
+            </article>
+          </div>
+        </section>
+      <b:else/>
+        <section class='page-section'>
+          <h1 class='page-title'><data:blog.pageName/></h1>
+          <p class='page-lead'>
+            Esta sección usa contenedores base del MVP. Después podrás conectar el contenido dinámico con JS.
+          </p>
+
+          <b:if cond='data:blog.url == data:blog.homepageUrl + "p/leer-hoy.html"'>
+            <section class='reading-area'>
+              <div class='reading-area__toolbar'>
+                <div class='field'>
+                  <label for='version-select'>Versión</label>
+                  <select id='version-select'>
+                    <option>Reina Valera 1960</option>
+                    <option>Reina Valera 1995</option>
+                    <option>NVI</option>
+                    <option>DHH</option>
+                    <option>PDT</option>
+                  </select>
+                </div>
+                <div class='field'>
+                  <label for='day-plan'>Día del plan</label>
+                  <input id='day-plan' type='text' value='Día 110 de 365'/>
+                </div>
+              </div>
+
+              <div class='passage'>
+                <strong>Lecturas del día:</strong>
+
+                Génesis 37
+                Salmos 23
+                Mateo 24
+
+                Aquí se renderizará el texto bíblico obtenido por API.
+              </div>
+
+              <div class='hero__actions'>
+                <button class='btn btn--primary' type='button'>Marcar como leído</button>
+                <button class='btn btn--secondary' type='button'>Añadir favorito</button>
+                <button class='btn btn--ghost' type='button'>Añadir nota</button>
+              </div>
+            </section>
+          </b:if>
+
+          <b:if cond='data:blog.url == data:blog.homepageUrl + "p/planes.html"'>
+            <div class='plan-list'>
+              <article class='plan-item'>
+                <div class='plan-item__content'>
+                  <h2 class='card__title'>Biblia en un año</h2>
+                  <p class='card__text'>Lectura integral de toda la Escritura en 365 días.</p>
+                  <div class='plan-item__meta'>
+                    <span class='chip'>365 días</span>
+                    <span class='chip'>Completo</span>
+                  </div>
+                </div>
+                <div class='hero__actions'>
+                  <button class='btn btn--primary' type='button'>Iniciar</button>
+                  <button class='btn btn--secondary' type='button'>Continuar</button>
+                </div>
+              </article>
+
+              <article class='plan-item'>
+                <div class='plan-item__content'>
+                  <h2 class='card__title'>Plan cronológico</h2>
+                  <p class='card__text'>Sigue los acontecimientos bíblicos según una secuencia histórica.</p>
+                  <div class='plan-item__meta'>
+                    <span class='chip'>365 días</span>
+                    <span class='chip'>Cronológico</span>
+                  </div>
+                </div>
+                <div class='hero__actions'>
+                  <button class='btn btn--primary' type='button'>Iniciar</button>
+                </div>
+              </article>
+            </div>
+          </b:if>
+
+          <b:if cond='data:blog.url == data:blog.homepageUrl + "p/biblia.html"'>
+            <section class='reading-area'>
+              <div class='reading-area__toolbar'>
+                <div class='field'>
+                  <label for='book-select'>Libro</label>
+                  <select id='book-select'>
+                    <option>Génesis</option>
+                    <option>Salmos</option>
+                    <option>Mateo</option>
+                    <option>Juan</option>
+                  </select>
+                </div>
+                <div class='field'>
+                  <label for='chapter-select'>Capítulo</label>
+                  <select id='chapter-select'>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class='passage'>
+                Aquí se mostrará la lectura libre por libro y capítulo.
+              </div>
+            </section>
+          </b:if>
+
+          <b:if cond='data:blog.url == data:blog.homepageUrl + "p/mi-espacio.html"'>
+            <div class='tabs' aria-label='Pestañas de Mi espacio'>
+              <span class='tab is-active'>Resumen</span>
+              <span class='tab'>Planes</span>
+              <span class='tab'>Favoritos</span>
+              <span class='tab'>Notas</span>
+              <span class='tab'>Historial</span>
+              <span class='tab'>Configuración</span>
+              <span class='tab'>Respaldo</span>
+            </div>
+
+            <div class='grid grid--home'>
+              <section class='card'>
+                <div class='card__body'>
+                  <h2 class='card__title'>Panel personal</h2>
+                  <ul class='list-simple'>
+                    <li><strong>Plan activo:</strong> Biblia en un año</li>
+                    <li><strong>Última lectura:</strong> Día 109</li>
+                    <li><strong>Racha actual:</strong> 5 días</li>
+                    <li><strong>Favoritos:</strong> 12</li>
+                    <li><strong>Notas:</strong> 7</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section class='card verse-card'>
+                <div class='card__body'>
+                  <h2 class='card__title'>Versículo de hoy</h2>
+                  <blockquote>Lámpara es a mis pies tu palabra, y lumbrera a mi camino.</blockquote>
+                  <cite>Salmos 119:105 · RV60</cite>
+                </div>
+              </section>
+            </div>
+          </b:if>
+
+          <b:if cond='data:blog.url != data:blog.homepageUrl + "p/leer-hoy.html" and data:blog.url != data:blog.homepageUrl + "p/planes.html" and data:blog.url != data:blog.homepageUrl + "p/biblia.html" and data:blog.url != data:blog.homepageUrl + "p/mi-espacio.html"'>
+            <section class='card'>
+              <div class='card__body'>
+                <h2 class='card__title'>Contenido base de la página</h2>
+                <p class='card__text'>
+                  Usa esta área para las páginas estáticas como Acerca, Preguntas frecuentes, Instalar,
+                  Buscar o Plan completo.
+                </p>
+              </div>
+            </section>
+          </b:if>
+
+          <b:section class='main' id='main' showaddelement='yes'>
+            <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' visible='true'/>
+          </b:section>
+        </section>
+      </b:if>
+    </main>
+
+    <footer class='app-footer'>
+      <div class='app-footer__inner'>
+        <p>Mi Biblia 365 · MVP XML sobre Blogger</p>
+        <p>El contenido dinámico se conectará mediante JavaScript, JSON externos y API bíblica.</p>
+      </div>
+    </footer>
+
+    <nav aria-label='Navegación móvil' class='mobile-nav'>
+      <div class='mobile-nav__inner'>
+        <a expr:class='data:view.isHomepage ? "is-active" : ""' expr:href='data:blog.homepageUrl'>
+          <span>⌂</span>
+          <span>Inicio</span>
+        </a>
+        <a href='/p/leer-hoy.html'>
+          <span>📖</span>
+          <span>Leer hoy</span>
+        </a>
+        <a href='/p/planes.html'>
+          <span>☰</span>
+          <span>Planes</span>
+        </a>
+        <a href='/p/biblia.html'>
+          <span>✦</span>
+          <span>Biblia</span>
+        </a>
+        <a href='/p/mi-espacio.html'>
+          <span>☺</span>
+          <span>Mi espacio</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    /**
+     * Mi Biblia 365 - App JavaScript
+     * MVP para Blogger - Todo en un XML
+     */
+
+    (function() {
+      'use strict';
+
+      var MiBiblia365 = window.MiBiblia365 || {};
+
+      MiBiblia365.config = {
+        storageKey: 'mibiblia365-',
+        version: '1.0.0',
+        defaultPlan: 'biblia-en-un-ano',
+        defaultVersion: 'RV60'
+      };
+
+      MiBiblia365.Storage = {
+        get: function(key) {
+          try {
+            var data = localStorage.getItem(MiBiblia365.config.storageKey + key);
+            return data ? JSON.parse(data) : null;
+          } catch (e) { return null; }
+        },
+        set: function(key, value) {
+          try {
+            localStorage.setItem(MiBiblia365.config.storageKey + key, JSON.stringify(value));
+            return true;
+          } catch (e) { return false; }
+        }
+      };
+
+      MiBiblia365.Plans = {
+        active: function() {
+          return MiBiblia365.Storage.get('activePlan') || MiBiblia365.config.defaultPlan;
+        },
+        setActive: function(planId) {
+          return MiBiblia365.Storage.set('activePlan', planId);
+        },
+        getProgress: function() {
+          var progress = MiBiblia365.Storage.get('progress');
+          return progress || { day: 1, total: 365, completed: [] };
+        },
+        markDayRead: function(dayNum) {
+          var progress = MiBiblia365.Plans.getProgress();
+          if (progress.completed.indexOf(dayNum) === -1) {
+            progress.completed.push(dayNum);
+            progress.completed.sort(function(a, b) { return a - b; });
+            MiBiblia365.Storage.set('progress', progress);
+          }
+          return progress;
+        }
+      };
+
+      MiBiblia365.Theme = {
+        init: function() {
+          var body = document.body;
+          var toggle = document.getElementById('theme-toggle');
+          if (!toggle) return;
+
+          var saved = MiBiblia365.Storage.get('theme');
+          if (saved === 'dark') body.classList.add('dark');
+
+          toggle.addEventListener('click', function() {
+            body.classList.toggle('dark');
+            MiBiblia365.Storage.set('theme', body.classList.contains('dark') ? 'dark' : 'light');
+          });
+        }
+      };
+
+      MiBiblia365.Favorites = {
+        add: function(verseRef, content) {
+          var favs = MiBiblia365.Storage.get('favorites') || [];
+          var exists = favs.some(function(f) { return f.ref === verseRef; });
+          if (!exists) {
+            favs.push({ ref: verseRef, content: content, date: new Date().toISOString() });
+            MiBiblia365.Storage.set('favorites', favs);
+            return true;
+          }
+          return false;
+        },
+        getAll: function() {
+          return MiBiblia365.Storage.get('favorites') || [];
+        }
+      };
+
+      MiBiblia365.Notes = {
+        add: function(verseRef, note) {
+          var notes = MiBiblia365.Storage.get('notes') || [];
+          notes.push({ ref: verseRef, note: note, date: new Date().toISOString() });
+          MiBiblia365.Storage.set('notes', notes);
+          return notes.length - 1;
+        },
+        getAll: function() {
+          return MiBiblia365.Storage.get('notes') || [];
+        }
+      };
+
+      MiBiblia365.Streak = {
+        get: function() {
+          var streak = MiBiblia365.Storage.get('streak') || { current: 0, longest: 0, lastDate: null };
+          return streak;
+        },
+        update: function() {
+          var streak = MiBiblia365.Streak.get();
+          var today = new Date().toDateString();
+          var yesterday = new Date(Date.now() - 86400000).toDateString();
+
+          if (streak.lastDate === today) return streak;
+          if (streak.lastDate === yesterday) {
+            streak.current += 1;
+          } else {
+            streak.current = 1;
+          }
+          streak.lastDate = today;
+          if (streak.current > streak.longest) streak.longest = streak.current;
+          MiBiblia365.Storage.set('streak', streak);
+          return streak;
+        }
+      };
+
+      MiBiblia365.Export = {
+        toJSON: function() {
+          return JSON.stringify({
+            progress: MiBiblia365.Plans.getProgress(),
+            favorites: MiBiblia365.Favorites.getAll(),
+            notes: MiBiblia365.Notes.getAll(),
+            streak: MiBiblia365.Streak.get(),
+            theme: MiBiblia365.Storage.get('theme'),
+            exportDate: new Date().toISOString()
+          }, null, 2);
+        }
+      };
+
+      window.MiBiblia365 = MiBiblia365;
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', MiBiblia365.Theme.init);
+      } else {
+        MiBiblia365.Theme.init();
+      }
+
+    })();
+  </script>
+</body>
+</html>
