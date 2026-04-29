@@ -1017,7 +1017,7 @@
     // Configuración
     // ==========================================
     const CONFIG = {
-      CDN_BASE: 'https://cdn.jsdelivr.net/gh/erzonmr/MiBiblia365-XML@main',
+      CDN_BASE: 'https://cdn.jsdelivr.net/gh/erzonmr/MiBiblia365-XML@main/',
       API_BASE: 'https://docs-bible-api.netlify.app/api',
       API_SOURCES: {
         primary: 'https://docs-bible-api.netlify.app/api',
@@ -1535,6 +1535,31 @@
       if (progressFill) progressFill.style.width = percent + '%';
       if (progressStatus) progressStatus.textContent = 'Día ' + activePlan.lastOpenedDay + ' de 365';
     }
+
+    async function loadHomeDailyVerse() {
+      const verseTextEl = $('#verse-text');
+      const verseRefEl = $('#verse-reference');
+      if (!verseTextEl || !verseRefEl) return;
+
+      const preferredVersion = normalizeVersionId(
+        (state.user && state.user.config && state.user.config.preferredVersion) || CONFIG.DEFAULT_VERSION
+      );
+
+      try {
+        const chapterData = await BibleService.getChapter(preferredVersion, 'PSA', 119);
+        const verses = Array.isArray(chapterData.verses) ? chapterData.verses : [];
+        const verse = verses.find(v => Number(v.number) === 105);
+
+        if (!verse || !verse.text) {
+          throw new Error('Verse not found in chapter response');
+        }
+
+        verseTextEl.textContent = verse.text;
+        verseRefEl.textContent = 'Salmos 119:105 (' + preferredVersion + ')';
+      } catch (error) {
+        console.warn('Daily verse fallback to static content:', error);
+      }
+    }
     
     // ==========================================
     // Inicialización
@@ -1551,6 +1576,7 @@
       // Actualizar UI según página actual
       if (state.currentPage === 'home') {
         updateHomeProgress();
+        loadHomeDailyVerse();
       }
       
       // Escuchar cambios de tema del sistema
