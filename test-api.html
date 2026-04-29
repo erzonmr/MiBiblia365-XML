@@ -7,7 +7,7 @@
   <style>
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; margin:24px; line-height:1.4}
     button{padding:.6rem 1rem; margin-right:.5rem}
-    pre{background:#111;color:#e8e8e8;padding:12px;border-radius:8px;overflow:auto;max-height:280px}
+    pre{background:#111; color:#e8e8e8; padding:12px; border-radius:8px; overflow:auto; max-height:280px}
     .ok{color:#0a7a0a}.err{color:#b00020}
   </style>
 </head>
@@ -18,66 +18,77 @@
   <div id="log"></div>
   <script>
     const SOURCES = {
-      hello: 'https://bible.helloao.org/api',
-      netlify: 'https://docs-bible-api.netlify.app/api'
+      hello: 'https://bible. helloao. org/api',
+      netlify: 'https://docs-bible-api. netlify. app/api'
     };
     const out = document.getElementById('log');
-    const print = (msg, cls='') => {
-      const p = document.createElement('p'); p.className = cls; p.textContent = msg; out.appendChild(p);
+    const print = (msg, cls) => {
+      const p = document.createElement('p');
+      p.className = cls || '';
+      p.textContent = msg;
+      out.appendChild(p);
     };
-    const dump = (obj) => { const pre = document.createElement('pre'); pre.textContent = JSON.stringify(obj, null, 2); out.appendChild(pre); };
+    const dump = (obj) => {
+      const pre = document.createElement('pre');
+      pre.textContent = JSON.stringify(obj, null, 2);
+      out.appendChild(pre);
+    };
 
-    async function fetchJSON(url){
+    async function fetchJSON(url) {
       const t0 = performance.now();
-      const res = await fetch(url, {cache:'default'});
-      const dt = Math.round(performance.now()-t0);
-      if(!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+      const res = await fetch(url, {cache: 'default'});
+      const dt = Math.round(performance.now() - t0);
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' en ' + url);
       return { data: await res.json(), ms: dt };
     }
 
-async function run(){
+    async function run() {
       out.innerHTML = '';
-      const results = {};
-      let paso = 1;
+      var results = {};
+      var paso = 1;
 
       try {
-        const r = await fetchJSON(`${SOURCES.hello}/available_translations.json`);
-        results.hello = { ok: true, total: r.data.length, spa: r.data.filter(v => String(v.language||'').toLowerCase().startsWith('spa')).length, ms: r.ms };
-        print(`[${paso++}] HelloAO /available_translations.json → OK (${r.data.length} trads, ${results.hello.spa} spa) en ${r.ms}ms`, 'ok');
+        var r = await fetchJSON(SOURCES.hello + '/available_ translations. json');
+        results. hello = { ok: true, total: r. data. length, spa: r. data. filter(function(v) {
+          return String(v. language || '').toLowerCase().startsWith('spa');
+        }). length, ms: r. ms };
+        print('[' + (paso++) + '] HelloAO /available_ translations. json → OK (' + r. data. length + ' trads, ' + results. hello. spa + ' spa) en ' + r. ms + 'ms', 'ok');
       } catch(e) {
-        results.hello = { ok: false, error: e.message };
-        print(`[${paso++}] HelloAO /available_translations.json → ERROR: ${e.message}`, 'err');
+        results. hello = { ok: false, error: e. message };
+        print('[' + (paso++) + '] HelloAO /available_ translations. json → ERROR: ' + e. message, 'err');
       }
 
       try {
-        const r = await fetchJSON(`${SOURCES.netlify}/versions`);
-        results.netlify = { ok: true, total: r.data.length, ms: r.ms };
-        print(`[${paso++}] Netlify /versions → OK (${r.data.length} vers) en ${r.ms}ms`, 'ok');
+        var r = await fetchJSON(SOURCES. netlify + '/versions');
+        results. netlify = { ok: true, total: r. data. length, ms: r. ms };
+        print('[' + (paso++) + '] Netlify /versions → OK (' + r. data. length + ' vers) en ' + r. ms + 'ms', 'ok');
       } catch(e) {
-        results.netlify = { ok: false, error: e.message };
-        print(`[${paso++}] Netlify /versions → CORS-BLOQUEADO (cualquier origen)`, 'err');
+        results. netlify = { ok: false, error: e. message };
+        print('[' + (paso++) + '] Netlify /versions → CORS- BLOQUEADO (cualquier origen)', 'err');
       }
 
       try {
-        const r = await fetchJSON(`${SOURCES.netlify}/chapter/RV1960/GEN/1`);
-        results.chapter = { fuente: 'Netlify', ms: r.ms, version: 'RV1960' };
-        print(`[FALLBACK] Capítulo desde Netlify → OK en ${r.ms}ms`, 'ok');
-        dump(r.data);
+        var r = await fetchJSON(SOURCES. netlify + '/chapter/RV1960/GEN/1');
+        results. chapter = { fuente: 'Netlify', ms: r. ms, version: 'RV1960' };
+        print('[FALLBACK] Capítulo desde Netlify → OK en ' + r. ms + 'ms', 'ok');
+        dump(r. data);
       } catch(e1) {
         try {
-          const r = await fetchJSON(`${SOURCES.hello}/RVR1909/GEN/1.json`);
-          results.chapter = { fuente: 'HelloAO (fallback)', ms: r.ms, version: 'RVR1909' };
-          print(`[FALLBACK] Netlify falló → HelloAO RVR1909/Genesis/1 OK en ${r.ms}ms`, 'ok');
-          dump(r.data);
+          var r = await fetchJSON(SOURCES. hello + '/RVR1909/Genesis/1. json');
+          results. chapter = { fuente: 'HelloAO (fallback)', ms: r. ms, version: 'RVR1909' };
+          print('[FALLBACK] Netlify falló → HelloAO RVR1909/Genesis/1 OK en ' + r. ms + 'ms', 'ok');
+          dump(r. data);
         } catch(e2) {
-          results.chapter = { fuente: null, netlifyError: e1.message, helloError: e2.message };
-          print(`[FALLBACK] Ambas fallaron | Netlify=${e1.message} | HelloAO=${e2.message}`, 'err');
+          results. chapter = { fuente: null, netlifyError: e1. message, helloError: e2. message };
+          print('[FALLBACK] Ambas fallaron | Netlify=' + e1. message + ' | HelloAO=' + e2. message, 'err');
         }
       }
 
       print('--- RESUMEN ---', '');
       dump(results);
-document.getElementById('run').addEventListener('click', run);
+    }
+
+    document. getElementById('run'). addEventListener('click', run);
   </script>
 </body>
 </html>
