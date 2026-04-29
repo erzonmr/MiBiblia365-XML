@@ -138,7 +138,7 @@
 ## Tareas
 
 ### 1.1 Plantilla XML base
-- [ ] Crear estructura mínima del XML de Blogger.
+- [x] Crear estructura mínima del XML de Blogger. El XML base es este: `template - ZIA.xml`.
 - [ ] Configurar `<head>` con meta-tags esenciales.
 - [ ] Incluir meta-tags de instalación tipo app (`apple-mobile-web-app-capable`, etc.).
 - [ ] Agregar Open Graph y Twitter Cards.
