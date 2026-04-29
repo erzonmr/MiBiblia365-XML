@@ -1030,6 +1030,16 @@
       CHAPTER_CACHE_KEY: 'mibiblia365_chapter_cache_v1',
       REQUEST_TIMEOUT_MS: 12000
     };
+
+    const VERSION_POLICY = {
+      netlifyAllowed: {
+        rv1960: { id: 'RV1960', name: 'Reina Valera 1960' },
+        rv1995: { id: 'RV1995', name: 'Reina Valera 1995' },
+        nvi: { id: 'NVI', name: 'Nueva Version Internacional' },
+        dhh: { id: 'DHH', name: 'Dios Habla Hoy' },
+        pdt: { id: 'PDT', name: 'Palabra de Dios para Todos' }
+      }
+    };
     
     // ==========================================
     // Estado global
@@ -1195,13 +1205,18 @@
       async function netlifyVersions() {
         const payload = await fetchJSON(CONFIG.API_SOURCES.primary + '/versions');
         const list = Array.isArray(payload) ? payload : (payload.versions || payload.data || []);
-        return list.map(v => ({
-          id: normalizeVersionId(v.id || v.version || v.abbreviation || v.shortName),
-          rawId: String(v.id || v.version || v.abbreviation || v.shortName || '').trim(),
-          name: v.name || v.title || v.version || v.id || 'Version',
-          language: String(v.language || v.lang || 'spa').toLowerCase(),
-          availableIn: ['netlify']
-        })).filter(v => v.id && (v.language.indexOf('spa') !== -1 || v.language.indexOf('es') !== -1));
+        return list.map(v => {
+          const rawId = String(v.version || v.id || '').trim().toLowerCase();
+          const allowed = VERSION_POLICY.netlifyAllowed[rawId];
+          if (!allowed) return null;
+          return {
+            id: allowed.id,
+            rawId: rawId,
+            name: allowed.name,
+            language: 'spa',
+            availableIn: ['netlify']
+          };
+        }).filter(Boolean);
       }
 
       async function helloVersions() {
@@ -1211,9 +1226,9 @@
           id: normalizeVersionId(v.id || v.shortName || v.name),
           rawId: String(v.id || v.shortName || v.name || '').trim(),
           name: v.name || v.shortName || v.id || 'Version',
-          language: String(v.language || v.lang || 'spa').toLowerCase(),
+          language: String(v.language || v.lang || '').toLowerCase(),
           availableIn: ['helloao']
-        })).filter(v => v.id && (v.language.indexOf('spa') !== -1 || v.language.indexOf('es') !== -1));
+        })).filter(v => v.id && v.language === 'spa');
       }
 
       async function getVersions() {
