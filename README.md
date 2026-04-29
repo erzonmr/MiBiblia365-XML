@@ -68,4 +68,15 @@ En `template - ZIA.xml`:
 
 - `Instrucciones.md` se mantiene vacío por ahora y se llenará a medida que avancen fases con tareas manuales.
 - Antes de publicar cambios de datos en CDN, considerar caché de jsDelivr.
-- Este proyecto no modifica el contenido original de las traducciones bíblicas.
+- Este proyecto no modifica ni reescribe el contenido de las traducciones bíblicas.
+
+
+## Activos de Fase 0 agregados
+
+- `test-api.html`: prueba local para validar APIs, filtro de español y fallback.
+- `json/versions.json`: primer subconjunto curado de versiones en español.
+- `json/plans.json`: catálogo inicial de planes conectando a los JSON existentes.
+- `json/config.json`: configuración base (`defaultTranslationId`, `defaultPlanId`, `leapYearMode`, `apiSources`).
+- `test.json`: archivo de humo para validar entrega por jsDelivr.
+- `LICENSE`: licencia MIT del código del repositorio.
+
