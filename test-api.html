@@ -52,14 +52,21 @@
 
       try {
         var r = await fetchJSON(SOURCES.hello + '/available_translations.json');
-        var spa = r.data.filter(function(v) {
+        // HelloAO returns { translations: [...] }
+        var translations = r.data.translations || r.data; // fallback if structure changes
+        var spa = translations.filter(function(v) {
           return String(v.language || '').toLowerCase().startsWith('spa');
         });
-        results.hello = { ok: true, total: r.data.length, spa: spa.length, ms: r.ms };
-        print('[' + (paso++) + '] HelloAO /available_translations.json → OK (' + r.data.length + ' trads, ' + results.hello.spa + ' spa) en ' + r.ms + 'ms', 'ok');
+        results.hello = { ok: true, total: translations.length, spa: spa.length, ms: r.ms };
+        print('[' + (paso++) + '] HelloAO /available_translations.json → OK (' + translations.length + ' trads, ' + results.hello.spa + ' spa) en ' + r.ms + 'ms', 'ok');
+        // Show first 5 Spanish translations
+        var spaSample = spa.slice(0,5).map(function(v) { return v.id + ':' + v.name; });
+        dump({ spanishSample: spaSample });
       } catch(e) {
         results.hello = { ok: false, error: e.message };
         print('[' + (paso++) + '] HelloAO /available_translations.json → ERROR: ' + e.message, 'err');
+        // Show what we got
+        dump({ errorDetails: e });
       }
 
       try {
@@ -75,13 +82,13 @@
         var r = await fetchJSON(SOURCES.netlify + '/chapter/RV1960/GEN/1');
         results.chapter = { fuente: 'Netlify', ms: r.ms, version: 'RV1960' };
         print('[FALLBACK] Capítulo desde Netlify → OK en ' + r.ms + 'ms', 'ok');
-        dump(r.data);
+        dump({ chapterInfo: { book: r.data.book, chapter: r.data.chapter, verses: r.data.verses ? r.data.verses.length : 0 } });
       } catch(e1) {
         try {
           var r = await fetchJSON(SOURCES.hello + '/RVR1909/Genesis/1.json');
           results.chapter = { fuente: 'HelloAO (fallback)', ms: r.ms, version: 'RVR1909' };
           print('[FALLBACK] Netlify falló → HelloAO OK en ' + r.ms + 'ms', 'ok');
-          dump(r.data);
+          dump({ chapterInfo: { book: r.data.book, chapter: r.data.chapter, verses: r.data.verses ? r.data.verses.length : 0 } });
         } catch(e2) {
           results.chapter = { fuente: null, netlifyError: e1.message, helloError: e2.message };
           print('[FALLBACK] Ambas fallaron | Netlify=' + e1.message + ' | HelloAO=' + e2.message, 'err');
