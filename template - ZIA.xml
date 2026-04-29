@@ -1560,6 +1560,211 @@
         console.warn('Daily verse fallback to static content:', error);
       }
     }
+
+    function showCurrentPageContainer() {
+      const home = $('#page-home');
+      const dynamic = $('#page-dynamic');
+
+      if (state.currentPage === 'home') {
+        show(home);
+        hide(dynamic);
+      } else {
+        hide(home);
+        show(dynamic);
+      }
+    }
+
+    function normalizeBookName(input) {
+      return String(input || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/\./g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function getBookIdFromSpanishName(bookName) {
+      const map = {
+        'genesis': 'GEN', 'exodo': 'EXO', 'levitico': 'LEV', 'numeros': 'NUM', 'deuteronomio': 'DEU',
+        'josue': 'JOS', 'jueces': 'JDG', 'rut': 'RUT', '1 samuel': '1SA', '2 samuel': '2SA',
+        '1 reyes': '1KI', '2 reyes': '2KI', '1 cronicas': '1CH', '2 cronicas': '2CH', 'esdras': 'EZR',
+        'nehemias': 'NEH', 'ester': 'EST', 'job': 'JOB', 'salmos': 'PSA', 'proverbios': 'PRO',
+        'eclesiastes': 'ECC', 'cantares': 'SNG', 'isaias': 'ISA', 'jeremias': 'JER', 'lamentaciones': 'LAM',
+        'ezequiel': 'EZK', 'daniel': 'DAN', 'oseas': 'HOS', 'joel': 'JOL', 'amos': 'AMO',
+        'abdias': 'OBA', 'jonas': 'JON', 'miqueas': 'MIC', 'nahum': 'NAM', 'habacuc': 'HAB',
+        'sofonias': 'ZEP', 'hageo': 'HAG', 'zacarias': 'ZEC', 'malaquias': 'MAL', 'mateo': 'MAT',
+        'marcos': 'MRK', 'lucas': 'LUK', 'juan': 'JHN', 'hechos': 'ACT', 'romanos': 'ROM',
+        '1 corintios': '1CO', '2 corintios': '2CO', 'galatas': 'GAL', 'efesios': 'EPH', 'filipenses': 'PHP',
+        'colosenses': 'COL', '1 tesalonicenses': '1TH', '2 tesalonicenses': '2TH', '1 timoteo': '1TI', '2 timoteo': '2TI',
+        'tito': 'TIT', 'filemon': 'PHM', 'hebreos': 'HEB', 'santiago': 'JAS', '1 pedro': '1PE',
+        '2 pedro': '2PE', '1 juan': '1JN', '2 juan': '2JN', '3 juan': '3JN', 'judas': 'JUD', 'apocalipsis': 'REV'
+      };
+      return map[normalizeBookName(bookName)] || null;
+    }
+
+    function parseReadingReference(reference) {
+      const cleaned = String(reference || '').trim();
+      const match = cleaned.match(/^(.*)\s+(\d+)$/);
+      if (!match) return null;
+      const bookName = match[1].trim();
+      const chapter = Number(match[2]);
+      const bookId = getBookIdFromSpanishName(bookName);
+      if (!bookId || !chapter) return null;
+      return { reference: cleaned, bookName: bookName, bookId: bookId, chapter: chapter };
+    }
+
+    function getDaysSince(startDateIso) {
+      const start = new Date(startDateIso + 'T00:00:00');
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      return Math.floor((today - start) / 86400000) + 1;
+    }
+
+    function ensureActiveAnnualPlan() {
+      if (!state.user) return null;
+      if (!Array.isArray(state.user.plans)) state.user.plans = [];
+
+      let activeId = state.user.config.activePlanId;
+      let plan = state.user.plans.find(p => p.planId === activeId);
+
+      if (!plan) {
+        plan = {
+          planId: 'Plan_Anual',
+          name: 'Plan Anual',
+          startDate: new Date().toISOString().split('T')[0],
+          completedDays: [],
+          lastOpenedDay: 1
+        };
+        state.user.plans.push(plan);
+        state.user.config.activePlanId = plan.planId;
+        saveUserData(state.user);
+      }
+
+      return plan;
+    }
+
+    async function loadAnnualPlanDays() {
+      const url = CONFIG.CDN_BASE + 'json/Plan_Anual.json';
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('No se pudo cargar Plan_Anual.json');
+      return res.json();
+    }
+
+    function renderChapterVerses(verses) {
+      if (!Array.isArray(verses) || verses.length === 0) {
+        return '<p class="text-muted">No se encontraron versículos para este capítulo.</p>';
+      }
+
+      return verses.map(v => (
+        '<p><strong>' + v.number + '</strong> ' + v.text + '</p>'
+      )).join('');
+    }
+
+    async function renderLeerHoyPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+
+      dynamic.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><p class="text-muted">Cargando lectura de hoy...</p></div>';
+
+      try {
+        const planState = ensureActiveAnnualPlan();
+        const allDays = await loadAnnualPlanDays();
+        const todayDay = Math.min(Math.max(getDaysSince(planState.startDate), 1), Array.isArray(allDays) ? allDays.length : 365);
+        planState.lastOpenedDay = todayDay;
+        saveUserData(state.user);
+
+        const dayData = allDays.find(d => Number(d.dia) === todayDay) || allDays[0];
+        const readings = Array.isArray(dayData.porciones) ? dayData.porciones : [];
+        const firstReading = parseReadingReference(readings[0]);
+        if (!firstReading) {
+          throw new Error('No se pudo interpretar la lectura del día.');
+        }
+
+        const versions = await BibleService.getVersions();
+        const preferredVersion = normalizeVersionId(state.user.config.preferredVersion || CONFIG.DEFAULT_VERSION);
+        const versionExists = versions.some(v => v.id === preferredVersion);
+        const selectedVersion = versionExists ? preferredVersion : (versions[0] ? versions[0].id : CONFIG.DEFAULT_VERSION);
+        state.user.config.preferredVersion = selectedVersion;
+        saveUserData(state.user);
+
+        const chapterData = await BibleService.getChapter(selectedVersion, firstReading.bookId, firstReading.chapter);
+
+        dynamic.innerHTML = [
+          '<div class="page-container">',
+            '<section class="card" style="margin-bottom:16px;">',
+              '<h2 style="margin-bottom:8px;">Leer hoy</h2>',
+              '<p class="text-muted">Día ' + todayDay + ' de 365</p>',
+              '<p style="margin-top:8px;"><strong>Lecturas:</strong> ' + readings.join(' · ') + '</p>',
+            '</section>',
+            '<section class="card" style="margin-bottom:16px;">',
+              '<label class="text-muted" for="version-select">Versión bíblica</label>',
+              '<select id="version-select" style="width:100%;margin-top:8px;padding:10px;border-radius:8px;border:1px solid var(--border-light);background:var(--bg-secondary);color:var(--text-primary);">',
+                versions.map(function(v) {
+                  const selected = v.id === selectedVersion ? ' selected' : '';
+                  return '<option value="' + v.id + '"' + selected + '>' + v.name + ' (' + v.id + ')</option>';
+                }).join(''),
+              '</select>',
+            '</section>',
+            '<section class="card" id="chapter-reading">',
+              '<h3 style="margin-bottom:12px;">' + firstReading.reference + ' (' + selectedVersion + ')</h3>',
+              '<div id="chapter-verses">' + renderChapterVerses(chapterData.verses) + '</div>',
+              '<button class="btn btn-primary" id="mark-read-btn" style="margin-top:16px;">Marcar como leído</button>',
+              '<p class="text-muted mt-md" id="mark-read-msg"></p>',
+            '</section>',
+          '</div>'
+        ].join('');
+
+        const versionSelect = $('#version-select');
+        if (versionSelect) {
+          versionSelect.addEventListener('change', async function() {
+            const nextVersion = normalizeVersionId(versionSelect.value);
+            state.user.config.preferredVersion = nextVersion;
+            saveUserData(state.user);
+            const title = dynamic.querySelector('#chapter-reading h3');
+            const versesBox = $('#chapter-verses');
+            if (title) title.textContent = firstReading.reference + ' (' + nextVersion + ')';
+            if (versesBox) versesBox.innerHTML = '<p class="text-muted">Cargando capítulo...</p>';
+            try {
+              const nextChapter = await BibleService.getChapter(nextVersion, firstReading.bookId, firstReading.chapter);
+              if (versesBox) versesBox.innerHTML = renderChapterVerses(nextChapter.verses);
+            } catch (err) {
+              if (versesBox) versesBox.innerHTML = '<p class="text-muted">No se pudo cargar la lectura. Intenta otra versión.</p>';
+            }
+          });
+        }
+
+        const markBtn = $('#mark-read-btn');
+        if (markBtn) {
+          markBtn.addEventListener('click', function() {
+            if (planState.completedDays.indexOf(todayDay) === -1) {
+              planState.completedDays.push(todayDay);
+              planState.completedDays.sort(function(a, b) { return a - b; });
+              saveUserData(state.user);
+            }
+            const msg = $('#mark-read-msg');
+            if (msg) msg.textContent = '¡Bien! Un día más en Su Palabra.';
+          });
+        }
+      } catch (error) {
+        dynamic.innerHTML = [
+          '<div class="page-container">',
+            '<section class="card">',
+              '<h2 style="margin-bottom:8px;">Leer hoy</h2>',
+              '<p class="text-muted">No pudimos cargar la lectura. Verifica tu conexión e intenta de nuevo.</p>',
+              '<p class="text-muted mt-md">Detalle técnico: ' + (error && error.message ? error.message : 'Error desconocido') + '</p>',
+            '</section>',
+          '</div>'
+        ].join('');
+      }
+    }
+
+    async function renderCurrentPage() {
+      showCurrentPageContainer();
+      if (state.currentPage === 'leer-hoy') {
+        await renderLeerHoyPage();
+      }
+    }
     
     // ==========================================
     // Inicialización
@@ -1572,6 +1777,7 @@
       
       state.currentPage = detectCurrentPage();
       updateActiveNav();
+      renderCurrentPage();
       
       // Actualizar UI según página actual
       if (state.currentPage === 'home') {
