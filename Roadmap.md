@@ -32,7 +32,7 @@
 6. **No optimizar antes de tiempo.** Backend solo cuando se justifique.
 7. **Foco en lectura bíblica pura.** No se integran comentarios ni datasets de la API en el producto inicial, aunque la Free Use Bible API los ofrezca.
 8. **Tareas manuales.** Si surgen tareas que se deban realizar de manera manual, se debe dejar registro e instrucciones claras en el archivo `Instrucciones.md`. 
-9. **XML de Trabajo.** Dentro del repositorio está el archivo `template - ZIA.xml`, ese es el archivo XML donde se va a trabajar. Este será el archivo que se subirá a Blogger.  
+9. **XML de Trabajo.** Dentro del repositorio está el archivo `template-ZIA.xml`, ese es el archivo XML donde se va a trabajar. Este será el archivo que se subirá a Blogger.  
 
 ---
 
@@ -131,7 +131,7 @@
 
 ## Registro de avance (sin tiempos)
 
-- [x] Se consolidó `template - ZIA.xml` como MVP activo y archivo principal de ejecución.
+- [x] Se consolidó `template-ZIA.xml` como MVP activo y archivo principal de ejecución.
 - [x] Se implementó capa dual de APIs con fallback en runtime dentro del MVP.
 - [x] Se verificó bloqueo CORS de Netlify desde Blogger y se aplicó degradación automática hacia HelloAO.
 - [x] Se definió política de versiones en español: Netlify por whitelist (`rv1960`, `rv1995`, `nvi`, `dhh`, `pdt`) y HelloAO por `language === "spa"`.
@@ -147,7 +147,7 @@
 ## Tareas
 
 ### 1.1 Plantilla XML base
-- [x] Crear estructura mínima del XML de Blogger. El XML base es este: `template - ZIA.xml`.
+- [x] Crear estructura mínima del XML de Blogger. El XML base es este: `template-ZIA.xml`.
 - [ ] Configurar `<head>` con meta-tags esenciales.
 - [ ] Incluir meta-tags de instalación tipo app (`apple-mobile-web-app-capable`, etc.).
 - [ ] Agregar Open Graph y Twitter Cards.
