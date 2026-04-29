@@ -1676,8 +1676,8 @@
 
         const dayData = allDays.find(d => Number(d.dia) === todayDay) || allDays[0];
         const readings = Array.isArray(dayData.porciones) ? dayData.porciones : [];
-        const firstReading = parseReadingReference(readings[0]);
-        if (!firstReading) {
+        const parsedReadings = readings.map(parseReadingReference).filter(Boolean);
+        if (parsedReadings.length === 0) {
           throw new Error('No se pudo interpretar la lectura del día.');
         }
 
@@ -1688,6 +1688,8 @@
         state.user.config.preferredVersion = selectedVersion;
         saveUserData(state.user);
 
+        let currentReadingIndex = 0;
+        const firstReading = parsedReadings[currentReadingIndex];
         const chapterData = await BibleService.getChapter(selectedVersion, firstReading.bookId, firstReading.chapter);
 
         dynamic.innerHTML = [
@@ -1707,7 +1709,12 @@
               '</select>',
             '</section>',
             '<section class="card" id="chapter-reading">',
-              '<h3 style="margin-bottom:12px;">' + firstReading.reference + ' (' + selectedVersion + ')</h3>',
+              '<div style="display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px;">',
+                '<button class="btn" id="reading-prev-btn" type="button">Anterior</button>',
+                '<p class="text-muted" id="reading-index-label">Lectura 1 de ' + parsedReadings.length + '</p>',
+                '<button class="btn" id="reading-next-btn" type="button">Siguiente</button>',
+              '</div>',
+              '<h3 style="margin-bottom:12px;" id="chapter-title">' + firstReading.reference + ' (' + selectedVersion + ')</h3>',
               '<div id="chapter-verses">' + renderChapterVerses(chapterData.verses) + '</div>',
               '<button class="btn btn-primary" id="mark-read-btn" style="margin-top:16px;">Marcar como leído</button>',
               '<p class="text-muted mt-md" id="mark-read-msg"></p>',
@@ -1715,24 +1722,60 @@
           '</div>'
         ].join('');
 
+        async function renderCurrentReading() {
+          const reading = parsedReadings[currentReadingIndex];
+          const currentVersion = normalizeVersionId((state.user && state.user.config && state.user.config.preferredVersion) || selectedVersion);
+          const title = $('#chapter-title');
+          const versesBox = $('#chapter-verses');
+          const label = $('#reading-index-label');
+          const prevBtn = $('#reading-prev-btn');
+          const nextBtn = $('#reading-next-btn');
+
+          if (label) label.textContent = 'Lectura ' + (currentReadingIndex + 1) + ' de ' + parsedReadings.length;
+          if (title) title.textContent = reading.reference + ' (' + currentVersion + ')';
+          if (prevBtn) prevBtn.disabled = currentReadingIndex === 0;
+          if (nextBtn) nextBtn.disabled = currentReadingIndex === parsedReadings.length - 1;
+
+          if (versesBox) versesBox.innerHTML = '<p class="text-muted">Cargando capítulo...</p>';
+          try {
+            const currentChapter = await BibleService.getChapter(currentVersion, reading.bookId, reading.chapter);
+            if (versesBox) versesBox.innerHTML = renderChapterVerses(currentChapter.verses);
+          } catch (_) {
+            if (versesBox) versesBox.innerHTML = '<p class="text-muted">No se pudo cargar la lectura. Intenta otra versión.</p>';
+          }
+        }
+
         const versionSelect = $('#version-select');
         if (versionSelect) {
           versionSelect.addEventListener('change', async function() {
             const nextVersion = normalizeVersionId(versionSelect.value);
             state.user.config.preferredVersion = nextVersion;
             saveUserData(state.user);
-            const title = dynamic.querySelector('#chapter-reading h3');
-            const versesBox = $('#chapter-verses');
-            if (title) title.textContent = firstReading.reference + ' (' + nextVersion + ')';
-            if (versesBox) versesBox.innerHTML = '<p class="text-muted">Cargando capítulo...</p>';
-            try {
-              const nextChapter = await BibleService.getChapter(nextVersion, firstReading.bookId, firstReading.chapter);
-              if (versesBox) versesBox.innerHTML = renderChapterVerses(nextChapter.verses);
-            } catch (err) {
-              if (versesBox) versesBox.innerHTML = '<p class="text-muted">No se pudo cargar la lectura. Intenta otra versión.</p>';
+            await renderCurrentReading();
+          });
+        }
+
+        const prevBtn = $('#reading-prev-btn');
+        if (prevBtn) {
+          prevBtn.addEventListener('click', async function() {
+            if (currentReadingIndex > 0) {
+              currentReadingIndex -= 1;
+              await renderCurrentReading();
             }
           });
         }
+
+        const nextBtn = $('#reading-next-btn');
+        if (nextBtn) {
+          nextBtn.addEventListener('click', async function() {
+            if (currentReadingIndex < parsedReadings.length - 1) {
+              currentReadingIndex += 1;
+              await renderCurrentReading();
+            }
+          });
+        }
+
+        await renderCurrentReading();
 
         const markBtn = $('#mark-read-btn');
         if (markBtn) {
