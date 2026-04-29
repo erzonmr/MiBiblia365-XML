@@ -65,7 +65,7 @@
 **Criterio de éxito:** hay al menos 3 versiones en español confirmadas, con sus IDs reales validados contra la API.
 
 ### 0.3 Setup del repositorio GitHub
-- [ ] Crear repo público: `mi-biblia-365` (o nombre final).
+- [x] Crear repo público: `MiBiblia365-XML`.
 - [ ] Estructura de carpetas base (`data/`, `css/`, `js/`).
 - [ ] README inicial con propósito del repo.
 - [ ] Licencia (sugerido: MIT para el código).
