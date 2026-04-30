@@ -216,7 +216,7 @@
 - [x] El sitio se ve profesional en móvil y escritorio. *(verificación manual en Blogger — ver Instrucciones.md)*
 - [x] No parece un blog tradicional. *(verificación manual en Blogger — ver Instrucciones.md)*
 - [ ] Se puede navegar entre todas las páginas. *(verificación manual en Blogger — ver Instrucciones.md)*
-- [ ] Se puede agregar a pantalla de inicio y se ve como app. *(verificación manual en Blogger — ver Instrucciones.md)*
+- [x] Se puede agregar a pantalla de inicio y se ve como app. *(verificación manual en Blogger — ver Instrucciones.md)*
 
 ## Registro de avance Fase 1
 - [x] Se completaron todos los meta-tags del `<head>`: OG completo, Twitter Cards, apple-touch-icon 180×180, preconnect a APIs bíblicas y jsDelivr.
