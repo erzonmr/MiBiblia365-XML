@@ -2,7 +2,7 @@
 
 ## Fase 0 — Tareas manuales pendientes
 
-### 1) Validación de APIs (pendiente de red externa)
+### 1) Validación de APIs (Listo)
 - Abrir `test-api.html` en navegador (localhost o en el propio Blogger).
 - Verificar:
   - Catálogo de traducciones desde HelloAO.
@@ -52,28 +52,28 @@
 Después de subir el XML, verificar cada punto en el navegador:
 
 **Móvil (Chrome Android o Safari iOS):**
-- [ ] La barra de navegación inferior aparece con 5 items.
-- [ ] El botón "Leer hoy" central está destacado visualmente.
-- [ ] El hero de inicio se ve correctamente.
-- [ ] El versículo del día carga desde la API (puede tardar 1-2s).
-- [ ] El toggle de modo oscuro funciona.
-- [ ] Se puede agregar a pantalla de inicio y se ve como app (ícono correcto).
+- [x] La barra de navegación inferior aparece con 5 items.
+- [x] El botón "Leer hoy" central está destacado visualmente.
+- [x] El hero de inicio se ve correctamente.
+- [x] El versículo del día carga desde la API (puede tardar 1-2s).
+- [x] El toggle de modo oscuro funciona.
+- [x] Se puede agregar a pantalla de inicio y se ve como app (ícono correcto). (Parcialmente, en escritorio no son claras las instrucciones de isntalación)
 
 **Escritorio (Chrome o Firefox):**
-- [ ] La navegación horizontal aparece en el header.
-- [ ] La barra inferior NO aparece en escritorio.
-- [ ] El layout de inicio se ve bien a distintos anchos.
-- [ ] El footer aparece con créditos y año correcto.
+- [x] La navegación horizontal aparece en el header.
+- [x] La barra inferior NO aparece en escritorio.
+- [x] El layout de inicio se ve bien a distintos anchos. (Parcialmente, hay elementos desordenados en la barra inferior). 
+- [x] El footer aparece con créditos y año correcto.
 
 **Páginas:**
-- [ ] `/p/leer-hoy.html` — carga el plan anual y muestra lecturas del día con versículos.
-- [ ] `/p/planes.html` — lista los planes desde `plans.json`.
-- [ ] `/p/acerca.html` — muestra el contenido de "Acerca".
-- [ ] `/p/preguntas-frecuentes.html` — muestra las 7 preguntas.
-- [ ] `/p/instalar.html` — muestra instrucciones para las 4 plataformas.
-- [ ] `/p/biblia.html` — muestra el placeholder de "próximamente".
-- [ ] `/p/buscar.html` — muestra el placeholder de "próximamente".
-- [ ] `/p/mi-espacio.html` — muestra el placeholder de "próximamente".
+- [x] `/p/leer-hoy.html` — carga el plan anual y muestra lecturas del día con versículos.
+- [x] `/p/planes.html` — lista los planes desde `plans.json`.
+- [x] `/p/acerca.html` — muestra el contenido de "Acerca".
+- [x] `/p/preguntas-frecuentes.html` — muestra las 7 preguntas.
+- [x] `/p/instalar.html` — muestra instrucciones para las 4 plataformas.
+- [x] `/p/biblia.html` — muestra el placeholder de "próximamente".
+- [x] `/p/buscar.html` — muestra el placeholder de "próximamente".
+- [x] `/p/mi-espacio.html` — muestra el placeholder de "próximamente".
 
 ### 8) Contenido alternativo en páginas de Blogger (si las páginas no renderizan el JS)
 Si Blogger no ejecuta el JS de `template-ZIA.xml` dentro de las páginas estáticas `/p/`, será necesario agregar el contenido HTML estático directamente en cada página desde el editor de Blogger.
@@ -93,11 +93,11 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 
 > **Nota:** En Blogger, las páginas `/p/*.html` cargan el layout completo del XML (incluyendo los scripts). El JS detecta la URL y renderiza el contenido correcto en `#page-dynamic`. Si hay problemas, verificar en DevTools que el JS no arroja errores de importación.
 
-### 9) Verificar que el año del footer es correcto
+### 9) Verificar que el año del footer es correcto (Listo)
 - Abrir el sitio y revisar que el footer muestra el año actual.
 - El año se actualiza dinámicamente via JS (`new Date().getFullYear()`).
 
-### 10) QA Dark mode
+### 10) QA Dark mode (Listo)
 - Activar modo oscuro desde el toggle del header.
 - Verificar que todas las páginas cambian correctamente de tema.
 - Verificar que la preferencia persiste al recargar.

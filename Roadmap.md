@@ -213,8 +213,8 @@
 - Meta-tags de instalación tipo app implementados.
 
 ## Checklist de salida Fase 1
-- [ ] El sitio se ve profesional en móvil y escritorio. *(verificación manual en Blogger — ver Instrucciones.md)*
-- [ ] No parece un blog tradicional. *(verificación manual en Blogger — ver Instrucciones.md)*
+- [x] El sitio se ve profesional en móvil y escritorio. *(verificación manual en Blogger — ver Instrucciones.md)*
+- [x] No parece un blog tradicional. *(verificación manual en Blogger — ver Instrucciones.md)*
 - [ ] Se puede navegar entre todas las páginas. *(verificación manual en Blogger — ver Instrucciones.md)*
 - [ ] Se puede agregar a pantalla de inicio y se ve como app. *(verificación manual en Blogger — ver Instrucciones.md)*
 
