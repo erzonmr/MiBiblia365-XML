@@ -1217,9 +1217,9 @@
     // ==========================================
     const CONFIG = {
       CDN_BASE: 'https://cdn.jsdelivr.net/gh/erzonmr/MiBiblia365-XML@main/',
-      API_BASE: 'https://bible-api.deno.dev',
+      API_BASE: 'https://bible-api.deno.dev/api',
       API_SOURCES: {
-        primary: 'https://bible-api.deno.dev',
+        primary: 'https://bible-api.deno.dev/api',
         secondary: 'https://bible.helloao.org/api'
       },
       DEFAULT_VERSION: 'RV1960',
@@ -1521,7 +1521,7 @@
           throw new Error('Netlify API bloqueada por CORS en este origen');
         }
         const url = CONFIG.API_SOURCES.primary
-          + '/api/read/' + encodeURIComponent(String(versionId).toLowerCase())
+          + '/read/' + encodeURIComponent(String(versionId).toLowerCase())
           + '/' + encodeURIComponent(String(bookValue).toLowerCase())
           + '/' + encodeURIComponent(String(chapter));
         const payload = await fetchJSON(url);
@@ -1995,10 +1995,13 @@
           throw new Error('No se pudo interpretar la lectura del día.');
         }
 
-        const versions = await BibleService.getVersions();
+        const versionsRaw = await BibleService.getVersions();
+        const curatedIds = ['RV1960', 'RV1995', 'NVI', 'DHH', 'PDT'];
+        const versions = versionsRaw.filter(v => curatedIds.indexOf(v.id) !== -1);
+        const versionsForUI = versions.length ? versions : versionsRaw;
         const preferredVersion = normalizeVersionId(state.user.config.preferredVersion || CONFIG.DEFAULT_VERSION);
-        const versionExists = versions.some(v => v.id === preferredVersion);
-        const selectedVersion = versionExists ? preferredVersion : (versions[0] ? versions[0].id : CONFIG.DEFAULT_VERSION);
+        const versionExists = versionsForUI.some(v => v.id === preferredVersion);
+        const selectedVersion = versionExists ? preferredVersion : (versionsForUI[0] ? versionsForUI[0].id : CONFIG.DEFAULT_VERSION);
         state.user.config.preferredVersion = selectedVersion;
         saveUserData(state.user);
 
@@ -2016,7 +2019,7 @@
             '<section class="card" style="margin-bottom:16px;">',
               '<label class="text-muted" for="version-select">Versión bíblica</label>',
               '<select id="version-select" style="width:100%;margin-top:8px;padding:10px;border-radius:8px;border:1px solid var(--border-light);background:var(--bg-secondary);color:var(--text-primary);">',
-                versions.map(function(v) {
+                versionsForUI.map(function(v) {
                   const selected = v.id === selectedVersion ? ' selected' : '';
                   return '<option value="' + v.id + '"' + selected + '>' + v.name + ' (' + v.id + ')</option>';
                 }).join(''),
