@@ -1473,7 +1473,9 @@
           'spa_r09': 'RV1960',
           'spa_onbv': 'NVI',
           'spa_pdt': 'PDT',
-          'spa_dhh': 'DHH'
+          'spa_dhh': 'DHH',
+          'spa_bes': 'BES',
+          'spa_blm': 'BLM'
         };
         return map[key] || normalizeVersionId(rawId);
       }
@@ -2028,7 +2030,7 @@
         }
 
         const versionsRaw = await BibleService.getVersions();
-        const curatedIds = ['RV1960', 'RV1995', 'NVI', 'DHH', 'PDT'];
+        const curatedIds = ['RV1960', 'RV1995', 'NVI', 'DHH', 'PDT', 'BES', 'BLM'];
         const versions = versionsRaw.filter(v => curatedIds.indexOf(v.id) !== -1);
         const versionsForUI = versions.length ? versions : versionsRaw;
         const preferredVersion = normalizeVersionId(state.user.config.preferredVersion || CONFIG.DEFAULT_VERSION);
