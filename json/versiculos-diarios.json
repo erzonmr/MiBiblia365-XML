@@ -15,7 +15,10 @@
       "subtheme": "nuevo_comienzo",
       "reference": "Jeremías 29:11",
       "label": "Nuevo comienzo",
-      "highlight": "Dios tiene pensamientos de paz para ti"
+      "highlight": "Dios tiene pensamientos de paz para ti",
+      "bookId": "JER",
+      "chapter": 29,
+      "verse": 11
     },
     {
       "dayOfYear": 2,
@@ -24,7 +27,10 @@
       "subtheme": "consagracion",
       "reference": "Proverbios 16:3",
       "label": "Encomienda",
-      "highlight": "Pon tus planes en manos del Señor"
+      "highlight": "Pon tus planes en manos del Señor",
+      "bookId": "PRO",
+      "chapter": 16,
+      "verse": 3
     },
     {
       "dayOfYear": 3,
@@ -33,7 +39,10 @@
       "subtheme": "confianza",
       "reference": "Salmos 37:5",
       "label": "Confía",
-      "highlight": "Encomienda tu camino a Jehová"
+      "highlight": "Encomienda tu camino a Jehová",
+      "bookId": "PSA",
+      "chapter": 37,
+      "verse": 5
     },
     {
       "dayOfYear": 4,
@@ -42,7 +51,10 @@
       "subtheme": "renovacion",
       "reference": "Isaías 43:19",
       "label": "Algo nuevo",
-      "highlight": "Dios abre camino en el desierto"
+      "highlight": "Dios abre camino en el desierto",
+      "bookId": "ISA",
+      "chapter": 43,
+      "verse": 19
     },
     {
       "dayOfYear": 5,
@@ -51,7 +63,10 @@
       "subtheme": "proposito_eterno",
       "reference": "Romanos 8:28",
       "label": "Propósito eterno",
-      "highlight": "Dios obra para bien"
+      "highlight": "Dios obra para bien",
+      "bookId": "ROM",
+      "chapter": 8,
+      "verse": 28
     },
     {
       "dayOfYear": 6,
@@ -60,7 +75,10 @@
       "subtheme": "obra_divina",
       "reference": "Filipenses 1:6",
       "label": "Buena obra",
-      "highlight": "El Señor terminará lo que comenzó"
+      "highlight": "El Señor terminará lo que comenzó",
+      "bookId": "PHP",
+      "chapter": 1,
+      "verse": 6
     },
     {
       "dayOfYear": 7,
@@ -69,7 +87,10 @@
       "subtheme": "direccion",
       "reference": "Proverbios 3:5-6",
       "label": "Dirección",
-      "highlight": "Reconócelo y Él enderezará tus veredas"
+      "highlight": "Reconócelo y Él enderezará tus veredas",
+      "bookId": "PRO",
+      "chapter": 3,
+      "verse": 5
     },
     {
       "dayOfYear": 8,
@@ -78,7 +99,10 @@
       "subtheme": "direccion",
       "reference": "Salmos 32:8",
       "label": "Instrucción",
-      "highlight": "Dios quiere enseñarte el camino"
+      "highlight": "Dios quiere enseñarte el camino",
+      "bookId": "PSA",
+      "chapter": 32,
+      "verse": 8
     },
     {
       "dayOfYear": 9,
@@ -87,7 +111,10 @@
       "subtheme": "guia",
       "reference": "Isaías 30:21",
       "label": "Guía",
-      "highlight": "Tus oídos oirán palabra detrás de ti"
+      "highlight": "Tus oídos oirán palabra detrás de ti",
+      "bookId": "ISA",
+      "chapter": 30,
+      "verse": 21
     },
     {
       "dayOfYear": 10,
@@ -96,7 +123,10 @@
       "subtheme": "misericordia",
       "reference": "Lamentaciones 3:22-23",
       "label": "Mañana nueva",
-      "highlight": "Sus misericordias son nuevas cada mañana"
+      "highlight": "Sus misericordias son nuevas cada mañana",
+      "bookId": "LAM",
+      "chapter": 3,
+      "verse": 22
     },
     {
       "dayOfYear": 11,
@@ -105,7 +135,10 @@
       "subtheme": "identidad",
       "reference": "Efesios 2:10",
       "label": "Hechura suya",
-      "highlight": "Fuiste creado para buenas obras"
+      "highlight": "Fuiste creado para buenas obras",
+      "bookId": "EPH",
+      "chapter": 2,
+      "verse": 10
     },
     {
       "dayOfYear": 12,
@@ -114,7 +147,10 @@
       "subtheme": "valentia",
       "reference": "Josué 1:9",
       "label": "Esfuérzate",
-      "highlight": "No temas, Dios está contigo"
+      "highlight": "No temas, Dios está contigo",
+      "bookId": "JOS",
+      "chapter": 1,
+      "verse": 9
     },
     {
       "dayOfYear": 13,
@@ -123,7 +159,10 @@
       "subtheme": "deseos",
       "reference": "Salmos 20:4",
       "label": "Deseos del corazón",
-      "highlight": "El Señor cumpla tus peticiones"
+      "highlight": "El Señor cumpla tus peticiones",
+      "bookId": "PSA",
+      "chapter": 20,
+      "verse": 4
     },
     {
       "dayOfYear": 14,
@@ -132,7 +171,10 @@
       "subtheme": "tiempo",
       "reference": "Eclesiastés 3:1",
       "label": "Tiempo perfecto",
-      "highlight": "Todo tiene su tiempo debajo del cielo"
+      "highlight": "Todo tiene su tiempo debajo del cielo",
+      "bookId": "ECC",
+      "chapter": 3,
+      "verse": 1
     },
     {
       "dayOfYear": 15,
@@ -141,7 +183,10 @@
       "subtheme": "mente_firme",
       "reference": "Isaías 26:3",
       "label": "Mente firme",
-      "highlight": "Dios guarda en completa paz"
+      "highlight": "Dios guarda en completa paz",
+      "bookId": "ISA",
+      "chapter": 26,
+      "verse": 3
     },
     {
       "dayOfYear": 16,
@@ -150,7 +195,10 @@
       "subtheme": "perseverancia",
       "reference": "Hebreos 12:1-2",
       "label": "Corre con paciencia",
-      "highlight": "Puestos los ojos en Jesús"
+      "highlight": "Puestos los ojos en Jesús",
+      "bookId": "HEB",
+      "chapter": 12,
+      "verse": 1
     },
     {
       "dayOfYear": 17,
@@ -159,7 +207,10 @@
       "subtheme": "firmeza",
       "reference": "1 Corintios 15:58",
       "label": "Firmes",
-      "highlight": "Tu trabajo en el Señor no es en vano"
+      "highlight": "Tu trabajo en el Señor no es en vano",
+      "bookId": "1CO",
+      "chapter": 15,
+      "verse": 58
     },
     {
       "dayOfYear": 18,
@@ -168,7 +219,10 @@
       "subtheme": "identidad",
       "reference": "2 Timoteo 1:7",
       "label": "Espíritu correcto",
-      "highlight": "Dios no te dio espíritu de cobardía"
+      "highlight": "Dios no te dio espíritu de cobardía",
+      "bookId": "2TI",
+      "chapter": 1,
+      "verse": 7
     },
     {
       "dayOfYear": 19,
@@ -177,7 +231,10 @@
       "subtheme": "prioridad",
       "reference": "Mateo 6:33",
       "label": "Primero el Reino",
-      "highlight": "Busca primero a Dios"
+      "highlight": "Busca primero a Dios",
+      "bookId": "MAT",
+      "chapter": 6,
+      "verse": 33
     },
     {
       "dayOfYear": 20,
@@ -186,7 +243,10 @@
       "subtheme": "sabiduria",
       "reference": "Salmos 90:12",
       "label": "Cuenta tus días",
-      "highlight": "Aprende a vivir sabiamente"
+      "highlight": "Aprende a vivir sabiamente",
+      "bookId": "PSA",
+      "chapter": 90,
+      "verse": 12
     },
     {
       "dayOfYear": 21,
@@ -195,7 +255,10 @@
       "subtheme": "excelencia",
       "reference": "Colosenses 3:23",
       "label": "De corazón",
-      "highlight": "Hazlo para el Señor"
+      "highlight": "Hazlo para el Señor",
+      "bookId": "COL",
+      "chapter": 3,
+      "verse": 23
     },
     {
       "dayOfYear": 22,
@@ -204,7 +267,10 @@
       "subtheme": "constancia",
       "reference": "Gálatas 6:9",
       "label": "No desmayes",
-      "highlight": "A su tiempo segarás"
+      "highlight": "A su tiempo segarás",
+      "bookId": "GAL",
+      "chapter": 6,
+      "verse": 9
     },
     {
       "dayOfYear": 23,
@@ -213,7 +279,10 @@
       "subtheme": "sabiduria",
       "reference": "Santiago 1:5",
       "label": "Pide sabiduría",
-      "highlight": "Dios la da abundantemente"
+      "highlight": "Dios la da abundantemente",
+      "bookId": "JAS",
+      "chapter": 1,
+      "verse": 5
     },
     {
       "dayOfYear": 24,
@@ -222,7 +291,10 @@
       "subtheme": "transformacion",
       "reference": "Romanos 12:2",
       "label": "Renueva tu mente",
-      "highlight": "Discierne la voluntad de Dios"
+      "highlight": "Discierne la voluntad de Dios",
+      "bookId": "ROM",
+      "chapter": 12,
+      "verse": 2
     },
     {
       "dayOfYear": 25,
@@ -231,7 +303,10 @@
       "subtheme": "palabra",
       "reference": "Salmos 119:105",
       "label": "Lámpara",
-      "highlight": "La Palabra alumbrará tu camino"
+      "highlight": "La Palabra alumbrará tu camino",
+      "bookId": "PSA",
+      "chapter": 119,
+      "verse": 105
     },
     {
       "dayOfYear": 26,
@@ -240,7 +315,10 @@
       "subtheme": "seguridad",
       "reference": "Isaías 41:10",
       "label": "No temas",
-      "highlight": "Dios te sostiene"
+      "highlight": "Dios te sostiene",
+      "bookId": "ISA",
+      "chapter": 41,
+      "verse": 10
     },
     {
       "dayOfYear": 27,
@@ -249,7 +327,10 @@
       "subtheme": "compañia",
       "reference": "Deuteronomio 31:8",
       "label": "Va delante",
-      "highlight": "El Señor no te dejará"
+      "highlight": "El Señor no te dejará",
+      "bookId": "DEU",
+      "chapter": 31,
+      "verse": 8
     },
     {
       "dayOfYear": 28,
@@ -258,7 +339,10 @@
       "subtheme": "renovacion",
       "reference": "2 Corintios 5:17",
       "label": "Nueva criatura",
-      "highlight": "En Cristo todo puede empezar de nuevo"
+      "highlight": "En Cristo todo puede empezar de nuevo",
+      "bookId": "2CO",
+      "chapter": 5,
+      "verse": 17
     },
     {
       "dayOfYear": 29,
@@ -267,7 +351,10 @@
       "subtheme": "dependencia",
       "reference": "Juan 15:5",
       "label": "Permanece",
-      "highlight": "Separado de Cristo nada puedes hacer"
+      "highlight": "Separado de Cristo nada puedes hacer",
+      "bookId": "JHN",
+      "chapter": 15,
+      "verse": 5
     },
     {
       "dayOfYear": 30,
@@ -276,7 +363,10 @@
       "subtheme": "obediencia",
       "reference": "Salmos 143:10",
       "label": "Haz tu voluntad",
-      "highlight": "Que Dios te guíe por tierra de rectitud"
+      "highlight": "Que Dios te guíe por tierra de rectitud",
+      "bookId": "PSA",
+      "chapter": 143,
+      "verse": 10
     },
     {
       "dayOfYear": 31,
@@ -285,7 +375,10 @@
       "subtheme": "esperanza",
       "reference": "Apocalipsis 21:5",
       "label": "Todo nuevo",
-      "highlight": "Dios hace nuevas todas las cosas"
+      "highlight": "Dios hace nuevas todas las cosas",
+      "bookId": "REV",
+      "chapter": 21,
+      "verse": 5
     },
     {
       "dayOfYear": 32,
@@ -294,7 +387,10 @@
       "subtheme": "amor_divino",
       "reference": "Juan 3:16",
       "label": "Amor de Dios",
-      "highlight": "Dios amó al mundo de tal manera"
+      "highlight": "Dios amó al mundo de tal manera",
+      "bookId": "JHN",
+      "chapter": 3,
+      "verse": 16
     },
     {
       "dayOfYear": 33,
@@ -303,7 +399,10 @@
       "subtheme": "gracia",
       "reference": "Romanos 5:8",
       "label": "Amor demostrado",
-      "highlight": "Cristo murió por nosotros"
+      "highlight": "Cristo murió por nosotros",
+      "bookId": "ROM",
+      "chapter": 5,
+      "verse": 8
     },
     {
       "dayOfYear": 34,
@@ -312,7 +411,10 @@
       "subtheme": "revelacion",
       "reference": "1 Juan 4:9",
       "label": "Amor revelado",
-      "highlight": "Dios manifestó su amor enviando a su Hijo"
+      "highlight": "Dios manifestó su amor enviando a su Hijo",
+      "bookId": "1JN",
+      "chapter": 4,
+      "verse": 9
     },
     {
       "dayOfYear": 35,
@@ -321,7 +423,10 @@
       "subtheme": "respuesta",
       "reference": "1 Juan 4:19",
       "label": "Le amamos",
-      "highlight": "Porque Él nos amó primero"
+      "highlight": "Porque Él nos amó primero",
+      "bookId": "1JN",
+      "chapter": 4,
+      "verse": 19
     },
     {
       "dayOfYear": 36,
@@ -330,7 +435,10 @@
       "subtheme": "profundidad",
       "reference": "Efesios 3:17-19",
       "label": "Amor insondable",
-      "highlight": "Conoce la anchura y profundidad del amor de Cristo"
+      "highlight": "Conoce la anchura y profundidad del amor de Cristo",
+      "bookId": "EPH",
+      "chapter": 3,
+      "verse": 17
     },
     {
       "dayOfYear": 37,
@@ -339,7 +447,10 @@
       "subtheme": "misericordia",
       "reference": "Salmos 136:1",
       "label": "Misericordia eterna",
-      "highlight": "Para siempre es su misericordia"
+      "highlight": "Para siempre es su misericordia",
+      "bookId": "PSA",
+      "chapter": 136,
+      "verse": 1
     },
     {
       "dayOfYear": 38,
@@ -348,7 +459,10 @@
       "subtheme": "gozo",
       "reference": "Sofonías 3:17",
       "label": "Canta sobre ti",
-      "highlight": "Dios se gozará sobre ti"
+      "highlight": "Dios se gozará sobre ti",
+      "bookId": "ZEP",
+      "chapter": 3,
+      "verse": 17
     },
     {
       "dayOfYear": 39,
@@ -357,7 +471,10 @@
       "subtheme": "pacto",
       "reference": "Jeremías 31:3",
       "label": "Amor eterno",
-      "highlight": "Con amor eterno te he amado"
+      "highlight": "Con amor eterno te he amado",
+      "bookId": "JER",
+      "chapter": 31,
+      "verse": 3
     },
     {
       "dayOfYear": 40,
@@ -366,7 +483,10 @@
       "subtheme": "caracter",
       "reference": "1 Corintios 13:4-7",
       "label": "El amor verdadero",
-      "highlight": "El amor es sufrido y benigno"
+      "highlight": "El amor es sufrido y benigno",
+      "bookId": "1CO",
+      "chapter": 13,
+      "verse": 4
     },
     {
       "dayOfYear": 41,
@@ -375,7 +495,10 @@
       "subtheme": "unidad",
       "reference": "Colosenses 3:14",
       "label": "Vínculo perfecto",
-      "highlight": "Vístete de amor"
+      "highlight": "Vístete de amor",
+      "bookId": "COL",
+      "chapter": 3,
+      "verse": 14
     },
     {
       "dayOfYear": 42,
@@ -384,7 +507,10 @@
       "subtheme": "perdon",
       "reference": "1 Pedro 4:8",
       "label": "Cubre multitud",
-      "highlight": "El amor cubrirá multitud de pecados"
+      "highlight": "El amor cubrirá multitud de pecados",
+      "bookId": "1PE",
+      "chapter": 4,
+      "verse": 8
     },
     {
       "dayOfYear": 43,
@@ -393,7 +519,10 @@
       "subtheme": "discipulado",
       "reference": "Juan 13:34-35",
       "label": "Nuevo mandamiento",
-      "highlight": "Ama como Cristo te amó"
+      "highlight": "Ama como Cristo te amó",
+      "bookId": "JHN",
+      "chapter": 13,
+      "verse": 34
     },
     {
       "dayOfYear": 44,
@@ -402,7 +531,10 @@
       "subtheme": "afecto",
       "reference": "Romanos 12:10",
       "label": "Amor fraternal",
-      "highlight": "Prefiere a tu hermano"
+      "highlight": "Prefiere a tu hermano",
+      "bookId": "ROM",
+      "chapter": 12,
+      "verse": 10
     },
     {
       "dayOfYear": 45,
@@ -411,7 +543,10 @@
       "subtheme": "estimulo",
       "reference": "Hebreos 10:24",
       "label": "Provóquense al amor",
-      "highlight": "Anímense a las buenas obras"
+      "highlight": "Anímense a las buenas obras",
+      "bookId": "HEB",
+      "chapter": 10,
+      "verse": 24
     },
     {
       "dayOfYear": 46,
@@ -420,7 +555,10 @@
       "subtheme": "abundancia",
       "reference": "1 Tesalonicenses 3:12",
       "label": "Abunden en amor",
-      "highlight": "Crezcan en amor unos por otros"
+      "highlight": "Crezcan en amor unos por otros",
+      "bookId": "1TH",
+      "chapter": 3,
+      "verse": 12
     },
     {
       "dayOfYear": 47,
@@ -429,7 +567,10 @@
       "subtheme": "comunion",
       "reference": "Filipenses 2:1-2",
       "label": "Un mismo sentir",
-      "highlight": "Sean unidos en amor"
+      "highlight": "Sean unidos en amor",
+      "bookId": "PHP",
+      "chapter": 2,
+      "verse": 1
     },
     {
       "dayOfYear": 48,
@@ -438,7 +579,10 @@
       "subtheme": "misericordia",
       "reference": "Salmos 103:11",
       "label": "Altura del amor",
-      "highlight": "Grande es su misericordia"
+      "highlight": "Grande es su misericordia",
+      "bookId": "PSA",
+      "chapter": 103,
+      "verse": 11
     },
     {
       "dayOfYear": 49,
@@ -447,7 +591,10 @@
       "subtheme": "perdon",
       "reference": "Miqueas 7:18",
       "label": "Dios perdona",
-      "highlight": "Se deleita en misericordia"
+      "highlight": "Se deleita en misericordia",
+      "bookId": "MIC",
+      "chapter": 7,
+      "verse": 18
     },
     {
       "dayOfYear": 50,
@@ -456,7 +603,10 @@
       "subtheme": "mansedumbre",
       "reference": "Efesios 4:2",
       "label": "Soportándoos en amor",
-      "highlight": "Camina con humildad y paciencia"
+      "highlight": "Camina con humildad y paciencia",
+      "bookId": "EPH",
+      "chapter": 4,
+      "verse": 2
     },
     {
       "dayOfYear": 51,
@@ -465,7 +615,10 @@
       "subtheme": "convivencia",
       "reference": "Proverbios 10:12",
       "label": "El amor cubre",
-      "highlight": "El amor cubre todas las faltas"
+      "highlight": "El amor cubre todas las faltas",
+      "bookId": "PRO",
+      "chapter": 10,
+      "verse": 12
     },
     {
       "dayOfYear": 52,
@@ -474,7 +627,10 @@
       "subtheme": "sacrificio",
       "reference": "1 Juan 3:16",
       "label": "Amor sacrificial",
-      "highlight": "Cristo puso su vida por nosotros"
+      "highlight": "Cristo puso su vida por nosotros",
+      "bookId": "1JN",
+      "chapter": 3,
+      "verse": 16
     },
     {
       "dayOfYear": 53,
@@ -483,7 +639,10 @@
       "subtheme": "servicio",
       "reference": "Gálatas 5:13",
       "label": "Sirve por amor",
-      "highlight": "Sírvanse por amor los unos a los otros"
+      "highlight": "Sírvanse por amor los unos a los otros",
+      "bookId": "GAL",
+      "chapter": 5,
+      "verse": 13
     },
     {
       "dayOfYear": 54,
@@ -492,7 +651,10 @@
       "subtheme": "permanencia",
       "reference": "Juan 15:9",
       "label": "Permanezcan en mi amor",
-      "highlight": "Habita en su amor"
+      "highlight": "Habita en su amor",
+      "bookId": "JHN",
+      "chapter": 15,
+      "verse": 9
     },
     {
       "dayOfYear": 55,
@@ -501,7 +663,10 @@
       "subtheme": "justicia",
       "reference": "Romanos 13:10",
       "label": "Cumplimiento",
-      "highlight": "El amor no hace mal al prójimo"
+      "highlight": "El amor no hace mal al prójimo",
+      "bookId": "ROM",
+      "chapter": 13,
+      "verse": 10
     },
     {
       "dayOfYear": 56,
@@ -510,7 +675,10 @@
       "subtheme": "pacto",
       "reference": "Oseas 2:19",
       "label": "Desposorio",
-      "highlight": "Dios te toma para sí en misericordia"
+      "highlight": "Dios te toma para sí en misericordia",
+      "bookId": "HOS",
+      "chapter": 2,
+      "verse": 19
     },
     {
       "dayOfYear": 57,
@@ -519,7 +687,10 @@
       "subtheme": "adoracion",
       "reference": "Salmos 63:3",
       "label": "Mejor que la vida",
-      "highlight": "Tu misericordia es mejor que la vida"
+      "highlight": "Tu misericordia es mejor que la vida",
+      "bookId": "PSA",
+      "chapter": 63,
+      "verse": 3
     },
     {
       "dayOfYear": 58,
@@ -528,7 +699,10 @@
       "subtheme": "certeza",
       "reference": "1 Juan 4:16",
       "label": "Dios es amor",
-      "highlight": "Permanece en Dios"
+      "highlight": "Permanece en Dios",
+      "bookId": "1JN",
+      "chapter": 4,
+      "verse": 16
     },
     {
       "dayOfYear": 59,
@@ -537,7 +711,10 @@
       "subtheme": "direccion",
       "reference": "2 Tesalonicenses 3:5",
       "label": "Dirigidos al amor",
-      "highlight": "Que el Señor encamine tu corazón"
+      "highlight": "Que el Señor encamine tu corazón",
+      "bookId": "2TH",
+      "chapter": 3,
+      "verse": 5
     },
     {
       "dayOfYear": 60,
@@ -546,7 +723,10 @@
       "subtheme": "perseverancia",
       "reference": "Judas 1:21",
       "label": "Permanece",
-      "highlight": "Consérvate en el amor de Dios"
+      "highlight": "Consérvate en el amor de Dios",
+      "bookId": "JUD",
+      "chapter": 1,
+      "verse": 21
     },
     {
       "dayOfYear": 61,
@@ -555,7 +735,10 @@
       "subtheme": "madurez",
       "reference": "2 Pedro 3:18",
       "label": "Crece",
-      "highlight": "Crece en la gracia y conocimiento"
+      "highlight": "Crece en la gracia y conocimiento",
+      "bookId": "2PE",
+      "chapter": 3,
+      "verse": 18
     },
     {
       "dayOfYear": 62,
@@ -564,7 +747,10 @@
       "subtheme": "arraigo",
       "reference": "Colosenses 2:6-7",
       "label": "Arraigados",
-      "highlight": "Edificados en Cristo"
+      "highlight": "Edificados en Cristo",
+      "bookId": "COL",
+      "chapter": 2,
+      "verse": 6
     },
     {
       "dayOfYear": 63,
@@ -573,7 +759,10 @@
       "subtheme": "palabra",
       "reference": "Salmos 1:2-3",
       "label": "Como árbol",
-      "highlight": "Medita en su ley de día y de noche"
+      "highlight": "Medita en su ley de día y de noche",
+      "bookId": "PSA",
+      "chapter": 1,
+      "verse": 2
     },
     {
       "dayOfYear": 64,
@@ -582,7 +771,10 @@
       "subtheme": "permanencia",
       "reference": "Juan 15:4",
       "label": "Permanece",
-      "highlight": "Lleva fruto permaneciendo en Cristo"
+      "highlight": "Lleva fruto permaneciendo en Cristo",
+      "bookId": "JHN",
+      "chapter": 15,
+      "verse": 4
     },
     {
       "dayOfYear": 65,
@@ -591,7 +783,10 @@
       "subtheme": "fruto",
       "reference": "Gálatas 5:22-23",
       "label": "Fruto del Espíritu",
-      "highlight": "Deja que el Espíritu forme su carácter"
+      "highlight": "Deja que el Espíritu forme su carácter",
+      "bookId": "GAL",
+      "chapter": 5,
+      "verse": 22
     },
     {
       "dayOfYear": 66,
@@ -600,7 +795,10 @@
       "subtheme": "verdad",
       "reference": "Efesios 4:15",
       "label": "Crecer en amor",
-      "highlight": "Crece en todo en Cristo"
+      "highlight": "Crece en todo en Cristo",
+      "bookId": "EPH",
+      "chapter": 4,
+      "verse": 15
     },
     {
       "dayOfYear": 67,
@@ -609,7 +807,10 @@
       "subtheme": "discernimiento",
       "reference": "Hebreos 5:14",
       "label": "Madurez",
-      "highlight": "Ejercita tus sentidos espirituales"
+      "highlight": "Ejercita tus sentidos espirituales",
+      "bookId": "HEB",
+      "chapter": 5,
+      "verse": 14
     },
     {
       "dayOfYear": 68,
@@ -618,7 +819,10 @@
       "subtheme": "hambre",
       "reference": "1 Pedro 2:2",
       "label": "Desea la leche",
-      "highlight": "Anhela la Palabra para crecer"
+      "highlight": "Anhela la Palabra para crecer",
+      "bookId": "1PE",
+      "chapter": 2,
+      "verse": 2
     },
     {
       "dayOfYear": 69,
@@ -627,7 +831,10 @@
       "subtheme": "consagracion",
       "reference": "Romanos 12:1",
       "label": "Sacrificio vivo",
-      "highlight": "Entrega tu vida a Dios"
+      "highlight": "Entrega tu vida a Dios",
+      "bookId": "ROM",
+      "chapter": 12,
+      "verse": 1
     },
     {
       "dayOfYear": 70,
@@ -636,7 +843,10 @@
       "subtheme": "transformacion",
       "reference": "Romanos 12:2",
       "label": "Mente renovada",
-      "highlight": "Sé transformado por la renovación"
+      "highlight": "Sé transformado por la renovación",
+      "bookId": "ROM",
+      "chapter": 12,
+      "verse": 2
     },
     {
       "dayOfYear": 71,
@@ -645,7 +855,10 @@
       "subtheme": "obediencia",
       "reference": "Filipenses 2:12-13",
       "label": "Ocúpate",
-      "highlight": "Dios produce querer y hacer"
+      "highlight": "Dios produce querer y hacer",
+      "bookId": "PHP",
+      "chapter": 2,
+      "verse": 12
     },
     {
       "dayOfYear": 72,
@@ -654,7 +867,10 @@
       "subtheme": "fruto",
       "reference": "Colosenses 1:10",
       "label": "Agradarle",
-      "highlight": "Lleva fruto en toda buena obra"
+      "highlight": "Lleva fruto en toda buena obra",
+      "bookId": "COL",
+      "chapter": 1,
+      "verse": 10
     },
     {
       "dayOfYear": 73,
@@ -663,7 +879,10 @@
       "subtheme": "practica",
       "reference": "Santiago 1:22",
       "label": "Hacedores",
-      "highlight": "No solo oigas, practica"
+      "highlight": "No solo oigas, practica",
+      "bookId": "JAS",
+      "chapter": 1,
+      "verse": 22
     },
     {
       "dayOfYear": 74,
@@ -672,7 +891,10 @@
       "subtheme": "meditacion",
       "reference": "Josué 1:8",
       "label": "Medita",
-      "highlight": "Cuida de hacer conforme a la Palabra"
+      "highlight": "Cuida de hacer conforme a la Palabra",
+      "bookId": "JOS",
+      "chapter": 1,
+      "verse": 8
     },
     {
       "dayOfYear": 75,
@@ -681,7 +903,10 @@
       "subtheme": "pureza",
       "reference": "Salmos 119:11",
       "label": "Guarda la Palabra",
-      "highlight": "Para no pecar contra Dios"
+      "highlight": "Para no pecar contra Dios",
+      "bookId": "PSA",
+      "chapter": 119,
+      "verse": 11
     },
     {
       "dayOfYear": 76,
@@ -690,7 +915,10 @@
       "subtheme": "fortaleza",
       "reference": "Efesios 6:10",
       "label": "Fortalécete",
-      "highlight": "En el poder de su fuerza"
+      "highlight": "En el poder de su fuerza",
+      "bookId": "EPH",
+      "chapter": 6,
+      "verse": 10
     },
     {
       "dayOfYear": 77,
@@ -699,7 +927,10 @@
       "subtheme": "disciplina",
       "reference": "1 Timoteo 4:7-8",
       "label": "Ejercítate",
-      "highlight": "Ejercítate para la piedad"
+      "highlight": "Ejercítate para la piedad",
+      "bookId": "1TI",
+      "chapter": 4,
+      "verse": 7
     },
     {
       "dayOfYear": 78,
@@ -708,7 +939,10 @@
       "subtheme": "progreso",
       "reference": "Proverbios 4:18",
       "label": "Luz creciente",
-      "highlight": "La senda del justo va en aumento"
+      "highlight": "La senda del justo va en aumento",
+      "bookId": "PRO",
+      "chapter": 4,
+      "verse": 18
     },
     {
       "dayOfYear": 79,
@@ -717,7 +951,10 @@
       "subtheme": "transformacion",
       "reference": "2 Corintios 3:18",
       "label": "De gloria en gloria",
-      "highlight": "El Espíritu te transforma"
+      "highlight": "El Espíritu te transforma",
+      "bookId": "2CO",
+      "chapter": 3,
+      "verse": 18
     },
     {
       "dayOfYear": 80,
@@ -726,7 +963,10 @@
       "subtheme": "hambre",
       "reference": "Mateo 5:6",
       "label": "Sed de justicia",
-      "highlight": "Serás saciado"
+      "highlight": "Serás saciado",
+      "bookId": "MAT",
+      "chapter": 5,
+      "verse": 6
     },
     {
       "dayOfYear": 81,
@@ -735,7 +975,10 @@
       "subtheme": "avance",
       "reference": "Filipenses 3:13-14",
       "label": "Prosigo",
-      "highlight": "Sigue hacia la meta"
+      "highlight": "Sigue hacia la meta",
+      "bookId": "PHP",
+      "chapter": 3,
+      "verse": 13
     },
     {
       "dayOfYear": 82,
@@ -744,7 +987,10 @@
       "subtheme": "fidelidad",
       "reference": "Hebreos 10:23",
       "label": "Retén la esperanza",
-      "highlight": "Fiel es el que prometió"
+      "highlight": "Fiel es el que prometió",
+      "bookId": "HEB",
+      "chapter": 10,
+      "verse": 23
     },
     {
       "dayOfYear": 83,
@@ -753,7 +999,10 @@
       "subtheme": "cercania",
       "reference": "Santiago 4:8",
       "label": "Acércate",
-      "highlight": "Acércate a Dios y Él se acercará"
+      "highlight": "Acércate a Dios y Él se acercará",
+      "bookId": "JAS",
+      "chapter": 4,
+      "verse": 8
     },
     {
       "dayOfYear": 84,
@@ -762,7 +1011,10 @@
       "subtheme": "estabilidad",
       "reference": "Salmos 92:12-14",
       "label": "Florecerás",
-      "highlight": "Aun en la vejez darás fruto"
+      "highlight": "Aun en la vejez darás fruto",
+      "bookId": "PSA",
+      "chapter": 92,
+      "verse": 12
     },
     {
       "dayOfYear": 85,
@@ -771,7 +1023,10 @@
       "subtheme": "interior",
       "reference": "Efesios 3:16",
       "label": "Fortaleza interior",
-      "highlight": "Fortalecido con poder en el hombre interior"
+      "highlight": "Fortalecido con poder en el hombre interior",
+      "bookId": "EPH",
+      "chapter": 3,
+      "verse": 16
     },
     {
       "dayOfYear": 86,
@@ -780,7 +1035,10 @@
       "subtheme": "abundancia",
       "reference": "Colosenses 3:16",
       "label": "La Palabra more",
-      "highlight": "Habite en abundancia en ti"
+      "highlight": "Habite en abundancia en ti",
+      "bookId": "COL",
+      "chapter": 3,
+      "verse": 16
     },
     {
       "dayOfYear": 87,
@@ -789,7 +1047,10 @@
       "subtheme": "fortaleza",
       "reference": "1 Juan 2:14",
       "label": "Fuertes en la Palabra",
-      "highlight": "La Palabra permanece en vosotros"
+      "highlight": "La Palabra permanece en vosotros",
+      "bookId": "1JN",
+      "chapter": 2,
+      "verse": 14
     },
     {
       "dayOfYear": 88,
@@ -798,7 +1059,10 @@
       "subtheme": "utilidad",
       "reference": "2 Timoteo 3:16-17",
       "label": "Útil para perfeccionar",
-      "highlight": "La Escritura equipa para toda buena obra"
+      "highlight": "La Escritura equipa para toda buena obra",
+      "bookId": "2TI",
+      "chapter": 3,
+      "verse": 16
     },
     {
       "dayOfYear": 89,
@@ -807,7 +1071,10 @@
       "subtheme": "fundamento",
       "reference": "Mateo 7:24",
       "label": "Sobre la roca",
-      "highlight": "Oye y haz su palabra"
+      "highlight": "Oye y haz su palabra",
+      "bookId": "MAT",
+      "chapter": 7,
+      "verse": 24
     },
     {
       "dayOfYear": 90,
@@ -816,7 +1083,10 @@
       "subtheme": "pasos",
       "reference": "Salmos 119:133",
       "label": "Ordena mis pasos",
-      "highlight": "Afirma tus pasos en su palabra"
+      "highlight": "Afirma tus pasos en su palabra",
+      "bookId": "PSA",
+      "chapter": 119,
+      "verse": 133
     },
     {
       "dayOfYear": 91,
@@ -825,7 +1095,10 @@
       "subtheme": "formacion",
       "reference": "Hebreos 12:11",
       "label": "Fruto apacible",
-      "highlight": "La disciplina produce justicia"
+      "highlight": "La disciplina produce justicia",
+      "bookId": "HEB",
+      "chapter": 12,
+      "verse": 11
     },
     {
       "dayOfYear": 92,
@@ -834,7 +1107,10 @@
       "subtheme": "expiacion",
       "reference": "Isaías 53:5",
       "label": "Herido por nosotros",
-      "highlight": "Por su llaga fuimos curados"
+      "highlight": "Por su llaga fuimos curados",
+      "bookId": "ISA",
+      "chapter": 53,
+      "verse": 5
     },
     {
       "dayOfYear": 93,
@@ -843,7 +1119,10 @@
       "subtheme": "gracia",
       "reference": "Romanos 6:23",
       "label": "Vida eterna",
-      "highlight": "La dádiva de Dios es vida eterna"
+      "highlight": "La dádiva de Dios es vida eterna",
+      "bookId": "ROM",
+      "chapter": 6,
+      "verse": 23
     },
     {
       "dayOfYear": 94,
@@ -852,7 +1131,10 @@
       "subtheme": "cruz",
       "reference": "1 Pedro 2:24",
       "label": "Llevó nuestros pecados",
-      "highlight": "Fuimos sanados por sus heridas"
+      "highlight": "Fuimos sanados por sus heridas",
+      "bookId": "1PE",
+      "chapter": 2,
+      "verse": 24
     },
     {
       "dayOfYear": 95,
@@ -861,7 +1143,10 @@
       "subtheme": "cordero",
       "reference": "Juan 1:29",
       "label": "El Cordero",
-      "highlight": "Quita el pecado del mundo"
+      "highlight": "Quita el pecado del mundo",
+      "bookId": "JHN",
+      "chapter": 1,
+      "verse": 29
     },
     {
       "dayOfYear": 96,
@@ -870,7 +1155,10 @@
       "subtheme": "sustitucion",
       "reference": "2 Corintios 5:21",
       "label": "Hecho pecado",
-      "highlight": "Para hacernos justicia de Dios"
+      "highlight": "Para hacernos justicia de Dios",
+      "bookId": "2CO",
+      "chapter": 5,
+      "verse": 21
     },
     {
       "dayOfYear": 97,
@@ -879,7 +1167,10 @@
       "subtheme": "justificacion",
       "reference": "Romanos 5:1",
       "label": "Paz con Dios",
-      "highlight": "Justificados por la fe"
+      "highlight": "Justificados por la fe",
+      "bookId": "ROM",
+      "chapter": 5,
+      "verse": 1
     },
     {
       "dayOfYear": 98,
@@ -888,7 +1179,10 @@
       "subtheme": "esperanza",
       "reference": "Hebreos 9:28",
       "label": "Se ofreció una vez",
-      "highlight": "Para llevar los pecados de muchos"
+      "highlight": "Para llevar los pecados de muchos",
+      "bookId": "HEB",
+      "chapter": 9,
+      "verse": 28
     },
     {
       "dayOfYear": 99,
@@ -897,7 +1191,10 @@
       "subtheme": "limpieza",
       "reference": "1 Juan 1:7",
       "label": "Su sangre limpia",
-      "highlight": "Limpia de todo pecado"
+      "highlight": "Limpia de todo pecado",
+      "bookId": "1JN",
+      "chapter": 1,
+      "verse": 7
     },
     {
       "dayOfYear": 100,
@@ -906,7 +1203,10 @@
       "subtheme": "redencion",
       "reference": "Efesios 1:7",
       "label": "Redimidos",
-      "highlight": "Tenemos redención por su sangre"
+      "highlight": "Tenemos redención por su sangre",
+      "bookId": "EPH",
+      "chapter": 1,
+      "verse": 7
     },
     {
       "dayOfYear": 101,
@@ -915,7 +1215,10 @@
       "subtheme": "traslado",
       "reference": "Colosenses 1:13-14",
       "label": "Del reino de tinieblas",
-      "highlight": "Rescatados por el Hijo"
+      "highlight": "Rescatados por el Hijo",
+      "bookId": "COL",
+      "chapter": 1,
+      "verse": 13
     },
     {
       "dayOfYear": 102,
@@ -924,7 +1227,10 @@
       "subtheme": "resurreccion",
       "reference": "Juan 11:25",
       "label": "Yo soy la resurrección",
-      "highlight": "El que cree vivirá"
+      "highlight": "El que cree vivirá",
+      "bookId": "JHN",
+      "chapter": 11,
+      "verse": 25
     },
     {
       "dayOfYear": 103,
@@ -933,7 +1239,10 @@
       "subtheme": "victoria",
       "reference": "Mateo 28:6",
       "label": "Ha resucitado",
-      "highlight": "No está aquí"
+      "highlight": "No está aquí",
+      "bookId": "MAT",
+      "chapter": 28,
+      "verse": 6
     },
     {
       "dayOfYear": 104,
@@ -942,7 +1251,10 @@
       "subtheme": "primicias",
       "reference": "1 Corintios 15:20",
       "label": "Primicias",
-      "highlight": "Cristo resucitó de los muertos"
+      "highlight": "Cristo resucitó de los muertos",
+      "bookId": "1CO",
+      "chapter": 15,
+      "verse": 20
     },
     {
       "dayOfYear": 105,
@@ -951,7 +1263,10 @@
       "subtheme": "vida",
       "reference": "Romanos 8:11",
       "label": "Espíritu vivificante",
-      "highlight": "El que levantó a Jesús te dará vida"
+      "highlight": "El que levantó a Jesús te dará vida",
+      "bookId": "ROM",
+      "chapter": 8,
+      "verse": 11
     },
     {
       "dayOfYear": 106,
@@ -960,7 +1275,10 @@
       "subtheme": "gracia",
       "reference": "Hebreos 4:15-16",
       "label": "Sumo sacerdote",
-      "highlight": "Acércate confiadamente al trono"
+      "highlight": "Acércate confiadamente al trono",
+      "bookId": "HEB",
+      "chapter": 4,
+      "verse": 15
     },
     {
       "dayOfYear": 107,
@@ -969,7 +1287,10 @@
       "subtheme": "servicio",
       "reference": "Marcos 10:45",
       "label": "Dio su vida",
-      "highlight": "Vino para servir y rescatar"
+      "highlight": "Vino para servir y rescatar",
+      "bookId": "MRK",
+      "chapter": 10,
+      "verse": 45
     },
     {
       "dayOfYear": 108,
@@ -978,7 +1299,10 @@
       "subtheme": "consumacion",
       "reference": "Juan 19:30",
       "label": "Consumado es",
-      "highlight": "La obra fue completada"
+      "highlight": "La obra fue completada",
+      "bookId": "JHN",
+      "chapter": 19,
+      "verse": 30
     },
     {
       "dayOfYear": 109,
@@ -987,7 +1311,10 @@
       "subtheme": "union",
       "reference": "Gálatas 2:20",
       "label": "Crucificado con Cristo",
-      "highlight": "Ahora Cristo vive en mí"
+      "highlight": "Ahora Cristo vive en mí",
+      "bookId": "GAL",
+      "chapter": 2,
+      "verse": 20
     },
     {
       "dayOfYear": 110,
@@ -996,7 +1323,10 @@
       "subtheme": "entrega",
       "reference": "Romanos 8:32",
       "label": "No escatimó",
-      "highlight": "También nos dará todas las cosas"
+      "highlight": "También nos dará todas las cosas",
+      "bookId": "ROM",
+      "chapter": 8,
+      "verse": 32
     },
     {
       "dayOfYear": 111,
@@ -1005,7 +1335,10 @@
       "subtheme": "poder",
       "reference": "1 Corintios 1:18",
       "label": "Palabra de la cruz",
-      "highlight": "Es poder de Dios"
+      "highlight": "Es poder de Dios",
+      "bookId": "1CO",
+      "chapter": 1,
+      "verse": 18
     },
     {
       "dayOfYear": 112,
@@ -1014,7 +1347,10 @@
       "subtheme": "humillacion",
       "reference": "Filipenses 2:8-9",
       "label": "Se humilló",
-      "highlight": "Dios le exaltó hasta lo sumo"
+      "highlight": "Dios le exaltó hasta lo sumo",
+      "bookId": "PHP",
+      "chapter": 2,
+      "verse": 8
     },
     {
       "dayOfYear": 113,
@@ -1023,7 +1359,10 @@
       "subtheme": "gozo",
       "reference": "Hebreos 12:2",
       "label": "Puestos los ojos",
-      "highlight": "Soportó la cruz por el gozo"
+      "highlight": "Soportó la cruz por el gozo",
+      "bookId": "HEB",
+      "chapter": 12,
+      "verse": 2
     },
     {
       "dayOfYear": 114,
@@ -1032,7 +1371,10 @@
       "subtheme": "memoria",
       "reference": "Lucas 24:6-7",
       "label": "Acuérdate",
-      "highlight": "Había dicho que resucitaría"
+      "highlight": "Había dicho que resucitaría",
+      "bookId": "LUK",
+      "chapter": 24,
+      "verse": 6
     },
     {
       "dayOfYear": 115,
@@ -1041,7 +1383,10 @@
       "subtheme": "justificacion",
       "reference": "Romanos 4:25",
       "label": "Entregado y resucitado",
-      "highlight": "Para nuestra justificación"
+      "highlight": "Para nuestra justificación",
+      "bookId": "ROM",
+      "chapter": 4,
+      "verse": 25
     },
     {
       "dayOfYear": 116,
@@ -1050,7 +1395,10 @@
       "subtheme": "esperanza",
       "reference": "1 Pedro 1:3",
       "label": "Esperanza viva",
-      "highlight": "Por la resurrección de Jesucristo"
+      "highlight": "Por la resurrección de Jesucristo",
+      "bookId": "1PE",
+      "chapter": 1,
+      "verse": 3
     },
     {
       "dayOfYear": 117,
@@ -1059,7 +1407,10 @@
       "subtheme": "victoria",
       "reference": "Apocalipsis 1:17-18",
       "label": "Vivo por los siglos",
-      "highlight": "Tiene las llaves de la muerte"
+      "highlight": "Tiene las llaves de la muerte",
+      "bookId": "REV",
+      "chapter": 1,
+      "verse": 17
     },
     {
       "dayOfYear": 118,
@@ -1068,7 +1419,10 @@
       "subtheme": "profecia",
       "reference": "Salmos 22:1",
       "label": "Sufrimiento anunciado",
-      "highlight": "El Mesías padeció por amor"
+      "highlight": "El Mesías padeció por amor",
+      "bookId": "PSA",
+      "chapter": 22,
+      "verse": 1
     },
     {
       "dayOfYear": 119,
@@ -1077,7 +1431,10 @@
       "subtheme": "sustitucion",
       "reference": "Isaías 53:6",
       "label": "Cargó nuestro pecado",
-      "highlight": "Jehová cargó en Él el pecado"
+      "highlight": "Jehová cargó en Él el pecado",
+      "bookId": "ISA",
+      "chapter": 53,
+      "verse": 6
     },
     {
       "dayOfYear": 120,
@@ -1086,7 +1443,10 @@
       "subtheme": "camino",
       "reference": "Juan 14:6",
       "label": "Único camino",
-      "highlight": "Solo en Jesús hay acceso al Padre"
+      "highlight": "Solo en Jesús hay acceso al Padre",
+      "bookId": "JHN",
+      "chapter": 14,
+      "verse": 6
     },
     {
       "dayOfYear": 121,
@@ -1095,7 +1455,10 @@
       "subtheme": "acceso",
       "reference": "Hebreos 10:19-22",
       "label": "Entrada libre",
-      "highlight": "Acércate con corazón sincero"
+      "highlight": "Acércate con corazón sincero",
+      "bookId": "HEB",
+      "chapter": 10,
+      "verse": 19
     },
     {
       "dayOfYear": 122,
@@ -1104,7 +1467,10 @@
       "subtheme": "paz_cristo",
       "reference": "Juan 14:27",
       "label": "Paz verdadera",
-      "highlight": "Cristo te da su paz"
+      "highlight": "Cristo te da su paz",
+      "bookId": "JHN",
+      "chapter": 14,
+      "verse": 27
     },
     {
       "dayOfYear": 123,
@@ -1113,7 +1479,10 @@
       "subtheme": "guardia",
       "reference": "Filipenses 4:7",
       "label": "Paz que guarda",
-      "highlight": "Guardará tu corazón y tus pensamientos"
+      "highlight": "Guardará tu corazón y tus pensamientos",
+      "bookId": "PHP",
+      "chapter": 4,
+      "verse": 7
     },
     {
       "dayOfYear": 124,
@@ -1122,7 +1491,10 @@
       "subtheme": "estabilidad",
       "reference": "Isaías 26:3",
       "label": "Completa paz",
-      "highlight": "Confía y descansa en Dios"
+      "highlight": "Confía y descansa en Dios",
+      "bookId": "ISA",
+      "chapter": 26,
+      "verse": 3
     },
     {
       "dayOfYear": 125,
@@ -1131,7 +1503,10 @@
       "subtheme": "descanso",
       "reference": "Mateo 11:28",
       "label": "Ven a mí",
-      "highlight": "Cristo da descanso al cansado"
+      "highlight": "Cristo da descanso al cansado",
+      "bookId": "MAT",
+      "chapter": 11,
+      "verse": 28
     },
     {
       "dayOfYear": 126,
@@ -1140,7 +1515,10 @@
       "subtheme": "seguridad",
       "reference": "Salmos 4:8",
       "label": "Dormir en paz",
-      "highlight": "Solo Dios te hace vivir confiado"
+      "highlight": "Solo Dios te hace vivir confiado",
+      "bookId": "PSA",
+      "chapter": 4,
+      "verse": 8
     },
     {
       "dayOfYear": 127,
@@ -1149,7 +1527,10 @@
       "subtheme": "entrega",
       "reference": "1 Pedro 5:7",
       "label": "Echa tu ansiedad",
-      "highlight": "Él cuida de ti"
+      "highlight": "Él cuida de ti",
+      "bookId": "1PE",
+      "chapter": 5,
+      "verse": 7
     },
     {
       "dayOfYear": 128,
@@ -1158,7 +1539,10 @@
       "subtheme": "quietud",
       "reference": "Salmos 46:10",
       "label": "Estad quietos",
-      "highlight": "Reconoce que Él es Dios"
+      "highlight": "Reconoce que Él es Dios",
+      "bookId": "PSA",
+      "chapter": 46,
+      "verse": 10
     },
     {
       "dayOfYear": 129,
@@ -1167,7 +1551,10 @@
       "subtheme": "animo",
       "reference": "Juan 16:33",
       "label": "Confiad",
-      "highlight": "En Cristo hay paz en medio de aflicción"
+      "highlight": "En Cristo hay paz en medio de aflicción",
+      "bookId": "JHN",
+      "chapter": 16,
+      "verse": 33
     },
     {
       "dayOfYear": 130,
@@ -1176,7 +1563,10 @@
       "subtheme": "gobierno",
       "reference": "Colosenses 3:15",
       "label": "Reine la paz",
-      "highlight": "Que la paz de Cristo gobierne tu corazón"
+      "highlight": "Que la paz de Cristo gobierne tu corazón",
+      "bookId": "COL",
+      "chapter": 3,
+      "verse": 15
     },
     {
       "dayOfYear": 131,
@@ -1185,7 +1575,10 @@
       "subtheme": "compañia",
       "reference": "Isaías 41:13",
       "label": "Yo te ayudo",
-      "highlight": "No temas, Dios toma tu mano"
+      "highlight": "No temas, Dios toma tu mano",
+      "bookId": "ISA",
+      "chapter": 41,
+      "verse": 13
     },
     {
       "dayOfYear": 132,
@@ -1194,7 +1587,10 @@
       "subtheme": "reposo",
       "reference": "Salmos 23:1-2",
       "label": "Delicados pastos",
-      "highlight": "El Pastor te hará descansar"
+      "highlight": "El Pastor te hará descansar",
+      "bookId": "PSA",
+      "chapter": 23,
+      "verse": 1
     },
     {
       "dayOfYear": 133,
@@ -1203,7 +1599,10 @@
       "subtheme": "presencia",
       "reference": "Éxodo 33:14",
       "label": "Mi presencia irá",
-      "highlight": "Y te daré descanso"
+      "highlight": "Y te daré descanso",
+      "bookId": "EXO",
+      "chapter": 33,
+      "verse": 14
     },
     {
       "dayOfYear": 134,
@@ -1212,7 +1611,10 @@
       "subtheme": "esperanza",
       "reference": "Romanos 15:13",
       "label": "Gozo y paz",
-      "highlight": "El Dios de esperanza te llene"
+      "highlight": "El Dios de esperanza te llene",
+      "bookId": "ROM",
+      "chapter": 15,
+      "verse": 13
     },
     {
       "dayOfYear": 135,
@@ -1221,7 +1623,10 @@
       "subtheme": "refugio",
       "reference": "Nahúm 1:7",
       "label": "Fortaleza en el día malo",
-      "highlight": "Dios conoce a los que confían"
+      "highlight": "Dios conoce a los que confían",
+      "bookId": "NAM",
+      "chapter": 1,
+      "verse": 7
     },
     {
       "dayOfYear": 136,
@@ -1230,7 +1635,10 @@
       "subtheme": "experiencia",
       "reference": "Salmos 34:8",
       "label": "Gusta y ve",
-      "highlight": "Bienaventurado el que confía"
+      "highlight": "Bienaventurado el que confía",
+      "bookId": "PSA",
+      "chapter": 34,
+      "verse": 8
     },
     {
       "dayOfYear": 137,
@@ -1239,7 +1647,10 @@
       "subtheme": "reposo",
       "reference": "Hebreos 4:9-10",
       "label": "Reposo para el pueblo",
-      "highlight": "Descansa de tus obras"
+      "highlight": "Descansa de tus obras",
+      "bookId": "HEB",
+      "chapter": 4,
+      "verse": 9
     },
     {
       "dayOfYear": 138,
@@ -1248,7 +1659,10 @@
       "subtheme": "salud",
       "reference": "Proverbios 14:30",
       "label": "Corazón apacible",
-      "highlight": "Es vida para la carne"
+      "highlight": "Es vida para la carne",
+      "bookId": "PRO",
+      "chapter": 14,
+      "verse": 30
     },
     {
       "dayOfYear": 139,
@@ -1257,7 +1671,10 @@
       "subtheme": "sustento",
       "reference": "Salmos 55:22",
       "label": "Él te sustentará",
-      "highlight": "No dejará caído al justo"
+      "highlight": "No dejará caído al justo",
+      "bookId": "PSA",
+      "chapter": 55,
+      "verse": 22
     },
     {
       "dayOfYear": 140,
@@ -1266,7 +1683,10 @@
       "subtheme": "justicia",
       "reference": "Isaías 32:17",
       "label": "Efecto de la justicia",
-      "highlight": "Paz y reposo perpetuos"
+      "highlight": "Paz y reposo perpetuos",
+      "bookId": "ISA",
+      "chapter": 32,
+      "verse": 17
     },
     {
       "dayOfYear": 141,
@@ -1275,7 +1695,10 @@
       "subtheme": "fuerza_y_paz",
       "reference": "Salmos 29:11",
       "label": "Paz para su pueblo",
-      "highlight": "Jehová bendice con paz"
+      "highlight": "Jehová bendice con paz",
+      "bookId": "PSA",
+      "chapter": 29,
+      "verse": 11
     },
     {
       "dayOfYear": 142,
@@ -1284,7 +1707,10 @@
       "subtheme": "paz_constante",
       "reference": "2 Tesalonicenses 3:16",
       "label": "Paz siempre",
-      "highlight": "El Señor de paz esté contigo"
+      "highlight": "El Señor de paz esté contigo",
+      "bookId": "2TH",
+      "chapter": 3,
+      "verse": 16
     },
     {
       "dayOfYear": 143,
@@ -1293,7 +1719,10 @@
       "subtheme": "sueño",
       "reference": "Proverbios 3:24",
       "label": "Dulce sueño",
-      "highlight": "No tendrás temor"
+      "highlight": "No tendrás temor",
+      "bookId": "PRO",
+      "chapter": 3,
+      "verse": 24
     },
     {
       "dayOfYear": 144,
@@ -1302,7 +1731,10 @@
       "subtheme": "autoridad",
       "reference": "Marcos 4:39",
       "label": "Paz, enmudece",
-      "highlight": "Cristo calma la tormenta"
+      "highlight": "Cristo calma la tormenta",
+      "bookId": "MRK",
+      "chapter": 4,
+      "verse": 39
     },
     {
       "dayOfYear": 145,
@@ -1311,7 +1743,10 @@
       "subtheme": "alma",
       "reference": "Salmos 131:2",
       "label": "Alma quieta",
-      "highlight": "Como niño destetado está mi alma"
+      "highlight": "Como niño destetado está mi alma",
+      "bookId": "PSA",
+      "chapter": 131,
+      "verse": 2
     },
     {
       "dayOfYear": 146,
@@ -1320,7 +1755,10 @@
       "subtheme": "consuelo",
       "reference": "Isaías 57:19",
       "label": "Paz al lejano",
-      "highlight": "Dios trae paz y sanidad"
+      "highlight": "Dios trae paz y sanidad",
+      "bookId": "ISA",
+      "chapter": 57,
+      "verse": 19
     },
     {
       "dayOfYear": 147,
@@ -1329,7 +1767,10 @@
       "subtheme": "vida",
       "reference": "Romanos 8:6",
       "label": "Mente espiritual",
-      "highlight": "Es vida y paz"
+      "highlight": "Es vida y paz",
+      "bookId": "ROM",
+      "chapter": 8,
+      "verse": 6
     },
     {
       "dayOfYear": 148,
@@ -1338,7 +1779,10 @@
       "subtheme": "espera",
       "reference": "Salmos 62:1",
       "label": "Silencio confiado",
-      "highlight": "En Dios está mi salvación"
+      "highlight": "En Dios está mi salvación",
+      "bookId": "PSA",
+      "chapter": 62,
+      "verse": 1
     },
     {
       "dayOfYear": 149,
@@ -1347,7 +1791,10 @@
       "subtheme": "espera",
       "reference": "Lamentaciones 3:25-26",
       "label": "Bueno es esperar",
-      "highlight": "En silencio la salvación de Dios"
+      "highlight": "En silencio la salvación de Dios",
+      "bookId": "LAM",
+      "chapter": 3,
+      "verse": 25
     },
     {
       "dayOfYear": 150,
@@ -1356,7 +1803,10 @@
       "subtheme": "contentamiento",
       "reference": "Hebreos 13:5",
       "label": "No te dejaré",
-      "highlight": "Su presencia da seguridad"
+      "highlight": "Su presencia da seguridad",
+      "bookId": "HEB",
+      "chapter": 13,
+      "verse": 5
     },
     {
       "dayOfYear": 151,
@@ -1365,7 +1815,10 @@
       "subtheme": "envio",
       "reference": "Juan 20:21",
       "label": "Paz a vosotros",
-      "highlight": "El Resucitado trae paz"
+      "highlight": "El Resucitado trae paz",
+      "bookId": "JHN",
+      "chapter": 20,
+      "verse": 21
     },
     {
       "dayOfYear": 152,
@@ -1374,7 +1827,10 @@
       "subtheme": "firmeza",
       "reference": "Salmos 16:8-9",
       "label": "No seré conmovido",
-      "highlight": "Mi corazón se alegra en Dios"
+      "highlight": "Mi corazón se alegra en Dios",
+      "bookId": "PSA",
+      "chapter": 16,
+      "verse": 8
     },
     {
       "dayOfYear": 153,
@@ -1383,7 +1839,10 @@
       "subtheme": "renuevo",
       "reference": "Isaías 40:31",
       "label": "Nuevas fuerzas",
-      "highlight": "Los que esperan en Jehová tendrán nuevas fuerzas"
+      "highlight": "Los que esperan en Jehová tendrán nuevas fuerzas",
+      "bookId": "ISA",
+      "chapter": 40,
+      "verse": 31
     },
     {
       "dayOfYear": 154,
@@ -1392,7 +1851,10 @@
       "subtheme": "valentia",
       "reference": "Josué 1:9",
       "label": "Esfuérzate",
-      "highlight": "Dios está contigo"
+      "highlight": "Dios está contigo",
+      "bookId": "JOS",
+      "chapter": 1,
+      "verse": 9
     },
     {
       "dayOfYear": 155,
@@ -1401,7 +1863,10 @@
       "subtheme": "valor",
       "reference": "Salmos 27:1",
       "label": "Mi luz y salvación",
-      "highlight": "¿De quién temeré?"
+      "highlight": "¿De quién temeré?",
+      "bookId": "PSA",
+      "chapter": 27,
+      "verse": 1
     },
     {
       "dayOfYear": 156,
@@ -1410,7 +1875,10 @@
       "subtheme": "gracia",
       "reference": "2 Corintios 12:9",
       "label": "Bástate mi gracia",
-      "highlight": "Su poder se perfecciona en debilidad"
+      "highlight": "Su poder se perfecciona en debilidad",
+      "bookId": "2CO",
+      "chapter": 12,
+      "verse": 9
     },
     {
       "dayOfYear": 157,
@@ -1419,7 +1887,10 @@
       "subtheme": "armadura",
       "reference": "Efesios 6:10",
       "label": "Fortalécete",
-      "highlight": "En el Señor y en su poder"
+      "highlight": "En el Señor y en su poder",
+      "bookId": "EPH",
+      "chapter": 6,
+      "verse": 10
     },
     {
       "dayOfYear": 158,
@@ -1428,7 +1899,10 @@
       "subtheme": "equipamiento",
       "reference": "Salmos 18:32",
       "label": "Me ciñe de poder",
-      "highlight": "Dios perfecciona mi camino"
+      "highlight": "Dios perfecciona mi camino",
+      "bookId": "PSA",
+      "chapter": 18,
+      "verse": 32
     },
     {
       "dayOfYear": 159,
@@ -1437,7 +1911,10 @@
       "subtheme": "capacidad",
       "reference": "Filipenses 4:13",
       "label": "Todo lo puedo",
-      "highlight": "En Cristo que me fortalece"
+      "highlight": "En Cristo que me fortalece",
+      "bookId": "PHP",
+      "chapter": 4,
+      "verse": 13
     },
     {
       "dayOfYear": 160,
@@ -1446,7 +1923,10 @@
       "subtheme": "gozo",
       "reference": "Nehemías 8:10",
       "label": "Gozo que fortalece",
-      "highlight": "El gozo del Señor es tu fuerza"
+      "highlight": "El gozo del Señor es tu fuerza",
+      "bookId": "NEH",
+      "chapter": 8,
+      "verse": 10
     },
     {
       "dayOfYear": 161,
@@ -1455,7 +1935,10 @@
       "subtheme": "animo",
       "reference": "Deuteronomio 31:6",
       "label": "No temas",
-      "highlight": "Él no te dejará"
+      "highlight": "Él no te dejará",
+      "bookId": "DEU",
+      "chapter": 31,
+      "verse": 6
     },
     {
       "dayOfYear": 162,
@@ -1464,7 +1947,10 @@
       "subtheme": "ayuda",
       "reference": "Salmos 28:7",
       "label": "Mi escudo",
-      "highlight": "En Él confió mi corazón"
+      "highlight": "En Él confió mi corazón",
+      "bookId": "PSA",
+      "chapter": 28,
+      "verse": 7
     },
     {
       "dayOfYear": 163,
@@ -1473,7 +1959,10 @@
       "subtheme": "sosten",
       "reference": "Isaías 41:10",
       "label": "Sostén divino",
-      "highlight": "Te sostendré con mi diestra"
+      "highlight": "Te sostendré con mi diestra",
+      "bookId": "ISA",
+      "chapter": 41,
+      "verse": 10
     },
     {
       "dayOfYear": 164,
@@ -1482,7 +1971,10 @@
       "subtheme": "socorro",
       "reference": "Salmos 121:1-2",
       "label": "Mi socorro",
-      "highlight": "Viene de Jehová"
+      "highlight": "Viene de Jehová",
+      "bookId": "PSA",
+      "chapter": 121,
+      "verse": 1
     },
     {
       "dayOfYear": 165,
@@ -1491,7 +1983,10 @@
       "subtheme": "seguridad",
       "reference": "Romanos 8:31",
       "label": "Dios por nosotros",
-      "highlight": "¿Quién contra nosotros?"
+      "highlight": "¿Quién contra nosotros?",
+      "bookId": "ROM",
+      "chapter": 8,
+      "verse": 31
     },
     {
       "dayOfYear": 166,
@@ -1500,7 +1995,10 @@
       "subtheme": "busqueda",
       "reference": "1 Crónicas 16:11",
       "label": "Busca su poder",
-      "highlight": "Busca su rostro continuamente"
+      "highlight": "Busca su rostro continuamente",
+      "bookId": "1CH",
+      "chapter": 16,
+      "verse": 11
     },
     {
       "dayOfYear": 167,
@@ -1509,7 +2007,10 @@
       "subtheme": "fortaleza",
       "reference": "2 Samuel 22:33",
       "label": "Poder perfecto",
-      "highlight": "Dios hace perfecto mi camino"
+      "highlight": "Dios hace perfecto mi camino",
+      "bookId": "2SA",
+      "chapter": 22,
+      "verse": 33
     },
     {
       "dayOfYear": 168,
@@ -1518,7 +2019,10 @@
       "subtheme": "esperanza",
       "reference": "Salmos 31:24",
       "label": "Cobrad ánimo",
-      "highlight": "Él fortalece el corazón"
+      "highlight": "Él fortalece el corazón",
+      "bookId": "PSA",
+      "chapter": 31,
+      "verse": 24
     },
     {
       "dayOfYear": 169,
@@ -1527,7 +2031,10 @@
       "subtheme": "animo",
       "reference": "Isaías 35:3-4",
       "label": "Manos cansadas",
-      "highlight": "Dios vendrá y os salvará"
+      "highlight": "Dios vendrá y os salvará",
+      "bookId": "ISA",
+      "chapter": 35,
+      "verse": 3
     },
     {
       "dayOfYear": 170,
@@ -1536,7 +2043,10 @@
       "subtheme": "pies",
       "reference": "Habacuc 3:19",
       "label": "Pies de ciervas",
-      "highlight": "Jehová es mi fortaleza"
+      "highlight": "Jehová es mi fortaleza",
+      "bookId": "HAB",
+      "chapter": 3,
+      "verse": 19
     },
     {
       "dayOfYear": 171,
@@ -1545,7 +2055,10 @@
       "subtheme": "canto",
       "reference": "Éxodo 15:2",
       "label": "Mi fortaleza y cántico",
-      "highlight": "Él ha sido mi salvación"
+      "highlight": "Él ha sido mi salvación",
+      "bookId": "EXO",
+      "chapter": 15,
+      "verse": 2
     },
     {
       "dayOfYear": 172,
@@ -1554,7 +2067,10 @@
       "subtheme": "auxilio",
       "reference": "Salmos 46:1",
       "label": "Pronto auxilio",
-      "highlight": "Refugio y fortaleza"
+      "highlight": "Refugio y fortaleza",
+      "bookId": "PSA",
+      "chapter": 46,
+      "verse": 1
     },
     {
       "dayOfYear": 173,
@@ -1563,7 +2079,10 @@
       "subtheme": "vigilancia",
       "reference": "1 Corintios 16:13",
       "label": "Portaos varonilmente",
-      "highlight": "Y esforzaos"
+      "highlight": "Y esforzaos",
+      "bookId": "1CO",
+      "chapter": 16,
+      "verse": 13
     },
     {
       "dayOfYear": 174,
@@ -1572,7 +2091,10 @@
       "subtheme": "consuelo",
       "reference": "2 Tesalonicenses 2:16-17",
       "label": "Buen ánimo",
-      "highlight": "Conforte tus corazones"
+      "highlight": "Conforte tus corazones",
+      "bookId": "2TH",
+      "chapter": 2,
+      "verse": 16
     },
     {
       "dayOfYear": 175,
@@ -1581,7 +2103,10 @@
       "subtheme": "confianza",
       "reference": "Hebreos 13:6",
       "label": "No temeré",
-      "highlight": "El Señor es mi ayudador"
+      "highlight": "El Señor es mi ayudador",
+      "bookId": "HEB",
+      "chapter": 13,
+      "verse": 6
     },
     {
       "dayOfYear": 176,
@@ -1590,7 +2115,10 @@
       "subtheme": "refugio",
       "reference": "Proverbios 18:10",
       "label": "Torre fuerte",
-      "highlight": "El justo correrá a ella"
+      "highlight": "El justo correrá a ella",
+      "bookId": "PRO",
+      "chapter": 18,
+      "verse": 10
     },
     {
       "dayOfYear": 177,
@@ -1599,7 +2127,10 @@
       "subtheme": "levantate",
       "reference": "Miqueas 7:8",
       "label": "Me levantaré",
-      "highlight": "Aunque caiga, Jehová será mi luz"
+      "highlight": "Aunque caiga, Jehová será mi luz",
+      "bookId": "MIC",
+      "chapter": 7,
+      "verse": 8
     },
     {
       "dayOfYear": 178,
@@ -1608,7 +2139,10 @@
       "subtheme": "respuesta",
       "reference": "Salmos 138:3",
       "label": "Fortaleciste",
-      "highlight": "Con vigor en mi alma"
+      "highlight": "Con vigor en mi alma",
+      "bookId": "PSA",
+      "chapter": 138,
+      "verse": 3
     },
     {
       "dayOfYear": 179,
@@ -1617,7 +2151,10 @@
       "subtheme": "poder",
       "reference": "Efesios 3:20",
       "label": "Más abundantemente",
-      "highlight": "Él puede hacer mucho más"
+      "highlight": "Él puede hacer mucho más",
+      "bookId": "EPH",
+      "chapter": 3,
+      "verse": 20
     },
     {
       "dayOfYear": 180,
@@ -1626,7 +2163,10 @@
       "subtheme": "presencia",
       "reference": "2 Timoteo 4:17",
       "label": "El Señor estuvo conmigo",
-      "highlight": "Y me dio fuerzas"
+      "highlight": "Y me dio fuerzas",
+      "bookId": "2TI",
+      "chapter": 4,
+      "verse": 17
     },
     {
       "dayOfYear": 181,
@@ -1635,7 +2175,10 @@
       "subtheme": "seguridad",
       "reference": "Isaías 12:2",
       "label": "Confiaré",
-      "highlight": "Dios es mi fortaleza y canción"
+      "highlight": "Dios es mi fortaleza y canción",
+      "bookId": "ISA",
+      "chapter": 12,
+      "verse": 2
     },
     {
       "dayOfYear": 182,
@@ -1644,7 +2187,10 @@
       "subtheme": "peregrino",
       "reference": "Salmos 84:5",
       "label": "Fortaleza en ti",
-      "highlight": "Bienaventurado el que tiene fuerzas en Dios"
+      "highlight": "Bienaventurado el que tiene fuerzas en Dios",
+      "bookId": "PSA",
+      "chapter": 84,
+      "verse": 5
     },
     {
       "dayOfYear": 183,
@@ -1653,7 +2199,10 @@
       "subtheme": "direccion",
       "reference": "Proverbios 3:5-6",
       "label": "Dirección",
-      "highlight": "Él enderezará tus caminos"
+      "highlight": "Él enderezará tus caminos",
+      "bookId": "PRO",
+      "chapter": 3,
+      "verse": 5
     },
     {
       "dayOfYear": 184,
@@ -1662,7 +2211,10 @@
       "subtheme": "peticion",
       "reference": "Santiago 1:5",
       "label": "Pide sabiduría",
-      "highlight": "Dios da abundantemente"
+      "highlight": "Dios da abundantemente",
+      "bookId": "JAS",
+      "chapter": 1,
+      "verse": 5
     },
     {
       "dayOfYear": 185,
@@ -1671,7 +2223,10 @@
       "subtheme": "guia",
       "reference": "Salmos 25:4-5",
       "label": "Enséñame",
-      "highlight": "Muéstrame tus caminos"
+      "highlight": "Muéstrame tus caminos",
+      "bookId": "PSA",
+      "chapter": 25,
+      "verse": 4
     },
     {
       "dayOfYear": 186,
@@ -1680,7 +2235,10 @@
       "subtheme": "fuente",
       "reference": "Proverbios 2:6",
       "label": "La da Jehová",
-      "highlight": "De su boca viene sabiduría"
+      "highlight": "De su boca viene sabiduría",
+      "bookId": "PRO",
+      "chapter": 2,
+      "verse": 6
     },
     {
       "dayOfYear": 187,
@@ -1689,7 +2247,10 @@
       "subtheme": "instruccion",
       "reference": "Salmos 32:8",
       "label": "Te haré entender",
-      "highlight": "Te enseñaré el camino"
+      "highlight": "Te enseñaré el camino",
+      "bookId": "PSA",
+      "chapter": 32,
+      "verse": 8
     },
     {
       "dayOfYear": 188,
@@ -1698,7 +2259,10 @@
       "subtheme": "compañia",
       "reference": "Isaías 58:11",
       "label": "Guía continua",
-      "highlight": "Jehová te pastoreará siempre"
+      "highlight": "Jehová te pastoreará siempre",
+      "bookId": "ISA",
+      "chapter": 58,
+      "verse": 11
     },
     {
       "dayOfYear": 189,
@@ -1707,7 +2271,10 @@
       "subtheme": "planes",
       "reference": "Proverbios 16:9",
       "label": "Él endereza",
-      "highlight": "Dios ordena tus pasos"
+      "highlight": "Dios ordena tus pasos",
+      "bookId": "PRO",
+      "chapter": 16,
+      "verse": 9
     },
     {
       "dayOfYear": 190,
@@ -1716,7 +2283,10 @@
       "subtheme": "criterio",
       "reference": "Salmos 119:66",
       "label": "Buen sentido",
-      "highlight": "Enséñame buen juicio"
+      "highlight": "Enséñame buen juicio",
+      "bookId": "PSA",
+      "chapter": 119,
+      "verse": 66
     },
     {
       "dayOfYear": 191,
@@ -1725,7 +2295,10 @@
       "subtheme": "plenitud",
       "reference": "Colosenses 1:9",
       "label": "Llenos de sabiduría",
-      "highlight": "Con toda inteligencia espiritual"
+      "highlight": "Con toda inteligencia espiritual",
+      "bookId": "COL",
+      "chapter": 1,
+      "verse": 9
     },
     {
       "dayOfYear": 192,
@@ -1734,7 +2307,10 @@
       "subtheme": "prudencia",
       "reference": "Efesios 5:15-17",
       "label": "Andad sabiamente",
-      "highlight": "Entended la voluntad del Señor"
+      "highlight": "Entended la voluntad del Señor",
+      "bookId": "EPH",
+      "chapter": 5,
+      "verse": 15
     },
     {
       "dayOfYear": 193,
@@ -1743,7 +2319,10 @@
       "subtheme": "consejo",
       "reference": "Salmos 73:24",
       "label": "Me guiarás",
-      "highlight": "Con tu consejo me conducirás"
+      "highlight": "Con tu consejo me conducirás",
+      "bookId": "PSA",
+      "chapter": 73,
+      "verse": 24
     },
     {
       "dayOfYear": 194,
@@ -1752,7 +2331,10 @@
       "subtheme": "consejo",
       "reference": "Proverbios 11:14",
       "label": "Muchos consejeros",
-      "highlight": "En la multitud hay seguridad"
+      "highlight": "En la multitud hay seguridad",
+      "bookId": "PRO",
+      "chapter": 11,
+      "verse": 14
     },
     {
       "dayOfYear": 195,
@@ -1761,7 +2343,10 @@
       "subtheme": "utilidad",
       "reference": "Isaías 48:17",
       "label": "Te enseña",
-      "highlight": "Por el camino que debes andar"
+      "highlight": "Por el camino que debes andar",
+      "bookId": "ISA",
+      "chapter": 48,
+      "verse": 17
     },
     {
       "dayOfYear": 196,
@@ -1770,7 +2355,10 @@
       "subtheme": "pasos",
       "reference": "Salmos 37:23",
       "label": "Pasos afirmados",
-      "highlight": "Por Jehová son ordenados"
+      "highlight": "Por Jehová son ordenados",
+      "bookId": "PSA",
+      "chapter": 37,
+      "verse": 23
     },
     {
       "dayOfYear": 197,
@@ -1779,7 +2367,10 @@
       "subtheme": "prioridad",
       "reference": "Proverbios 4:7",
       "label": "Adquiere sabiduría",
-      "highlight": "Ante todo adquiere sabiduría"
+      "highlight": "Ante todo adquiere sabiduría",
+      "bookId": "PRO",
+      "chapter": 4,
+      "verse": 7
     },
     {
       "dayOfYear": 198,
@@ -1788,7 +2379,10 @@
       "subtheme": "temor",
       "reference": "Job 28:28",
       "label": "Sabiduría verdadera",
-      "highlight": "Temer al Señor es sabiduría"
+      "highlight": "Temer al Señor es sabiduría",
+      "bookId": "JOB",
+      "chapter": 28,
+      "verse": 28
     },
     {
       "dayOfYear": 199,
@@ -1797,7 +2391,10 @@
       "subtheme": "claridad",
       "reference": "Salmos 119:130",
       "label": "Alumbra",
-      "highlight": "La exposición de tu palabra alumbra"
+      "highlight": "La exposición de tu palabra alumbra",
+      "bookId": "PSA",
+      "chapter": 119,
+      "verse": 130
     },
     {
       "dayOfYear": 200,
@@ -1806,7 +2403,10 @@
       "subtheme": "obediencia",
       "reference": "Lucas 11:28",
       "label": "Bienaventurados",
-      "highlight": "Los que oyen y guardan"
+      "highlight": "Los que oyen y guardan",
+      "bookId": "LUK",
+      "chapter": 11,
+      "verse": 28
     },
     {
       "dayOfYear": 201,
@@ -1815,7 +2415,10 @@
       "subtheme": "luz",
       "reference": "Juan 8:12",
       "label": "Luz del mundo",
-      "highlight": "No andarás en tinieblas"
+      "highlight": "No andarás en tinieblas",
+      "bookId": "JHN",
+      "chapter": 8,
+      "verse": 12
     },
     {
       "dayOfYear": 202,
@@ -1824,7 +2427,10 @@
       "subtheme": "planes",
       "reference": "Proverbios 15:22",
       "label": "Confirman propósitos",
-      "highlight": "Con consejo se afirman"
+      "highlight": "Con consejo se afirman",
+      "bookId": "PRO",
+      "chapter": 15,
+      "verse": 22
     },
     {
       "dayOfYear": 203,
@@ -1833,7 +2439,10 @@
       "subtheme": "adoracion",
       "reference": "Romanos 11:33",
       "label": "Profundidad",
-      "highlight": "Insondables sus caminos"
+      "highlight": "Insondables sus caminos",
+      "bookId": "ROM",
+      "chapter": 11,
+      "verse": 33
     },
     {
       "dayOfYear": 204,
@@ -1842,7 +2451,10 @@
       "subtheme": "peticion",
       "reference": "1 Reyes 3:9",
       "label": "Corazón entendido",
-      "highlight": "Para discernir entre bien y mal"
+      "highlight": "Para discernir entre bien y mal",
+      "bookId": "1KI",
+      "chapter": 3,
+      "verse": 9
     },
     {
       "dayOfYear": 205,
@@ -1851,7 +2463,10 @@
       "subtheme": "deleite",
       "reference": "Salmos 119:24",
       "label": "Mis consejeros",
-      "highlight": "Tus testimonios son mis consejeros"
+      "highlight": "Tus testimonios son mis consejeros",
+      "bookId": "PSA",
+      "chapter": 119,
+      "verse": 24
     },
     {
       "dayOfYear": 206,
@@ -1860,7 +2475,10 @@
       "subtheme": "soberania",
       "reference": "Proverbios 19:21",
       "label": "Permanece su consejo",
-      "highlight": "El consejo del Señor permanecerá"
+      "highlight": "El consejo del Señor permanecerá",
+      "bookId": "PRO",
+      "chapter": 19,
+      "verse": 21
     },
     {
       "dayOfYear": 207,
@@ -1869,7 +2487,10 @@
       "subtheme": "altura",
       "reference": "Isaías 55:8-9",
       "label": "Más altos",
-      "highlight": "Sus caminos son superiores"
+      "highlight": "Sus caminos son superiores",
+      "bookId": "ISA",
+      "chapter": 55,
+      "verse": 8
     },
     {
       "dayOfYear": 208,
@@ -1878,7 +2499,10 @@
       "subtheme": "palabra",
       "reference": "Colosenses 3:15-16",
       "label": "Morando la Palabra",
-      "highlight": "Te guía en sabiduría"
+      "highlight": "Te guía en sabiduría",
+      "bookId": "COL",
+      "chapter": 3,
+      "verse": 15
     },
     {
       "dayOfYear": 209,
@@ -1887,7 +2511,10 @@
       "subtheme": "discernimiento",
       "reference": "Filipenses 1:9-10",
       "label": "Aprueba lo mejor",
-      "highlight": "Amor con ciencia y discernimiento"
+      "highlight": "Amor con ciencia y discernimiento",
+      "bookId": "PHP",
+      "chapter": 1,
+      "verse": 9
     },
     {
       "dayOfYear": 210,
@@ -1896,7 +2523,10 @@
       "subtheme": "dependencia",
       "reference": "Proverbios 20:24",
       "label": "Pasos del hombre",
-      "highlight": "De Jehová son los pasos"
+      "highlight": "De Jehová son los pasos",
+      "bookId": "PRO",
+      "chapter": 20,
+      "verse": 24
     },
     {
       "dayOfYear": 211,
@@ -1905,7 +2535,10 @@
       "subtheme": "manana",
       "reference": "Salmos 143:8",
       "label": "Hazme oír",
-      "highlight": "Muéstrame el camino"
+      "highlight": "Muéstrame el camino",
+      "bookId": "PSA",
+      "chapter": 143,
+      "verse": 8
     },
     {
       "dayOfYear": 212,
@@ -1914,7 +2547,10 @@
       "subtheme": "presencia",
       "reference": "Éxodo 13:21",
       "label": "Nube y fuego",
-      "highlight": "Dios guía a su pueblo"
+      "highlight": "Dios guía a su pueblo",
+      "bookId": "EXO",
+      "chapter": 13,
+      "verse": 21
     },
     {
       "dayOfYear": 213,
@@ -1923,7 +2559,10 @@
       "subtheme": "espiritu",
       "reference": "Juan 16:13",
       "label": "Guía del Espíritu",
-      "highlight": "Él os guiará a toda verdad"
+      "highlight": "Él os guiará a toda verdad",
+      "bookId": "JHN",
+      "chapter": 16,
+      "verse": 13
     },
     {
       "dayOfYear": 214,
@@ -1932,7 +2571,10 @@
       "subtheme": "clamor",
       "reference": "Jeremías 33:3",
       "label": "Clama",
-      "highlight": "Dios responde"
+      "highlight": "Dios responde",
+      "bookId": "JER",
+      "chapter": 33,
+      "verse": 3
     },
     {
       "dayOfYear": 215,
@@ -1941,7 +2583,10 @@
       "subtheme": "constancia",
       "reference": "1 Tesalonicenses 5:17",
       "label": "Ora sin cesar",
-      "highlight": "Haz de la oración tu hábito"
+      "highlight": "Haz de la oración tu hábito",
+      "bookId": "1TH",
+      "chapter": 5,
+      "verse": 17
     },
     {
       "dayOfYear": 216,
@@ -1950,7 +2595,10 @@
       "subtheme": "presentacion",
       "reference": "Filipenses 4:6",
       "label": "Presenta todo",
-      "highlight": "Con oración y ruego"
+      "highlight": "Con oración y ruego",
+      "bookId": "PHP",
+      "chapter": 4,
+      "verse": 6
     },
     {
       "dayOfYear": 217,
@@ -1959,7 +2607,10 @@
       "subtheme": "persistencia",
       "reference": "Mateo 7:7",
       "label": "Pedid",
-      "highlight": "El que pide recibe"
+      "highlight": "El que pide recibe",
+      "bookId": "MAT",
+      "chapter": 7,
+      "verse": 7
     },
     {
       "dayOfYear": 218,
@@ -1968,7 +2619,10 @@
       "subtheme": "fe",
       "reference": "Marcos 11:24",
       "label": "Cree al orar",
-      "highlight": "Recibirás lo que pides"
+      "highlight": "Recibirás lo que pides",
+      "bookId": "MRK",
+      "chapter": 11,
+      "verse": 24
     },
     {
       "dayOfYear": 219,
@@ -1977,7 +2631,10 @@
       "subtheme": "permanencia",
       "reference": "Juan 15:7",
       "label": "Permanece y pide",
-      "highlight": "Sus palabras hacen fructífera la oración"
+      "highlight": "Sus palabras hacen fructífera la oración",
+      "bookId": "JHN",
+      "chapter": 15,
+      "verse": 7
     },
     {
       "dayOfYear": 220,
@@ -1986,7 +2643,10 @@
       "subtheme": "disciplina",
       "reference": "Romanos 12:12",
       "label": "Persevera",
-      "highlight": "Constantes en la oración"
+      "highlight": "Constantes en la oración",
+      "bookId": "ROM",
+      "chapter": 12,
+      "verse": 12
     },
     {
       "dayOfYear": 221,
@@ -1995,7 +2655,10 @@
       "subtheme": "vigilancia",
       "reference": "Colosenses 4:2",
       "label": "Velad",
-      "highlight": "Perseverando con acción de gracias"
+      "highlight": "Perseverando con acción de gracias",
+      "bookId": "COL",
+      "chapter": 4,
+      "verse": 2
     },
     {
       "dayOfYear": 222,
@@ -2004,7 +2667,10 @@
       "subtheme": "cercania",
       "reference": "Salmos 145:18",
       "label": "Cercano está",
-      "highlight": "A todos los que le invocan de veras"
+      "highlight": "A todos los que le invocan de veras",
+      "bookId": "PSA",
+      "chapter": 145,
+      "verse": 18
     },
     {
       "dayOfYear": 223,
@@ -2013,7 +2679,10 @@
       "subtheme": "confianza",
       "reference": "1 Juan 5:14",
       "label": "Confianza al pedir",
-      "highlight": "Si pedimos conforme a su voluntad"
+      "highlight": "Si pedimos conforme a su voluntad",
+      "bookId": "1JN",
+      "chapter": 5,
+      "verse": 14
     },
     {
       "dayOfYear": 224,
@@ -2022,7 +2691,10 @@
       "subtheme": "acceso",
       "reference": "Hebreos 4:16",
       "label": "Acerquémonos",
-      "highlight": "Al trono de la gracia"
+      "highlight": "Al trono de la gracia",
+      "bookId": "HEB",
+      "chapter": 4,
+      "verse": 16
     },
     {
       "dayOfYear": 225,
@@ -2031,7 +2703,10 @@
       "subtheme": "respuesta",
       "reference": "Salmos 34:17",
       "label": "Claman los justos",
-      "highlight": "Y Jehová oye"
+      "highlight": "Y Jehová oye",
+      "bookId": "PSA",
+      "chapter": 34,
+      "verse": 17
     },
     {
       "dayOfYear": 226,
@@ -2040,7 +2715,10 @@
       "subtheme": "constancia",
       "reference": "Lucas 18:1",
       "label": "No desmayar",
-      "highlight": "Es necesario orar siempre"
+      "highlight": "Es necesario orar siempre",
+      "bookId": "LUK",
+      "chapter": 18,
+      "verse": 1
     },
     {
       "dayOfYear": 227,
@@ -2049,7 +2727,10 @@
       "subtheme": "secreto",
       "reference": "Mateo 6:6",
       "label": "Padre en secreto",
-      "highlight": "Él ve en lo secreto"
+      "highlight": "Él ve en lo secreto",
+      "bookId": "MAT",
+      "chapter": 6,
+      "verse": 6
     },
     {
       "dayOfYear": 228,
@@ -2058,7 +2739,10 @@
       "subtheme": "gratitud",
       "reference": "Salmos 66:19-20",
       "label": "Dios oyó",
-      "highlight": "No apartó su misericordia"
+      "highlight": "No apartó su misericordia",
+      "bookId": "PSA",
+      "chapter": 66,
+      "verse": 19
     },
     {
       "dayOfYear": 229,
@@ -2067,7 +2751,10 @@
       "subtheme": "intercesion",
       "reference": "Efesios 6:18",
       "label": "Orad en todo tiempo",
-      "highlight": "En el Espíritu"
+      "highlight": "En el Espíritu",
+      "bookId": "EPH",
+      "chapter": 6,
+      "verse": 18
     },
     {
       "dayOfYear": 230,
@@ -2076,7 +2763,10 @@
       "subtheme": "eficacia",
       "reference": "Santiago 5:16",
       "label": "Oración eficaz",
-      "highlight": "Puede mucho la oración del justo"
+      "highlight": "Puede mucho la oración del justo",
+      "bookId": "JAS",
+      "chapter": 5,
+      "verse": 16
     },
     {
       "dayOfYear": 231,
@@ -2085,7 +2775,10 @@
       "subtheme": "humillacion",
       "reference": "2 Crónicas 7:14",
       "label": "Humíllate y ora",
-      "highlight": "Dios oye y sana la tierra"
+      "highlight": "Dios oye y sana la tierra",
+      "bookId": "2CH",
+      "chapter": 7,
+      "verse": 14
     },
     {
       "dayOfYear": 232,
@@ -2094,7 +2787,10 @@
       "subtheme": "afliccion",
       "reference": "Jonás 2:2",
       "label": "Desde la angustia",
-      "highlight": "Clamé y me oíste"
+      "highlight": "Clamé y me oíste",
+      "bookId": "JON",
+      "chapter": 2,
+      "verse": 2
     },
     {
       "dayOfYear": 233,
@@ -2103,7 +2799,10 @@
       "subtheme": "manana",
       "reference": "Salmos 5:3",
       "label": "De mañana",
-      "highlight": "Presentaré mi oración"
+      "highlight": "Presentaré mi oración",
+      "bookId": "PSA",
+      "chapter": 5,
+      "verse": 3
     },
     {
       "dayOfYear": 234,
@@ -2112,7 +2811,10 @@
       "subtheme": "fidelidad",
       "reference": "Daniel 6:10",
       "label": "Tres veces al día",
-      "highlight": "Persistió en oración"
+      "highlight": "Persistió en oración",
+      "bookId": "DAN",
+      "chapter": 6,
+      "verse": 10
     },
     {
       "dayOfYear": 235,
@@ -2121,7 +2823,10 @@
       "subtheme": "unidad",
       "reference": "Hechos 1:14",
       "label": "Unánimes",
-      "highlight": "Perseveraban en oración"
+      "highlight": "Perseveraban en oración",
+      "bookId": "ACT",
+      "chapter": 1,
+      "verse": 14
     },
     {
       "dayOfYear": 236,
@@ -2130,7 +2835,10 @@
       "subtheme": "poder",
       "reference": "Hechos 4:31",
       "label": "Lugar conmovido",
-      "highlight": "Oraron y fueron llenos del Espíritu"
+      "highlight": "Oraron y fueron llenos del Espíritu",
+      "bookId": "ACT",
+      "chapter": 4,
+      "verse": 31
     },
     {
       "dayOfYear": 237,
@@ -2139,7 +2847,10 @@
       "subtheme": "favor",
       "reference": "Nehemías 1:11",
       "label": "Haz prosperar",
-      "highlight": "La oración busca favor divino"
+      "highlight": "La oración busca favor divino",
+      "bookId": "NEH",
+      "chapter": 1,
+      "verse": 11
     },
     {
       "dayOfYear": 238,
@@ -2148,7 +2859,10 @@
       "subtheme": "rendicion",
       "reference": "Lucas 22:42",
       "label": "Hágase tu voluntad",
-      "highlight": "La oración se rinde al Padre"
+      "highlight": "La oración se rinde al Padre",
+      "bookId": "LUK",
+      "chapter": 22,
+      "verse": 42
     },
     {
       "dayOfYear": 239,
@@ -2157,7 +2871,10 @@
       "subtheme": "adoracion",
       "reference": "Salmos 141:2",
       "label": "Suba mi oración",
-      "highlight": "Como incienso delante de ti"
+      "highlight": "Como incienso delante de ti",
+      "bookId": "PSA",
+      "chapter": 141,
+      "verse": 2
     },
     {
       "dayOfYear": 240,
@@ -2166,7 +2883,10 @@
       "subtheme": "vigilancia",
       "reference": "Mateo 26:41",
       "label": "Velad y orad",
-      "highlight": "Para no caer en tentación"
+      "highlight": "Para no caer en tentación",
+      "bookId": "MAT",
+      "chapter": 26,
+      "verse": 41
     },
     {
       "dayOfYear": 241,
@@ -2175,7 +2895,10 @@
       "subtheme": "ayuda",
       "reference": "Romanos 8:26",
       "label": "El Espíritu ayuda",
-      "highlight": "Intercede por nosotros"
+      "highlight": "Intercede por nosotros",
+      "bookId": "ROM",
+      "chapter": 8,
+      "verse": 26
     },
     {
       "dayOfYear": 242,
@@ -2184,7 +2907,10 @@
       "subtheme": "intercesion",
       "reference": "1 Timoteo 2:1",
       "label": "Por todos",
-      "highlight": "Ruegos e intercesiones por todos"
+      "highlight": "Ruegos e intercesiones por todos",
+      "bookId": "1TI",
+      "chapter": 2,
+      "verse": 1
     },
     {
       "dayOfYear": 243,
@@ -2193,7 +2919,10 @@
       "subtheme": "angustia",
       "reference": "Salmos 86:7",
       "label": "En el día de mi angustia",
-      "highlight": "Porque tú me respondes"
+      "highlight": "Porque tú me respondes",
+      "bookId": "PSA",
+      "chapter": 86,
+      "verse": 7
     },
     {
       "dayOfYear": 244,
@@ -2202,7 +2931,10 @@
       "subtheme": "espera",
       "reference": "Habacuc 2:1",
       "label": "Esperaré respuesta",
-      "highlight": "Permaneceré atento"
+      "highlight": "Permaneceré atento",
+      "bookId": "HAB",
+      "chapter": 2,
+      "verse": 1
     },
     {
       "dayOfYear": 245,
@@ -2211,7 +2943,10 @@
       "subtheme": "exclusividad",
       "reference": "Hechos 4:12",
       "label": "Único nombre",
-      "highlight": "Solo en Cristo hay salvación"
+      "highlight": "Solo en Cristo hay salvación",
+      "bookId": "ACT",
+      "chapter": 4,
+      "verse": 12
     },
     {
       "dayOfYear": 246,
@@ -2220,7 +2955,10 @@
       "subtheme": "confesion",
       "reference": "Romanos 10:9",
       "label": "Cree y confiesa",
-      "highlight": "Serás salvo"
+      "highlight": "Serás salvo",
+      "bookId": "ROM",
+      "chapter": 10,
+      "verse": 9
     },
     {
       "dayOfYear": 247,
@@ -2229,7 +2967,10 @@
       "subtheme": "camino",
       "reference": "Juan 14:6",
       "label": "Camino al Padre",
-      "highlight": "Jesús es el único camino"
+      "highlight": "Jesús es el único camino",
+      "bookId": "JHN",
+      "chapter": 14,
+      "verse": 6
     },
     {
       "dayOfYear": 248,
@@ -2238,7 +2979,10 @@
       "subtheme": "mediador",
       "reference": "1 Timoteo 2:5",
       "label": "Un mediador",
-      "highlight": "Cristo Jesús"
+      "highlight": "Cristo Jesús",
+      "bookId": "1TI",
+      "chapter": 2,
+      "verse": 5
     },
     {
       "dayOfYear": 249,
@@ -2247,7 +2991,10 @@
       "subtheme": "mision",
       "reference": "Marcos 16:15",
       "label": "Id por todo el mundo",
-      "highlight": "Predicad el evangelio"
+      "highlight": "Predicad el evangelio",
+      "bookId": "MRK",
+      "chapter": 16,
+      "verse": 15
     },
     {
       "dayOfYear": 250,
@@ -2256,7 +3003,10 @@
       "subtheme": "gran_comision",
       "reference": "Mateo 28:19-20",
       "label": "Haced discípulos",
-      "highlight": "Cristo envía a su Iglesia"
+      "highlight": "Cristo envía a su Iglesia",
+      "bookId": "MAT",
+      "chapter": 28,
+      "verse": 19
     },
     {
       "dayOfYear": 251,
@@ -2265,7 +3015,10 @@
       "subtheme": "poder",
       "reference": "Romanos 1:16",
       "label": "No me avergüenzo",
-      "highlight": "El evangelio es poder de Dios"
+      "highlight": "El evangelio es poder de Dios",
+      "bookId": "ROM",
+      "chapter": 1,
+      "verse": 16
     },
     {
       "dayOfYear": 252,
@@ -2274,7 +3027,10 @@
       "subtheme": "embajador",
       "reference": "2 Corintios 5:20",
       "label": "Embajadores",
-      "highlight": "Reconciliaos con Dios"
+      "highlight": "Reconciliaos con Dios",
+      "bookId": "2CO",
+      "chapter": 5,
+      "verse": 20
     },
     {
       "dayOfYear": 253,
@@ -2283,7 +3039,10 @@
       "subtheme": "proposito",
       "reference": "Juan 3:17",
       "label": "No para condenar",
-      "highlight": "Sino para salvar"
+      "highlight": "Sino para salvar",
+      "bookId": "JHN",
+      "chapter": 3,
+      "verse": 17
     },
     {
       "dayOfYear": 254,
@@ -2292,7 +3051,10 @@
       "subtheme": "busqueda",
       "reference": "Lucas 19:10",
       "label": "Vino a buscar",
-      "highlight": "Y a salvar lo perdido"
+      "highlight": "Y a salvar lo perdido",
+      "bookId": "LUK",
+      "chapter": 19,
+      "verse": 10
     },
     {
       "dayOfYear": 255,
@@ -2301,7 +3063,10 @@
       "subtheme": "llamado",
       "reference": "Ezequiel 33:11",
       "label": "Vuélvete",
-      "highlight": "Dios no quiere la muerte del impío"
+      "highlight": "Dios no quiere la muerte del impío",
+      "bookId": "EZK",
+      "chapter": 33,
+      "verse": 11
     },
     {
       "dayOfYear": 256,
@@ -2310,7 +3075,10 @@
       "subtheme": "respuesta",
       "reference": "Hechos 16:31",
       "label": "Cree en el Señor",
-      "highlight": "Y serás salvo"
+      "highlight": "Y serás salvo",
+      "bookId": "ACT",
+      "chapter": 16,
+      "verse": 31
     },
     {
       "dayOfYear": 257,
@@ -2319,7 +3087,10 @@
       "subtheme": "gracia",
       "reference": "Tito 3:5",
       "label": "No por obras",
-      "highlight": "Sino por su misericordia"
+      "highlight": "Sino por su misericordia",
+      "bookId": "TIT",
+      "chapter": 3,
+      "verse": 5
     },
     {
       "dayOfYear": 258,
@@ -2328,7 +3099,10 @@
       "subtheme": "gracia",
       "reference": "Efesios 2:8-9",
       "label": "Por gracia",
-      "highlight": "No por obras"
+      "highlight": "No por obras",
+      "bookId": "EPH",
+      "chapter": 2,
+      "verse": 8
     },
     {
       "dayOfYear": 259,
@@ -2337,7 +3111,10 @@
       "subtheme": "paciencia",
       "reference": "2 Pedro 3:9",
       "label": "No queriendo",
-      "highlight": "Que ninguno perezca"
+      "highlight": "Que ninguno perezca",
+      "bookId": "2PE",
+      "chapter": 3,
+      "verse": 9
     },
     {
       "dayOfYear": 260,
@@ -2346,7 +3123,10 @@
       "subtheme": "arrepentimiento",
       "reference": "Isaías 55:6-7",
       "label": "Buscad a Jehová",
-      "highlight": "Vuélvase al Señor"
+      "highlight": "Vuélvase al Señor",
+      "bookId": "ISA",
+      "chapter": 55,
+      "verse": 6
     },
     {
       "dayOfYear": 261,
@@ -2355,7 +3135,10 @@
       "subtheme": "pecado_y_gracia",
       "reference": "Romanos 3:23-24",
       "label": "Todos pecaron",
-      "highlight": "Pero son justificados gratuitamente"
+      "highlight": "Pero son justificados gratuitamente",
+      "bookId": "ROM",
+      "chapter": 3,
+      "verse": 23
     },
     {
       "dayOfYear": 262,
@@ -2364,7 +3147,10 @@
       "subtheme": "adopcion",
       "reference": "Juan 1:12",
       "label": "Hijos de Dios",
-      "highlight": "A los que creen en su nombre"
+      "highlight": "A los que creen en su nombre",
+      "bookId": "JHN",
+      "chapter": 1,
+      "verse": 12
     },
     {
       "dayOfYear": 263,
@@ -2373,7 +3159,10 @@
       "subtheme": "perdon",
       "reference": "Hechos 13:38-39",
       "label": "Perdón anunciado",
-      "highlight": "Por Él se os anuncia perdón"
+      "highlight": "Por Él se os anuncia perdón",
+      "bookId": "ACT",
+      "chapter": 13,
+      "verse": 38
     },
     {
       "dayOfYear": 264,
@@ -2382,7 +3171,10 @@
       "subtheme": "llamado",
       "reference": "Apocalipsis 3:20",
       "label": "Él llama",
-      "highlight": "Abre la puerta"
+      "highlight": "Abre la puerta",
+      "bookId": "REV",
+      "chapter": 3,
+      "verse": 20
     },
     {
       "dayOfYear": 265,
@@ -2391,7 +3183,10 @@
       "subtheme": "urgencia",
       "reference": "2 Corintios 6:2",
       "label": "Hoy es el día",
-      "highlight": "Ahora es tiempo aceptable"
+      "highlight": "Ahora es tiempo aceptable",
+      "bookId": "2CO",
+      "chapter": 6,
+      "verse": 2
     },
     {
       "dayOfYear": 266,
@@ -2400,7 +3195,10 @@
       "subtheme": "proclamacion",
       "reference": "Salmos 96:3",
       "label": "Publicad su gloria",
-      "highlight": "Entre las naciones"
+      "highlight": "Entre las naciones",
+      "bookId": "PSA",
+      "chapter": 96,
+      "verse": 3
     },
     {
       "dayOfYear": 267,
@@ -2409,7 +3207,10 @@
       "subtheme": "testimonio",
       "reference": "Mateo 5:14-16",
       "label": "Luz del mundo",
-      "highlight": "Que vean tus buenas obras"
+      "highlight": "Que vean tus buenas obras",
+      "bookId": "MAT",
+      "chapter": 5,
+      "verse": 14
     },
     {
       "dayOfYear": 268,
@@ -2418,7 +3219,10 @@
       "subtheme": "respuesta",
       "reference": "1 Pedro 3:15",
       "label": "Presenta defensa",
-      "highlight": "Con mansedumbre y reverencia"
+      "highlight": "Con mansedumbre y reverencia",
+      "bookId": "1PE",
+      "chapter": 3,
+      "verse": 15
     },
     {
       "dayOfYear": 269,
@@ -2427,7 +3231,10 @@
       "subtheme": "sabiduria",
       "reference": "Colosenses 4:5-6",
       "label": "Habla con gracia",
-      "highlight": "Aprovecha bien el tiempo"
+      "highlight": "Aprovecha bien el tiempo",
+      "bookId": "COL",
+      "chapter": 4,
+      "verse": 5
     },
     {
       "dayOfYear": 270,
@@ -2436,7 +3243,10 @@
       "subtheme": "superabundancia",
       "reference": "Romanos 5:20",
       "label": "La gracia abundó",
-      "highlight": "Más que el pecado"
+      "highlight": "Más que el pecado",
+      "bookId": "ROM",
+      "chapter": 5,
+      "verse": 20
     },
     {
       "dayOfYear": 271,
@@ -2445,7 +3255,10 @@
       "subtheme": "vida",
       "reference": "Juan 5:24",
       "label": "Tiene vida eterna",
-      "highlight": "Ha pasado de muerte a vida"
+      "highlight": "Ha pasado de muerte a vida",
+      "bookId": "JHN",
+      "chapter": 5,
+      "verse": 24
     },
     {
       "dayOfYear": 272,
@@ -2454,7 +3267,10 @@
       "subtheme": "advertencia",
       "reference": "Hebreos 2:3",
       "label": "Gran salvación",
-      "highlight": "No la descuides"
+      "highlight": "No la descuides",
+      "bookId": "HEB",
+      "chapter": 2,
+      "verse": 3
     },
     {
       "dayOfYear": 273,
@@ -2463,7 +3279,10 @@
       "subtheme": "gozo",
       "reference": "Lucas 15:7",
       "label": "Gozo en el cielo",
-      "highlight": "Por un pecador que se arrepiente"
+      "highlight": "Por un pecador que se arrepiente",
+      "bookId": "LUK",
+      "chapter": 15,
+      "verse": 7
     },
     {
       "dayOfYear": 274,
@@ -2472,7 +3291,10 @@
       "subtheme": "obreros",
       "reference": "Mateo 9:37-38",
       "label": "Rogad al Señor",
-      "highlight": "La mies es mucha"
+      "highlight": "La mies es mucha",
+      "bookId": "MAT",
+      "chapter": 9,
+      "verse": 37
     },
     {
       "dayOfYear": 275,
@@ -2481,7 +3303,10 @@
       "subtheme": "definicion",
       "reference": "Hebreos 11:1",
       "label": "Fe",
-      "highlight": "La certeza de lo que se espera"
+      "highlight": "La certeza de lo que se espera",
+      "bookId": "HEB",
+      "chapter": 11,
+      "verse": 1
     },
     {
       "dayOfYear": 276,
@@ -2490,7 +3315,10 @@
       "subtheme": "posible",
       "reference": "Marcos 9:23",
       "label": "Al que cree",
-      "highlight": "Todo le es posible"
+      "highlight": "Todo le es posible",
+      "bookId": "MRK",
+      "chapter": 9,
+      "verse": 23
     },
     {
       "dayOfYear": 277,
@@ -2499,7 +3327,10 @@
       "subtheme": "confianza",
       "reference": "Proverbios 3:5",
       "label": "Confía",
-      "highlight": "No te apoyes en tu prudencia"
+      "highlight": "No te apoyes en tu prudencia",
+      "bookId": "PRO",
+      "chapter": 3,
+      "verse": 5
     },
     {
       "dayOfYear": 278,
@@ -2508,7 +3339,10 @@
       "subtheme": "temor",
       "reference": "Salmos 56:3",
       "label": "En ti confiaré",
-      "highlight": "Cuando temo, confío"
+      "highlight": "Cuando temo, confío",
+      "bookId": "PSA",
+      "chapter": 56,
+      "verse": 3
     },
     {
       "dayOfYear": 279,
@@ -2517,7 +3351,10 @@
       "subtheme": "caminar",
       "reference": "2 Corintios 5:7",
       "label": "Por fe",
-      "highlight": "No por vista"
+      "highlight": "No por vista",
+      "bookId": "2CO",
+      "chapter": 5,
+      "verse": 7
     },
     {
       "dayOfYear": 280,
@@ -2526,7 +3363,10 @@
       "subtheme": "origen",
       "reference": "Romanos 10:17",
       "label": "La fe viene",
-      "highlight": "Por oír la palabra de Dios"
+      "highlight": "Por oír la palabra de Dios",
+      "bookId": "ROM",
+      "chapter": 10,
+      "verse": 17
     },
     {
       "dayOfYear": 281,
@@ -2535,7 +3375,10 @@
       "subtheme": "seguridad",
       "reference": "Isaías 12:2",
       "label": "Confiaré",
-      "highlight": "Y no temeré"
+      "highlight": "Y no temeré",
+      "bookId": "ISA",
+      "chapter": 12,
+      "verse": 2
     },
     {
       "dayOfYear": 282,
@@ -2544,7 +3387,10 @@
       "subtheme": "estabilidad",
       "reference": "Salmos 37:3",
       "label": "Confía y haz el bien",
-      "highlight": "Habitarás seguro"
+      "highlight": "Habitarás seguro",
+      "bookId": "PSA",
+      "chapter": 37,
+      "verse": 3
     },
     {
       "dayOfYear": 283,
@@ -2553,7 +3399,10 @@
       "subtheme": "agradar",
       "reference": "Hebreos 11:6",
       "label": "Sin fe",
-      "highlight": "Es imposible agradar a Dios"
+      "highlight": "Es imposible agradar a Dios",
+      "bookId": "HEB",
+      "chapter": 11,
+      "verse": 6
     },
     {
       "dayOfYear": 284,
@@ -2562,7 +3411,10 @@
       "subtheme": "refugio",
       "reference": "Nahúm 1:7",
       "label": "Él conoce",
-      "highlight": "A los que en Él confían"
+      "highlight": "A los que en Él confían",
+      "bookId": "NAM",
+      "chapter": 1,
+      "verse": 7
     },
     {
       "dayOfYear": 285,
@@ -2571,7 +3423,10 @@
       "subtheme": "perpetua",
       "reference": "Isaías 26:4",
       "label": "Confíen perpetuamente",
-      "highlight": "Jehová es fortaleza eterna"
+      "highlight": "Jehová es fortaleza eterna",
+      "bookId": "ISA",
+      "chapter": 26,
+      "verse": 4
     },
     {
       "dayOfYear": 286,
@@ -2580,7 +3435,10 @@
       "subtheme": "firmeza",
       "reference": "Salmos 125:1",
       "label": "Como Sion",
-      "highlight": "No será conmovido"
+      "highlight": "No será conmovido",
+      "bookId": "PSA",
+      "chapter": 125,
+      "verse": 1
     },
     {
       "dayOfYear": 287,
@@ -2589,7 +3447,10 @@
       "subtheme": "conviccion",
       "reference": "Romanos 4:20-21",
       "label": "Plenamente convencido",
-      "highlight": "Poderoso para cumplir"
+      "highlight": "Poderoso para cumplir",
+      "bookId": "ROM",
+      "chapter": 4,
+      "verse": 20
     },
     {
       "dayOfYear": 288,
@@ -2598,7 +3459,10 @@
       "subtheme": "oracion",
       "reference": "Mateo 21:22",
       "label": "Creyendo",
-      "highlight": "Todo lo que pidáis"
+      "highlight": "Todo lo que pidáis",
+      "bookId": "MAT",
+      "chapter": 21,
+      "verse": 22
     },
     {
       "dayOfYear": 289,
@@ -2607,7 +3471,10 @@
       "subtheme": "refugio",
       "reference": "Salmos 91:2",
       "label": "Esperanza",
-      "highlight": "Mi Dios, en quien confiaré"
+      "highlight": "Mi Dios, en quien confiaré",
+      "bookId": "PSA",
+      "chapter": 91,
+      "verse": 2
     },
     {
       "dayOfYear": 290,
@@ -2616,7 +3483,10 @@
       "subtheme": "integridad",
       "reference": "Job 13:15",
       "label": "Aunque Él me matare",
-      "highlight": "En Él esperaré"
+      "highlight": "En Él esperaré",
+      "bookId": "JOB",
+      "chapter": 13,
+      "verse": 15
     },
     {
       "dayOfYear": 291,
@@ -2625,7 +3495,10 @@
       "subtheme": "espera",
       "reference": "Miqueas 7:7",
       "label": "Esperaré",
-      "highlight": "El Dios de mi salvación me oirá"
+      "highlight": "El Dios de mi salvación me oirá",
+      "bookId": "MIC",
+      "chapter": 7,
+      "verse": 7
     },
     {
       "dayOfYear": 292,
@@ -2634,7 +3507,10 @@
       "subtheme": "seguridad",
       "reference": "Salmos 118:8",
       "label": "Mejor confiar",
-      "highlight": "Que en el hombre"
+      "highlight": "Que en el hombre",
+      "bookId": "PSA",
+      "chapter": 118,
+      "verse": 8
     },
     {
       "dayOfYear": 293,
@@ -2643,7 +3519,10 @@
       "subtheme": "bendicion",
       "reference": "Jeremías 17:7",
       "label": "Bendito el que confía",
-      "highlight": "Su esperanza es Jehová"
+      "highlight": "Su esperanza es Jehová",
+      "bookId": "JER",
+      "chapter": 17,
+      "verse": 7
     },
     {
       "dayOfYear": 294,
@@ -2652,7 +3531,10 @@
       "subtheme": "justicia",
       "reference": "Habacuc 2:4",
       "label": "El justo por su fe",
-      "highlight": "Vivirá"
+      "highlight": "Vivirá",
+      "bookId": "HAB",
+      "chapter": 2,
+      "verse": 4
     },
     {
       "dayOfYear": 295,
@@ -2661,7 +3543,10 @@
       "subtheme": "firmeza",
       "reference": "Daniel 3:17-18",
       "label": "Aunque no",
-      "highlight": "Seguiremos fieles"
+      "highlight": "Seguiremos fieles",
+      "bookId": "DAN",
+      "chapter": 3,
+      "verse": 17
     },
     {
       "dayOfYear": 296,
@@ -2670,7 +3555,10 @@
       "subtheme": "corazon",
       "reference": "Salmos 112:7",
       "label": "Corazón firme",
-      "highlight": "Confiado en Jehová"
+      "highlight": "Confiado en Jehová",
+      "bookId": "PSA",
+      "chapter": 112,
+      "verse": 7
     },
     {
       "dayOfYear": 297,
@@ -2679,7 +3567,10 @@
       "subtheme": "gozo",
       "reference": "1 Pedro 1:8-9",
       "label": "Creyendo sin ver",
-      "highlight": "Te gozas con gozo inefable"
+      "highlight": "Te gozas con gozo inefable",
+      "bookId": "1PE",
+      "chapter": 1,
+      "verse": 8
     },
     {
       "dayOfYear": 298,
@@ -2688,7 +3579,10 @@
       "subtheme": "promesa",
       "reference": "Lucas 1:37",
       "label": "Nada es imposible",
-      "highlight": "Para Dios no hay nada imposible"
+      "highlight": "Para Dios no hay nada imposible",
+      "bookId": "LUK",
+      "chapter": 1,
+      "verse": 37
     },
     {
       "dayOfYear": 299,
@@ -2697,7 +3591,10 @@
       "subtheme": "gloria",
       "reference": "Juan 11:40",
       "label": "Si crees",
-      "highlight": "Verás la gloria de Dios"
+      "highlight": "Verás la gloria de Dios",
+      "bookId": "JHN",
+      "chapter": 11,
+      "verse": 40
     },
     {
       "dayOfYear": 300,
@@ -2706,7 +3603,10 @@
       "subtheme": "esperanza",
       "reference": "Romanos 15:13",
       "label": "Abundar en esperanza",
-      "highlight": "Por el poder del Espíritu"
+      "highlight": "Por el poder del Espíritu",
+      "bookId": "ROM",
+      "chapter": 15,
+      "verse": 13
     },
     {
       "dayOfYear": 301,
@@ -2715,7 +3615,10 @@
       "subtheme": "espera",
       "reference": "Salmos 40:1-3",
       "label": "Pacientemente esperé",
-      "highlight": "Puso luego cántico nuevo"
+      "highlight": "Puso luego cántico nuevo",
+      "bookId": "PSA",
+      "chapter": 40,
+      "verse": 1
     },
     {
       "dayOfYear": 302,
@@ -2724,7 +3627,10 @@
       "subtheme": "establecimiento",
       "reference": "2 Crónicas 20:20",
       "label": "Creed",
-      "highlight": "Y seréis prosperados"
+      "highlight": "Y seréis prosperados",
+      "bookId": "2CH",
+      "chapter": 20,
+      "verse": 20
     },
     {
       "dayOfYear": 303,
@@ -2733,7 +3639,10 @@
       "subtheme": "mirada",
       "reference": "Mateo 14:31",
       "label": "Poca fe",
-      "highlight": "Mantén tus ojos en Cristo"
+      "highlight": "Mantén tus ojos en Cristo",
+      "bookId": "MAT",
+      "chapter": 14,
+      "verse": 31
     },
     {
       "dayOfYear": 304,
@@ -2742,7 +3651,10 @@
       "subtheme": "recompensa",
       "reference": "Hebreos 10:35-36",
       "label": "No pierdas la confianza",
-      "highlight": "Tiene gran galardón"
+      "highlight": "Tiene gran galardón",
+      "bookId": "HEB",
+      "chapter": 10,
+      "verse": 35
     },
     {
       "dayOfYear": 305,
@@ -2751,7 +3663,10 @@
       "subtheme": "esperanza",
       "reference": "Salmos 27:13-14",
       "label": "Hubiera yo desmayado",
-      "highlight": "Aguarda a Jehová"
+      "highlight": "Aguarda a Jehová",
+      "bookId": "PSA",
+      "chapter": 27,
+      "verse": 13
     },
     {
       "dayOfYear": 306,
@@ -2760,7 +3675,10 @@
       "subtheme": "accion_de_gracias",
       "reference": "1 Tesalonicenses 5:18",
       "label": "Da gracias",
-      "highlight": "En todo"
+      "highlight": "En todo",
+      "bookId": "1TH",
+      "chapter": 5,
+      "verse": 18
     },
     {
       "dayOfYear": 307,
@@ -2769,7 +3687,10 @@
       "subtheme": "adoracion",
       "reference": "Salmos 100:4",
       "label": "Entra agradeciendo",
-      "highlight": "Con alabanza"
+      "highlight": "Con alabanza",
+      "bookId": "PSA",
+      "chapter": 100,
+      "verse": 4
     },
     {
       "dayOfYear": 308,
@@ -2778,7 +3699,10 @@
       "subtheme": "integridad",
       "reference": "Colosenses 3:17",
       "label": "Todo con gratitud",
-      "highlight": "Dando gracias a Dios"
+      "highlight": "Dando gracias a Dios",
+      "bookId": "COL",
+      "chapter": 3,
+      "verse": 17
     },
     {
       "dayOfYear": 309,
@@ -2787,7 +3711,10 @@
       "subtheme": "memoria",
       "reference": "Salmos 103:2",
       "label": "No olvides",
-      "highlight": "Sus beneficios"
+      "highlight": "Sus beneficios",
+      "bookId": "PSA",
+      "chapter": 103,
+      "verse": 2
     },
     {
       "dayOfYear": 310,
@@ -2796,7 +3723,10 @@
       "subtheme": "siempre",
       "reference": "Efesios 5:20",
       "label": "Gracias siempre",
-      "highlight": "Por todo al Padre"
+      "highlight": "Por todo al Padre",
+      "bookId": "EPH",
+      "chapter": 5,
+      "verse": 20
     },
     {
       "dayOfYear": 311,
@@ -2805,7 +3735,10 @@
       "subtheme": "oracion",
       "reference": "Filipenses 4:6",
       "label": "Con acción de gracias",
-      "highlight": "Presenta tus peticiones"
+      "highlight": "Presenta tus peticiones",
+      "bookId": "PHP",
+      "chapter": 4,
+      "verse": 6
     },
     {
       "dayOfYear": 312,
@@ -2814,7 +3747,10 @@
       "subtheme": "bondad",
       "reference": "Salmos 107:1",
       "label": "Él es bueno",
-      "highlight": "Para siempre su misericordia"
+      "highlight": "Para siempre su misericordia",
+      "bookId": "PSA",
+      "chapter": 107,
+      "verse": 1
     },
     {
       "dayOfYear": 313,
@@ -2823,7 +3759,10 @@
       "subtheme": "reino",
       "reference": "Hebreos 12:28",
       "label": "Gratitud reverente",
-      "highlight": "Sirvamos agradándole"
+      "highlight": "Sirvamos agradándole",
+      "bookId": "HEB",
+      "chapter": 12,
+      "verse": 28
     },
     {
       "dayOfYear": 314,
@@ -2832,7 +3771,10 @@
       "subtheme": "voto",
       "reference": "Jonás 2:9",
       "label": "Con voz de alabanza",
-      "highlight": "Ofreceré sacrificio"
+      "highlight": "Ofreceré sacrificio",
+      "bookId": "JON",
+      "chapter": 2,
+      "verse": 9
     },
     {
       "dayOfYear": 315,
@@ -2841,7 +3783,10 @@
       "subtheme": "don",
       "reference": "2 Corintios 9:15",
       "label": "Gracias a Dios",
-      "highlight": "Por su don inefable"
+      "highlight": "Por su don inefable",
+      "bookId": "2CO",
+      "chapter": 9,
+      "verse": 15
     },
     {
       "dayOfYear": 316,
@@ -2850,7 +3795,10 @@
       "subtheme": "respuesta",
       "reference": "Salmos 116:12",
       "label": "¿Qué pagaré?",
-      "highlight": "Tomaré la copa de salvación"
+      "highlight": "Tomaré la copa de salvación",
+      "bookId": "PSA",
+      "chapter": 116,
+      "verse": 12
     },
     {
       "dayOfYear": 317,
@@ -2859,7 +3807,10 @@
       "subtheme": "retorno",
       "reference": "Lucas 17:15-16",
       "label": "Vuelve a dar gloria",
-      "highlight": "No seas ingrato"
+      "highlight": "No seas ingrato",
+      "bookId": "LUK",
+      "chapter": 17,
+      "verse": 15
     },
     {
       "dayOfYear": 318,
@@ -2868,7 +3819,10 @@
       "subtheme": "abundancia",
       "reference": "Colosenses 2:7",
       "label": "Rebosando",
-      "highlight": "En acciones de gracias"
+      "highlight": "En acciones de gracias",
+      "bookId": "COL",
+      "chapter": 2,
+      "verse": 7
     },
     {
       "dayOfYear": 319,
@@ -2877,7 +3831,10 @@
       "subtheme": "alabanza",
       "reference": "Salmos 95:2",
       "label": "Lleguemos ante Él",
-      "highlight": "Con alabanza"
+      "highlight": "Con alabanza",
+      "bookId": "PSA",
+      "chapter": 95,
+      "verse": 2
     },
     {
       "dayOfYear": 320,
@@ -2886,7 +3843,10 @@
       "subtheme": "misericordia",
       "reference": "Esdras 3:11",
       "label": "Porque Él es bueno",
-      "highlight": "Su misericordia es para siempre"
+      "highlight": "Su misericordia es para siempre",
+      "bookId": "EZR",
+      "chapter": 3,
+      "verse": 11
     },
     {
       "dayOfYear": 321,
@@ -2895,7 +3855,10 @@
       "subtheme": "reconocimiento",
       "reference": "Daniel 2:23",
       "label": "Te alabo",
-      "highlight": "Porque me diste sabiduría"
+      "highlight": "Porque me diste sabiduría",
+      "bookId": "DAN",
+      "chapter": 2,
+      "verse": 23
     },
     {
       "dayOfYear": 322,
@@ -2904,7 +3867,10 @@
       "subtheme": "bondad",
       "reference": "1 Crónicas 16:34",
       "label": "Dad gracias",
-      "highlight": "Porque es bueno"
+      "highlight": "Porque es bueno",
+      "bookId": "1CH",
+      "chapter": 16,
+      "verse": 34
     },
     {
       "dayOfYear": 323,
@@ -2913,7 +3879,10 @@
       "subtheme": "continuidad",
       "reference": "Salmos 34:1",
       "label": "Bendeciré",
-      "highlight": "En todo tiempo"
+      "highlight": "En todo tiempo",
+      "bookId": "PSA",
+      "chapter": 34,
+      "verse": 1
     },
     {
       "dayOfYear": 324,
@@ -2922,7 +3891,10 @@
       "subtheme": "gratitud_en_crisis",
       "reference": "Habacuc 3:17-18",
       "label": "Con todo me alegraré",
-      "highlight": "En el Dios de mi salvación"
+      "highlight": "En el Dios de mi salvación",
+      "bookId": "HAB",
+      "chapter": 3,
+      "verse": 17
     },
     {
       "dayOfYear": 325,
@@ -2931,7 +3903,10 @@
       "subtheme": "advertencia",
       "reference": "Romanos 1:21",
       "label": "No fueron agradecidos",
-      "highlight": "La ingratitud oscurece"
+      "highlight": "La ingratitud oscurece",
+      "bookId": "ROM",
+      "chapter": 1,
+      "verse": 21
     },
     {
       "dayOfYear": 326,
@@ -2940,7 +3915,10 @@
       "subtheme": "cambio",
       "reference": "Salmos 30:11-12",
       "label": "Luto en danza",
-      "highlight": "Mi alma cantará"
+      "highlight": "Mi alma cantará",
+      "bookId": "PSA",
+      "chapter": 30,
+      "verse": 11
     },
     {
       "dayOfYear": 327,
@@ -2949,7 +3927,10 @@
       "subtheme": "testimonio",
       "reference": "2 Samuel 22:50",
       "label": "Te alabaré",
-      "highlight": "Entre las naciones"
+      "highlight": "Entre las naciones",
+      "bookId": "2SA",
+      "chapter": 22,
+      "verse": 50
     },
     {
       "dayOfYear": 328,
@@ -2958,7 +3939,10 @@
       "subtheme": "intercesion",
       "reference": "Efesios 1:16",
       "label": "No ceso de dar gracias",
-      "highlight": "Haciendo memoria de ti"
+      "highlight": "Haciendo memoria de ti",
+      "bookId": "EPH",
+      "chapter": 1,
+      "verse": 16
     },
     {
       "dayOfYear": 329,
@@ -2967,7 +3951,10 @@
       "subtheme": "entereza",
       "reference": "Salmos 9:1",
       "label": "Te alabaré de todo corazón",
-      "highlight": "Contaré tus maravillas"
+      "highlight": "Contaré tus maravillas",
+      "bookId": "PSA",
+      "chapter": 9,
+      "verse": 1
     },
     {
       "dayOfYear": 330,
@@ -2976,7 +3963,10 @@
       "subtheme": "vigilancia",
       "reference": "Colosenses 4:2",
       "label": "Velen agradecidos",
-      "highlight": "La oración y gratitud juntas"
+      "highlight": "La oración y gratitud juntas",
+      "bookId": "COL",
+      "chapter": 4,
+      "verse": 2
     },
     {
       "dayOfYear": 331,
@@ -2985,7 +3975,10 @@
       "subtheme": "cielo",
       "reference": "Salmos 136:26",
       "label": "Alabad al Dios de los cielos",
-      "highlight": "Porque es eterna su misericordia"
+      "highlight": "Porque es eterna su misericordia",
+      "bookId": "PSA",
+      "chapter": 136,
+      "verse": 26
     },
     {
       "dayOfYear": 332,
@@ -2994,7 +3987,10 @@
       "subtheme": "cielo",
       "reference": "Apocalipsis 7:12",
       "label": "Acción de gracias eterna",
-      "highlight": "Sea a nuestro Dios"
+      "highlight": "Sea a nuestro Dios",
+      "bookId": "REV",
+      "chapter": 7,
+      "verse": 12
     },
     {
       "dayOfYear": 333,
@@ -3003,7 +3999,10 @@
       "subtheme": "adoracion",
       "reference": "1 Crónicas 29:13",
       "label": "Te damos gracias",
-      "highlight": "Y alabamos tu nombre"
+      "highlight": "Y alabamos tu nombre",
+      "bookId": "1CH",
+      "chapter": 29,
+      "verse": 13
     },
     {
       "dayOfYear": 334,
@@ -3012,7 +4011,10 @@
       "subtheme": "respuesta",
       "reference": "Salmos 28:7",
       "label": "Mi corazón se gozó",
-      "highlight": "Con mi cántico le alabaré"
+      "highlight": "Con mi cántico le alabaré",
+      "bookId": "PSA",
+      "chapter": 28,
+      "verse": 7
     },
     {
       "dayOfYear": 335,
@@ -3021,7 +4023,10 @@
       "subtheme": "sacrificio",
       "reference": "Hebreos 13:15",
       "label": "Sacrificio de alabanza",
-      "highlight": "Fruto de labios que confiesan su nombre"
+      "highlight": "Fruto de labios que confiesan su nombre",
+      "bookId": "HEB",
+      "chapter": 13,
+      "verse": 15
     },
     {
       "dayOfYear": 336,
@@ -3030,7 +4035,10 @@
       "subtheme": "nacimiento",
       "reference": "Lucas 2:11",
       "label": "Ha nacido",
-      "highlight": "El Salvador"
+      "highlight": "El Salvador",
+      "bookId": "LUK",
+      "chapter": 2,
+      "verse": 11
     },
     {
       "dayOfYear": 337,
@@ -3039,7 +4047,10 @@
       "subtheme": "encarnacion",
       "reference": "Mateo 1:23",
       "label": "Emanuel",
-      "highlight": "Dios con nosotros"
+      "highlight": "Dios con nosotros",
+      "bookId": "MAT",
+      "chapter": 1,
+      "verse": 23
     },
     {
       "dayOfYear": 338,
@@ -3048,7 +4059,10 @@
       "subtheme": "promesa",
       "reference": "Isaías 9:6",
       "label": "Un niño nos es nacido",
-      "highlight": "Príncipe de paz"
+      "highlight": "Príncipe de paz",
+      "bookId": "ISA",
+      "chapter": 9,
+      "verse": 6
     },
     {
       "dayOfYear": 339,
@@ -3057,7 +4071,10 @@
       "subtheme": "encarnacion",
       "reference": "Juan 1:14",
       "label": "El Verbo se hizo carne",
-      "highlight": "Habitó entre nosotros"
+      "highlight": "Habitó entre nosotros",
+      "bookId": "JHN",
+      "chapter": 1,
+      "verse": 14
     },
     {
       "dayOfYear": 340,
@@ -3066,7 +4083,10 @@
       "subtheme": "anuncio",
       "reference": "Lucas 1:30-31",
       "label": "No temas María",
-      "highlight": "Concebirás al Hijo"
+      "highlight": "Concebirás al Hijo",
+      "bookId": "LUK",
+      "chapter": 1,
+      "verse": 30
     },
     {
       "dayOfYear": 341,
@@ -3075,7 +4095,10 @@
       "subtheme": "poder",
       "reference": "Lucas 1:37",
       "label": "Nada imposible",
-      "highlight": "Para Dios"
+      "highlight": "Para Dios",
+      "bookId": "LUK",
+      "chapter": 1,
+      "verse": 37
     },
     {
       "dayOfYear": 342,
@@ -3084,7 +4107,10 @@
       "subtheme": "adoracion",
       "reference": "Lucas 1:46-47",
       "label": "Engrandece mi alma",
-      "highlight": "Mi espíritu se regocija en Dios"
+      "highlight": "Mi espíritu se regocija en Dios",
+      "bookId": "LUK",
+      "chapter": 1,
+      "verse": 46
     },
     {
       "dayOfYear": 343,
@@ -3093,7 +4119,10 @@
       "subtheme": "redencion",
       "reference": "Lucas 1:68-69",
       "label": "Nos visitó",
-      "highlight": "Y levantó salvación"
+      "highlight": "Y levantó salvación",
+      "bookId": "LUK",
+      "chapter": 1,
+      "verse": 68
     },
     {
       "dayOfYear": 344,
@@ -3102,7 +4131,10 @@
       "subtheme": "adoracion",
       "reference": "Mateo 2:10-11",
       "label": "Le adoraron",
-      "highlight": "Y le ofrecieron presentes"
+      "highlight": "Y le ofrecieron presentes",
+      "bookId": "MAT",
+      "chapter": 2,
+      "verse": 10
     },
     {
       "dayOfYear": 345,
@@ -3111,7 +4143,10 @@
       "subtheme": "profecia",
       "reference": "Miqueas 5:2",
       "label": "Belén",
-      "highlight": "De ti saldrá el Señor"
+      "highlight": "De ti saldrá el Señor",
+      "bookId": "MIC",
+      "chapter": 5,
+      "verse": 2
     },
     {
       "dayOfYear": 346,
@@ -3120,7 +4155,10 @@
       "subtheme": "senal",
       "reference": "Isaías 7:14",
       "label": "La virgen concebirá",
-      "highlight": "Y llamará su nombre Emanuel"
+      "highlight": "Y llamará su nombre Emanuel",
+      "bookId": "ISA",
+      "chapter": 7,
+      "verse": 14
     },
     {
       "dayOfYear": 347,
@@ -3129,7 +4167,10 @@
       "subtheme": "cumplimiento",
       "reference": "Gálatas 4:4-5",
       "label": "Cumplimiento del tiempo",
-      "highlight": "Dios envió a su Hijo"
+      "highlight": "Dios envió a su Hijo",
+      "bookId": "GAL",
+      "chapter": 4,
+      "verse": 4
     },
     {
       "dayOfYear": 348,
@@ -3138,7 +4179,10 @@
       "subtheme": "humildad",
       "reference": "Filipenses 2:6-7",
       "label": "Se despojó",
-      "highlight": "Tomando forma de siervo"
+      "highlight": "Tomando forma de siervo",
+      "bookId": "PHP",
+      "chapter": 2,
+      "verse": 6
     },
     {
       "dayOfYear": 349,
@@ -3147,7 +4191,10 @@
       "subtheme": "gracia",
       "reference": "2 Corintios 8:9",
       "label": "Se hizo pobre",
-      "highlight": "Para enriquecernos"
+      "highlight": "Para enriquecernos",
+      "bookId": "2CO",
+      "chapter": 8,
+      "verse": 9
     },
     {
       "dayOfYear": 350,
@@ -3156,7 +4203,10 @@
       "subtheme": "mision",
       "reference": "Juan 3:17",
       "label": "No para condenar",
-      "highlight": "Sino para salvar"
+      "highlight": "Sino para salvar",
+      "bookId": "JHN",
+      "chapter": 3,
+      "verse": 17
     },
     {
       "dayOfYear": 351,
@@ -3165,7 +4215,10 @@
       "subtheme": "testimonio",
       "reference": "1 Juan 4:14",
       "label": "Salvador del mundo",
-      "highlight": "El Padre envió al Hijo"
+      "highlight": "El Padre envió al Hijo",
+      "bookId": "1JN",
+      "chapter": 4,
+      "verse": 14
     },
     {
       "dayOfYear": 352,
@@ -3174,7 +4227,10 @@
       "subtheme": "gracia",
       "reference": "Tito 2:11",
       "label": "Gracia manifestada",
-      "highlight": "Trayendo salvación"
+      "highlight": "Trayendo salvación",
+      "bookId": "TIT",
+      "chapter": 2,
+      "verse": 11
     },
     {
       "dayOfYear": 353,
@@ -3183,7 +4239,10 @@
       "subtheme": "revelacion",
       "reference": "Hebreos 1:1-2",
       "label": "Dios ha hablado",
-      "highlight": "Por el Hijo"
+      "highlight": "Por el Hijo",
+      "bookId": "HEB",
+      "chapter": 1,
+      "verse": 1
     },
     {
       "dayOfYear": 354,
@@ -3192,7 +4251,10 @@
       "subtheme": "imagen",
       "reference": "Colosenses 1:15",
       "label": "Imagen del Dios invisible",
-      "highlight": "Cristo revela al Padre"
+      "highlight": "Cristo revela al Padre",
+      "bookId": "COL",
+      "chapter": 1,
+      "verse": 15
     },
     {
       "dayOfYear": 355,
@@ -3201,7 +4263,10 @@
       "subtheme": "luz",
       "reference": "Juan 8:12",
       "label": "Luz del mundo",
-      "highlight": "No andarás en tinieblas"
+      "highlight": "No andarás en tinieblas",
+      "bookId": "JHN",
+      "chapter": 8,
+      "verse": 12
     },
     {
       "dayOfYear": 356,
@@ -3210,7 +4275,10 @@
       "subtheme": "gloria",
       "reference": "Lucas 2:14",
       "label": "Gloria a Dios",
-      "highlight": "Y paz en la tierra"
+      "highlight": "Y paz en la tierra",
+      "bookId": "LUK",
+      "chapter": 2,
+      "verse": 14
     },
     {
       "dayOfYear": 357,
@@ -3219,7 +4287,10 @@
       "subtheme": "gozo",
       "reference": "Salmos 98:4",
       "label": "Cantad con júbilo",
-      "highlight": "Toda la tierra"
+      "highlight": "Toda la tierra",
+      "bookId": "PSA",
+      "chapter": 98,
+      "verse": 4
     },
     {
       "dayOfYear": 358,
@@ -3228,7 +4299,10 @@
       "subtheme": "alegria",
       "reference": "Salmos 96:11-13",
       "label": "Alégrense cielos y tierra",
-      "highlight": "El Señor viene"
+      "highlight": "El Señor viene",
+      "bookId": "PSA",
+      "chapter": 96,
+      "verse": 11
     },
     {
       "dayOfYear": 359,
@@ -3237,7 +4311,10 @@
       "subtheme": "preparacion",
       "reference": "Isaías 40:3-5",
       "label": "Preparad camino",
-      "highlight": "Se manifestará la gloria"
+      "highlight": "Se manifestará la gloria",
+      "bookId": "ISA",
+      "chapter": 40,
+      "verse": 3
     },
     {
       "dayOfYear": 360,
@@ -3246,7 +4323,10 @@
       "subtheme": "adopcion",
       "reference": "Juan 1:12",
       "label": "Recíbele",
-      "highlight": "Te da potestad de ser hijo"
+      "highlight": "Te da potestad de ser hijo",
+      "bookId": "JHN",
+      "chapter": 1,
+      "verse": 12
     },
     {
       "dayOfYear": 361,
@@ -3255,7 +4335,10 @@
       "subtheme": "majestad",
       "reference": "Apocalipsis 22:13",
       "label": "Alfa y Omega",
-      "highlight": "El eterno se hizo visible"
+      "highlight": "El eterno se hizo visible",
+      "bookId": "REV",
+      "chapter": 22,
+      "verse": 13
     },
     {
       "dayOfYear": 362,
@@ -3264,7 +4347,10 @@
       "subtheme": "consuelo",
       "reference": "Lucas 2:29-32",
       "label": "Luz para revelación",
-      "highlight": "Mis ojos vieron tu salvación"
+      "highlight": "Mis ojos vieron tu salvación",
+      "bookId": "LUK",
+      "chapter": 2,
+      "verse": 29
     },
     {
       "dayOfYear": 363,
@@ -3273,7 +4359,10 @@
       "subtheme": "salvacion",
       "reference": "Mateo 1:21",
       "label": "Llamarás su nombre Jesús",
-      "highlight": "Él salvará a su pueblo"
+      "highlight": "Él salvará a su pueblo",
+      "bookId": "MAT",
+      "chapter": 1,
+      "verse": 21
     },
     {
       "dayOfYear": 364,
@@ -3282,7 +4371,10 @@
       "subtheme": "rey",
       "reference": "Zacarías 9:9",
       "label": "Tu Rey viene",
-      "highlight": "Justo y salvador"
+      "highlight": "Justo y salvador",
+      "bookId": "ZEC",
+      "chapter": 9,
+      "verse": 9
     },
     {
       "dayOfYear": 365,
@@ -3291,7 +4383,10 @@
       "subtheme": "plenitud",
       "reference": "Juan 1:16",
       "label": "Gracia sobre gracia",
-      "highlight": "De su plenitud tomamos todos"
+      "highlight": "De su plenitud tomamos todos",
+      "bookId": "JHN",
+      "chapter": 1,
+      "verse": 16
     },
     {
       "dayOfYear": 366,
@@ -3300,7 +4395,10 @@
       "subtheme": "gozo",
       "reference": "Salmos 126:3",
       "label": "Grandes cosas",
-      "highlight": "Jehová ha hecho con nosotros"
+      "highlight": "Jehová ha hecho con nosotros",
+      "bookId": "PSA",
+      "chapter": 126,
+      "verse": 3
     }
   ]
 }

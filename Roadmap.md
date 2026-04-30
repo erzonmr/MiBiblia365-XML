@@ -267,54 +267,54 @@
 - [x] Se implementó `MiBiblia365.DateService` para cálculo de fecha actual y día del año, integrado al cálculo de lectura diaria.
 
 ### 2.3 Servicio de fechas
-- [ ] Crear `dateService.js`.
-- [ ] Función `esBisiesto(año)`.
-- [ ] Función `obtenerDiaDelPlan(fechaInicio, fechaHoy)`.
-- [ ] Manejo del 29 de febrero según `config.leapYearMode`.
-- [ ] Funciones de formato (fecha larga, corta, día de la semana).
+- [x] Crear `dateService.js` (implementado inline en `template-ZIA.xml`).
+- [x] Función `esBisiesto(año)` (línea ~1997 del XML).
+- [x] Función `obtenerDiaDelPlan(fechaInicio, fechaHoy)` (línea ~2001 del XML).
+- [x] Manejo del 29 de febrero según `config.leapYearMode` (implementado en `renderLeerHoyPage`).
+- [ ] Funciones de formato (fecha larga, corta, día de la semana) — *postergado a Fase 3*.
 
 ### 2.4 Plan principal: Biblia en un año
-- [ ] Definir estructura completa de los 365 días.
-- [ ] Construir `plan-biblia-anual.json`.
-- [ ] Cada día incluye: título, lecturas (con `reference`, `bookId`, `chapter`), devocional, reflexión, oración (opcionales).
-- [ ] Validar que cada `bookId` exista en la respuesta de `/api/{translation}/books.json`.
-- [ ] Validar que cada capítulo referenciado exista en la API.
-- [ ] Subir a GitHub y verificar acceso por jsDelivr.
+- [x] Definir estructura completa de los 365 días.
+- [x] Construir `plan-biblia-anual.json`.
+- [x] Cada día incluye: título, lecturas (con `reference`, `bookId`, `chapter`), devocional, reflexión, oración (opcionales).
+- [ ] Validar que cada `bookId` exista en la respuesta de `/api/{translation}/books.json`. *(postergado a Fase 4)*
+- [ ] Validar que cada capítulo referenciado exista en la API. *(postergado a Fase 4)*
+- [x] Subir a GitHub y verificar acceso por jsDelivr.
 
 ### 2.5 Página Leer hoy
-- [ ] Cargar plan activo desde localStorage.
-- [ ] Calcular día actual del plan.
-- [ ] Mostrar fecha y día del plan.
-- [ ] Selector de versión funcional (poblado desde `versions.json`).
-- [ ] Cargar y renderizar el texto bíblico usando `bibleService.getChapter()`.
-- [ ] Renderizar versículos respetando el formato devuelto por la API (notas al pie, encabezados si vienen).
-- [ ] Navegación anterior / siguiente día.
-- [ ] Botón "Marcar como leído" (guarda en localStorage).
-- [ ] Placeholder para favoritos y notas (se implementa en Fase 3).
-- [ ] Indicador de progreso del plan.
-- [ ] Manejo de atrasos (ofrecer "Ponerme al día" vs "Saltar al día de hoy").
-- [ ] Estado de error amigable si la API no responde.
+- [x] Cargar plan activo desde localStorage.
+- [x] Calcular día actual del plan (con soporte bisiesto y leapYearMode).
+- [x] Mostrar fecha y día del plan.
+- [x] Selector de versión funcional (poblado desde `BibleService.getVersions()`).
+- [x] Cargar y renderizar el texto bíblico usando `BibleService.getChapter()`.
+- [x] Renderizar versículos respetando el formato devuelto por la API.
+- [x] Navegación anterior / siguiente día (con parámetro de URL `?day=X`).
+- [x] Botón "Marcar como leído" (guarda en localStorage).
+- [ ] Placeholder para favoritos y notas (reservado para Fase 3).
+- [ ] Indicador de progreso del plan dentro de Leer hoy (disponible en Home y Mi espacio).
+- [x] Manejo de atrasos (banner con opciones "Ponerme al día" y "Continuar desde hoy").
+- [x] Estado de error amigable si la API no responde.
 
 ### 2.6 Página Planes
-- [ ] Listar planes disponibles desde `plans.json`.
-- [ ] Tarjetas con: nombre, descripción, duración, dificultad.
-- [ ] Botón "Iniciar plan" → guarda plan activo + fecha de inicio.
-- [ ] Botón "Continuar" si ya está iniciado.
-- [ ] Botón "Reiniciar plan".
-- [ ] Estado visual distinto por plan (nuevo / activo / completado).
+- [x] Listar planes disponibles desde `plans.json`.
+- [x] Tarjetas con: nombre, descripción, duración, dificultad, categoría.
+- [x] Botón "Iniciar plan" → guarda plan activo + fecha de inicio.
+- [x] Botón "Continuar" si ya está iniciado.
+- [ ] Botón "Reiniciar plan". *(postergado a Fase 3)*
+- [x] Estado visual distinto por plan (nuevo / activo).
 
 ### 2.7 Versículo diario inicial
-- [ ] Construir `versiculos-diarios.json` con 366 entradas (solo referencias, no texto).
-- [ ] Seguir línea temática mensual definida en brief.
-- [ ] Cada entrada con `reference`, `bookId`, `chapter` y `verse` para poder consultar la API.
-- [ ] Integrar en página Inicio.
-- [ ] Cargar texto vía `bibleService.getChapter()` y extraer el versículo específico.
+- [x] Construir `versiculos-diarios.json` con 366 entradas (solo referencias, no texto).
+- [x] Seguir línea temática mensual definida en brief.
+- [x] Cada entrada con `reference`, `bookId`, `chapter` y `verse` para poder consultar la API.
+- [x] Integrar en página Inicio.
+- [x] Cargar texto vía `BibleService.getChapter()` y extraer el versículo específico.
 
 ### 2.8 Flujo completo usuario nuevo
-- [ ] Inicio → Planes → Elegir plan → Leer hoy.
-- [ ] Verificar que funciona end-to-end.
-- [ ] Verificar en móvil y escritorio.
-- [ ] Medir tiempo real de carga de la primera lectura (objetivo: < 2s en 4G).
+- [x] Inicio → Planes → Elegir plan → Leer hoy.
+- [x] Verificar que funciona end-to-end.
+- [ ] Verificar en móvil y escritorio. *(tarea manual — ver Instrucciones.md)*
+- [ ] Medir tiempo real de carga de la primera lectura (objetivo: < 2s en 4G). *(tarea manual — ver Instrucciones.md)*
 
 ## Entregables Fase 2
 - Usuario puede elegir un plan e iniciar la lectura.
@@ -324,12 +324,16 @@
 - Manejo correcto del año bisiesto.
 
 ## Checklist de salida Fase 2
-- [ ] Leer hoy muestra el contenido correcto para el día correcto.
-- [ ] Cambiar de versión funciona sin recargar (nueva llamada a la API transparente).
-- [ ] El progreso se actualiza al marcar como leído.
-- [ ] Los atrasos se manejan con las dos opciones.
-- [ ] El 29 de febrero funciona según la configuración elegida.
+- [x] Leer hoy muestra el contenido correcto para el día correcto.
+- [x] Cambiar de versión funciona sin recargar (nueva llamada a la API transparente).
+- [x] El progreso se actualiza al marcar como leído.
+- [x] Los atrasos se manejan con las dos opciones.
+- [x] El 29 de febrero funciona según la configuración elegida.
 - [x] Errores de red muestran un mensaje amigable con opción de reintento.
+- [x] Navegación anterior/siguiente día funcional en Leer hoy.
+- [x] Versículo diario real cargado desde `versiculos-diarios.json`.
+- [x] Página Planes muestra descripción, dificultad y categoría.
+- [x] Mi espacio muestra resumen funcional (progreso, racha, favoritos, notas).
 
 ---
 

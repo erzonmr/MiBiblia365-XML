@@ -150,8 +150,8 @@
 
   MiBiblia365.BibleService = (function() {
     var API = {
-      primary: 'https://bible.helloao.org/api',
-      secondary: 'https://docs-bible-api.netlify.app/api'
+      primary: 'https://bible-api.deno.dev/api',
+      secondary: 'https://bible.helloao.org/api'
     };
     var memoryCache = new Map();
     var chapterStorageKey = MiBiblia365.config.storageKey + 'chapter-cache-v1';
@@ -204,8 +204,8 @@
 
     function getBooks(translationId) {
       var t = String(translationId || MiBiblia365.config.defaultVersion);
-      var primary = API.primary + '/' + encodeURIComponent(t) + '/books.json';
-      var secondary = API.secondary + '/books?translation=' + encodeURIComponent(t.toLowerCase());
+      var primary = API.primary + '/books?translation=' + encodeURIComponent(t.toLowerCase());
+      var secondary = API.secondary + '/' + encodeURIComponent(t) + '/books.json';
       return fetchJSON(primary).catch(function() { return fetchJSON(secondary); });
     }
 
@@ -217,8 +217,8 @@
       var b = String(bookId || '').toUpperCase();
       var c = Number(chapter);
 
-      var primary = API.primary + '/' + encodeURIComponent(t) + '/' + encodeURIComponent(b) + '/' + encodeURIComponent(c) + '.json';
-      var secondary = API.secondary + '/read/' + encodeURIComponent(t.toLowerCase()) + '/' + encodeURIComponent(b.toLowerCase()) + '/' + encodeURIComponent(c);
+      var primary = API.primary + '/read/' + encodeURIComponent(t.toLowerCase()) + '/' + encodeURIComponent(b.toLowerCase()) + '/' + encodeURIComponent(c);
+      var secondary = API.secondary + '/' + encodeURIComponent(t) + '/' + encodeURIComponent(b) + '/' + encodeURIComponent(c) + '.json';
 
       return fetchJSON(primary).catch(function() {
         return fetchJSON(secondary);
@@ -236,23 +236,24 @@
 
     function getUnifiedSpanishVersions() {
       return Promise.allSettled([
-        fetchJSON(API.primary + '/available_translations.json'),
-        fetchJSON(API.secondary + '/versions')
+        fetchJSON(API.primary + '/versions'),
+        fetchJSON(API.secondary + '/available_translations.json')
       ]).then(function(results) {
         var map = {};
-        var hello = results[0].status === 'fulfilled' && Array.isArray(results[0].value) ? results[0].value : [];
-        hello.forEach(function(v) {
-          var lang = String(v.language || v.lang || '').toLowerCase();
-          if (lang !== 'spa') return;
-          var id = normalizeVersionId(v.id || v.shortName || v.name);
-          map[id] = { id: id, name: v.name || v.shortName || id, language: 'spa', sources: ['helloao'] };
-        });
-        var netlify = results[1].status === 'fulfilled' && Array.isArray(results[1].value) ? results[1].value : [];
+        var netlify = results[0].status === 'fulfilled' && Array.isArray(results[0].value) ? results[0].value : [];
         netlify.forEach(function(v) {
           var raw = normalizeVersionId(v.id || v.version || v.shortName || '');
           if (!raw) return;
           if (!map[raw]) map[raw] = { id: raw, name: v.name || raw, language: 'spa', sources: [] };
           if (map[raw].sources.indexOf('netlify') === -1) map[raw].sources.push('netlify');
+        });
+        var hello = results[1].status === 'fulfilled' && Array.isArray(results[1].value) ? results[1].value : [];
+        hello.forEach(function(v) {
+          var lang = String(v.language || v.lang || '').toLowerCase();
+          if (lang !== 'spa') return;
+          var id = normalizeVersionId(v.id || v.shortName || v.name);
+          if (!map[id]) map[id] = { id: id, name: v.name || v.shortName || id, language: 'spa', sources: [] };
+          if (map[id].sources.indexOf('helloao') === -1) map[id].sources.push('helloao');
         });
         return Object.keys(map).sort().map(function(k) { return map[k]; });
       });

@@ -1,8 +1,56 @@
 [
-  {"id":"plan-anual","name":"Plan Anual","days":365,"file":"/json/Plan_Anual.json"},
-  {"id":"plan-cronologico","name":"Plan Cronológico","days":365,"file":"/json/Plan_Cronologico.json"},
-  {"id":"plan-canonico","name":"Plan Canónico","days":365,"file":"/json/Plan_Canónico.json"},
-  {"id":"plan-180-nt-salmos","name":"Plan 180 NT + Salmos","days":180,"file":"/json/Plan_180_NT_Salmos.json"},
-  {"id":"plan-combinado","name":"Plan Combinado","days":365,"file":"/json/Plan_Combinado.json"},
-  {"id":"plan-trimestral","name":"Plan Trimestral","days":90,"file":"/json/Plan_Trimestral.json"}
+  {
+    "id": "plan-anual",
+    "name": "Plan Anual",
+    "description": "Lectura completa de la Biblia en 365 días, combinando Antiguo Testamento, Salmos y Nuevo Testamento.",
+    "days": 365,
+    "difficulty": "media",
+    "category": "completo",
+    "file": "/json/Plan_Anual.json"
+  },
+  {
+    "id": "plan-cronologico",
+    "name": "Plan Cronológico",
+    "description": "Lee la Biblia en el orden en que ocurrieron los eventos históricos.",
+    "days": 365,
+    "difficulty": "media",
+    "category": "completo",
+    "file": "/json/Plan_Cronologico.json"
+  },
+  {
+    "id": "plan-canonico",
+    "name": "Plan Canónico",
+    "description": "Lectura siguiendo el orden tradicional de los libros de la Biblia.",
+    "days": 365,
+    "difficulty": "media",
+    "category": "completo",
+    "file": "/json/Plan_Canónico.json"
+  },
+  {
+    "id": "plan-180-nt-salmos",
+    "name": "Plan 180 NT + Salmos",
+    "description": "Nuevo Testamento y Salmos en 180 días, ideal para un ritmo intenso.",
+    "days": 180,
+    "difficulty": "alta",
+    "category": "nuevo-testamento",
+    "file": "/json/Plan_180_NT_Salmos.json"
+  },
+  {
+    "id": "plan-combinado",
+    "name": "Plan Combinado",
+    "description": "Combinación de pasajes del AT y NT cada día para una visión equilibrada.",
+    "days": 365,
+    "difficulty": "media",
+    "category": "completo",
+    "file": "/json/Plan_Combinado.json"
+  },
+  {
+    "id": "plan-trimestral",
+    "name": "Plan Trimestral",
+    "description": "Resumen intensivo de la Biblia en 90 días. Para quienes buscan un challenge.",
+    "days": 90,
+    "difficulty": "alta",
+    "category": "resumen",
+    "file": "/json/Plan_Trimestral.json"
+  }
 ]

@@ -1871,9 +1871,22 @@
       if (progressStatus) progressStatus.textContent = 'Día ' + activePlan.lastOpenedDay + ' de 365';
     }
 
+    function parseVerseReference(reference) {
+      const cleaned = String(reference || '').trim();
+      const match = cleaned.match(/^(.*)\s+(\d+):(\d+)$/);
+      if (!match) return null;
+      const bookName = match[1].trim();
+      const chapter = Number(match[2]);
+      const verse = Number(match[3]);
+      const bookId = getBookIdFromSpanishName(bookName);
+      if (!bookId || !chapter || !verse) return null;
+      return { reference: cleaned, bookName: bookName, bookId: bookId, chapter: chapter, verse: verse };
+    }
+
     async function loadHomeDailyVerse() {
       const verseTextEl = $('#verse-text');
       const verseRefEl = $('#verse-reference');
+      const verseLabelEl = $('.verse-label');
       if (!verseTextEl || !verseRefEl) return;
 
       const preferredVersion = normalizeVersionId(
@@ -1881,18 +1894,43 @@
       );
 
       try {
-        const chapterData = await BibleService.getChapter(preferredVersion, 'PSA', 119, { bookName: 'Salmos' });
-        const verses = Array.isArray(chapterData.verses) ? chapterData.verses : [];
-        const verse = verses.find(v => Number(v.number) === 105);
+        const catalog = await loadDailyVersesCatalog();
+        const dailyVerses = catalog && Array.isArray(catalog.dailyVerses) ? catalog.dailyVerses : [];
+        const now = new Date();
+        const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+        const entry = dailyVerses.find(v => Number(v.dayOfYear) === dayOfYear);
 
-        if (!verse || !verse.text) {
-          throw new Error('Verse not found in chapter response');
+        if (entry && entry.reference) {
+          const parsed = parseVerseReference(entry.reference);
+          if (parsed) {
+            const chapterData = await BibleService.getChapter(preferredVersion, parsed.bookId, parsed.chapter, { bookName: parsed.bookName });
+            const verses = Array.isArray(chapterData.verses) ? chapterData.verses : [];
+            const verse = verses.find(v => Number(v.number) === parsed.verse);
+
+            if (verse && verse.text) {
+              verseTextEl.textContent = verse.text;
+              verseRefEl.textContent = entry.reference + ' (' + preferredVersion + ')';
+              if (verseLabelEl && entry.label) {
+                verseLabelEl.innerHTML = [
+                  '<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">',
+                    '<path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>',
+                  '</svg>',
+                  'Versículo del día' + (entry.label ? ' · ' + entry.label : '')
+                ].join('');
+              }
+              if (entry.highlight) {
+                verseTextEl.setAttribute('title', entry.highlight);
+              }
+              return;
+            }
+          }
         }
 
-        verseTextEl.textContent = verse.text;
-        verseRefEl.textContent = 'Salmos 119:105 (' + preferredVersion + ')';
+        // Fallback: versículo guía del proyecto
+        throw new Error('Daily verse not available');
       } catch (error) {
         console.warn('Daily verse fallback to static content:', error);
+        // El HTML ya tiene el fallback estático (Salmos 119:105)
       }
     }
 
@@ -1954,6 +1992,58 @@
       const now = new Date();
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       return Math.floor((today - start) / 86400000) + 1;
+    }
+
+    function esBisiesto(year) {
+      return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
+    function obtenerDiaDelPlan(fechaInicioIso, fechaHoyIso) {
+      const start = new Date(fechaInicioIso + 'T00:00:00');
+      const today = fechaHoyIso ? new Date(fechaHoyIso + 'T00:00:00') : new Date();
+      const todayNormalized = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const diffMs = todayNormalized - start;
+      const dias = Math.floor(diffMs / 86400000) + 1;
+      return dias > 0 ? dias : 1;
+    }
+
+    function getUrlParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function setUrlParam(name, value) {
+      const url = new URL(window.location.href);
+      if (value === null || value === undefined) {
+        url.searchParams.delete(name);
+      } else {
+        url.searchParams.set(name, value);
+      }
+      window.history.replaceState({}, '', url.toString());
+    }
+
+    function getPendingDays(planState, totalDays) {
+      if (!planState || !Array.isArray(planState.completedDays)) return [];
+      const todayDay = getDaysSince(planState.startDate);
+      const maxDay = Math.min(todayDay, totalDays);
+      const pending = [];
+      for (let d = 1; d <= maxDay; d++) {
+        if (planState.completedDays.indexOf(d) === -1) {
+          pending.push(d);
+        }
+      }
+      return pending;
+    }
+
+    async function loadDailyVersesCatalog() {
+      const url = CONFIG.CDN_BASE + 'json/versiculos-diarios.json';
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('No se pudo cargar versiculos-diarios.json');
+        return res.json();
+      } catch (e) {
+        return null;
+      }
     }
 
     function ensureActiveAnnualPlan() {
@@ -2037,11 +2127,38 @@
       try {
         const planState = ensureActiveAnnualPlan();
         const allDays = await loadAnnualPlanDays();
-        const todayDay = Math.min(Math.max(getDaysSince(planState.startDate), 1), Array.isArray(allDays) ? allDays.length : 365);
-        planState.lastOpenedDay = todayDay;
+        const totalDays = Array.isArray(allDays) ? allDays.length : 365;
+
+        // Calcular día considerando bisiestos y leapYearMode
+        const urlDayParam = getUrlParam('day');
+        let targetDay;
+        if (urlDayParam) {
+          targetDay = Math.min(Math.max(Number(urlDayParam), 1), totalDays);
+        } else {
+          const computedDay = obtenerDiaDelPlan(planState.startDate);
+          const leapMode = state.user.config.leapYearMode || 'gracia';
+          const now = new Date();
+          const isLeap = esBisiesto(now.getFullYear());
+          const isFeb29 = now.getMonth() === 1 && now.getDate() === 29;
+
+          if (isLeap && isFeb29) {
+            if (leapMode === 'gracia') {
+              targetDay = Math.min(computedDay, totalDays);
+            } else {
+              // Modo repetir: usar el día 28 de febrero
+              const yesterday = new Date(now);
+              yesterday.setDate(28);
+              targetDay = obtenerDiaDelPlan(planState.startDate, yesterday.toISOString().split('T')[0]);
+            }
+          } else {
+            targetDay = Math.min(Math.max(computedDay, 1), totalDays);
+          }
+        }
+
+        planState.lastOpenedDay = targetDay;
         saveUserData(state.user);
 
-        const dayData = allDays.find(d => Number(d.dia) === todayDay) || allDays[0];
+        const dayData = allDays.find(d => Number(d.dia) === targetDay) || allDays[0];
         const readings = Array.isArray(dayData.porciones) ? dayData.porciones : [];
         const parsedReadings = readings.map(parseReadingReference).filter(Boolean);
         if (parsedReadings.length === 0) {
@@ -2055,17 +2172,51 @@
         state.user.config.preferredVersion = selectedVersion;
         saveUserData(state.user);
 
+        // Detectar días pendientes (atrasos)
+        const pendingDays = getPendingDays(planState, totalDays);
+        const todayComputed = obtenerDiaDelPlan(planState.startDate);
+        const isBehind = pendingDays.length > 0 && targetDay >= todayComputed;
+        const isViewingPastDay = targetDay < todayComputed;
+
         let currentReadingIndex = 0;
         const firstReading = parsedReadings[currentReadingIndex];
         const chapterData = await BibleService.getChapter(selectedVersion, firstReading.bookId, firstReading.chapter, { bookName: firstReading.bookName });
 
+        // HTML de navegación de días
+        const prevDayDisabled = targetDay <= 1;
+        const nextDayDisabled = targetDay >= totalDays;
+        const isToday = targetDay === todayComputed;
+
+        let arrearsBanner = '';
+        if (isBehind && !isViewingPastDay) {
+          const catchUpUrl = window.location.origin + '/p/leer-hoy.html?day=' + pendingDays[0];
+          const todayUrl = window.location.origin + '/p/leer-hoy.html';
+          arrearsBanner = [
+            '<section class="card" style="margin-bottom:16px;background:var(--accent-gold-light);color:#1a1a1a;">',
+              '<h3 style="font-size:1rem;margin-bottom:8px;">Tienes ' + pendingDays.length + ' día' + (pendingDays.length > 1 ? 's' : '') + ' pendiente' + (pendingDays.length > 1 ? 's' : '') + '</h3>',
+              '<p style="margin-bottom:12px;font-size:0.9rem;">No te preocupes, cada día es una nueva oportunidad en Su Palabra.</p>',
+              '<div style="display:flex;gap:10px;">',
+                '<a class="btn" href="' + catchUpUrl + '" style="background:#fff;color:var(--accent-primary);font-size:0.85rem;">Ponerme al día</a>',
+                '<a class="btn btn-primary" href="' + todayUrl + '" style="font-size:0.85rem;">Continuar desde hoy</a>',
+              '</div>',
+            '</section>'
+          ].join('');
+        }
+
         dynamic.innerHTML = [
           '<div class="page-container">',
             '<section class="card" style="margin-bottom:16px;">',
-              '<h2 style="margin-bottom:8px;">Leer hoy</h2>',
-              '<p class="text-muted">Día ' + todayDay + ' de 365</p>',
+              '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">',
+                '<h2 style="margin:0;">' + (isToday ? 'Leer hoy' : 'Día ' + targetDay) + '</h2>',
+                '<div style="display:flex;gap:8px;">',
+                  '<button class="btn" id="day-prev-btn" type="button" ' + (prevDayDisabled ? 'disabled' : '') + '>&larr; Ant.</button>',
+                  '<button class="btn" id="day-next-btn" type="button" ' + (nextDayDisabled ? 'disabled' : '') + '>Sig. &rarr;</button>',
+                '</div>',
+              '</div>',
+              '<p class="text-muted">Día ' + targetDay + ' de ' + totalDays + (isViewingPastDay ? ' · <span style="color:var(--accent-gold);">Día pasado</span>' : '') + '</p>',
               '<p style="margin-top:8px;"><strong>Lecturas:</strong> ' + readings.join(' · ') + '</p>',
             '</section>',
+            arrearsBanner,
             '<section class="card" style="margin-bottom:16px;">',
               '<label class="text-muted" for="version-select">Versión bíblica</label>',
               '<select id="version-select" style="width:100%;margin-top:8px;padding:10px;border-radius:8px;border:1px solid var(--border-light);background:var(--bg-secondary);color:var(--text-primary);">',
@@ -2088,6 +2239,22 @@
             '</section>',
           '</div>'
         ].join('');
+
+        // Navegación entre días
+        const dayPrevBtn = $('#day-prev-btn');
+        if (dayPrevBtn && !prevDayDisabled) {
+          dayPrevBtn.addEventListener('click', function() {
+            setUrlParam('day', targetDay - 1);
+            renderLeerHoyPage();
+          });
+        }
+        const dayNextBtn = $('#day-next-btn');
+        if (dayNextBtn && !nextDayDisabled) {
+          dayNextBtn.addEventListener('click', function() {
+            setUrlParam('day', targetDay + 1);
+            renderLeerHoyPage();
+          });
+        }
 
         async function renderCurrentReading() {
           const reading = parsedReadings[currentReadingIndex];
@@ -2147,8 +2314,8 @@
         const markBtn = $('#mark-read-btn');
         if (markBtn) {
           markBtn.addEventListener('click', function() {
-            if (planState.completedDays.indexOf(todayDay) === -1) {
-              planState.completedDays.push(todayDay);
+            if (planState.completedDays.indexOf(targetDay) === -1) {
+              planState.completedDays.push(targetDay);
               planState.completedDays.sort(function(a, b) { return a - b; });
               saveUserData(state.user);
             }
@@ -2157,7 +2324,7 @@
           });
         }
 
-        prefetchNextDay(allDays, todayDay, selectedVersion);
+        prefetchNextDay(allDays, targetDay, selectedVersion);
       } catch (error) {
         renderErrorState(dynamic, 'No pudimos cargar la lectura de hoy.', renderLeerHoyPage);
       }
@@ -2194,16 +2361,24 @@
           listEl.innerHTML = plans.map(function(plan) {
             const isActive = plan.id === activePlanId;
             const label = isActive ? '<span class="chip" style="background:var(--accent-primary);color:#fff;font-size:0.75rem;">Activo</span>' : '';
+            const difficultyLabel = plan.difficulty ? '<span class="chip" style="font-size:0.7rem;background:var(--bg-tertiary);color:var(--text-tertiary);text-transform:capitalize;">' + plan.difficulty + '</span>' : '';
+            const categoryLabel = plan.category ? '<span class="chip" style="font-size:0.7rem;background:var(--bg-tertiary);color:var(--text-tertiary);">' + plan.category + '</span>' : '';
+            const desc = plan.description ? '<p class="text-muted" style="font-size:0.85rem;margin-top:6px;line-height:1.4;">' + plan.description + '</p>' : '';
 
             return [
               '<div class="card" style="margin-bottom:14px;padding:18px;">',
-                '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">',
+                '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px;">',
                   '<div>',
                     '<h2 style="font-size:1.05rem;font-weight:700;margin:0 0 4px;">' + plan.name + '</h2>',
-                    '<span class="text-muted" style="font-size:0.85rem;">' + plan.days + ' días</span>',
+                    '<div style="display:flex;gap:6px;flex-wrap:wrap;">',
+                      '<span class="text-muted" style="font-size:0.85rem;">' + plan.days + ' días</span>',
+                      difficultyLabel,
+                      categoryLabel,
+                    '</div>',
                   '</div>',
                   label,
                 '</div>',
+                desc,
                 '<div style="display:flex;gap:10px;margin-top:12px;">',
                   isActive
                     ? '<a class="btn btn-primary" href="' + (window.location.origin + '/p/leer-hoy.html') + '" style="font-size:0.88rem;min-height:40px;padding:0 14px;">Continuar</a>'
@@ -2391,6 +2566,112 @@
       ].join('');
     }
 
+    function renderMiEspacioPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+
+      const userData = state.user;
+      const activePlanId = userData && userData.config ? userData.config.activePlanId : null;
+      const activePlan = activePlanId && Array.isArray(userData.plans)
+        ? userData.plans.find(function(p) { return p.planId === activePlanId; })
+        : null;
+
+      const streak = userData && userData.config && userData.config.streak ? userData.config.streak : 0;
+      const favCount = Array.isArray(userData.favorites) ? userData.favorites.length : 0;
+      const noteCount = Array.isArray(userData.notes) ? userData.notes.length : 0;
+
+      let progressHTML = '';
+      if (activePlan) {
+        const completed = activePlan.completedDays ? activePlan.completedDays.length : 0;
+        const total = 365;
+        const percent = Math.round((completed / total) * 100);
+        const lastDay = activePlan.lastOpenedDay || 1;
+        progressHTML = [
+          '<section class="card" style="margin-bottom:16px;">',
+            '<h2 style="font-size:1.2rem;margin-bottom:12px;">Tu progreso</h2>',
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">',
+              '<span class="text-muted">' + activePlan.name + '</span>',
+              '<span style="font-weight:600;">' + percent + '%</span>',
+            '</div>',
+            '<div class="progress-bar" style="margin-bottom:8px;">',
+              '<div class="progress-fill" style="width:' + percent + '%;"></div>',
+            '</div>',
+            '<p class="text-muted" style="font-size:0.85rem;">Día ' + lastDay + ' de ' + total + ' · ' + completed + ' días completados</p>',
+            '<a class="btn btn-primary" href="/p/leer-hoy.html" style="margin-top:12px;display:inline-block;">Continuar leyendo</a>',
+          '</section>'
+        ].join('');
+      } else {
+        progressHTML = [
+          '<section class="card" style="margin-bottom:16px;text-align:center;">',
+            '<p class="text-muted" style="margin-bottom:12px;">Aún no has iniciado un plan de lectura.</p>',
+            '<a class="btn btn-primary" href="/p/planes.html">Elegir un plan</a>',
+          '</section>'
+        ].join('');
+      }
+
+      dynamic.innerHTML = [
+        '<div class="page-container">',
+          '<section style="margin-bottom:20px;">',
+            '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Mi espacio</h1>',
+            '<p class="text-muted">Tu centro personal de lectura bíblica.</p>',
+          '</section>',
+          progressHTML,
+          '<section class="card" style="margin-bottom:16px;">',
+            '<h2 style="font-size:1.2rem;margin-bottom:12px;">Resumen</h2>',
+            '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;">',
+              '<div>',
+                '<div style="font-size:1.5rem;font-weight:700;color:var(--accent-primary);">' + streak + '</div>',
+                '<div class="text-muted" style="font-size:0.8rem;">Racha</div>',
+              '</div>',
+              '<div>',
+                '<div style="font-size:1.5rem;font-weight:700;color:var(--accent-primary);">' + favCount + '</div>',
+                '<div class="text-muted" style="font-size:0.8rem;">Favoritos</div>',
+              '</div>',
+              '<div>',
+                '<div style="font-size:1.5rem;font-weight:700;color:var(--accent-primary);">' + noteCount + '</div>',
+                '<div class="text-muted" style="font-size:0.8rem;">Notas</div>',
+              '</div>',
+            '</div>',
+          '</section>',
+          '<section class="card" style="margin-bottom:16px;">',
+            '<h2 style="font-size:1.2rem;margin-bottom:12px;">Configuración</h2>',
+            '<div style="display:flex;flex-direction:column;gap:10px;">',
+              '<div style="display:flex;justify-content:space-between;align-items:center;">',
+                '<span>Modo oscuro</span>',
+                '<button class="btn" id="mi-espacio-theme-toggle" type="button">' + (state.theme === 'dark' ? 'Desactivar' : 'Activar') + '</button>',
+              '</div>',
+              '<div style="display:flex;justify-content:space-between;align-items:center;">',
+                '<span>Exportar datos</span>',
+                '<button class="btn" id="mi-espacio-export" type="button">Descargar JSON</button>',
+              '</div>',
+            '</div>',
+          '</section>',
+        '</div>'
+      ].join('');
+
+      const themeToggle = $('#mi-espacio-theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+          toggleTheme();
+          renderMiEspacioPage();
+        });
+      }
+
+      const exportBtn = $('#mi-espacio-export');
+      if (exportBtn) {
+        exportBtn.addEventListener('click', function() {
+          const data = JSON.stringify(userData, null, 2);
+          const blob = new Blob([data], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'mibiblia365-respaldo-' + new Date().toISOString().split('T')[0] + '.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
+    }
+
     async function renderCurrentPage() {
       showCurrentPageContainer();
 
@@ -2417,7 +2698,7 @@
           renderPlaceholderPage('Buscar en la Biblia', 'El buscador bíblico estará disponible próximamente. Podrás buscar palabras o frases en toda la Biblia.');
           break;
         case 'mi-espacio':
-          renderPlaceholderPage('Mi espacio', 'Aquí encontrarás tu progreso, favoritos, notas y configuración personal. Esta sección estará completa próximamente.');
+          renderMiEspacioPage();
           break;
         case 'plan-completo':
           renderPlaceholderPage('Plan completo', 'El calendario completo de tu plan de lectura estará disponible próximamente.');
