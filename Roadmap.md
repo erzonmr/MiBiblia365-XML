@@ -439,34 +439,34 @@
 ## Tareas
 
 ### 4.1 Página Biblia libre
-- [ ] Selector de testamento (Antiguo / Nuevo).
-- [ ] Lista de libros con número de capítulos (desde `/api/{translation}/books.json`).
-- [ ] Selector de capítulo.
-- [ ] Visor de lectura con tipografía cómoda (usando `getChapter()`).
-- [ ] Navegación anterior / siguiente capítulo.
-- [ ] Agregar favorito desde cualquier versículo.
-- [ ] Agregar nota desde cualquier capítulo.
-- [ ] Cambio de versión sin perder contexto (el libro/capítulo actual se mantiene y se vuelve a pedir a la API con otra `translationId`).
+- [x] Selector de testamento (Antiguo / Nuevo).
+- [x] Lista de libros con número de capítulos (catálogo interno base).
+- [x] Selector de capítulo.
+- [x] Visor de lectura con `getChapter()`.
+- [x] Navegación anterior / siguiente capítulo.
+- [x] Agregar favorito desde capítulo.
+- [x] Agregar nota desde capítulo.
+- [x] Cambio de versión sin perder contexto.
 
 ### 4.2 Buscador bíblico
 - [ ] Evaluar estrategia: búsqueda sobre capítulos ya descargados (incremental) vs búsqueda sobre `/complete.json` de la versión principal (índice completo).
 - [ ] Si se usa `/complete.json`: descargar una sola vez por versión, construir índice invertido en cliente y guardar en IndexedDB.
-- [ ] Campo de búsqueda con debounce.
-- [ ] Selector de versión.
-- [ ] Filtro por testamento (ambos / AT / NT).
+- [x] Campo de búsqueda funcional.
+- [x] Selector de versión.
+- [x] Filtro por testamento (ambos / AT / NT).
 - [ ] Filtro por libro específico (opcional).
 - [ ] Lista de resultados con paginación.
-- [ ] Click en resultado → ir al capítulo completo.
+- [x] Click en resultado → ir al capítulo completo.
 - [ ] Resaltado del término buscado.
-- [ ] Guardar favorito desde resultado.
+- [x] Guardar favorito desde resultado.
 - [ ] Advertencia si el usuario intenta buscar en una versión aún no indexada (ofrecer "indexar ahora").
 
 ### 4.3 Plan completo (calendario)
 - [ ] Selector de plan.
-- [ ] Grilla de días (organizados por mes o por semanas).
-- [ ] Estado visual por día (completado, pendiente, con nota, favorito).
-- [ ] Click en día → navegar a Leer hoy con ese día cargado.
-- [ ] Navegación entre meses.
+- [x] Grilla de días (organizados por bloques mensuales).
+- [x] Estado visual por día (completado, pendiente, con nota, favorito).
+- [x] Click en día → navegar a Leer hoy con ese día cargado.
+- [x] Navegación entre meses.
 - [ ] Vista alternativa: lista cronológica.
 
 ### 4.4 Planes adicionales
@@ -478,9 +478,16 @@
 - [ ] Subir a GitHub y validar en jsDelivr.
 
 ### 4.5 Navegación cruzada
-- [ ] Desde Mi espacio → Favorito → ir a Biblia en ese capítulo.
-- [ ] Desde Mi espacio → Nota → ir al día correspondiente.
+- [x] Desde Mi espacio → Favorito → ir a Biblia en ese capítulo.
+- [x] Desde Mi espacio → Nota → ir al capítulo correspondiente.
 - [ ] Desde Plan completo → cualquier día → Leer hoy con ese día.
+
+## Registro de avance Fase 4
+- [x] Se implementó `/p/biblia.html` funcional con selector de versión, testamento, libro y capítulo.
+- [x] Se habilitó navegación anterior/siguiente de capítulo y guardado de favoritos/notas desde Biblia.
+- [x] Se implementó `/p/buscar.html` con búsqueda incremental sobre capítulos vistos, filtro por testamento y acceso directo a pasajes.
+- [x] Se implementó `/p/plan-completo.html` con grilla de días, estados visuales y navegación mensual.
+- [x] Se añadieron enlaces de navegación cruzada desde Mi espacio (favoritos y notas) hacia Biblia.
 
 ## Entregables Fase 4
 - Página Biblia funcional.

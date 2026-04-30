@@ -8,7 +8,7 @@ Repositorio del proyecto **Mi Biblia 365**: app web tipo dashboard devocional so
 - `Templates XML/` es solo referencia histórica; no es fuente de verdad técnica.
 - Lógica JS standalone adicional en `CDN/js/app.js` (compatibilidad/iteraciones).
 - Datos de planes y versículos en `json/` con nombres actuales del repositorio.
-- Fase 2 cerrada y Fase 3 en implementación activa (Mi espacio completo, respaldo e historial).
+- Fase 2 y Fase 3 cerradas; Fase 4 en ejecución (Biblia libre, buscador y plan completo).
 
 ## Arquitectura vigente
 

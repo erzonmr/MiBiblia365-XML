@@ -185,3 +185,25 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 ### 19) Recordatorio de respaldo
 - Validar que se muestre recordatorio cuando no existe `lastBackupAt`.
 - Ejecutar una exportación y confirmar que actualiza fecha de último respaldo.
+
+---
+
+## Fase 4 — Verificación manual inicial
+
+### 20) Biblia libre
+- Abrir `/p/biblia.html`.
+- Validar selector de versión, testamento, libro y capítulo.
+- Probar botones de capítulo anterior/siguiente.
+- Guardar un favorito y una nota desde esta página.
+
+### 21) Buscador
+- Abrir `/p/buscar.html`.
+- Buscar una palabra común (por ejemplo `Dios`) en capítulos previamente abiertos.
+- Validar filtros de testamento.
+- Abrir un resultado en Biblia y guardar favorito desde resultado.
+
+### 22) Plan completo
+- Abrir `/p/plan-completo.html`.
+- Validar cambio de mes con botones anterior/siguiente.
+- Verificar estados visuales por día (completado, con nota, favorito).
+- Entrar a un día específico y confirmar navegación a `/p/leer-hoy.html?day=X`.

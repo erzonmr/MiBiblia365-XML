@@ -2734,6 +2734,302 @@
       ].join('');
     }
 
+    const BIBLE_BOOKS = [
+      { id: 'GEN', name: 'Genesis', testament: 'AT', chapters: 50 },
+      { id: 'EXO', name: 'Exodo', testament: 'AT', chapters: 40 },
+      { id: 'LEV', name: 'Levitico', testament: 'AT', chapters: 27 },
+      { id: 'NUM', name: 'Numeros', testament: 'AT', chapters: 36 },
+      { id: 'DEU', name: 'Deuteronomio', testament: 'AT', chapters: 34 },
+      { id: 'JOS', name: 'Josue', testament: 'AT', chapters: 24 },
+      { id: 'JDG', name: 'Jueces', testament: 'AT', chapters: 21 },
+      { id: 'RUT', name: 'Rut', testament: 'AT', chapters: 4 },
+      { id: '1SA', name: '1 Samuel', testament: 'AT', chapters: 31 },
+      { id: '2SA', name: '2 Samuel', testament: 'AT', chapters: 24 },
+      { id: '1KI', name: '1 Reyes', testament: 'AT', chapters: 22 },
+      { id: '2KI', name: '2 Reyes', testament: 'AT', chapters: 25 },
+      { id: '1CH', name: '1 Cronicas', testament: 'AT', chapters: 29 },
+      { id: '2CH', name: '2 Cronicas', testament: 'AT', chapters: 36 },
+      { id: 'EZR', name: 'Esdras', testament: 'AT', chapters: 10 },
+      { id: 'NEH', name: 'Nehemias', testament: 'AT', chapters: 13 },
+      { id: 'EST', name: 'Ester', testament: 'AT', chapters: 10 },
+      { id: 'JOB', name: 'Job', testament: 'AT', chapters: 42 },
+      { id: 'PSA', name: 'Salmos', testament: 'AT', chapters: 150 },
+      { id: 'PRO', name: 'Proverbios', testament: 'AT', chapters: 31 },
+      { id: 'ECC', name: 'Eclesiastes', testament: 'AT', chapters: 12 },
+      { id: 'SNG', name: 'Cantares', testament: 'AT', chapters: 8 },
+      { id: 'ISA', name: 'Isaias', testament: 'AT', chapters: 66 },
+      { id: 'JER', name: 'Jeremias', testament: 'AT', chapters: 52 },
+      { id: 'LAM', name: 'Lamentaciones', testament: 'AT', chapters: 5 },
+      { id: 'EZK', name: 'Ezequiel', testament: 'AT', chapters: 48 },
+      { id: 'DAN', name: 'Daniel', testament: 'AT', chapters: 12 },
+      { id: 'HOS', name: 'Oseas', testament: 'AT', chapters: 14 },
+      { id: 'JOL', name: 'Joel', testament: 'AT', chapters: 3 },
+      { id: 'AMO', name: 'Amos', testament: 'AT', chapters: 9 },
+      { id: 'OBA', name: 'Abdias', testament: 'AT', chapters: 1 },
+      { id: 'JON', name: 'Jonas', testament: 'AT', chapters: 4 },
+      { id: 'MIC', name: 'Miqueas', testament: 'AT', chapters: 7 },
+      { id: 'NAM', name: 'Nahum', testament: 'AT', chapters: 3 },
+      { id: 'HAB', name: 'Habacuc', testament: 'AT', chapters: 3 },
+      { id: 'ZEP', name: 'Sofonias', testament: 'AT', chapters: 3 },
+      { id: 'HAG', name: 'Hageo', testament: 'AT', chapters: 2 },
+      { id: 'ZEC', name: 'Zacarias', testament: 'AT', chapters: 14 },
+      { id: 'MAL', name: 'Malaquias', testament: 'AT', chapters: 4 },
+      { id: 'MAT', name: 'Mateo', testament: 'NT', chapters: 28 },
+      { id: 'MRK', name: 'Marcos', testament: 'NT', chapters: 16 },
+      { id: 'LUK', name: 'Lucas', testament: 'NT', chapters: 24 },
+      { id: 'JHN', name: 'Juan', testament: 'NT', chapters: 21 },
+      { id: 'ACT', name: 'Hechos', testament: 'NT', chapters: 28 },
+      { id: 'ROM', name: 'Romanos', testament: 'NT', chapters: 16 },
+      { id: '1CO', name: '1 Corintios', testament: 'NT', chapters: 16 },
+      { id: '2CO', name: '2 Corintios', testament: 'NT', chapters: 13 },
+      { id: 'GAL', name: 'Galatas', testament: 'NT', chapters: 6 },
+      { id: 'EPH', name: 'Efesios', testament: 'NT', chapters: 6 },
+      { id: 'PHP', name: 'Filipenses', testament: 'NT', chapters: 4 },
+      { id: 'COL', name: 'Colosenses', testament: 'NT', chapters: 4 },
+      { id: '1TH', name: '1 Tesalonicenses', testament: 'NT', chapters: 5 },
+      { id: '2TH', name: '2 Tesalonicenses', testament: 'NT', chapters: 3 },
+      { id: '1TI', name: '1 Timoteo', testament: 'NT', chapters: 6 },
+      { id: '2TI', name: '2 Timoteo', testament: 'NT', chapters: 4 },
+      { id: 'TIT', name: 'Tito', testament: 'NT', chapters: 3 },
+      { id: 'PHM', name: 'Filemon', testament: 'NT', chapters: 1 },
+      { id: 'HEB', name: 'Hebreos', testament: 'NT', chapters: 13 },
+      { id: 'JAS', name: 'Santiago', testament: 'NT', chapters: 5 },
+      { id: '1PE', name: '1 Pedro', testament: 'NT', chapters: 5 },
+      { id: '2PE', name: '2 Pedro', testament: 'NT', chapters: 3 },
+      { id: '1JN', name: '1 Juan', testament: 'NT', chapters: 5 },
+      { id: '2JN', name: '2 Juan', testament: 'NT', chapters: 1 },
+      { id: '3JN', name: '3 Juan', testament: 'NT', chapters: 1 },
+      { id: 'JUD', name: 'Judas', testament: 'NT', chapters: 1 },
+      { id: 'REV', name: 'Apocalipsis', testament: 'NT', chapters: 22 }
+    ];
+
+    function getBookById(bookId) {
+      return BIBLE_BOOKS.find(function(b) { return b.id === String(bookId || '').toUpperCase(); }) || null;
+    }
+
+    async function renderBibliaPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+      dynamic.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><p class="text-muted">Cargando Biblia...</p></div>';
+
+      const versions = await BibleService.getVersions();
+      const preferred = normalizeVersionId((state.user && state.user.config && state.user.config.preferredVersion) || CONFIG.DEFAULT_VERSION);
+      const selectedVersion = getUrlParam('version') || preferred;
+      const selectedTestament = getUrlParam('testament') || 'AT';
+      const availableBooks = BIBLE_BOOKS.filter(function(b) { return b.testament === selectedTestament; });
+      const selectedBookId = getUrlParam('book') || (availableBooks[0] ? availableBooks[0].id : 'GEN');
+      const selectedBook = getBookById(selectedBookId) || availableBooks[0];
+      const selectedChapter = Number(getUrlParam('chapter') || 1);
+      const chapter = Math.max(1, Math.min(selectedChapter, selectedBook ? selectedBook.chapters : 1));
+
+      dynamic.innerHTML = [
+        '<div class="page-container">',
+          '<section style="margin-bottom:16px;">',
+            '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Biblia</h1>',
+            '<p class="text-muted">Lectura libre por libro y capitulo.</p>',
+          '</section>',
+          '<section class="card" style="margin-bottom:12px;display:grid;grid-template-columns:1fr;gap:10px;">',
+            '<select id="biblia-version">' + versions.map(function(v) { return '<option value="' + v.id + '"' + (v.id === selectedVersion ? ' selected' : '') + '>' + v.name + ' (' + v.id + ')</option>'; }).join('') + '</select>',
+            '<select id="biblia-testament"><option value="AT"' + (selectedTestament === 'AT' ? ' selected' : '') + '>Antiguo Testamento</option><option value="NT"' + (selectedTestament === 'NT' ? ' selected' : '') + '>Nuevo Testamento</option></select>',
+            '<select id="biblia-book">' + availableBooks.map(function(b) { return '<option value="' + b.id + '"' + (b.id === selectedBookId ? ' selected' : '') + '>' + b.name + '</option>'; }).join('') + '</select>',
+            '<select id="biblia-chapter">' + Array.from({ length: selectedBook.chapters }, function(_, i) { const n = i + 1; return '<option value="' + n + '"' + (n === chapter ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select>',
+          '</section>',
+          '<section class="card" id="biblia-reading">',
+            '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px;">',
+              '<button class="btn" id="biblia-prev">Capitulo anterior</button>',
+              '<p class="text-muted" style="margin:0;">' + selectedBook.name + ' ' + chapter + '</p>',
+              '<button class="btn" id="biblia-next">Capitulo siguiente</button>',
+            '</div>',
+            '<h3 style="margin-bottom:10px;">' + selectedBook.name + ' ' + chapter + ' (' + selectedVersion + ')</h3>',
+            '<div id="biblia-verses"><p class="text-muted">Cargando texto...</p></div>',
+            '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">',
+              '<button class="btn" id="biblia-favorite" type="button">Guardar favorito</button>',
+              '<button class="btn" id="biblia-note" type="button">Agregar nota</button>',
+            '</div>',
+          '</section>',
+        '</div>'
+      ].join('');
+
+      async function loadCurrentChapter() {
+        const box = $('#biblia-verses');
+        if (box) box.innerHTML = '<p class="text-muted">Cargando texto...</p>';
+        try {
+          const data = await BibleService.getChapter(selectedVersion, selectedBook.id, chapter, { bookName: selectedBook.name });
+          if (box) box.innerHTML = renderChapterVerses(data.verses);
+          trackHistory('chapters', {
+            reference: selectedBook.name + ' ' + chapter,
+            versionId: selectedVersion,
+            bookId: selectedBook.id,
+            chapter: chapter,
+            viewedAt: new Date().toISOString()
+          });
+        } catch (_) {
+          if (box) renderErrorState(box, 'No se pudo cargar el capitulo.', loadCurrentChapter);
+        }
+      }
+
+      const nextParams = function(next) {
+        Object.keys(next).forEach(function(k) { setUrlParam(k, next[k]); });
+        renderBibliaPage();
+      };
+
+      $('#biblia-version').addEventListener('change', function(e) { nextParams({ version: e.target.value }); });
+      $('#biblia-testament').addEventListener('change', function(e) { nextParams({ testament: e.target.value, book: null, chapter: 1 }); });
+      $('#biblia-book').addEventListener('change', function(e) { nextParams({ book: e.target.value, chapter: 1 }); });
+      $('#biblia-chapter').addEventListener('change', function(e) { nextParams({ chapter: e.target.value }); });
+      $('#biblia-prev').addEventListener('click', function() { if (chapter > 1) nextParams({ chapter: chapter - 1 }); });
+      $('#biblia-next').addEventListener('click', function() { if (chapter < selectedBook.chapters) nextParams({ chapter: chapter + 1 }); });
+
+      $('#biblia-favorite').addEventListener('click', function() {
+        const created = addFavoriteFromReading({ reference: selectedBook.name + ' ' + chapter, bookId: selectedBook.id, chapter: chapter }, selectedVersion);
+        window.alert(created ? 'Favorito guardado.' : 'Este pasaje ya estaba guardado.');
+      });
+      $('#biblia-note').addEventListener('click', function() {
+        const content = window.prompt('Escribe tu nota para ' + selectedBook.name + ' ' + chapter + ':');
+        if (!content || !content.trim()) return;
+        addNoteFromReading({ reference: selectedBook.name + ' ' + chapter, bookId: selectedBook.id, chapter: chapter }, content.trim(), null, null);
+        window.alert('Nota guardada.');
+      });
+
+      await loadCurrentChapter();
+    }
+
+    async function renderBuscarPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+      dynamic.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><p class="text-muted">Cargando buscador...</p></div>';
+      const versions = await BibleService.getVersions();
+      const selectedVersion = getUrlParam('version') || normalizeVersionId((state.user && state.user.config && state.user.config.preferredVersion) || CONFIG.DEFAULT_VERSION);
+      const selectedTestament = getUrlParam('testament') || 'ALL';
+
+      dynamic.innerHTML = [
+        '<div class="page-container">',
+          '<section style="margin-bottom:16px;">',
+            '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Buscar</h1>',
+            '<p class="text-muted">Busca palabras o frases en los capitulos que ya has visitado.</p>',
+          '</section>',
+          '<section class="card" style="margin-bottom:12px;display:grid;grid-template-columns:1fr;gap:10px;">',
+            '<input id="buscar-query" placeholder="Ej. amor, fe, esperanza" type="text" style="padding:10px;border-radius:8px;border:1px solid var(--border-light);background:var(--bg-secondary);color:var(--text-primary);"/>',
+            '<select id="buscar-version">' + versions.map(function(v) { return '<option value="' + v.id + '"' + (v.id === selectedVersion ? ' selected' : '') + '>' + v.name + ' (' + v.id + ')</option>'; }).join('') + '</select>',
+            '<select id="buscar-testament"><option value="ALL"' + (selectedTestament === 'ALL' ? ' selected' : '') + '>Toda la Biblia</option><option value="AT"' + (selectedTestament === 'AT' ? ' selected' : '') + '>Antiguo Testamento</option><option value="NT"' + (selectedTestament === 'NT' ? ' selected' : '') + '>Nuevo Testamento</option></select>',
+            '<button class="btn btn-primary" id="buscar-btn" type="button">Buscar</button>',
+          '</section>',
+          '<section class="card"><div id="buscar-results"><p class="text-muted">Escribe un termino y pulsa buscar.</p></div></section>',
+        '</div>'
+      ].join('');
+
+      async function runSearch() {
+        const q = ($('#buscar-query').value || '').trim();
+        if (!q) return;
+        const versionId = $('#buscar-version').value;
+        const testament = $('#buscar-testament').value;
+        const resultsEl = $('#buscar-results');
+        resultsEl.innerHTML = '<p class="text-muted">Buscando...</p>';
+        trackHistory('searches', { query: q, versionId: versionId, searchedAt: new Date().toISOString() });
+
+        const candidates = (state.user.history.chapters || []).filter(function(c) {
+          if (testament === 'ALL') return true;
+          const b = getBookById(c.bookId);
+          return b && b.testament === testament;
+        });
+
+        const uniqueMap = {};
+        candidates.forEach(function(c) {
+          const key = c.bookId + '|' + c.chapter;
+          if (!uniqueMap[key]) uniqueMap[key] = c;
+        });
+        const unique = Object.keys(uniqueMap).map(function(k) { return uniqueMap[k]; }).slice(0, 25);
+
+        const hits = [];
+        for (let i = 0; i < unique.length; i += 1) {
+          const chapterInfo = unique[i];
+          try {
+            const chapterData = await BibleService.getChapter(versionId, chapterInfo.bookId, chapterInfo.chapter, { bookName: getBookById(chapterInfo.bookId).name });
+            const matchVerses = (chapterData.verses || []).filter(function(v) { return String(v.text || '').toLowerCase().indexOf(q.toLowerCase()) !== -1; }).slice(0, 4);
+            matchVerses.forEach(function(v) {
+              const ref = getBookById(chapterInfo.bookId).name + ' ' + chapterInfo.chapter + ':' + v.number;
+              hits.push({ ref: ref, text: v.text, bookId: chapterInfo.bookId, chapter: chapterInfo.chapter });
+            });
+          } catch (_) {}
+        }
+
+        if (!hits.length) {
+          resultsEl.innerHTML = '<p class="text-muted">No encontramos resultados en los capitulos indexados localmente. Abre mas capitulos desde Biblia para ampliar la busqueda.</p>';
+          return;
+        }
+
+        resultsEl.innerHTML = hits.slice(0, 30).map(function(hit) {
+          return [
+            '<div style="padding:10px 0;border-bottom:1px solid var(--border-light);">',
+              '<p style="font-weight:600;margin-bottom:4px;">' + hit.ref + '</p>',
+              '<p class="text-muted" style="font-size:0.9rem;">' + hit.text + '</p>',
+              '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">',
+                '<a class="btn" href="/p/biblia.html?version=' + encodeURIComponent(versionId) + '&book=' + encodeURIComponent(hit.bookId) + '&chapter=' + encodeURIComponent(hit.chapter) + '">Abrir pasaje</a>',
+                '<button class="btn" type="button" data-buscar-fav="' + hit.ref + '" data-book-id="' + hit.bookId + '" data-chapter="' + hit.chapter + '">Guardar favorito</button>',
+              '</div>',
+            '</div>'
+          ].join('');
+        }).join('');
+
+        $$('#buscar-results [data-buscar-fav]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            const ref = btn.getAttribute('data-buscar-fav');
+            const bookId = btn.getAttribute('data-book-id');
+            const chapter = Number(btn.getAttribute('data-chapter'));
+            const created = addFavoriteFromReading({ reference: ref, bookId: bookId, chapter: chapter }, versionId);
+            window.alert(created ? 'Favorito guardado.' : 'Ya estaba en favoritos.');
+          });
+        });
+      }
+
+      $('#buscar-btn').addEventListener('click', runSearch);
+      $('#buscar-query').addEventListener('keydown', function(e) { if (e.key === 'Enter') runSearch(); });
+    }
+
+    async function renderPlanCompletoPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+      dynamic.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><p class="text-muted">Cargando plan completo...</p></div>';
+      const allDays = await loadAnnualPlanDays();
+      const planState = ensureActiveAnnualPlan();
+      const monthParam = Number(getUrlParam('month') || 1);
+      const month = Math.max(1, Math.min(monthParam, 12));
+      const start = (month - 1) * 31 + 1;
+      const end = Math.min(start + 30, allDays.length);
+      const completed = new Set(planState.completedDays || []);
+
+      dynamic.innerHTML = [
+        '<div class="page-container">',
+          '<section style="margin-bottom:16px;">',
+            '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Plan completo</h1>',
+            '<p class="text-muted">Calendario de avance del plan activo.</p>',
+          '</section>',
+          '<section class="card" style="margin-bottom:12px;display:flex;gap:8px;align-items:center;">',
+            '<button class="btn" id="plan-month-prev"' + (month <= 1 ? ' disabled' : '') + '>Mes anterior</button>',
+            '<span class="text-muted" style="flex:1;text-align:center;">Mes ' + month + '</span>',
+            '<button class="btn" id="plan-month-next"' + (month >= 12 ? ' disabled' : '') + '>Mes siguiente</button>',
+          '</section>',
+          '<section class="card">',
+            '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">',
+              allDays.filter(function(d) { return Number(d.dia) >= start && Number(d.dia) <= end; }).map(function(d) {
+                const day = Number(d.dia);
+                const done = completed.has(day);
+                const hasNote = (state.user.notes || []).some(function(n) { return Number(n.day) === day; });
+                const hasFav = (state.user.favorites || []).some(function(f) { return String(f.reference || '').indexOf(' ' + day + ':') !== -1; });
+                const badges = (done ? '✓' : '·') + (hasNote ? ' N' : '') + (hasFav ? ' F' : '');
+                return '<a href="/p/leer-hoy.html?day=' + day + '" style="text-decoration:none;padding:10px;border:1px solid var(--border-light);border-radius:10px;background:' + (done ? 'var(--bg-tertiary)' : 'var(--bg-secondary)') + ';color:var(--text-primary);"><strong>D' + day + '</strong><br/><span class="text-muted" style="font-size:0.78rem;">' + badges + '</span></a>';
+              }).join(''),
+            '</div>',
+          '</section>',
+        '</div>'
+      ].join('');
+
+      const prev = $('#plan-month-prev');
+      const next = $('#plan-month-next');
+      if (prev) prev.addEventListener('click', function() { setUrlParam('month', month - 1); renderPlanCompletoPage(); });
+      if (next) next.addEventListener('click', function() { setUrlParam('month', month + 1); renderPlanCompletoPage(); });
+    }
+
     function renderPlaceholderPage(title, description) {
       const dynamic = $('#page-dynamic');
       if (!dynamic) return;
@@ -2826,7 +3122,7 @@
         const items = (userData.favorites || []).slice();
         if (!items.length) return '<div class="card"><p class="text-muted">Aún no tienes favoritos.</p></div>';
         return items.map(function(item) {
-          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong> <span class="text-muted">(' + (item.translationId || '-') + ')</span></p><p class="text-muted" style="font-size:0.8rem;">' + (item.savedAt || '') + '</p><button class="btn" type="button" data-favorite-remove="' + item.id + '">Eliminar</button></div>';
+          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong> <span class="text-muted">(' + (item.translationId || '-') + ')</span></p><p class="text-muted" style="font-size:0.8rem;">' + (item.savedAt || '') + '</p><div style="display:flex;gap:8px;flex-wrap:wrap;"><a class="btn" href="/p/biblia.html?version=' + encodeURIComponent(item.translationId || CONFIG.DEFAULT_VERSION) + '&book=' + encodeURIComponent(item.bookId || 'GEN') + '&chapter=' + encodeURIComponent(item.chapter || 1) + '">Abrir pasaje</a><button class="btn" type="button" data-favorite-remove="' + item.id + '">Eliminar</button></div></div>';
         }).join('');
       }
 
@@ -2834,7 +3130,7 @@
         const items = (userData.notes || []).slice();
         if (!items.length) return '<div class="card"><p class="text-muted">Aún no tienes notas.</p></div>';
         return items.map(function(item) {
-          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong></p><p style="margin:6px 0;">' + item.content + '</p><p class="text-muted" style="font-size:0.8rem;">Actualizada: ' + (item.updatedAt || item.createdAt || '') + '</p><div style="display:flex;gap:8px;"><button class="btn" type="button" data-note-edit="' + item.id + '">Editar</button><button class="btn" type="button" data-note-remove="' + item.id + '">Eliminar</button></div></div>';
+          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong></p><p style="margin:6px 0;">' + item.content + '</p><p class="text-muted" style="font-size:0.8rem;">Actualizada: ' + (item.updatedAt || item.createdAt || '') + '</p><div style="display:flex;gap:8px;flex-wrap:wrap;"><a class="btn" href="/p/biblia.html?book=' + encodeURIComponent(item.bookId || 'GEN') + '&chapter=' + encodeURIComponent(item.chapter || 1) + '">Ir al capitulo</a><button class="btn" type="button" data-note-edit="' + item.id + '">Editar</button><button class="btn" type="button" data-note-remove="' + item.id + '">Eliminar</button></div></div>';
         }).join('');
       }
 
@@ -3041,16 +3337,16 @@
           renderInstalarPage();
           break;
         case 'biblia':
-          renderPlaceholderPage('Explorar Biblia', 'Aquí podrás navegar libremente cualquier libro y capítulo de la Biblia. Esta función estará disponible en la siguiente fase.');
+          await renderBibliaPage();
           break;
         case 'buscar':
-          renderPlaceholderPage('Buscar en la Biblia', 'El buscador bíblico estará disponible próximamente. Podrás buscar palabras o frases en toda la Biblia.');
+          await renderBuscarPage();
           break;
         case 'mi-espacio':
           renderMiEspacioPage();
           break;
         case 'plan-completo':
-          renderPlaceholderPage('Plan completo', 'El calendario completo de tu plan de lectura estará disponible próximamente.');
+          await renderPlanCompletoPage();
           break;
         default:
           break;
