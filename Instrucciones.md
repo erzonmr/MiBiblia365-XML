@@ -93,11 +93,11 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 
 > **Nota:** En Blogger, las páginas `/p/*.html` cargan el layout completo del XML (incluyendo los scripts). El JS detecta la URL y renderiza el contenido correcto en `#page-dynamic`. Si hay problemas, verificar en DevTools que el JS no arroja errores de importación.
 
-### 9) Verificar que el año del footer es correcto (Listo)
+### 9) Verificar que el año del footer es correcto (✅)
 - Abrir el sitio y revisar que el footer muestra el año actual.
 - El año se actualiza dinámicamente via JS (`new Date().getFullYear()`).
 
-### 10) QA Dark mode (Listo)
+### 10) QA Dark mode (✅)
 - Activar modo oscuro desde el toggle del header.
 - Verificar que todas las páginas cambian correctamente de tema.
 - Verificar que la preferencia persiste al recargar.
@@ -128,7 +128,7 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 
 ## Fase 2 — Tareas manuales pendientes
 
-### 11) Validar flujos de fallback en producción (Blogger) (Listo)
+### 11) Validar flujos de fallback en producción (Blogger) (✅)
 - Abrir `/p/leer-hoy.html` en Blogger y cambiar entre versiones en español.
 - Confirmar que cuando una fuente falle (CORS/timeout), la lectura continúa desde la fuente alterna.
 - Registrar en este archivo qué versión falló en qué fuente y cómo respondió el fallback.
@@ -139,12 +139,12 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
   - `mibiblia365-chapter-cache-v1` (ámbito de `CDN/js/app.js`).
 - Confirmar que los datos se regeneran correctamente al recargar.
 
-### 13) Prefetch del día siguiente (Implementado)
+### 13) Prefetch del día siguiente (✅)
 - Función `prefetchNextDay()` agregada en `template-ZIA.xml`. Se ejecuta automáticamente al finalizar el render de "Leer hoy".
 - Tarea manual pendiente: medir si reduce tiempo de carga percibido al entrar el día siguiente.
 - Decisión actual: mantener activo por defecto (usa caché existente, sin costo adicional si el capítulo ya está cacheado).
 
-### 14) UX de errores con botón reintentar (Implementado)
+### 14) UX de errores con botón reintentar (✅)
 - Helper `renderErrorState()` agregado en `template-ZIA.xml`. Muestra mensaje amigable + botón "Reintentar".
 - Integrado en `renderLeerHoyPage()` (error global de carga) y en `renderCurrentReading()` (error de lectura individual).
 - Tarea manual pendiente: simular offline en DevTools y confirmar recuperación al volver online.
@@ -153,7 +153,7 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 
 ## Fase 3 — Verificación manual de cierre
 
-### 15) Mi espacio por pestañas
+### 15) Mi espacio por pestañas (✅)
 - Abrir `/p/mi-espacio.html` y comprobar que aparecen pestañas:
   - Resumen
   - Planes
@@ -163,19 +163,19 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
   - Configuración
   - Respaldo
 
-### 16) Favoritos y notas desde Leer hoy
+### 16) Favoritos y notas desde Leer hoy (✅)
 - Abrir `/p/leer-hoy.html`.
 - En una lectura, usar botones:
   - `Guardar favorito`
   - `Añadir nota`
 - Validar que ambos elementos aparezcan en Mi espacio.
 
-### 17) Racha con día de gracia
+### 17) Racha con día de gracia (✅)
 - Marcar lectura diaria y verificar incremento de racha.
 - Probar un escenario con 1 día omitido en la misma semana y confirmar que la racha no se rompe.
 - Probar más de 1 día omitido para confirmar reinicio de racha.
 
-### 18) Respaldo JSON
+### 18) Respaldo JSON (✅)
 - En Mi espacio > Respaldo:
   - Exportar JSON.
   - Importar modo `reemplazar` con el archivo exportado.
@@ -190,19 +190,20 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 
 ## Fase 4 — Verificación manual inicial
 
-### 20) Biblia libre
+### 20) Biblia libre (✅)
 - Abrir `/p/biblia.html`.
 - Validar selector de versión, testamento, libro y capítulo.
 - Probar botones de capítulo anterior/siguiente.
 - Guardar un favorito y una nota desde esta página.
 
-### 21) Buscador
+### 21) Buscador (❌)
 - Abrir `/p/buscar.html`.
 - Buscar una palabra común (por ejemplo `Dios`) en capítulos previamente abiertos.
 - Validar filtros de testamento.
 - Abrir un resultado en Biblia y guardar favorito desde resultado.
+- Buscador falla parcialmente, resulatos de palabras que aparecen al comienzo de la Biblia se ven, aunque no todas, generalmente solo Génesis, palabras que aparecen más adentro del contenido de la Biblia no cargan, interfaz se queda cargando y después sale este mensaje: 'No encontramos resultados en los capitulos indexados localmente. Abre mas capitulos desde Biblia para ampliar la busqueda'.
 
-### 22) Plan completo
+### 22) Plan completo (✅) 
 - Abrir `/p/plan-completo.html`.
 - Validar cambio de mes con botones anterior/siguiente.
 - Verificar estados visuales por día (completado, con nota, favorito).
