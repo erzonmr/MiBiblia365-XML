@@ -43,15 +43,15 @@
 ## Tareas
 
 ### 0.1 Validación de APIs bíblicas (doble fuente)
-- [ ] Crear archivo HTML de prueba local (`test-api.html`).
+- [x] Crear archivo HTML de prueba local (`test-api.html`).
 - [x] Consumir `GET https://bible.helloao.org/api/available_translations.json`.
 - [x] Consumir `GET https://docs-bible-api.netlify.app/api/versions`.
 - [x] Filtrar en JS las traducciones con idioma español (`language: "spa"` o equivalente según el esquema real).
 - [ ] Documentar el listado de versiones en español disponibles (esperadas: al menos una Reina Valera de dominio público y algunas modernas).
 - [x] Consumir libros/capítulos en ambas APIs para una versión española y verificar estructura.
-- [ ] Verificar tiempo de respuesta (objetivo: < 1 segundo por capítulo).
+- [x] Verificar tiempo de respuesta (objetivo: < 1 segundo por capítulo).
 - [x] Confirmar soporte CORS desde dominio externo (Blogger / localhost).
-- [ ] Documentar el **esquema real del JSON de capítulo**: cómo vienen los versículos, notas al pie, formato, encabezados de sección.
+- [x] Documentar el **esquema real del JSON de capítulo**: cómo vienen los versículos, notas al pie, formato, encabezados de sección.
 - [ ] Probar caché del navegador en llamadas repetidas.
 - [ ] Probar el endpoint `/complete.json` de una traducción para evaluar peso y uso futuro en el buscador.
 
@@ -75,8 +75,8 @@
 - [ ] Nota explícita en el README: "Este proyecto no modifica el contenido de las traducciones bíblicas."
 
 ### 0.4 Validación de jsDelivr
-- [ ] Subir un `test.json` al repo.
-- [ ] Acceder vía `https://cdn.jsdelivr.net/gh/USUARIO/REPO@main/test.json`.
+- [x] Subir un `test.json` al repo.
+- [x] Acceder vía `https://cdn.jsdelivr.net/gh/USUARIO/REPO@main/test.json`.
 - [ ] Verificar tiempo de respuesta.
 - [ ] Probar comportamiento de caché tras modificar el archivo.
 - [ ] Documentar estrategia de invalidación (tags vs commits).
@@ -96,7 +96,7 @@
 - [x] Crear blog nuevo en Blogger con dominio propio. Dominio: `www.mibiblia365.com`
 - [x] Configurar zona horaria, idioma (español), región.
 - [x] Desactivar comentarios en páginas.
-- [ ] Configurar opciones de búsqueda y meta descripciones.
+- [x] Configurar opciones de búsqueda y meta descripciones.
 - [x] Crear las páginas estáticas vacías (sin contenido, solo estructura):
   - [x] `/p/leer-hoy.html`
   - [x] `/p/planes.html`
@@ -109,10 +109,10 @@
   - [x] `/p/instalar.html`
 
 ### 0.7 JSON iniciales
-- [ ] Subir `versions.json` (subconjunto curado desde `available_translations.json`).
-- [ ] Crear `plans.json` con catálogo de planes previstos.
-- [ ] Crear `config.json` con valores por defecto (incluyendo `defaultTranslationId` y `leapYearMode`).
-- [ ] Subir a GitHub y validar acceso por jsDelivr. **Nota:** Verificar carpeta `json/`, ahí dentro están los .json de los planes y los versículos diarios.  
+- [x] Subir `versions.json` (subconjunto curado desde `available_translations.json`).
+- [x] Crear `plans.json` con catálogo de planes previstos.
+- [x] Crear `config.json` con valores por defecto (incluyendo `defaultTranslationId` y `leapYearMode`).
+- [x] Subir a GitHub y validar acceso por jsDelivr. **Nota:** Verificar carpeta `json/`, ahí dentro están los .json de los planes y los versículos diarios.  
 
 ## Entregables Fase 0
 - Repositorio GitHub inicial operativo.
@@ -124,8 +124,8 @@
 
 ## Checklist de salida Fase 0
 - [x] El flujo dual de APIs responde correctamente para al menos 3 versiones en español.
-- [ ] El esquema del JSON de capítulo está documentado.
-- [ ] jsDelivr entrega los JSON sin problemas.
+- [x] El esquema del JSON de capítulo está documentado.
+- [x] jsDelivr entrega los JSON sin problemas.
 - [x] Blogger tiene la estructura de páginas lista.
 - [ ] El diseño visual tiene dirección clara.
 
