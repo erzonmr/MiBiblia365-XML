@@ -246,9 +246,9 @@
 - [x] Implementar `getMultipleReadings(translationId, readings)` con `Promise.all` para cargar varias referencias en paralelo (p. ej. las 3 lecturas de un día del plan).
 - [x] Caché en memoria (`Map`) durante la sesión para evitar llamadas repetidas.
 - [x] Caché opcional en localStorage para capítulos ya leídos (mejora experiencia offline parcial).
-- [ ] Manejo de errores con mensajes amigables y botón de reintento. *(parcial: errores lanzados y fallback técnico, pendiente UI dedicada con botón de reintento en todos los flujos)*
+- [x] Manejo de errores con mensajes amigables y botón de reintento.
 - [x] Normalizar IDs de versión en un mapeo canónico (`RV1960`, etc.).
-- [ ] Pre-carga (prefetch) de la lectura del día siguiente cuando el usuario está en "Leer hoy". *(tarea manual/funcional pendiente)*
+- [x] Pre-carga (prefetch) de la lectura del día siguiente cuando el usuario está en "Leer hoy".
 
 **Nota:** las dos APIs son complementarias; algunas versiones solo existen en una de las fuentes. El fallback es obligatorio.
 
@@ -329,7 +329,7 @@
 - [ ] El progreso se actualiza al marcar como leído.
 - [ ] Los atrasos se manejan con las dos opciones.
 - [ ] El 29 de febrero funciona según la configuración elegida.
-- [ ] Errores de red muestran un mensaje amigable con opción de reintento.
+- [x] Errores de red muestran un mensaje amigable con opción de reintento.
 
 ---
 

@@ -139,12 +139,12 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
   - `mibiblia365-chapter-cache-v1` (ámbito de `CDN/js/app.js`).
 - Confirmar que los datos se regeneran correctamente al recargar.
 
-### 13) Prefetch del día siguiente (pendiente funcional)
-- Implementar o validar prefetch de la primera lectura del día siguiente al terminar la lectura del día actual.
-- Medir si reduce tiempo de carga percibido al entrar el día siguiente.
-- Documentar resultado y decisión (mantener / descartar por consumo de red).
+### 13) Prefetch del día siguiente (Implementado)
+- Función `prefetchNextDay()` agregada en `template-ZIA.xml`. Se ejecuta automáticamente al finalizar el render de "Leer hoy".
+- Tarea manual pendiente: medir si reduce tiempo de carga percibido al entrar el día siguiente.
+- Decisión actual: mantener activo por defecto (usa caché existente, sin costo adicional si el capítulo ya está cacheado).
 
-### 14) UX de errores con botón reintentar (Opcional)
-- En `/p/leer-hoy.html`, simular fallo de red (offline en DevTools) y confirmar mensaje amigable.
-- Agregar/validar botón "Reintentar" donde aplique y confirmar recuperación al volver online.
-- Documentar capturas o notas de comportamiento final.
+### 14) UX de errores con botón reintentar (Implementado)
+- Helper `renderErrorState()` agregado en `template-ZIA.xml`. Muestra mensaje amigable + botón "Reintentar".
+- Integrado en `renderLeerHoyPage()` (error global de carga) y en `renderCurrentReading()` (error de lectura individual).
+- Tarea manual pendiente: simular offline en DevTools y confirmar recuperación al volver online.

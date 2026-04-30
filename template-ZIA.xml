@@ -1986,6 +1986,19 @@
       return res.json();
     }
 
+    async function prefetchNextDay(allDays, todayDay, versionId) {
+      if (!Array.isArray(allDays) || allDays.length === 0) return;
+      const nextDay = todayDay >= allDays.length ? 1 : todayDay + 1;
+      const dayData = allDays.find(function(d) { return Number(d.dia) === nextDay; });
+      if (!dayData || !Array.isArray(dayData.porciones)) return;
+      const readings = dayData.porciones.map(parseReadingReference).filter(Boolean);
+      if (readings.length === 0) return;
+      const version = normalizeVersionId(versionId || CONFIG.DEFAULT_VERSION);
+      readings.forEach(function(r) {
+        BibleService.getChapter(version, r.bookId, r.chapter, { bookName: r.bookName }).catch(function() {});
+      });
+    }
+
     function renderChapterVerses(verses) {
       if (!Array.isArray(verses) || verses.length === 0) {
         return '<p class="text-muted">No se encontraron versículos para este capítulo.</p>';
@@ -1994,6 +2007,25 @@
       return verses.map(v => (
         '<p><strong>' + v.number + '</strong> ' + v.text + '</p>'
       )).join('');
+    }
+
+    function renderErrorState(container, message, onRetry) {
+      if (!container) return;
+      const retryId = 'retry-btn-' + Math.random().toString(36).slice(2, 9);
+      container.innerHTML = [
+        '<div class="card" style="text-align:center;padding:24px 16px;">',
+          '<p style="margin-bottom:8px;font-weight:500;">' + (message || 'Algo salió mal') + '</p>',
+          '<p class="text-muted" style="margin-bottom:16px;">No te preocupes, tu progreso está guardado. Puedes intentarlo de nuevo.</p>',
+          '<button class="btn btn-primary" id="' + retryId + '" type="button">Reintentar</button>',
+        '</div>'
+      ].join('');
+      const btn = document.getElementById(retryId);
+      if (btn && typeof onRetry === 'function') {
+        btn.addEventListener('click', function() {
+          container.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><p class="text-muted">Cargando...</p></div>';
+          onRetry();
+        });
+      }
     }
 
     async function renderLeerHoyPage() {
@@ -2075,8 +2107,8 @@
           try {
             const currentChapter = await BibleService.getChapter(currentVersion, reading.bookId, reading.chapter, { bookName: reading.bookName });
             if (versesBox) versesBox.innerHTML = renderChapterVerses(currentChapter.verses);
-          } catch (_) {
-            if (versesBox) versesBox.innerHTML = '<p class="text-muted">No se pudo cargar la lectura. Intenta otra versión.</p>';
+          } catch (err) {
+            if (versesBox) renderErrorState(versesBox, 'No se pudo cargar esta lectura.', renderCurrentReading);
           }
         }
 
@@ -2124,16 +2156,10 @@
             if (msg) msg.textContent = '¡Bien! Un día más en Su Palabra.';
           });
         }
+
+        prefetchNextDay(allDays, todayDay, selectedVersion);
       } catch (error) {
-        dynamic.innerHTML = [
-          '<div class="page-container">',
-            '<section class="card">',
-              '<h2 style="margin-bottom:8px;">Leer hoy</h2>',
-              '<p class="text-muted">No pudimos cargar la lectura. Verifica tu conexión e intenta de nuevo.</p>',
-              '<p class="text-muted mt-md">Detalle técnico: ' + (error && error.message ? error.message : 'Error desconocido') + '</p>',
-            '</section>',
-          '</div>'
-        ].join('');
+        renderErrorState(dynamic, 'No pudimos cargar la lectura de hoy.', renderLeerHoyPage);
       }
     }
 
