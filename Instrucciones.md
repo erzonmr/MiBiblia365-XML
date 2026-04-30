@@ -128,7 +128,7 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 
 ## Fase 2 — Tareas manuales pendientes
 
-### 11) Validar flujos de fallback en producción (Blogger)
+### 11) Validar flujos de fallback en producción (Blogger) (Listo)
 - Abrir `/p/leer-hoy.html` en Blogger y cambiar entre versiones en español.
 - Confirmar que cuando una fuente falle (CORS/timeout), la lectura continúa desde la fuente alterna.
 - Registrar en este archivo qué versión falló en qué fuente y cómo respondió el fallback.
@@ -144,7 +144,7 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 - Medir si reduce tiempo de carga percibido al entrar el día siguiente.
 - Documentar resultado y decisión (mantener / descartar por consumo de red).
 
-### 14) UX de errores con botón reintentar
+### 14) UX de errores con botón reintentar (Opcional)
 - En `/p/leer-hoy.html`, simular fallo de red (offline en DevTools) y confirmar mensaje amigable.
 - Agregar/validar botón "Reintentar" donde aplique y confirmar recuperación al volver online.
 - Documentar capturas o notas de comportamiento final.
