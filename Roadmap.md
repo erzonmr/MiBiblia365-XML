@@ -488,6 +488,7 @@
 - [x] Se implementó `/p/buscar.html` con búsqueda incremental sobre capítulos vistos, filtro por testamento y acceso directo a pasajes.
 - [x] Se implementó `/p/plan-completo.html` con grilla de días, estados visuales y navegación mensual.
 - [x] Se añadieron enlaces de navegación cruzada desde Mi espacio (favoritos y notas) hacia Biblia.
+- [x] Se conectó el acceso visible a `Plan completo` desde `Planes` (botón "Ver plan completo") y desde `Mi espacio > Planes` (botón "Abrir calendario").
 
 ## Entregables Fase 4
 - Página Biblia funcional.
