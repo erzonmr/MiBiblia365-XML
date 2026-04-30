@@ -32,7 +32,8 @@
 6. **No optimizar antes de tiempo.** Backend solo cuando se justifique.
 7. **Foco en lectura bíblica pura.** No se integran comentarios ni datasets de la API en el producto inicial, aunque la Free Use Bible API los ofrezca.
 8. **Tareas manuales.** Si surgen tareas que se deban realizar de manera manual, se debe dejar registro e instrucciones claras en el archivo `Instrucciones.md`. 
-9. **XML de Trabajo.** Dentro del repositorio está el archivo `template-ZIA.xml`, ese es el archivo XML donde se va a trabajar. Este será el archivo que se subirá a Blogger.  
+9. **XML de Trabajo.** Dentro del repositorio está el archivo `template-ZIA.xml`, ese es el archivo XML donde se va a trabajar. Este será el archivo que se subirá a Blogger.
+10. **Documentación de APIs.** La carpeta `docs_APIs/` contiene la documentación sobre ambas APIs usadas en el proyecto (son complementarias ya que hay versiones que se hallan en una API y en otra no), se debe consultar esta documentación siempre que se necesite o requiera presición sobre su uso.   
 
 ---
 
@@ -47,7 +48,7 @@
 - [x] Consumir `GET https://bible.helloao.org/api/available_translations.json`.
 - [x] Consumir `GET https://docs-bible-api.netlify.app/api/versions`.
 - [x] Filtrar en JS las traducciones con idioma español (`language: "spa"` o equivalente según el esquema real).
-- [ ] Documentar el listado de versiones en español disponibles (esperadas: al menos una Reina Valera de dominio público y algunas modernas).
+- [x] Documentar el listado de versiones en español disponibles (esperadas: al menos una Reina Valera de dominio público y algunas modernas). En `docs_APIs/` hay dos archivos .md con la documentación de ambas APIs Bíblicas.  
 - [x] Consumir libros/capítulos en ambas APIs para una versión española y verificar estructura.
 - [x] Verificar tiempo de respuesta (objetivo: < 1 segundo por capítulo).
 - [x] Confirmar soporte CORS desde dominio externo (Blogger / localhost).
