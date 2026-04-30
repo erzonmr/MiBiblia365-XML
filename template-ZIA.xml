@@ -15,22 +15,39 @@
   
   <!-- Favicon e íconos -->
   <link expr:href='data:blog.blogspotUrl + "favicon.ico"' rel='icon' type='image/x-icon'/>
-  <link href='https://i.postimg.cc/K8X7sM1S/icon-192.png' rel='apple-touch-icon' sizes='192x192'/>
+  <link href='https://i.postimg.cc/yx6MC7Zr/apple-touch-icon.png' rel='apple-touch-icon' sizes='180x180'/>
+  <link href='https://i.postimg.cc/K8X7sM1S/icon-192.png' rel='icon' sizes='192x192' type='image/png'/>
   <link href='https://i.postimg.cc/qvXKbZff/icon-512.png' rel='icon' sizes='512x512' type='image/png'/>
-  
+
   <!-- SEO básico -->
   <title><data:blog.pageTitle/></title>
   <meta expr:content='data:blog.metaDescription' name='description'/>
   <meta content='biblia, lectura biblica, devocional, Reina Valera, planes de lectura, leer la biblia en un año, cristiano' name='keywords'/>
-  
-  <!-- Open Graph -->
+
+  <!-- Open Graph completo -->
   <meta content='Mi Biblia 365' property='og:site_name'/>
   <meta content='website' property='og:type'/>
   <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
-  
-  <!-- Fonts -->
+  <meta expr:content='data:blog.pageTitle' property='og:title'/>
+  <meta expr:content='data:blog.metaDescription' property='og:description'/>
+  <meta content='https://i.postimg.cc/qvXKbZff/icon-512.png' property='og:image'/>
+  <meta content='512' property='og:image:width'/>
+  <meta content='512' property='og:image:height'/>
+
+  <!-- Twitter Cards -->
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:blog.pageTitle' name='twitter:title'/>
+  <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+  <meta content='https://i.postimg.cc/qvXKbZff/icon-512.png' name='twitter:image'/>
+
+  <!-- Preconnect a APIs bíblicas -->
+  <link href='https://bible.helloao.org' rel='preconnect'/>
+  <link href='https://bible-api.deno.dev' rel='preconnect'/>
+
+  <!-- Preconnect a fuentes y CDN -->
   <link href='https://fonts.googleapis.com' rel='preconnect'/>
   <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link href='https://cdn.jsdelivr.net' rel='preconnect'/>
   <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap' rel='stylesheet'/>
   
   <!-- CSS Principal -->
@@ -800,7 +817,7 @@
       outline: 2px solid var(--accent-primary);
       outline-offset: 2px;
     }
-    
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -808,6 +825,169 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
+    }
+
+    /* ============================================
+       Footer
+       ============================================ */
+
+    .app-footer {
+      padding: var(--spacing-xl) var(--spacing-lg);
+      padding-bottom: calc(var(--bottom-nav-height) + var(--safe-area-inset-bottom) + var(--spacing-xl));
+      border-top: 1px solid var(--border-light);
+      background: var(--bg-secondary);
+    }
+
+    @media (min-width: 769px) {
+      .app-footer {
+        padding-bottom: var(--spacing-xl);
+      }
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-links {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-links a {
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-credit {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: var(--spacing-sm) auto;
+      line-height: 1.55;
+    }
+
+    .footer-credit a {
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+
+    .footer-year {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: var(--spacing-sm);
+    }
+
+    /* ============================================
+       Páginas internas (stubs)
+       ============================================ */
+
+    .static-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: var(--spacing-lg);
+    }
+
+    .static-page h1 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .static-page .page-lead {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .static-page section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .static-page h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .static-page p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .static-page ul {
+      padding-left: var(--spacing-lg);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .static-page ul li {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .install-platform {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .install-platform h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-primary);
+      margin-bottom: var(--spacing-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .install-platform ol {
+      padding-left: var(--spacing-lg);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
     }
   ]]></b:skin>
 </head>
@@ -969,7 +1149,26 @@
       </div>
       
     </main>
-    
+
+    <!-- Footer -->
+    <footer class='app-footer' id='app-footer'>
+      <div class='footer-inner'>
+        <p class='footer-text'>Mi Biblia 365 &mdash; Lectura bíblica diaria.</p>
+        <p class='footer-links'>
+          <a expr:href='data:blog.homepageUrl + "p/acerca.html"'>Acerca</a>
+          &middot;
+          <a expr:href='data:blog.homepageUrl + "p/preguntas-frecuentes.html"'>Preguntas frecuentes</a>
+          &middot;
+          <a expr:href='data:blog.homepageUrl + "p/instalar.html"'>Instalar</a>
+        </p>
+        <p class='footer-credit'>
+          Texto bíblico provisto por <a href='https://bible.helloao.org' rel='noopener noreferrer' target='_blank'>Free Use Bible API</a>.
+          Este proyecto no modifica el contenido de las traducciones bíblicas.
+        </p>
+        <p class='footer-year'>&copy; <span id='footer-year'>2026</span> Mi Biblia 365</p>
+      </div>
+    </footer>
+
     <!-- Navegación móvil inferior -->
     <nav class='nav-mobile'>
       <div class='nav-mobile-inner'>
@@ -1917,10 +2116,267 @@
       }
     }
 
+    function renderPlanesPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+
+      const userData = state.user;
+      const activePlanId = userData && userData.config ? userData.config.activePlanId : null;
+
+      dynamic.innerHTML = [
+        '<div class="page-container">',
+          '<section style="margin-bottom:20px;">',
+            '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Planes de lectura</h1>',
+            '<p class="text-muted">Elige un plan y comienza tu lectura estructurada de la Biblia.</p>',
+          '</section>',
+          '<div id="plans-list"><div class="loading-container"><div class="loading-spinner"></div><p class="text-muted">Cargando planes...</p></div></div>',
+        '</div>'
+      ].join('');
+
+      fetch(CONFIG.CDN_BASE + 'json/plans.json')
+        .then(function(r) { return r.json(); })
+        .then(function(plans) {
+          const listEl = $('#plans-list');
+          if (!listEl) return;
+
+          if (!Array.isArray(plans) || plans.length === 0) {
+            listEl.innerHTML = '<p class="text-muted">No se encontraron planes disponibles.</p>';
+            return;
+          }
+
+          listEl.innerHTML = plans.map(function(plan) {
+            const isActive = plan.id === activePlanId;
+            const label = isActive ? '<span class="chip" style="background:var(--accent-primary);color:#fff;font-size:0.75rem;">Activo</span>' : '';
+
+            return [
+              '<div class="card" style="margin-bottom:14px;padding:18px;">',
+                '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">',
+                  '<div>',
+                    '<h2 style="font-size:1.05rem;font-weight:700;margin:0 0 4px;">' + plan.name + '</h2>',
+                    '<span class="text-muted" style="font-size:0.85rem;">' + plan.days + ' días</span>',
+                  '</div>',
+                  label,
+                '</div>',
+                '<div style="display:flex;gap:10px;margin-top:12px;">',
+                  isActive
+                    ? '<a class="btn btn-primary" href="' + (window.location.origin + '/p/leer-hoy.html') + '" style="font-size:0.88rem;min-height:40px;padding:0 14px;">Continuar</a>'
+                    : '<button class="btn btn-primary" data-plan-id="' + plan.id + '" data-plan-name="' + plan.name + '" onclick="window.MiBiblia365StartPlan && window.MiBiblia365StartPlan(this)" style="font-size:0.88rem;min-height:40px;padding:0 14px;">Iniciar plan</button>',
+                '</div>',
+              '</div>'
+            ].join('');
+          }).join('');
+        })
+        .catch(function() {
+          const listEl = $('#plans-list');
+          if (listEl) listEl.innerHTML = '<p class="text-muted">No se pudieron cargar los planes. Verifica tu conexión.</p>';
+        });
+
+      window.MiBiblia365StartPlan = function(btn) {
+        const planId = btn.getAttribute('data-plan-id');
+        const planName = btn.getAttribute('data-plan-name');
+        if (!state.user) return;
+        if (!Array.isArray(state.user.plans)) state.user.plans = [];
+        const existing = state.user.plans.find(function(p) { return p.planId === planId; });
+        if (!existing) {
+          state.user.plans.push({
+            planId: planId,
+            name: planName,
+            startDate: new Date().toISOString().split('T')[0],
+            completedDays: [],
+            lastOpenedDay: 1
+          });
+        }
+        state.user.config.activePlanId = planId;
+        saveUserData(state.user);
+        window.location.href = '/p/leer-hoy.html';
+      };
+    }
+
+    function renderAcercaPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+
+      dynamic.innerHTML = [
+        '<div class="static-page">',
+          '<h1>Acerca de Mi Biblia 365</h1>',
+          '<p class="page-lead">Una herramienta sencilla para acompañar tu lectura bíblica diaria.</p>',
+
+          '<section>',
+            '<h2>¿Qué es Mi Biblia 365?</h2>',
+            '<p>Mi Biblia 365 es una app web devocional que te ayuda a leer la Biblia de forma estructurada durante el año. Puedes elegir entre varios planes de lectura, cambiar de versión bíblica y llevar un registro personal de tu avance.</p>',
+          '</section>',
+
+          '<section>',
+            '<h2>Nuestra visión</h2>',
+            '<p>Que cada creyente pueda encontrar en Su Palabra un ancla diaria, sin barreras tecnológicas ni costos. Esta herramienta es gratuita y siempre lo será.</p>',
+          '</section>',
+
+          '<section>',
+            '<h2>¿Cómo funciona?</h2>',
+            '<ul>',
+              '<li>Elige un plan de lectura según tu ritmo y necesidad.</li>',
+              '<li>Cada día, la app te muestra las porciones asignadas directamente desde la API bíblica.</li>',
+              '<li>Puedes cambiar la versión bíblica en cualquier momento.</li>',
+              '<li>Tu avance se guarda en tu dispositivo (sin necesidad de cuenta).</li>',
+            '</ul>',
+          '</section>',
+
+          '<section>',
+            '<h2>Texto bíblico</h2>',
+            '<p>El texto bíblico es provisto por <a href="https://bible.helloao.org" target="_blank" rel="noopener noreferrer" style="color:var(--accent-primary);">Free Use Bible API</a> (HelloAO), complementada con Bible API Docs. Este proyecto no modifica, adapta ni redistribuye el contenido de las traducciones bíblicas.</p>',
+          '</section>',
+        '</div>'
+      ].join('');
+    }
+
+    function renderFAQPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+
+      const faqs = [
+        {
+          q: '¿Es gratuita?',
+          a: 'Sí, completamente. No hay suscripciones ni pagos. Mi Biblia 365 siempre será gratuita.'
+        },
+        {
+          q: '¿Necesito crear una cuenta?',
+          a: 'No. Todo tu progreso, favoritos y notas se guardan en tu propio dispositivo (localStorage). No se envía ningún dato a un servidor.'
+        },
+        {
+          q: '¿De dónde viene el texto bíblico?',
+          a: 'El texto bíblico proviene de Free Use Bible API (bible.helloao.org), una fuente de acceso libre para traducciones en dominio público y con licencias abiertas. Este proyecto no almacena ni redistribuye el texto bíblico.'
+        },
+        {
+          q: '¿Qué versiones bíblicas están disponibles?',
+          a: 'Actualmente ofrecemos: Reina Valera 1960 (predeterminada), Reina Valera 1995, Nueva Versión Internacional (NVI), Dios Habla Hoy (DHH), Palabra de Dios para Todos (PDT), La Biblia en Español Sencillo y Santa Biblia libre para el mundo.'
+        },
+        {
+          q: '¿Puedo usarla sin conexión?',
+          a: 'Parcialmente. Tu progreso y notas se conservan sin conexión. El texto bíblico requiere internet, pero los capítulos ya leídos quedan guardados en caché en tu dispositivo.'
+        },
+        {
+          q: '¿Qué pasa si pierdo el progreso?',
+          a: 'Puedes exportar tu progreso desde Mi espacio > Configuración y guardarlo como un archivo JSON. Luego puedes importarlo desde otro dispositivo o si borras los datos del navegador.'
+        },
+        {
+          q: '¿Puedo instalarla como app?',
+          a: 'Sí. Visita la página "Instalar" para ver las instrucciones según tu dispositivo (Android, iOS, Windows, Mac).'
+        }
+      ];
+
+      dynamic.innerHTML = [
+        '<div class="static-page">',
+          '<h1>Preguntas frecuentes</h1>',
+          '<p class="page-lead">Respuestas a las dudas más comunes sobre Mi Biblia 365.</p>',
+          faqs.map(function(item) {
+            return [
+              '<div class="faq-item">',
+                '<h3>' + item.q + '</h3>',
+                '<p>' + item.a + '</p>',
+              '</div>'
+            ].join('');
+          }).join(''),
+        '</div>'
+      ].join('');
+    }
+
+    function renderInstalarPage() {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+
+      dynamic.innerHTML = [
+        '<div class="static-page">',
+          '<h1>Instalar Mi Biblia 365</h1>',
+          '<p class="page-lead">Agrega la app a tu pantalla de inicio para acceder rápidamente, sin necesidad de tienda de aplicaciones.</p>',
+
+          '<div class="install-platform">',
+            '<h3>Android (Chrome)</h3>',
+            '<ol>',
+              '<li>Abre <strong>www.mibiblia365.com</strong> en Chrome.</li>',
+              '<li>Toca el menú de tres puntos (⋮) en la esquina superior derecha.</li>',
+              '<li>Selecciona <strong>"Agregar a pantalla de inicio"</strong>.</li>',
+              '<li>Confirma el nombre y toca <strong>"Agregar"</strong>.</li>',
+            '</ol>',
+          '</div>',
+
+          '<div class="install-platform">',
+            '<h3>iOS (Safari)</h3>',
+            '<ol>',
+              '<li>Abre <strong>www.mibiblia365.com</strong> en Safari.</li>',
+              '<li>Toca el botón de compartir (cuadrado con flecha hacia arriba).</li>',
+              '<li>Desliza hacia abajo y selecciona <strong>"Añadir a la pantalla de inicio"</strong>.</li>',
+              '<li>Confirma el nombre y toca <strong>"Añadir"</strong>.</li>',
+            '</ol>',
+          '</div>',
+
+          '<div class="install-platform">',
+            '<h3>Windows (Chrome o Edge)</h3>',
+            '<ol>',
+              '<li>Abre <strong>www.mibiblia365.com</strong> en Chrome o Edge.</li>',
+              '<li>Haz clic en el ícono de instalación en la barra de direcciones (⊕ o pantalla con flecha).</li>',
+              '<li>Selecciona <strong>"Instalar"</strong>.</li>',
+            '</ol>',
+          '</div>',
+
+          '<div class="install-platform">',
+            '<h3>Mac (Safari o Chrome)</h3>',
+            '<ol>',
+              '<li>En <strong>Safari</strong>: Archivo &gt; Agregar al Dock.</li>',
+              '<li>En <strong>Chrome</strong>: Menú (⋮) &gt; Más herramientas &gt; Crear acceso directo.</li>',
+              '<li>Marca "Abrir como ventana" y confirma.</li>',
+            '</ol>',
+          '</div>',
+        '</div>'
+      ].join('');
+    }
+
+    function renderPlaceholderPage(title, description) {
+      const dynamic = $('#page-dynamic');
+      if (!dynamic) return;
+
+      dynamic.innerHTML = [
+        '<div class="page-container">',
+          '<section class="card">',
+            '<h1 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:600;margin-bottom:8px;">' + title + '</h1>',
+            '<p class="text-muted">' + description + '</p>',
+          '</section>',
+        '</div>'
+      ].join('');
+    }
+
     async function renderCurrentPage() {
       showCurrentPageContainer();
-      if (state.currentPage === 'leer-hoy') {
-        await renderLeerHoyPage();
+
+      switch (state.currentPage) {
+        case 'leer-hoy':
+          await renderLeerHoyPage();
+          break;
+        case 'planes':
+          renderPlanesPage();
+          break;
+        case 'acerca':
+          renderAcercaPage();
+          break;
+        case 'faq':
+          renderFAQPage();
+          break;
+        case 'instalar':
+          renderInstalarPage();
+          break;
+        case 'biblia':
+          renderPlaceholderPage('Explorar Biblia', 'Aquí podrás navegar libremente cualquier libro y capítulo de la Biblia. Esta función estará disponible en la siguiente fase.');
+          break;
+        case 'buscar':
+          renderPlaceholderPage('Buscar en la Biblia', 'El buscador bíblico estará disponible próximamente. Podrás buscar palabras o frases en toda la Biblia.');
+          break;
+        case 'mi-espacio':
+          renderPlaceholderPage('Mi espacio', 'Aquí encontrarás tu progreso, favoritos, notas y configuración personal. Esta sección estará completa próximamente.');
+          break;
+        case 'plan-completo':
+          renderPlaceholderPage('Plan completo', 'El calendario completo de tu plan de lectura estará disponible próximamente.');
+          break;
+        default:
+          break;
       }
     }
     
@@ -1932,7 +2388,10 @@
       initUserData();
       window.MiBiblia365Services = window.MiBiblia365Services || {};
       window.MiBiblia365Services.bible = BibleService;
-      
+
+      const footerYear = $('#footer-year');
+      if (footerYear) footerYear.textContent = new Date().getFullYear();
+
       state.currentPage = detectCurrentPage();
       updateActiveNav();
       renderCurrentPage();

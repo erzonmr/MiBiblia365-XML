@@ -20,6 +20,7 @@
   --font-main: Inter, Nunito, Arial, sans-serif;
 }
 
+[data-theme="dark"],
 body.dark{
   --bg:#121921;
   --surface:#18222d;
@@ -422,6 +423,11 @@ button,input,select,textarea{font:inherit}
   background:rgba(255,253,249,0.92);
   backdrop-filter:blur(16px);
   border-top:1px solid var(--border);
+}
+
+[data-theme="dark"] .mobile-nav,
+body.dark .mobile-nav{
+  background:rgba(18,25,33,0.94);
 }
 
 .mobile-nav__inner{
