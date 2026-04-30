@@ -123,3 +123,28 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 1. Verificar los IDs actuales en `https://bible.helloao.org/api/available_translations.json` filtrando por `language === "spa"`.
 2. Agregar o corregir entradas en `json/versions.json` con el formato existente.
 3. Hacer commit, push y verificar en jsDelivr.
+
+---
+
+## Fase 2 — Tareas manuales pendientes
+
+### 11) Validar flujos de fallback en producción (Blogger)
+- Abrir `/p/leer-hoy.html` en Blogger y cambiar entre versiones en español.
+- Confirmar que cuando una fuente falle (CORS/timeout), la lectura continúa desde la fuente alterna.
+- Registrar en este archivo qué versión falló en qué fuente y cómo respondió el fallback.
+
+### 12) Verificar caché de capítulos (`localStorage`)
+- Leer el mismo capítulo 2 veces y confirmar que la segunda carga es más rápida.
+- Revisar en DevTools > Application > Local Storage que exista la clave:
+  - `mibiblia365-chapter-cache-v1` (ámbito de `CDN/js/app.js`).
+- Confirmar que los datos se regeneran correctamente al recargar.
+
+### 13) Prefetch del día siguiente (pendiente funcional)
+- Implementar o validar prefetch de la primera lectura del día siguiente al terminar la lectura del día actual.
+- Medir si reduce tiempo de carga percibido al entrar el día siguiente.
+- Documentar resultado y decisión (mantener / descartar por consumo de red).
+
+### 14) UX de errores con botón reintentar
+- En `/p/leer-hoy.html`, simular fallo de red (offline en DevTools) y confirmar mensaje amigable.
+- Agregar/validar botón "Reintentar" donde aplique y confirmar recuperación al volver online.
+- Documentar capturas o notas de comportamiento final.

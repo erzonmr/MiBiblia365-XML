@@ -239,25 +239,32 @@
 ## Tareas
 
 ### 2.1 Servicio de API bíblica
-- [ ] Crear `bibleService.js` con interfaz limpia sobre ambas APIs.
-- [ ] Implementar catálogo unificado de versiones en español (`available_translations.json` + `/versions`).
-- [ ] Implementar `getBooks(translationId)` con fallback por fuente.
-- [ ] Implementar `getChapter(translationId, bookId, chapter)` con fallback por fuente.
-- [ ] Implementar `getMultipleReadings(translationId, readings)` con `Promise.all` para cargar varias referencias en paralelo (p. ej. las 3 lecturas de un día del plan).
-- [ ] Caché en memoria (`Map`) durante la sesión para evitar llamadas repetidas.
-- [ ] Caché opcional en localStorage para capítulos ya leídos (mejora experiencia offline parcial).
-- [ ] Manejo de errores con mensajes amigables y botón de reintento.
-- [ ] Normalizar IDs de versión en un mapeo canónico (`RV1960`, etc.).
-- [ ] Pre-carga (prefetch) de la lectura del día siguiente cuando el usuario está en "Leer hoy".
+- [x] Crear `bibleService.js` con interfaz limpia sobre ambas APIs. *(implementado dentro de `CDN/js/app.js` como `MiBiblia365.BibleService`)*
+- [x] Implementar catálogo unificado de versiones en español (`available_translations.json` + `/versions`).
+- [x] Implementar `getBooks(translationId)` con fallback por fuente.
+- [x] Implementar `getChapter(translationId, bookId, chapter)` con fallback por fuente.
+- [x] Implementar `getMultipleReadings(translationId, readings)` con `Promise.all` para cargar varias referencias en paralelo (p. ej. las 3 lecturas de un día del plan).
+- [x] Caché en memoria (`Map`) durante la sesión para evitar llamadas repetidas.
+- [x] Caché opcional en localStorage para capítulos ya leídos (mejora experiencia offline parcial).
+- [ ] Manejo de errores con mensajes amigables y botón de reintento. *(parcial: errores lanzados y fallback técnico, pendiente UI dedicada con botón de reintento en todos los flujos)*
+- [x] Normalizar IDs de versión en un mapeo canónico (`RV1960`, etc.).
+- [ ] Pre-carga (prefetch) de la lectura del día siguiente cuando el usuario está en "Leer hoy". *(tarea manual/funcional pendiente)*
 
 **Nota:** las dos APIs son complementarias; algunas versiones solo existen en una de las fuentes. El fallback es obligatorio.
 
 ### 2.2 Servicio de planes
-- [ ] Crear `planService.js`.
-- [ ] Cargar `plans.json` desde jsDelivr.
-- [ ] Cargar plan específico bajo demanda.
-- [ ] Método `obtenerLecturaDelDia(planId, fecha)` que retorne las referencias del día con sus `bookId` y `chapter`.
-- [ ] Integrar con `dateService.js` para calcular día actual.
+- [x] Crear `planService.js`. *(implementado dentro de `CDN/js/app.js` como `MiBiblia365.PlanService`)*
+- [x] Cargar `plans.json` desde jsDelivr.
+- [x] Cargar plan específico bajo demanda.
+- [x] Método `obtenerLecturaDelDia(planId, fecha)` que retorne las referencias del día con sus `bookId` y `chapter`.
+- [x] Integrar con `dateService.js` para calcular día actual. *(implementado como `MiBiblia365.DateService`)*
+
+## Registro de avance Fase 2
+- [x] Se implementó `MiBiblia365.BibleService` con fallback entre HelloAO y Netlify, caché en memoria (`Map`) y persistencia opcional de capítulos en `localStorage`.
+- [x] Se agregó catálogo unificado de versiones en español consumiendo `available_translations.json` y `/versions`.
+- [x] Se añadieron `getBooks`, `getChapter` y `getMultipleReadings` para cubrir carga individual y paralela de lecturas.
+- [x] Se implementó `MiBiblia365.PlanService` para cargar catálogo de planes y planes individuales desde jsDelivr.
+- [x] Se implementó `MiBiblia365.DateService` para cálculo de fecha actual y día del año, integrado al cálculo de lectura diaria.
 
 ### 2.3 Servicio de fechas
 - [ ] Crear `dateService.js`.
