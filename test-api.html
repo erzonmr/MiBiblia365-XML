@@ -50,6 +50,7 @@
       var results = {};
       var paso = 1;
 
+      // --- HelloAO ---
       try {
         var r = await fetchJSON(SOURCES.hello + '/available_translations.json');
         // HelloAO returns { translations: [...] }
@@ -69,6 +70,7 @@
         dump({ errorDetails: e });
       }
 
+      // --- Netlify ---
       try {
         var r = await fetchJSON(SOURCES.netlify + '/versions');
         results.netlify = { ok: true, total: r.data.length, ms: r.ms };
@@ -78,16 +80,23 @@
         print('[' + (paso++) + '] Netlify /versions → CORS-BLOQUEADO (cualquier origen)', 'err');
       }
 
+      // --- Capítulo con fallback Netlify → HelloAO ---
+      // Usamos la versión por defecto del config (rv1960) y Génesis 1
+      var testVersion = 'rv1960';
+      var testBook = 'GEN';
+      var testChapter = 1;
+
       try {
-        var r = await fetchJSON(SOURCES.netlify + '/chapter/RV1960/GEN/1');
-        results.chapter = { fuente: 'Netlify', ms: r.ms, version: 'RV1960' };
+        var r = await fetchJSON(SOURCES.netlify + '/chapter/' + testVersion + '/' + testBook + '/' + testChapter + '.json');
+        results.chapter = { fuente: 'Netlify', ms: r.ms, version: testVersion };
         print('[FALLBACK] Capítulo desde Netlify → OK en ' + r.ms + 'ms', 'ok');
         dump({ chapterInfo: { book: r.data.book, chapter: r.data.chapter, verses: r.data.verses ? r.data.verses.length : 0 } });
       } catch(e1) {
         try {
-          var r = await fetchJSON(SOURCES.hello + '/RVR1909/Genesis/1.json');
-          results.chapter = { fuente: 'HelloAO (fallback)', ms: r.ms, version: 'RVR1909' };
-          print('[FALLBACK] Netlify falló → HelloAO OK en ' + r.ms + 'ms', 'ok');
+          // Para HelloAO, usamos el ID que creemos correcto (por ahora, asumimos que es el mismo que el ID netlify)
+          var r = await fetchJSON(SOURCES.hello + '/' + testVersion + '/' + testBook.toLowerCase() + '/' + testChapter + '.json');
+          results.chapter = { fuente: 'HelloAO (fallback)', ms: r.ms, version: testVersion };
+          print('[FALLBACK] Netlify falló → HelloAO ' + testVersion + '/' + testBook + '/' + testChapter + ' OK en ' + r.ms + 'ms', 'ok');
           dump({ chapterInfo: { book: r.data.book, chapter: r.data.chapter, verses: r.data.verses ? r.data.verses.length : 0 } });
         } catch(e2) {
           results.chapter = { fuente: null, netlifyError: e1.message, helloError: e2.message };

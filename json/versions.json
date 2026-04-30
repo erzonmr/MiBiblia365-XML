@@ -5,7 +5,11 @@
     "shortName": "RV60",
     "language": "spa",
     "default": true,
-    "sources": ["netlify"]
+    "availableIn": ["helloao"],
+    "sourceIds": {
+      "netlify": ["RV1960"],
+      "helloao": ["spa_r09"]
+    }
   },
   {
     "id": "rv1995",
@@ -13,7 +17,11 @@
     "shortName": "RV95",
     "language": "spa",
     "default": false,
-    "sources": ["netlify"]
+    "availableIn": ["netlify"],
+    "sourceIds": {
+      "netlify": ["RV1995"],
+      "helloao": []
+    }
   },
   {
     "id": "nvi",
@@ -21,7 +29,11 @@
     "shortName": "NVI",
     "language": "spa",
     "default": false,
-    "sources": ["netlify"]
+    "availableIn": ["helloao", "netlify"],
+    "sourceIds": {
+      "netlify": ["NVI"],
+      "helloao": ["spa_onbv"]
+    }
   },
   {
     "id": "dhh",
@@ -29,7 +41,11 @@
     "shortName": "DHH",
     "language": "spa",
     "default": false,
-    "sources": ["netlify"]
+    "availableIn": ["helloao", "netlify"],
+    "sourceIds": {
+      "netlify": ["DHH"],
+      "helloao": ["spa_dhh"]
+    }
   },
   {
     "id": "pdt",
@@ -37,6 +53,34 @@
     "shortName": "PDT",
     "language": "spa",
     "default": false,
-    "sources": ["netlify"]
+    "availableIn": ["helloao", "netlify"],
+    "sourceIds": {
+      "netlify": ["PDT"],
+      "helloao": ["spa_pdt"]
+    }
+  },
+  {
+    "id": "bes",
+    "name": "La Biblia en Español Sencillo",
+    "shortName": "BES",
+    "language": "spa",
+    "default": false,
+    "availableIn": ["helloao"],
+    "sourceIds": {
+      "netlify": [],
+      "helloao": ["spa_bes"]
+    }
+  },
+  {
+    "id": "blm",
+    "name": "Santa Biblia libre para el mundo",
+    "shortName": "BLM",
+    "language": "spa",
+    "default": false,
+    "availableIn": ["helloao"],
+    "sourceIds": {
+      "netlify": [],
+      "helloao": ["spa_blm"]
+    }
   }
 ]

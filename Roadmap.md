@@ -123,18 +123,21 @@
 - Lista definitiva de versiones en español seleccionadas.
 
 ## Checklist de salida Fase 0
-- [ ] El flujo dual de APIs responde correctamente para al menos 3 versiones en español.
+- [x] El flujo dual de APIs responde correctamente para al menos 3 versiones en español.
 - [ ] El esquema del JSON de capítulo está documentado.
 - [ ] jsDelivr entrega los JSON sin problemas.
 - [x] Blogger tiene la estructura de páginas lista.
 - [ ] El diseño visual tiene dirección clara.
 
 ## Registro de avance (sin tiempos)
-
 - [x] Se consolidó `template-ZIA.xml` como MVP activo y archivo principal de ejecución.
 - [x] Se implementó capa dual de APIs con fallback en runtime dentro del MVP.
 - [x] Se verificó bloqueo CORS de Netlify desde Blogger y se aplicó degradación automática hacia HelloAO.
 - [x] Se definió política de versiones en español: Netlify por whitelist (`rv1960`, `rv1995`, `nvi`, `dhh`, `pdt`) y HelloAO por `language === "spa"`.
+- [x] Se actualizó `json/versions.json` con IDs correctos de ambas APIs (Netlify y HelloAO) para las versiones en español.
+- [x] Se actualizó `json/config.json` estableciendo HelloAO como API primaria y Netlify como secundaria.
+- [x] Se creó `test.json` para validar jsDelivr.
+- [x] Se actualizó `test-api.html` para probar endpoint de capítulos con formato correcto y manejo de errores.
 - [x] Se conectó `/p/leer-hoy.html` con lectura real: plan anual, selector de versión, navegación por porciones y marcado de lectura.
 - [x] Se actualizó documentación de alineación técnica en `README.md`, `Brief_MiBiblia365-XML.md` y `Roadmap.md`.
 
