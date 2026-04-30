@@ -1467,24 +1467,11 @@
         }).filter(Boolean);
       }
 
-      function mapHelloVersionToCanonical(rawId) {
-        const key = String(rawId || '').trim().toLowerCase();
-        const map = {
-          'spa_r09': 'RV1960',
-          'spa_onbv': 'NVI',
-          'spa_pdt': 'PDT',
-          'spa_dhh': 'DHH',
-          'spa_bes': 'BES',
-          'spa_blm': 'BLM'
-        };
-        return map[key] || normalizeVersionId(rawId);
-      }
-
       async function helloVersions() {
         const payload = await fetchJSON(CONFIG.API_SOURCES.secondary + '/available_translations.json');
         const list = Array.isArray(payload) ? payload : (payload.translations || payload.data || []);
         return list.map(v => ({
-          id: mapHelloVersionToCanonical(v.id || v.shortName || v.name),
+          id: normalizeVersionId(v.id || v.shortName || v.name),
           rawId: String(v.id || v.shortName || v.name || '').trim(),
           name: v.name || v.shortName || v.id || 'Version',
           language: String(v.language || v.lang || '').toLowerCase(),
@@ -2029,10 +2016,7 @@
           throw new Error('No se pudo interpretar la lectura del día.');
         }
 
-        const versionsRaw = await BibleService.getVersions();
-        const curatedIds = ['RV1960', 'RV1995', 'NVI', 'DHH', 'PDT', 'BES', 'BLM'];
-        const versions = versionsRaw.filter(v => curatedIds.indexOf(v.id) !== -1);
-        const versionsForUI = versions.length ? versions : versionsRaw;
+        const versionsForUI = await BibleService.getVersions();
         const preferredVersion = normalizeVersionId(state.user.config.preferredVersion || CONFIG.DEFAULT_VERSION);
         const versionExists = versionsForUI.some(v => v.id === preferredVersion);
         const selectedVersion = versionExists ? preferredVersion : (versionsForUI[0] ? versionsForUI[0].id : CONFIG.DEFAULT_VERSION);
