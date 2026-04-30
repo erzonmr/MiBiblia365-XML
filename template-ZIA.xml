@@ -1153,19 +1153,19 @@
     <!-- Footer -->
     <footer class='app-footer' id='app-footer'>
       <div class='footer-inner'>
-        <p class='footer-text'>Mi Biblia 365 &mdash; Lectura bíblica diaria.</p>
+        <p class='footer-text'>Mi Biblia 365 &#8212; Lectura bíblica diaria.</p>
         <p class='footer-links'>
           <a expr:href='data:blog.homepageUrl + "p/acerca.html"'>Acerca</a>
-          &middot;
+          &#183;
           <a expr:href='data:blog.homepageUrl + "p/preguntas-frecuentes.html"'>Preguntas frecuentes</a>
-          &middot;
+          &#183;
           <a expr:href='data:blog.homepageUrl + "p/instalar.html"'>Instalar</a>
         </p>
         <p class='footer-credit'>
           Texto bíblico provisto por <a href='https://bible.helloao.org' rel='noopener noreferrer' target='_blank'>Free Use Bible API</a>.
           Este proyecto no modifica el contenido de las traducciones bíblicas.
         </p>
-        <p class='footer-year'>&copy; <span id='footer-year'>2026</span> Mi Biblia 365</p>
+        <p class='footer-year'>&#169; <span id='footer-year'>2026</span> Mi Biblia 365</p>
       </div>
     </footer>
 
