@@ -4,6 +4,6 @@
   "leapYearMode": "clamp_to_365",
   "apiSources": {
     "primary": "https://bible.helloao.org/api",
-    "secondary": "https://docs-bible-api.netlify.app/api"
+    "secondary": "https://bible-api.deno.dev"
   }
 }

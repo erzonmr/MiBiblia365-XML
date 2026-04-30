@@ -19,7 +19,7 @@
   <script>
     var SOURCES = {
       hello: 'https://bible.helloao.org/api',
-      netlify: 'https://docs-bible-api.netlify.app/api'
+      netlify: 'https://bible-api.deno.dev/api'
     };
     var out = document.getElementById('log');
 
@@ -83,21 +83,30 @@
       // --- Capítulo con fallback Netlify → HelloAO ---
       // Usamos la versión por defecto del config (rv1960) y Génesis 1
       var testVersion = 'rv1960';
-      var testBook = 'GEN';
+      var testBook = 'genesis';
       var testChapter = 1;
+      var helloVersionMap = {
+        rv1960: 'spa_r09',
+        nvi: 'spa_onbv',
+        pdt: 'spa_pdt',
+        dhh: 'spa_dhh'
+      };
 
       try {
-        var r = await fetchJSON(SOURCES.netlify + '/chapter/' + testVersion + '/' + testBook + '/' + testChapter + '.json');
+        var r = await fetchJSON(SOURCES.netlify + '/read/' + testVersion + '/' + testBook + '/' + testChapter);
         results.chapter = { fuente: 'Netlify', ms: r.ms, version: testVersion };
         print('[FALLBACK] Capítulo desde Netlify → OK en ' + r.ms + 'ms', 'ok');
-        dump({ chapterInfo: { book: r.data.book, chapter: r.data.chapter, verses: r.data.verses ? r.data.verses.length : 0 } });
+        dump({ chapterInfo: { book: r.data.name, chapter: r.data.chapter, verses: r.data.vers ? r.data.vers.length : 0 } });
       } catch(e1) {
         try {
-          // Para HelloAO, usamos el ID que creemos correcto (por ahora, asumimos que es el mismo que el ID netlify)
-          var r = await fetchJSON(SOURCES.hello + '/' + testVersion + '/' + testBook.toLowerCase() + '/' + testChapter + '.json');
-          results.chapter = { fuente: 'HelloAO (fallback)', ms: r.ms, version: testVersion };
-          print('[FALLBACK] Netlify falló → HelloAO ' + testVersion + '/' + testBook + '/' + testChapter + ' OK en ' + r.ms + 'ms', 'ok');
-          dump({ chapterInfo: { book: r.data.book, chapter: r.data.chapter, verses: r.data.verses ? r.data.verses.length : 0 } });
+          var helloVersion = helloVersionMap[testVersion] || testVersion;
+          var r = await fetchJSON(SOURCES.hello + '/' + helloVersion + '/GEN/' + testChapter + '.json');
+          var count = (r.data && r.data.chapter && Array.isArray(r.data.chapter.content))
+            ? r.data.chapter.content.filter(function(item) { return item && item.type === 'verse'; }).length
+            : 0;
+          results.chapter = { fuente: 'HelloAO (fallback)', ms: r.ms, version: helloVersion };
+          print('[FALLBACK] Netlify falló → HelloAO ' + helloVersion + '/GEN/' + testChapter + '.json OK en ' + r.ms + 'ms', 'ok');
+          dump({ chapterInfo: { book: 'GEN', chapter: testChapter, verses: count } });
         } catch(e2) {
           results.chapter = { fuente: null, netlifyError: e1.message, helloError: e2.message };
           print('[FALLBACK] Ambas fallaron | Netlify=' + e1.message + ' | HelloAO=' + e2.message, 'err');
