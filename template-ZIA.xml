@@ -1467,11 +1467,22 @@
         }).filter(Boolean);
       }
 
+      function mapHelloVersionToCanonical(rawId) {
+        const key = String(rawId || '').trim().toLowerCase();
+        const map = {
+          'spa_r09': 'RV1960',
+          'spa_onbv': 'NVI',
+          'spa_pdt': 'PDT',
+          'spa_dhh': 'DHH'
+        };
+        return map[key] || normalizeVersionId(rawId);
+      }
+
       async function helloVersions() {
         const payload = await fetchJSON(CONFIG.API_SOURCES.secondary + '/available_translations.json');
         const list = Array.isArray(payload) ? payload : (payload.translations || payload.data || []);
         return list.map(v => ({
-          id: normalizeVersionId(v.id || v.shortName || v.name),
+          id: mapHelloVersionToCanonical(v.id || v.shortName || v.name),
           rawId: String(v.id || v.shortName || v.name || '').trim(),
           name: v.name || v.shortName || v.id || 'Version',
           language: String(v.language || v.lang || '').toLowerCase(),
@@ -1560,6 +1571,27 @@
         if (source === 'netlify' && bookName) {
           out.push(bookName);
           out.push(bookName.toLowerCase());
+
+          const usfmToDeno = {
+            GEN: 'GN', EXO: 'EX', LEV: 'LV', NUM: 'NM', DEU: 'DT',
+            JOS: 'JS', JDG: 'JD', RUT: 'RT', '1SA': '1S', '2SA': '2S',
+            '1KI': '1R', '2KI': '2R', '1CH': '1C', '2CH': '2C', EZR: 'EZ',
+            NEH: 'NE', EST: 'ET', JOB: 'JB', PSA: 'SL', PRO: 'PR',
+            ECC: 'EC', SNG: 'CT', ISA: 'IS', JER: 'JR', LAM: 'LM',
+            EZK: 'EZQ', DAN: 'DN', HOS: 'OS', JOL: 'JL', AMO: 'AM',
+            OBA: 'AB', JON: 'JN', MIC: 'MI', NAM: 'NA', HAB: 'HB',
+            ZEP: 'SO', HAG: 'AG', ZEC: 'ZC', MAL: 'ML', MAT: 'MT',
+            MRK: 'MC', LUK: 'LC', JHN: 'JN', ACT: 'HCH', ROM: 'RO',
+            '1CO': '1CO', '2CO': '2CO', GAL: 'GA', EPH: 'EF', PHP: 'FP',
+            COL: 'CL', '1TH': '1TS', '2TH': '2TS', '1TI': '1TI', '2TI': '2TI',
+            TIT: 'TIT', PHM: 'FLM', HEB: 'HEB', JAS: 'STG', '1PE': '1P',
+            '2PE': '2P', '1JN': '1JN', '2JN': '2JN', '3JN': '3JN', JUD: 'JUD', REV: 'AP'
+          };
+          const short = usfmToDeno[String(bookId).toUpperCase()];
+          if (short) {
+            out.push(short);
+            out.push(short.toLowerCase());
+          }
         }
         return out.filter((v, i) => v && out.indexOf(v) === i);
       }
