@@ -2561,10 +2561,11 @@
                   label,
                 '</div>',
                 desc,
-                '<div style="display:flex;gap:10px;margin-top:12px;">',
+                '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">',
                   isActive
                     ? '<a class="btn btn-primary" href="' + (window.location.origin + '/p/leer-hoy.html') + '" style="font-size:0.88rem;min-height:40px;padding:0 14px;">Continuar</a>'
                     : '<button class="btn btn-primary" data-plan-id="' + plan.id + '" data-plan-name="' + plan.name + '" onclick="window.MiBiblia365StartPlan && window.MiBiblia365StartPlan(this)" style="font-size:0.88rem;min-height:40px;padding:0 14px;">Iniciar plan</button>',
+                  '<a class="btn" href="' + (window.location.origin + '/p/plan-completo.html') + '" style="font-size:0.88rem;min-height:40px;padding:0 14px;">Ver plan completo</a>',
                 '</div>',
               '</div>'
             ].join('');
@@ -3112,6 +3113,7 @@
                 '<button class="btn" type="button" data-plan-action="activate" data-plan-id="' + plan.planId + '">Activar</button>',
                 '<button class="btn" type="button" data-plan-action="restart" data-plan-id="' + plan.planId + '">Reiniciar</button>',
                 '<button class="btn" type="button" data-plan-action="archive" data-plan-id="' + plan.planId + '">' + (archived ? 'Reactivar' : 'Archivar') + '</button>',
+                '<a class="btn" href="/p/plan-completo.html">Abrir calendario</a>',
               '</div>',
             '</div>'
           ].join('');
