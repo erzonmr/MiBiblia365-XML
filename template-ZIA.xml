@@ -1723,10 +1723,87 @@
     // ==========================================
     // Gestión de datos del usuario
     // ==========================================
+    function getTodayISODate() {
+      return new Date().toISOString().split('T')[0];
+    }
+
+    function getCurrentWeekKey(dateIso) {
+      const date = dateIso ? new Date(dateIso + 'T00:00:00') : new Date();
+      const firstJan = new Date(date.getFullYear(), 0, 1);
+      const dayOfYear = Math.floor((date - firstJan) / 86400000) + 1;
+      const week = Math.ceil(dayOfYear / 7);
+      return date.getFullYear() + '-W' + String(week).padStart(2, '0');
+    }
+
+    function createDefaultUserData() {
+      return {
+        version: '1.1',
+        lastSync: getTodayISODate(),
+        backupMeta: {
+          lastBackupAt: null,
+          backupReminderDays: 30
+        },
+        config: {
+          preferredVersion: CONFIG.DEFAULT_VERSION,
+          sourcePreference: CONFIG.SOURCE_PREFERENCE,
+          darkMode: state.theme === 'dark',
+          fontSize: 'medium',
+          activePlanId: null,
+          leapYearMode: 'gracia'
+        },
+        plans: [],
+        favorites: [],
+        notes: [],
+        streak: {
+          current: 0,
+          longest: 0,
+          totalReadDays: 0,
+          lastDate: null,
+          graceDaysUsed: 0,
+          graceDaysAvailable: 1,
+          graceWeekKey: getCurrentWeekKey()
+        },
+        history: {
+          readings: [],
+          searches: [],
+          chapters: []
+        }
+      };
+    }
+
+    function normalizeUserData(raw) {
+      const data = raw && typeof raw === 'object' ? raw : {};
+      const normalized = createDefaultUserData();
+
+      normalized.version = data.version || normalized.version;
+      normalized.lastSync = data.lastSync || normalized.lastSync;
+      normalized.backupMeta = Object.assign({}, normalized.backupMeta, data.backupMeta || {});
+      normalized.config = Object.assign({}, normalized.config, data.config || {});
+      normalized.config.preferredVersion = normalizeVersionId(normalized.config.preferredVersion || CONFIG.DEFAULT_VERSION);
+      normalized.config.sourcePreference = normalized.config.sourcePreference || CONFIG.SOURCE_PREFERENCE;
+      normalized.config.leapYearMode = normalized.config.leapYearMode === 'repetir' ? 'repetir' : 'gracia';
+
+      normalized.plans = Array.isArray(data.plans) ? data.plans : [];
+      normalized.favorites = Array.isArray(data.favorites) ? data.favorites : [];
+      normalized.notes = Array.isArray(data.notes) ? data.notes : [];
+      normalized.history = Object.assign({}, normalized.history, data.history || {});
+      normalized.history.readings = Array.isArray(normalized.history.readings) ? normalized.history.readings : [];
+      normalized.history.searches = Array.isArray(normalized.history.searches) ? normalized.history.searches : [];
+      normalized.history.chapters = Array.isArray(normalized.history.chapters) ? normalized.history.chapters : [];
+
+      normalized.streak = Object.assign({}, normalized.streak, data.streak || {});
+      normalized.streak.graceWeekKey = normalized.streak.graceWeekKey || getCurrentWeekKey();
+      normalized.streak.graceDaysAvailable = 1;
+      if (normalized.streak.graceDaysUsed < 0) normalized.streak.graceDaysUsed = 0;
+      if (normalized.streak.graceDaysUsed > 1) normalized.streak.graceDaysUsed = 1;
+
+      return normalized;
+    }
+
     function getUserData() {
       try {
         const data = localStorage.getItem(CONFIG.STORAGE_KEY);
-        return data ? JSON.parse(data) : null;
+        return data ? normalizeUserData(JSON.parse(data)) : null;
       } catch (e) {
         console.error('Error reading user data:', e);
         return null;
@@ -1745,24 +1822,7 @@
       try {
         if (localStorage.getItem(CONFIG.STORAGE_KEY)) return;
 
-        const legacyData = {
-          config: {
-            preferredVersion: localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'preferredVersion') || CONFIG.DEFAULT_VERSION,
-            sourcePreference: CONFIG.SOURCE_PREFERENCE,
-            darkMode: state.theme === 'dark',
-            fontSize: 'medium',
-            activePlanId: null,
-            leapYearMode: 'gracia'
-          },
-          plans: [],
-          favorites: [],
-          notes: [],
-          history: {
-            readings: [],
-            searches: [],
-            chapters: []
-          }
-        };
+        const legacyData = createDefaultUserData();
 
         const legacyActivePlan = localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'activePlan');
         const legacyProgress = localStorage.getItem(CONFIG.STORAGE_LEGACY_PREFIX + 'progress');
@@ -1785,11 +1845,11 @@
         const hasLegacyContent = legacyActivePlan || legacyProgress || legacyFavorites || legacyNotes;
         if (!hasLegacyContent) return;
 
-        const migrated = {
-          version: '1.0',
-          lastSync: new Date().toISOString().split('T')[0],
+        const migrated = normalizeUserData({
+          version: '1.1',
+          lastSync: getTodayISODate(),
           ...legacyData
-        };
+        });
 
         saveUserData(migrated);
       } catch (e) {
@@ -1802,62 +1862,14 @@
        const data = getUserData();
        
        if (!data) {
-         // Crear estructura inicial para Fase 3
-         const initialData = {
-           version: '1.0',
-           lastSync: new Date().toISOString().split('T')[0],
-           config: {
-             preferredVersion: CONFIG.DEFAULT_VERSION,
-             sourcePreference: CONFIG.SOURCE_PREFERENCE,
-             darkMode: state.theme === 'dark',
-             fontSize: 'medium',
-             activePlanId: null,
-             leapYearMode: 'gracia'
-           },
-           // Modelo mejorado de planes con progreso detallado
-           plans: [],
-           favorites: [],
-           notes: [],
-           // Servicio de rachas mejorado con regla de gracia
-           streak: {
-             current: 0,
-             longest: 0,
-             lastDate: null,
-             graceDaysUsed: 0, // Días de gracia utilizados en la semana actual
-             graceDaysAvailable: 1 // Días de gracia disponibles por semana
-           },
-           history: {
-             readings: [], // Últimas 20 lecturas
-             searches: [], // Últimas 10 búsquedas
-             chapters: [] // Últimos 15 capítulos visitados
-           }
-         };
+         const initialData = createDefaultUserData();
          
          saveUserData(initialData);
          state.user = initialData;
        } else {
-         // Asegurar compatibilidad con versiones anteriores de datos
-         if (!data.config) data.config = {};
-         data.config.preferredVersion = normalizeVersionId(data.config.preferredVersion || CONFIG.DEFAULT_VERSION);
-         if (!data.config.sourcePreference) data.config.sourcePreference = CONFIG.SOURCE_PREFERENCE;
-         
-         // Inicializar campos de racha mejorados si no existen (migración)
-         if (!data.streak) {
-           data.streak = {
-             current: 0,
-             longest: 0,
-             lastDate: null,
-             graceDaysUsed: 0,
-             graceDaysAvailable: 1
-           };
-         } else {
-           // Asegurar que los campos mejorados existan en datos existentes
-           if (data.streak.graceDaysUsed === undefined) data.streak.graceDaysUsed = 0;
-           if (data.streak.graceDaysAvailable === undefined) data.streak.graceDaysAvailable = 1;
-         }
-         
-         state.user = data;
-         state.version = data.config.preferredVersion || CONFIG.DEFAULT_VERSION;
+         state.user = normalizeUserData(data);
+         saveUserData(state.user);
+         state.version = state.user.config.preferredVersion || CONFIG.DEFAULT_VERSION;
        }
      }
     
@@ -2061,6 +2073,110 @@
       return pending;
     }
 
+    function pushLimited(array, item, limit, dedupeKeyFn) {
+      const next = Array.isArray(array) ? array.slice() : [];
+      const keyFn = typeof dedupeKeyFn === 'function' ? dedupeKeyFn : function(v) { return JSON.stringify(v); };
+      const itemKey = keyFn(item);
+      const filtered = next.filter(function(entry) { return keyFn(entry) !== itemKey; });
+      filtered.unshift(item);
+      return filtered.slice(0, limit);
+    }
+
+    function trackHistory(type, payload) {
+      if (!state.user || !state.user.history) return;
+      if (type === 'readings') state.user.history.readings = pushLimited(state.user.history.readings, payload, 20, function(v) { return String(v.reference || ''); });
+      if (type === 'searches') state.user.history.searches = pushLimited(state.user.history.searches, payload, 10, function(v) { return String(v.query || ''); });
+      if (type === 'chapters') state.user.history.chapters = pushLimited(state.user.history.chapters, payload, 15, function(v) { return String(v.versionId || '') + '|' + String(v.bookId || '') + '|' + String(v.chapter || ''); });
+      saveUserData(state.user);
+    }
+
+    function ensureStreakWeek(streak, todayIso) {
+      const weekKey = getCurrentWeekKey(todayIso);
+      if (streak.graceWeekKey !== weekKey) {
+        streak.graceWeekKey = weekKey;
+        streak.graceDaysUsed = 0;
+      }
+    }
+
+    function updateStreakAfterReading(todayIso) {
+      if (!state.user) return;
+      const streak = state.user.streak || createDefaultUserData().streak;
+      ensureStreakWeek(streak, todayIso);
+      const today = todayIso || getTodayISODate();
+      const yesterdayDate = new Date(today + 'T00:00:00');
+      yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+      const yesterdayIso = yesterdayDate.toISOString().split('T')[0];
+
+      if (streak.lastDate === today) {
+        state.user.streak = streak;
+        return;
+      }
+
+      if (!streak.lastDate) {
+        streak.current = 1;
+      } else if (streak.lastDate === yesterdayIso) {
+        streak.current += 1;
+      } else {
+        const lastDate = new Date(streak.lastDate + 'T00:00:00');
+        const todayDate = new Date(today + 'T00:00:00');
+        const gap = Math.floor((todayDate - lastDate) / 86400000);
+        if (gap === 2 && streak.graceDaysUsed < 1) {
+          streak.current += 1;
+          streak.graceDaysUsed += 1;
+        } else {
+          streak.current = 1;
+        }
+      }
+
+      streak.lastDate = today;
+      streak.totalReadDays = (streak.totalReadDays || 0) + 1;
+      if (streak.current > streak.longest) streak.longest = streak.current;
+      state.user.streak = streak;
+      saveUserData(state.user);
+    }
+
+    function addFavoriteFromReading(reading, versionId) {
+      if (!state.user || !reading) return false;
+      const favorite = {
+        id: 'fav-' + Date.now(),
+        reference: reading.reference,
+        translationId: normalizeVersionId(versionId || state.user.config.preferredVersion || CONFIG.DEFAULT_VERSION),
+        bookId: reading.bookId,
+        chapter: reading.chapter,
+        verse: null,
+        type: 'chapter',
+        savedAt: new Date().toISOString()
+      };
+      const existing = (state.user.favorites || []).some(function(f) {
+        return f.reference === favorite.reference && f.translationId === favorite.translationId;
+      });
+      if (existing) return false;
+      state.user.favorites = Array.isArray(state.user.favorites) ? state.user.favorites : [];
+      state.user.favorites.unshift(favorite);
+      saveUserData(state.user);
+      return true;
+    }
+
+    function addNoteFromReading(reading, content, planId, day) {
+      if (!state.user || !reading || !content) return null;
+      state.user.notes = Array.isArray(state.user.notes) ? state.user.notes : [];
+      const nowIso = new Date().toISOString();
+      const note = {
+        id: 'note-' + Date.now(),
+        planId: planId || null,
+        day: Number(day) || null,
+        reference: reading.reference,
+        bookId: reading.bookId,
+        chapter: reading.chapter,
+        content: content,
+        createdAt: nowIso,
+        updatedAt: nowIso
+      };
+      state.user.notes.unshift(note);
+      saveUserData(state.user);
+      return note;
+    }
+
     async function loadDailyVersesCatalog() {
       const url = CONFIG.CDN_BASE + 'json/versiculos-diarios.json';
       try {
@@ -2260,7 +2376,11 @@
               '</div>',
               '<h3 style="margin-bottom:12px;" id="chapter-title">' + firstReading.reference + ' (' + selectedVersion + ')</h3>',
               '<div id="chapter-verses">' + renderChapterVerses(chapterData.verses) + '</div>',
-              '<button class="btn btn-primary" id="mark-read-btn" style="margin-top:16px;">Marcar como leído</button>',
+              '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;">',
+                '<button class="btn btn-primary" id="mark-read-btn" type="button">Marcar como leído</button>',
+                '<button class="btn" id="add-favorite-btn" type="button">Guardar favorito</button>',
+                '<button class="btn" id="add-note-btn" type="button">Añadir nota</button>',
+              '</div>',
               '<p class="text-muted mt-md" id="mark-read-msg"></p>',
             '</section>',
           '</div>'
@@ -2300,6 +2420,13 @@
           try {
             const currentChapter = await BibleService.getChapter(currentVersion, reading.bookId, reading.chapter, { bookName: reading.bookName });
             if (versesBox) versesBox.innerHTML = renderChapterVerses(currentChapter.verses);
+            trackHistory('chapters', {
+              reference: reading.reference,
+              versionId: currentVersion,
+              bookId: reading.bookId,
+              chapter: reading.chapter,
+              viewedAt: new Date().toISOString()
+            });
           } catch (err) {
             if (versesBox) renderErrorState(versesBox, 'No se pudo cargar esta lectura.', renderCurrentReading);
           }
@@ -2345,8 +2472,37 @@
               planState.completedDays.sort(function(a, b) { return a - b; });
               saveUserData(state.user);
             }
+            updateStreakAfterReading(getTodayISODate());
+            trackHistory('readings', {
+              reference: parsedReadings.map(function(r) { return r.reference; }).join(' · '),
+              day: targetDay,
+              planId: planState.planId,
+              markedAt: new Date().toISOString()
+            });
             const msg = $('#mark-read-msg');
             if (msg) msg.textContent = '¡Bien! Un día más en Su Palabra.';
+          });
+        }
+
+        const favoriteBtn = $('#add-favorite-btn');
+        if (favoriteBtn) {
+          favoriteBtn.addEventListener('click', function() {
+            const reading = parsedReadings[currentReadingIndex];
+            const created = addFavoriteFromReading(reading, state.user.config.preferredVersion);
+            const msg = $('#mark-read-msg');
+            if (msg) msg.textContent = created ? 'Pasaje guardado en favoritos.' : 'Este pasaje ya estaba en favoritos.';
+          });
+        }
+
+        const noteBtn = $('#add-note-btn');
+        if (noteBtn) {
+          noteBtn.addEventListener('click', function() {
+            const reading = parsedReadings[currentReadingIndex];
+            const content = window.prompt('Escribe tu nota para ' + reading.reference + ':');
+            if (!content || !content.trim()) return;
+            addNoteFromReading(reading, content.trim(), planState.planId, targetDay);
+            const msg = $('#mark-read-msg');
+            if (msg) msg.textContent = 'Nota guardada en Mi espacio.';
           });
         }
 
@@ -2594,108 +2750,275 @@
 
     function renderMiEspacioPage() {
       const dynamic = $('#page-dynamic');
-      if (!dynamic) return;
+      if (!dynamic || !state.user) return;
+
+      const tab = getUrlParam('tab') || 'resumen';
+      const tabs = [
+        { id: 'resumen', label: 'Resumen' },
+        { id: 'planes', label: 'Planes' },
+        { id: 'favoritos', label: 'Favoritos' },
+        { id: 'notas', label: 'Notas' },
+        { id: 'historial', label: 'Historial' },
+        { id: 'configuracion', label: 'Configuración' },
+        { id: 'respaldo', label: 'Respaldo' }
+      ];
 
       const userData = state.user;
-      const activePlanId = userData && userData.config ? userData.config.activePlanId : null;
-      const activePlan = activePlanId && Array.isArray(userData.plans)
-        ? userData.plans.find(function(p) { return p.planId === activePlanId; })
-        : null;
+      const activePlanId = userData.config.activePlanId;
+      const activePlan = Array.isArray(userData.plans) ? userData.plans.find(function(p) { return p.planId === activePlanId; }) : null;
+      const streak = userData.streak || createDefaultUserData().streak;
+      const favCount = (userData.favorites || []).length;
+      const noteCount = (userData.notes || []).length;
+      const backupMeta = userData.backupMeta || { lastBackupAt: null, backupReminderDays: 30 };
+      const shouldRemindBackup = !backupMeta.lastBackupAt || ((new Date() - new Date(backupMeta.lastBackupAt)) / 86400000) >= (backupMeta.backupReminderDays || 30);
 
-      const streak = userData && userData.config && userData.config.streak ? userData.config.streak : 0;
-      const favCount = Array.isArray(userData.favorites) ? userData.favorites.length : 0;
-      const noteCount = Array.isArray(userData.notes) ? userData.notes.length : 0;
+      function chipButton(id, label) {
+        const active = tab === id;
+        return '<button class="btn" data-tab="' + id + '" type="button" style="min-height:34px;padding:0 10px;font-size:0.8rem;' + (active ? 'background:var(--accent-primary);color:#fff;' : '') + '">' + label + '</button>';
+      }
 
-      let progressHTML = '';
-      if (activePlan) {
-        const completed = activePlan.completedDays ? activePlan.completedDays.length : 0;
-        const total = 365;
-        const percent = Math.round((completed / total) * 100);
-        const lastDay = activePlan.lastOpenedDay || 1;
-        progressHTML = [
-          '<section class="card" style="margin-bottom:16px;">',
-            '<h2 style="font-size:1.2rem;margin-bottom:12px;">Tu progreso</h2>',
-            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">',
-              '<span class="text-muted">' + activePlan.name + '</span>',
-              '<span style="font-weight:600;">' + percent + '%</span>',
+      function renderResumen() {
+        const progress = activePlan
+          ? (function() {
+              const completed = (activePlan.completedDays || []).length;
+              const total = 365;
+              const percent = Math.round((completed / total) * 100);
+              return '<div class="card" style="margin-bottom:12px;"><p><strong>' + activePlan.name + '</strong> · ' + percent + '%</p><p class="text-muted">Día ' + (activePlan.lastOpenedDay || 1) + ' de 365 · ' + completed + ' completados</p></div>';
+            })()
+          : '<div class="card" style="margin-bottom:12px;"><p class="text-muted">Sin plan activo.</p></div>';
+
+        return [
+          progress,
+          '<div class="card">',
+            '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;">',
+              '<div><div style="font-size:1.4rem;font-weight:700;">' + streak.current + '</div><div class="text-muted" style="font-size:0.78rem;">Racha actual</div></div>',
+              '<div><div style="font-size:1.4rem;font-weight:700;">' + favCount + '</div><div class="text-muted" style="font-size:0.78rem;">Favoritos</div></div>',
+              '<div><div style="font-size:1.4rem;font-weight:700;">' + noteCount + '</div><div class="text-muted" style="font-size:0.78rem;">Notas</div></div>',
             '</div>',
-            '<div class="progress-bar" style="margin-bottom:8px;">',
-              '<div class="progress-fill" style="width:' + percent + '%;"></div>',
-            '</div>',
-            '<p class="text-muted" style="font-size:0.85rem;">Día ' + lastDay + ' de ' + total + ' · ' + completed + ' días completados</p>',
-            '<a class="btn btn-primary" href="/p/leer-hoy.html" style="margin-top:12px;display:inline-block;">Continuar leyendo</a>',
-          '</section>'
-        ].join('');
-      } else {
-        progressHTML = [
-          '<section class="card" style="margin-bottom:16px;text-align:center;">',
-            '<p class="text-muted" style="margin-bottom:12px;">Aún no has iniciado un plan de lectura.</p>',
-            '<a class="btn btn-primary" href="/p/planes.html">Elegir un plan</a>',
-          '</section>'
+          '</div>'
         ].join('');
       }
+
+      function renderPlanes() {
+        const plans = Array.isArray(userData.plans) ? userData.plans : [];
+        if (plans.length === 0) return '<div class="card"><p class="text-muted">Todavía no tienes planes iniciados.</p></div>';
+        return plans.map(function(plan) {
+          const isActive = plan.planId === userData.config.activePlanId;
+          const archived = plan.status === 'archived';
+          return [
+            '<div class="card" style="margin-bottom:10px;">',
+              '<div style="display:flex;justify-content:space-between;gap:8px;align-items:center;">',
+                '<strong>' + (plan.name || plan.planId) + '</strong>',
+                isActive ? '<span class="chip" style="background:var(--accent-primary);color:#fff;">Activo</span>' : (archived ? '<span class="chip">Archivado</span>' : ''),
+              '</div>',
+              '<p class="text-muted" style="font-size:0.82rem;">Inicio: ' + (plan.startDate || '-') + ' · Día actual: ' + (plan.lastOpenedDay || 1) + '</p>',
+              '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">',
+                '<button class="btn" type="button" data-plan-action="activate" data-plan-id="' + plan.planId + '">Activar</button>',
+                '<button class="btn" type="button" data-plan-action="restart" data-plan-id="' + plan.planId + '">Reiniciar</button>',
+                '<button class="btn" type="button" data-plan-action="archive" data-plan-id="' + plan.planId + '">' + (archived ? 'Reactivar' : 'Archivar') + '</button>',
+              '</div>',
+            '</div>'
+          ].join('');
+        }).join('');
+      }
+
+      function renderFavoritos() {
+        const items = (userData.favorites || []).slice();
+        if (!items.length) return '<div class="card"><p class="text-muted">Aún no tienes favoritos.</p></div>';
+        return items.map(function(item) {
+          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong> <span class="text-muted">(' + (item.translationId || '-') + ')</span></p><p class="text-muted" style="font-size:0.8rem;">' + (item.savedAt || '') + '</p><button class="btn" type="button" data-favorite-remove="' + item.id + '">Eliminar</button></div>';
+        }).join('');
+      }
+
+      function renderNotas() {
+        const items = (userData.notes || []).slice();
+        if (!items.length) return '<div class="card"><p class="text-muted">Aún no tienes notas.</p></div>';
+        return items.map(function(item) {
+          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong></p><p style="margin:6px 0;">' + item.content + '</p><p class="text-muted" style="font-size:0.8rem;">Actualizada: ' + (item.updatedAt || item.createdAt || '') + '</p><div style="display:flex;gap:8px;"><button class="btn" type="button" data-note-edit="' + item.id + '">Editar</button><button class="btn" type="button" data-note-remove="' + item.id + '">Eliminar</button></div></div>';
+        }).join('');
+      }
+
+      function renderHistorial() {
+        const chapters = (userData.history.chapters || []).slice(0, 8);
+        if (!chapters.length) return '<div class="card"><p class="text-muted">Sin historial aún.</p></div>';
+        return '<div class="card"><h3 style="font-size:1rem;margin-bottom:8px;">Últimos capítulos</h3>' + chapters.map(function(c) { return '<p class="text-muted" style="font-size:0.84rem;">' + c.reference + ' · ' + (c.versionId || '') + '</p>'; }).join('') + '</div>';
+      }
+
+      function renderConfiguracion() {
+        return [
+          '<div class="card">',
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span>Modo oscuro</span><button class="btn" id="mi-espacio-theme-toggle" type="button">' + (state.theme === 'dark' ? 'Desactivar' : 'Activar') + '</button></div>',
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span>Modo 29 de febrero</span><select id="mi-espacio-leap" style="padding:6px;border-radius:8px;"><option value="gracia"' + (userData.config.leapYearMode === 'gracia' ? ' selected' : '') + '>Gracia</option><option value="repetir"' + (userData.config.leapYearMode === 'repetir' ? ' selected' : '') + '>Repetir</option></select></div>',
+            '<div style="display:flex;justify-content:space-between;align-items:center;"><span>Tamaño de texto</span><select id="mi-espacio-font" style="padding:6px;border-radius:8px;"><option value="small"' + (userData.config.fontSize === 'small' ? ' selected' : '') + '>Pequeño</option><option value="medium"' + (userData.config.fontSize === 'medium' ? ' selected' : '') + '>Medio</option><option value="large"' + (userData.config.fontSize === 'large' ? ' selected' : '') + '>Grande</option></select></div>',
+          '</div>'
+        ].join('');
+      }
+
+      function renderRespaldo() {
+        return [
+          '<div class="card">',
+            '<p class="text-muted" style="margin-bottom:10px;">Último respaldo: ' + (backupMeta.lastBackupAt || 'Nunca') + '</p>',
+            '<div style="display:flex;gap:8px;flex-wrap:wrap;">',
+              '<button class="btn btn-primary" id="mi-espacio-export" type="button">Descargar JSON</button>',
+              '<button class="btn" id="mi-espacio-import-replace" type="button">Importar (reemplazar)</button>',
+              '<button class="btn" id="mi-espacio-import-merge" type="button">Importar (fusionar)</button>',
+            '</div>',
+            '<input id="mi-espacio-import-file" type="file" accept="application/json" style="display:none;"/>',
+          '</div>'
+        ].join('');
+      }
+
+      let content = '';
+      if (tab === 'resumen') content = renderResumen();
+      if (tab === 'planes') content = renderPlanes();
+      if (tab === 'favoritos') content = renderFavoritos();
+      if (tab === 'notas') content = renderNotas();
+      if (tab === 'historial') content = renderHistorial();
+      if (tab === 'configuracion') content = renderConfiguracion();
+      if (tab === 'respaldo') content = renderRespaldo();
 
       dynamic.innerHTML = [
         '<div class="page-container">',
-          '<section style="margin-bottom:20px;">',
+          '<section style="margin-bottom:16px;">',
             '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Mi espacio</h1>',
             '<p class="text-muted">Tu centro personal de lectura bíblica.</p>',
           '</section>',
-          progressHTML,
-          '<section class="card" style="margin-bottom:16px;">',
-            '<h2 style="font-size:1.2rem;margin-bottom:12px;">Resumen</h2>',
-            '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;">',
-              '<div>',
-                '<div style="font-size:1.5rem;font-weight:700;color:var(--accent-primary);">' + streak + '</div>',
-                '<div class="text-muted" style="font-size:0.8rem;">Racha</div>',
-              '</div>',
-              '<div>',
-                '<div style="font-size:1.5rem;font-weight:700;color:var(--accent-primary);">' + favCount + '</div>',
-                '<div class="text-muted" style="font-size:0.8rem;">Favoritos</div>',
-              '</div>',
-              '<div>',
-                '<div style="font-size:1.5rem;font-weight:700;color:var(--accent-primary);">' + noteCount + '</div>',
-                '<div class="text-muted" style="font-size:0.8rem;">Notas</div>',
-              '</div>',
-            '</div>',
-          '</section>',
-          '<section class="card" style="margin-bottom:16px;">',
-            '<h2 style="font-size:1.2rem;margin-bottom:12px;">Configuración</h2>',
-            '<div style="display:flex;flex-direction:column;gap:10px;">',
-              '<div style="display:flex;justify-content:space-between;align-items:center;">',
-                '<span>Modo oscuro</span>',
-                '<button class="btn" id="mi-espacio-theme-toggle" type="button">' + (state.theme === 'dark' ? 'Desactivar' : 'Activar') + '</button>',
-              '</div>',
-              '<div style="display:flex;justify-content:space-between;align-items:center;">',
-                '<span>Exportar datos</span>',
-                '<button class="btn" id="mi-espacio-export" type="button">Descargar JSON</button>',
-              '</div>',
-            '</div>',
-          '</section>',
+          shouldRemindBackup ? '<section class="card" style="margin-bottom:12px;background:var(--accent-gold-light);color:#1a1a1a;"><p style="margin:0;">Te recomendamos hacer respaldo de tus datos hoy.</p></section>' : '',
+          '<section class="card" style="margin-bottom:12px;"><div style="display:flex;gap:8px;flex-wrap:wrap;">' + tabs.map(function(t) { return chipButton(t.id, t.label); }).join('') + '</div></section>',
+          content,
         '</div>'
       ].join('');
 
-      const themeToggle = $('#mi-espacio-theme-toggle');
-      if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-          toggleTheme();
+      $$('#page-dynamic [data-tab]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          setUrlParam('tab', btn.getAttribute('data-tab'));
           renderMiEspacioPage();
         });
-      }
+      });
+
+      $$('#page-dynamic [data-plan-action]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const planId = btn.getAttribute('data-plan-id');
+          const action = btn.getAttribute('data-plan-action');
+          const plan = (state.user.plans || []).find(function(p) { return p.planId === planId; });
+          if (!plan) return;
+          if (action === 'activate') state.user.config.activePlanId = planId;
+          if (action === 'restart') { plan.startDate = getTodayISODate(); plan.lastOpenedDay = 1; plan.completedDays = []; }
+          if (action === 'archive') plan.status = plan.status === 'archived' ? 'active' : 'archived';
+          saveUserData(state.user);
+          renderMiEspacioPage();
+        });
+      });
+
+      $$('#page-dynamic [data-favorite-remove]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const id = btn.getAttribute('data-favorite-remove');
+          state.user.favorites = (state.user.favorites || []).filter(function(f) { return String(f.id) !== String(id); });
+          saveUserData(state.user);
+          renderMiEspacioPage();
+        });
+      });
+
+      $$('#page-dynamic [data-note-edit]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const id = btn.getAttribute('data-note-edit');
+          const note = (state.user.notes || []).find(function(n) { return String(n.id) === String(id); });
+          if (!note) return;
+          const next = window.prompt('Editar nota', note.content || '');
+          if (!next || !next.trim()) return;
+          note.content = next.trim();
+          note.updatedAt = new Date().toISOString();
+          saveUserData(state.user);
+          renderMiEspacioPage();
+        });
+      });
+
+      $$('#page-dynamic [data-note-remove]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const id = btn.getAttribute('data-note-remove');
+          state.user.notes = (state.user.notes || []).filter(function(n) { return String(n.id) !== String(id); });
+          saveUserData(state.user);
+          renderMiEspacioPage();
+        });
+      });
+
+      const themeToggle = $('#mi-espacio-theme-toggle');
+      if (themeToggle) themeToggle.addEventListener('click', function() { toggleTheme(); renderMiEspacioPage(); });
+
+      const leap = $('#mi-espacio-leap');
+      if (leap) leap.addEventListener('change', function() { state.user.config.leapYearMode = leap.value; saveUserData(state.user); });
+
+      const font = $('#mi-espacio-font');
+      if (font) font.addEventListener('change', function() { state.user.config.fontSize = font.value; saveUserData(state.user); });
 
       const exportBtn = $('#mi-espacio-export');
       if (exportBtn) {
         exportBtn.addEventListener('click', function() {
-          const data = JSON.stringify(userData, null, 2);
+          state.user.backupMeta = state.user.backupMeta || {};
+          state.user.backupMeta.lastBackupAt = new Date().toISOString();
+          saveUserData(state.user);
+          const data = JSON.stringify(state.user, null, 2);
           const blob = new Blob([data], { type: 'application/json' });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
-          a.download = 'mibiblia365-respaldo-' + new Date().toISOString().split('T')[0] + '.json';
+          a.download = 'mibiblia365-respaldo-' + getTodayISODate() + '.json';
           a.click();
           URL.revokeObjectURL(url);
+          renderMiEspacioPage();
         });
       }
+
+      function setupImport(mode) {
+        const fileInput = $('#mi-espacio-import-file');
+        if (!fileInput) return;
+        fileInput.onchange = function() {
+          const file = fileInput.files && fileInput.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = function() {
+            try {
+              const parsed = normalizeUserData(JSON.parse(reader.result));
+              if (mode === 'replace') {
+                state.user = parsed;
+              } else {
+                const mergedFavorites = {};
+                (parsed.favorites || []).concat(state.user.favorites || []).forEach(function(f) {
+                  if (!f || !f.reference) return;
+                  const key = String(f.id || (f.reference + '|' + (f.translationId || '')));
+                  mergedFavorites[key] = f;
+                });
+                state.user.favorites = Object.keys(mergedFavorites).map(function(k) { return mergedFavorites[k]; });
+
+                const mergedNotes = {};
+                (parsed.notes || []).concat(state.user.notes || []).forEach(function(n) {
+                  if (!n || !n.reference) return;
+                  const key = String(n.id || (n.reference + '|' + (n.createdAt || '')));
+                  mergedNotes[key] = n;
+                });
+                state.user.notes = Object.keys(mergedNotes).map(function(k) { return mergedNotes[k]; });
+                state.user.history = parsed.history || state.user.history;
+                if (!state.user.config.activePlanId && parsed.config.activePlanId) state.user.config.activePlanId = parsed.config.activePlanId;
+                const planMap = {};
+                (state.user.plans || []).concat(parsed.plans || []).forEach(function(p) { if (p && p.planId) planMap[p.planId] = p; });
+                state.user.plans = Object.keys(planMap).map(function(k) { return planMap[k]; });
+              }
+              saveUserData(state.user);
+              renderMiEspacioPage();
+            } catch (_) {
+              window.alert('No se pudo importar el archivo. Verifica que sea un JSON valido.');
+            }
+          };
+          reader.readAsText(file);
+        };
+        fileInput.click();
+      }
+
+      const importReplace = $('#mi-espacio-import-replace');
+      if (importReplace) importReplace.addEventListener('click', function() { setupImport('replace'); });
+
+      const importMerge = $('#mi-espacio-import-merge');
+      if (importMerge) importMerge.addEventListener('click', function() { setupImport('merge'); });
     }
 
     async function renderCurrentPage() {

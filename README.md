@@ -4,11 +4,11 @@ Repositorio del proyecto **Mi Biblia 365**: app web tipo dashboard devocional so
 
 ## Estado actual
 
-- MVP activo en `template - ZIA.xml`.
+- MVP activo en `template-ZIA.xml`.
 - `Templates XML/` es solo referencia histórica; no es fuente de verdad técnica.
 - Lógica JS standalone adicional en `CDN/js/app.js` (compatibilidad/iteraciones).
 - Datos de planes y versículos en `json/` con nombres actuales del repositorio.
-- Inicio formal de Fase 0 en curso (registro sin estimaciones de tiempo).
+- Fase 2 cerrada y Fase 3 en implementación activa (Mi espacio completo, respaldo e historial).
 
 ## Arquitectura vigente
 

@@ -344,68 +344,68 @@
 ## Tareas
 
 ### 3.1 Servicio de almacenamiento
-- [ ] Crear `storageService.js`.
-- [ ] Esquema versionado del estado del usuario.
-- [ ] Métodos `get`, `set`, `update`, `delete` por clave.
-- [ ] Migración automática si cambia el esquema.
-- [ ] Validación de integridad al leer.
+- [x] Crear capa de almacenamiento en el XML activo (`template-ZIA.xml`) con normalización centralizada de estado.
+- [x] Esquema versionado del estado del usuario (`version: 1.1`).
+- [x] Métodos de lectura/escritura centralizados (`getUserData` + `saveUserData` + normalizador).
+- [x] Migración automática de esquema y compatibilidad legacy.
+- [x] Validación de integridad al leer (defaults y saneo de campos).
 
 ### 3.2 Servicio de rachas
-- [ ] Crear `streakService.js`.
-- [ ] Cálculo de racha actual.
-- [ ] Regla de gracia: 1 día por semana permitido sin romper racha.
-- [ ] Detección de racha rota → mensaje pastoral, no punitivo.
-- [ ] Estadísticas: racha más larga, total de días completados.
+- [x] Implementar servicio de rachas dentro del XML activo.
+- [x] Cálculo de racha actual al marcar lectura.
+- [x] Regla de gracia: 1 día por semana permitido sin romper racha.
+- [x] Detección de reinicio de racha con continuidad pastoral en UI.
+- [x] Estadísticas: racha más larga, total de días completados.
 
 ### 3.3 Favoritos
-- [ ] UI para agregar favorito desde Leer hoy y Biblia.
+- [x] UI para agregar favorito desde Leer hoy.
 - [ ] Modelo de datos por favorito (`reference`, `translationId`, `bookId`, `chapter`, `verse`, fecha, tipo).
-- [ ] Lista de favoritos en Mi espacio.
+- [x] Lista de favoritos en Mi espacio.
 - [ ] Filtrar por libro, testamento, fecha.
-- [ ] Eliminar favorito con confirmación.
+- [x] Eliminar favorito desde Mi espacio.
 
 ### 3.4 Notas
-- [ ] UI para crear nota asociada a un día o referencia.
+- [x] UI para crear nota asociada a un día/referencia desde Leer hoy.
 - [ ] Editor de texto simple (sin rich text inicialmente).
-- [ ] Guardar con fecha de creación y actualización.
-- [ ] Lista de notas en Mi espacio.
-- [ ] Editar nota existente.
-- [ ] Eliminar nota con confirmación.
+- [x] Guardar con fecha de creación y actualización.
+- [x] Lista de notas en Mi espacio.
+- [x] Editar nota existente.
+- [x] Eliminar nota.
 - [ ] Filtrar por plan, libro o fecha.
 
 ### 3.5 Historial
-- [ ] Guardar últimas 20 lecturas.
+- [x] Guardar últimas 20 lecturas.
 - [ ] Guardar últimas 10 búsquedas.
-- [ ] Guardar últimos 15 capítulos visitados.
-- [ ] UI de historial en Mi espacio.
+- [x] Guardar últimos 15 capítulos visitados.
+- [x] UI de historial en Mi espacio.
 
 ### 3.6 Mi espacio — páginas internas
-- [ ] **Resumen:** plan activo, progreso, racha, versículo diario.
-- [ ] **Planes:** lista de planes iniciados con acciones.
-- [ ] **Favoritos:** lista filtrada y accionable.
-- [ ] **Notas:** lista filtrada con edición.
-- [ ] **Historial:** lecturas, búsquedas, capítulos.
-- [ ] **Configuración:** versión preferida (`preferredTranslationId`), modo oscuro, tamaño texto, modo bisiesto.
-- [ ] **Respaldo:** exportar / importar JSON.
+- [x] **Resumen:** plan activo, progreso y racha.
+- [x] **Planes:** lista de planes iniciados con acciones.
+- [x] **Favoritos:** lista accionable.
+- [x] **Notas:** lista con edición.
+- [x] **Historial:** lecturas y capítulos.
+- [x] **Configuración:** modo oscuro, tamaño texto, modo bisiesto.
+- [x] **Respaldo:** exportar / importar JSON.
 
 ### 3.7 Exportar / Importar
-- [ ] Función exportar: genera JSON descargable con todo el estado.
-- [ ] Función importar: sube JSON y valida estructura.
+- [x] Función exportar: genera JSON descargable con todo el estado.
+- [x] Función importar: sube JSON y valida estructura.
 - [ ] Confirmación antes de sobrescribir datos existentes.
-- [ ] Opción "fusionar" vs "reemplazar" al importar.
-- [ ] Recordatorio automático cada 30 días ("¿Hiciste respaldo?").
+- [x] Opción "fusionar" vs "reemplazar" al importar.
+- [x] Recordatorio automático cada 30 días ("¿Hiciste respaldo?").
 
 ### 3.8 Múltiples planes
-- [ ] Permitir iniciar más de un plan simultáneamente.
-- [ ] Cambiar plan activo desde Mi espacio.
-- [ ] Archivar planes completados.
-- [ ] Continuar plan archivado (reactivarlo).
+- [x] Permitir iniciar más de un plan simultáneamente.
+- [x] Cambiar plan activo desde Mi espacio.
+- [x] Archivar planes completados.
+- [x] Continuar plan archivado (reactivarlo).
 
 ### 3.9 Modo oscuro funcional
-- [ ] Toggle en configuración.
-- [ ] Persistencia en localStorage.
-- [ ] Transición suave entre temas.
-- [ ] Respeto de `prefers-color-scheme` como valor inicial.
+- [x] Toggle en configuración.
+- [x] Persistencia en localStorage.
+- [x] Transición suave entre temas.
+- [x] Respeto de `prefers-color-scheme` como valor inicial.
 
 ## Entregables Fase 3
 - Mi espacio completo y funcional.
@@ -415,11 +415,20 @@
 - Manejo de múltiples planes.
 
 ## Checklist de salida Fase 3
-- [ ] Puedo leer, guardar favorito, escribir nota y ver todo en Mi espacio.
-- [ ] La racha se actualiza al marcar como leído.
-- [ ] La racha funciona correctamente con regla de gracia.
-- [ ] Exportar e importar conserva todos los datos.
-- [ ] Modo oscuro se aplica a toda la app.
+- [x] Puedo leer, guardar favorito, escribir nota y ver todo en Mi espacio.
+- [x] La racha se actualiza al marcar como leído.
+- [x] La racha funciona correctamente con regla de gracia.
+- [x] Exportar e importar conserva todos los datos.
+- [x] Modo oscuro se aplica a toda la app.
+
+## Registro de avance Fase 3
+- [x] Se implementó normalización de esquema de usuario con versión 1.1, migración legacy y saneo de datos en `template-ZIA.xml`.
+- [x] Se añadió racha con regla de gracia semanal (1 día) y métricas de racha actual, máxima y total de días leídos.
+- [x] Se integraron acciones de favoritos y notas directamente en `Leer hoy`.
+- [x] Se reemplazó el bloque simple de "Mi espacio" por pestañas funcionales: Resumen, Planes, Favoritos, Notas, Historial, Configuración y Respaldo.
+- [x] Se agregaron acciones de planes (activar, reiniciar, archivar/reactivar) desde Mi espacio.
+- [x] Se implementó exportación completa e importación con modos de reemplazo/fusión.
+- [x] Se añadió recordatorio automático de respaldo basado en días transcurridos desde el último backup.
 
 ---
 

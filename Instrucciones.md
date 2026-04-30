@@ -148,3 +148,40 @@ Contenido está en `renderInstalarPage()`. Si el JS no renderiza, agregar instru
 - Helper `renderErrorState()` agregado en `template-ZIA.xml`. Muestra mensaje amigable + botón "Reintentar".
 - Integrado en `renderLeerHoyPage()` (error global de carga) y en `renderCurrentReading()` (error de lectura individual).
 - Tarea manual pendiente: simular offline en DevTools y confirmar recuperación al volver online.
+
+---
+
+## Fase 3 — Verificación manual de cierre
+
+### 15) Mi espacio por pestañas
+- Abrir `/p/mi-espacio.html` y comprobar que aparecen pestañas:
+  - Resumen
+  - Planes
+  - Favoritos
+  - Notas
+  - Historial
+  - Configuración
+  - Respaldo
+
+### 16) Favoritos y notas desde Leer hoy
+- Abrir `/p/leer-hoy.html`.
+- En una lectura, usar botones:
+  - `Guardar favorito`
+  - `Añadir nota`
+- Validar que ambos elementos aparezcan en Mi espacio.
+
+### 17) Racha con día de gracia
+- Marcar lectura diaria y verificar incremento de racha.
+- Probar un escenario con 1 día omitido en la misma semana y confirmar que la racha no se rompe.
+- Probar más de 1 día omitido para confirmar reinicio de racha.
+
+### 18) Respaldo JSON
+- En Mi espacio > Respaldo:
+  - Exportar JSON.
+  - Importar modo `reemplazar` con el archivo exportado.
+  - Importar modo `fusionar` con un JSON que tenga favoritos/notas adicionales.
+- Confirmar que no se pierde la estructura de `config`, `plans`, `favorites`, `notes`, `history`.
+
+### 19) Recordatorio de respaldo
+- Validar que se muestre recordatorio cuando no existe `lastBackupAt`.
+- Ejecutar una exportación y confirmar que actualiza fecha de último respaldo.
