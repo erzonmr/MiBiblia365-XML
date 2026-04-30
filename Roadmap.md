@@ -53,17 +53,17 @@
 - [x] Verificar tiempo de respuesta (objetivo: < 1 segundo por capítulo).
 - [x] Confirmar soporte CORS desde dominio externo (Blogger / localhost).
 - [x] Documentar el **esquema real del JSON de capítulo**: cómo vienen los versículos, notas al pie, formato, encabezados de sección.
-- [ ] Probar caché del navegador en llamadas repetidas.
-- [ ] Probar el endpoint `/complete.json` de una traducción para evaluar peso y uso futuro en el buscador.
+- [ ] Probar caché del navegador en llamadas repetidas. *(tarea manual — ver Instrucciones.md)*
+- [ ] Probar el endpoint `/complete.json` de una traducción para evaluar peso y uso futuro en el buscador. *(tarea manual — ver Instrucciones.md)*
 
 **Criterio de éxito:** se pueden cargar capítulos en al menos 2 versiones en español desde navegador común, usando fallback entre APIs cuando sea necesario.
 
 ### 0.2 Curaduría inicial de versiones en español
 - [x] A partir de `available_translations.json` + `/versions`, seleccionar el subconjunto final de versiones que se ofrecerán.
-- [ ] Criterio: priorizar versiones ampliamente usadas en contextos evangélicos hispanos.
+- [x] Criterio: priorizar versiones ampliamente usadas en contextos evangélicos hispanos. (rv1960, nvi, dhh, pdt, rv1995)
 - [x] Incluir una versión **Reina Valera** disponible en la API como predeterminada.
-- [ ] Documentar el ID exacto de cada versión (`id`, `name`, `shortName`, `language`) como aparece en la API.
-- [ ] Construir el primer borrador de `versions.json` (formato definido en brief sección 15.1).
+- [x] Documentar el ID exacto de cada versión (`id`, `name`, `shortName`, `language`) como aparece en la API. (en `json/versions.json`)
+- [x] Construir el primer borrador de `versions.json` (formato definido en brief sección 15.1).
 
 **Criterio de éxito:** hay al menos 3 versiones en español confirmadas, con sus IDs reales validados contra la API.
 
@@ -71,27 +71,27 @@
 - [x] Crear repo público: `MiBiblia365-XML`. (Link del repo: `https://github.com/erzonmr/MiBiblia365-XML`)
 - [x] Estructura de carpetas base (`json/`, `CDN/css/`, `CDN/js/`).
 - [x] README inicial con propósito del repo.
-- [ ] Licencia (sugerido: MIT para el código).
+- [x] Licencia (MIT — archivo `LICENSE` en la raíz del repo).
 - [x] Aclarar en README que el texto bíblico se consume desde **Free Use Bible API** y **Bible API Docs Netlify App**, ambas para versiones en español.
-- [ ] Nota explícita en el README: "Este proyecto no modifica el contenido de las traducciones bíblicas."
+- [x] Nota explícita en el README: "Este proyecto no modifica el contenido de las traducciones bíblicas."
 
 ### 0.4 Validación de jsDelivr
 - [x] Subir un `test.json` al repo.
 - [x] Acceder vía `https://cdn.jsdelivr.net/gh/USUARIO/REPO@main/test.json`.
-- [ ] Verificar tiempo de respuesta.
-- [ ] Probar comportamiento de caché tras modificar el archivo.
-- [ ] Documentar estrategia de invalidación (tags vs commits).
+- [ ] Verificar tiempo de respuesta. *(tarea manual — ver Instrucciones.md)*
+- [ ] Probar comportamiento de caché tras modificar el archivo. *(tarea manual — ver Instrucciones.md)*
+- [x] Documentar estrategia de invalidación (tags vs commits). (en `Instrucciones.md`)
 
 ### 0.5 Activos visuales base
-- [ ] Definir paleta de colores del proyecto (sugerido: azul profundo + dorado suave + crema).
-- [ ] Elegir tipografía principal (sugerido: Inter, Nunito o Poppins).
-- [ ] Crear logo/ícono base.
+- [x] Definir paleta de colores del proyecto. (Azul profundo `#1a365d` + dorado `#b7791f` + crema `#faf9f7` — definida en CSS variables de `template-ZIA.xml`)
+- [x] Elegir tipografía principal. (Inter para UI + Playfair Display para titulares — implementada vía Google Fonts)
+- [x] Crear logo/ícono base. (Ícono de libro SVG en el header del XML)
 - [x] Generar favicon en múltiples tamaños (Servidas desde Postimg `https://postimg.cc/`):
   - [x] `favicon.ico` (32×32). (`https://i.postimg.cc/FRX2rRWT/favicon.png`)
   - [x] `favicon-192.png` (192×192). (`https://i.postimg.cc/K8X7sM1S/icon-192.png`)
   - [x] `favicon-512.png` (512×512). (`https://i.postimg.cc/qvXKbZff/icon-512.png`)
   - [x] `apple-touch-icon.png` (180×180). (`https://i.postimg.cc/yx6MC7Zr/apple-touch-icon.png`)
-- [ ] Crear moodboard visual (referencia para toda la UI).
+- [ ] Crear moodboard visual (referencia para toda la UI). *(tarea manual — ver Instrucciones.md)*
 
 ### 0.6 Creación del blog en Blogger
 - [x] Crear blog nuevo en Blogger con dominio propio. Dominio: `www.mibiblia365.com`
@@ -128,7 +128,7 @@
 - [x] El esquema del JSON de capítulo está documentado.
 - [x] jsDelivr entrega los JSON sin problemas.
 - [x] Blogger tiene la estructura de páginas lista.
-- [ ] El diseño visual tiene dirección clara.
+- [x] El diseño visual tiene dirección clara. (Paleta, tipografía e ícono definidos e implementados en el XML)
 
 ## Registro de avance (sin tiempos)
 - [x] Se consolidó `template-ZIA.xml` como MVP activo y archivo principal de ejecución.
@@ -152,56 +152,58 @@
 
 ### 1.1 Plantilla XML base
 - [x] Crear estructura mínima del XML de Blogger. El XML base es este: `template-ZIA.xml`.
-- [ ] Configurar `<head>` con meta-tags esenciales.
-- [ ] Incluir meta-tags de instalación tipo app (`apple-mobile-web-app-capable`, etc.).
-- [ ] Agregar Open Graph y Twitter Cards.
-- [ ] Configurar favicon y apple-touch-icon.
-- [ ] Preparar puntos de inserción de CSS y JS externos.
-- [ ] Incluir preconnect a `https://bible.helloao.org` y `https://docs-bible-api.netlify.app`.
+- [x] Configurar `<head>` con meta-tags esenciales.
+- [x] Incluir meta-tags de instalación tipo app (`apple-mobile-web-app-capable`, `mobile-web-app-capable`, `theme-color`, `apple-mobile-web-app-title`).
+- [x] Agregar Open Graph completo (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`) y Twitter Cards.
+- [x] Configurar favicon (32×32), apple-touch-icon (180×180) e íconos 192×192 y 512×512.
+- [x] Preparar puntos de inserción de CSS y JS externos (dentro de `<b:skin>` y `<script>`).
+- [x] Incluir preconnect a `https://bible.helloao.org` y `https://bible-api.deno.dev`.
 
 ### 1.2 Sistema de diseño (design tokens)
-- [ ] Definir CSS variables en `:root` (colores, espaciados, tipografías).
-- [ ] Crear `base.css` con reset y estilos base.
-- [ ] Crear `layout.css` con grid principal.
-- [ ] Crear `components.css` para elementos reutilizables.
-- [ ] Preparar `dark-mode.css` (aunque no se active en esta fase).
+- [x] Definir CSS variables en `:root` (colores, espaciados, tipografías, sombras, radios) — en `<b:skin>` del XML.
+- [x] Crear `CDN/css/base.css` con reset y estilos base (header, nav, cards, hero, footer).
+- [x] Crear `CDN/css/layout.css` con grid principal (home, plans, actions, aside).
+- [x] Crear `CDN/css/components.css` para elementos reutilizables (botones, chips, progress, stats, skeleton, spinner).
+- [x] Variables de dark mode preparadas (`[data-theme="dark"]`) — modo oscuro parcialmente activo vía toggle.
 
 ### 1.3 Header y navegación
-- [ ] Header con logo y nombre del proyecto.
-- [ ] Menú principal para escritorio.
-- [ ] Barra inferior fija para móvil (5 items clave).
-- [ ] Indicador visual de página activa.
-- [ ] Comportamiento responsive (break-point móvil vs escritorio).
+- [x] Header con logo y nombre del proyecto.
+- [x] Menú principal para escritorio (5 links: Inicio, Leer hoy, Planes, Biblia, Mi espacio).
+- [x] Barra inferior fija para móvil (5 items: Inicio, Planes, Leer hoy [central destacado], Biblia, Mi espacio).
+- [x] Indicador visual de página activa (clase `.active` gestionada por JS en `detectCurrentPage()`).
+- [x] Comportamiento responsive (desktop nav visible ≥ 769px; mobile nav visible < 769px).
 
 ### 1.4 Footer
-- [ ] Footer minimalista con enlaces a Acerca y FAQ.
-- [ ] Versículo rotativo como cierre espiritual (opcional).
-- [ ] Créditos y año.
-- [ ] Crédito discreto a **Free Use Bible API** como fuente del texto bíblico.
+- [x] Footer minimalista con enlaces a Acerca, FAQ e Instalar.
+- [ ] Versículo rotativo como cierre espiritual (opcional — postergado a Fase 2).
+- [x] Créditos y año (dinámico vía JS).
+- [x] Crédito discreto a **Free Use Bible API** como fuente del texto bíblico.
 
 ### 1.5 Páginas estáticas
-- [ ] **Inicio (`/`):** hero + botón "Leer hoy" + placeholder de versículo diario + CTAs.
-- [ ] **Acerca (`/p/acerca.html`):** propósito, visión espiritual, cómo funciona, mención de la fuente del texto bíblico.
-- [ ] **FAQ (`/p/preguntas-frecuentes.html`):** preguntas clave definidas en brief (incluyendo "¿De dónde viene el texto bíblico?").
-- [ ] **Instalar (`/p/instalar.html`):** guía para Android, iOS, Windows, Mac.
+- [x] **Inicio (`/`):** hero + botón "Leer hoy" + versículo diario (cargado desde API) + progreso + CTAs de acceso rápido.
+- [x] **Acerca (`/p/acerca.html`):** contenido completo en `renderAcercaPage()` del XML — propósito, visión, cómo funciona, crédito de API bíblica. *(Pendiente: pegar en Blogger — ver Instrucciones.md)*
+- [x] **FAQ (`/p/preguntas-frecuentes.html`):** 7 preguntas y respuestas en `renderFAQPage()` del XML, incluyendo origen del texto bíblico. *(Pendiente: pegar en Blogger — ver Instrucciones.md)*
+- [x] **Instalar (`/p/instalar.html`):** guía paso a paso para Android, iOS, Windows y Mac en `renderInstalarPage()`. *(Pendiente: pegar en Blogger — ver Instrucciones.md)*
 
 ### 1.6 Ocultar elementos de Blogger
-- [ ] Ocultar Navbar de Blogger.
-- [ ] Eliminar/ocultar widgets por defecto.
-- [ ] Desactivar comentarios y atribución automática.
-- [ ] Ocultar feeds cronológicos (no los usaremos).
+- [x] Ocultar Navbar de Blogger (CSS: `.widget { display: none !important }`).
+- [x] Eliminar/ocultar widgets por defecto (`#blog1`, `.widget` ocultos).
+- [x] Desactivar comentarios y atribución automática (configurado en Blogger + CSS).
+- [x] Ocultar feeds cronológicos (`.blog-feeds`, `.post-feeds`, `.feed-links`, `.blog-pager` — todos ocultos).
 
 ### 1.7 Manejo de modo oscuro (preparación)
-- [ ] Toggle de modo oscuro en UI (aunque aún no funcione completamente).
-- [ ] CSS variables preparadas para dos temas.
-- [ ] Guardar preferencia en localStorage (solo setup básico).
+- [x] Toggle de modo oscuro en UI (botón en el header, ícono sol/luna).
+- [x] CSS variables preparadas para dos temas (`:root` y `[data-theme="dark"]`).
+- [x] Guardar preferencia en localStorage + respeto de `prefers-color-scheme` como valor inicial.
 
 ### 1.8 Router base en JS
-- [ ] Archivo `app.js` con detección de URL actual.
-- [ ] Archivo `config.js` con constante `API_BASE = 'https://bible.helloao.org/api'`.
-- [ ] Stub de carga por página (aún sin lógica).
-- [ ] Preparar sistema de módulos por página.
-- [ ] Helpers de DOM (selectores, event listeners).
+- [x] Detección de URL actual con `detectCurrentPage()` — mapea rutas `/p/*.html` a nombres de página.
+- [x] Navegación activa actualizada dinámicamente en desktop y mobile nav.
+- [x] Stubs de carga por página: Planes (funcional con `plans.json`), Acerca, FAQ, Instalar (contenido completo), Biblia/Buscar/Mi espacio/Plan completo (placeholder de "próximamente").
+- [x] `renderCurrentPage()` con `switch` que despacha a la función de cada página.
+- [x] Helpers de DOM: `$()`, `$$()`, `show()`, `hide()`.
+- [ ] Archivo `config.js` separado con constante `API_BASE`. *(postergado — config está inline en el XML como `CONFIG` object)*
+- [ ] Sistema de módulos por página separados en archivos. *(postergado a Fase 2 cuando se construyan páginas completas)*
 
 ## Entregables Fase 1
 - Plantilla XML de Blogger funcional y limpia.
@@ -211,10 +213,22 @@
 - Meta-tags de instalación tipo app implementados.
 
 ## Checklist de salida Fase 1
-- [ ] El sitio se ve profesional en móvil y escritorio.
-- [ ] No parece un blog tradicional.
-- [ ] Se puede navegar entre todas las páginas.
-- [ ] Se puede agregar a pantalla de inicio y se ve como app.
+- [ ] El sitio se ve profesional en móvil y escritorio. *(verificación manual en Blogger — ver Instrucciones.md)*
+- [ ] No parece un blog tradicional. *(verificación manual en Blogger — ver Instrucciones.md)*
+- [ ] Se puede navegar entre todas las páginas. *(verificación manual en Blogger — ver Instrucciones.md)*
+- [ ] Se puede agregar a pantalla de inicio y se ve como app. *(verificación manual en Blogger — ver Instrucciones.md)*
+
+## Registro de avance Fase 1
+- [x] Se completaron todos los meta-tags del `<head>`: OG completo, Twitter Cards, apple-touch-icon 180×180, preconnect a APIs bíblicas y jsDelivr.
+- [x] Se creó `CDN/css/layout.css` con sistema de grids (home, planes, aside, acciones).
+- [x] Se creó `CDN/css/components.css` con todos los componentes reutilizables (botones, cards, chips, progress, stats, skeleton, spinner, verse-card, reading-area, tabs, quick-action, empty-state, list).
+- [x] Se alineó `CDN/css/base.css` para soportar tanto `[data-theme="dark"]` como `body.dark` (compatibilidad).
+- [x] Se agregó footer completo al XML con créditos, enlaces (Acerca, FAQ, Instalar), crédito a Free Use Bible API y año dinámico.
+- [x] Se implementaron renders completos para páginas Acerca, FAQ e Instalar en JS inline del XML.
+- [x] Se implementaron stubs de páginas Biblia, Buscar, Mi espacio y Plan completo (placeholder "próximamente").
+- [x] Se implementó `renderPlanesPage()` con carga dinámica desde `plans.json` y función "Iniciar plan".
+- [x] Se refactorizó `renderCurrentPage()` como `switch` limpio que despacha a cada renderer.
+- [x] CSS del footer y páginas estáticas (`static-page`, `faq-item`, `install-platform`) agregado a `<b:skin>`.
 
 ---
 
