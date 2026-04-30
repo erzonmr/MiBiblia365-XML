@@ -14,15 +14,15 @@
 ### 2) Validación de jsDelivr
 - Probar URL:
   - `https://cdn.jsdelivr.net/gh/erzonmr/MiBiblia365-XML@main/test.json`
-- Actualizar `test.json` y verificar comportamiento de caché.
+- Actualizar `test.json` y verificar comportamiento de caché. (Accesible)
 - Estrategia recomendada de invalidación:
   - Desarrollo: fijar hash de commit (`@<sha>`).
   - Producción estable: usar tags (`@v0.x.y`) y publicar nuevo tag en cambios de datos.
 
 ### 3) Curaduría de versiones en español
-- Revisar `json/versions.json` y validar que los IDs sigan vigentes en ambas APIs.
-- Mantener `rv1960` como versión por defecto salvo nueva decisión de producto.
+- Revisar `json/versions.json` y validar que los IDs sigan vigentes en ambas APIs. (Ya está hecho)
+- Mantener `rv1960` como versión por defecto salvo nueva decisión de producto. (Listo)
 
 ### 4) Blogger (pendiente manual)
-- Completar meta-descripciones y opciones de búsqueda del blog.
-- Mantener el mapeo de rutas `/p/*.html` ya definido en Roadmap.
+- Completar meta-descripciones y opciones de búsqueda del blog. (Ya está hecho)
+- Mantener el mapeo de rutas `/p/*.html` ya definido en Roadmap. (Ya están creadas las /p/*.html)
