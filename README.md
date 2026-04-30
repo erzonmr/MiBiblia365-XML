@@ -73,10 +73,8 @@ En `template - ZIA.xml`:
 
 ## Activos de Fase 0 agregados
 
-- `test-api.html`: prueba local para validar APIs, filtro de español y fallback.
 - `json/versions.json`: primer subconjunto curado de versiones en español.
 - `json/plans.json`: catálogo inicial de planes conectando a los JSON existentes.
 - `json/config.json`: configuración base (`defaultTranslationId`, `defaultPlanId`, `leapYearMode`, `apiSources`).
-- `test.json`: archivo de humo para validar entrega por jsDelivr.
 - `LICENSE`: licencia MIT del código del repositorio.
 

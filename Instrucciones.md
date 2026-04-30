@@ -3,7 +3,7 @@
 ## Fase 0 — Tareas manuales pendientes
 
 ### 1) Validación de APIs (Listo)
-- Abrir `test-api.html` en navegador (localhost o en el propio Blogger).
+- Abrir `/p/leer-hoy.html` en el entorno Blogger o local con la plantilla activa.
 - Verificar:
   - Catálogo de traducciones desde HelloAO.
   - Catálogo de versiones desde Netlify/Deno.
@@ -13,15 +13,15 @@
 - Registrar aquí los tiempos reales observados.
 
 ### 2) Prueba de caché del navegador en llamadas repetidas
-- En `test-api.html`, cargar el mismo capítulo dos veces seguidas.
+- En `/p/leer-hoy.html`, cargar el mismo capítulo dos veces seguidas.
 - Abrir DevTools > Red y confirmar que la segunda llamada viene de caché (disco o memoria).
 - Verificar que el JS en `template-ZIA.xml` registra el hit de memoria (`memoryCache`).
 
 ### 3) Validación de jsDelivr
-- Probar URL:
-  - `https://cdn.jsdelivr.net/gh/erzonmr/MiBiblia365-XML@main/test.json`
+- Probar URL de un JSON activo del proyecto, por ejemplo:
+  - `https://cdn.jsdelivr.net/gh/erzonmr/MiBiblia365-XML@main/json/config.json`
 - Medir tiempo de respuesta (objetivo: < 500ms desde América Latina).
-- Actualizar `test.json`, hacer commit y verificar cuánto tarda jsDelivr en reflejar el cambio.
+- Actualizar un JSON activo (por ejemplo `json/config.json`), hacer commit y verificar cuánto tarda jsDelivr en reflejar el cambio.
 - **Estrategia de invalidación recomendada:**
   - Desarrollo: fijar hash de commit (`@<sha>` en la URL del CDN).
   - Producción estable: publicar nuevo tag (`@v0.x.y`) en cada cambio relevante de datos.
