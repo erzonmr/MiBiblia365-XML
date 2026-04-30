@@ -1797,43 +1797,69 @@
       }
     }
     
-    function initUserData() {
-      migrateLegacyStorage();
-      const data = getUserData();
-      
-      if (!data) {
-        // Crear estructura inicial
-        const initialData = {
-          version: '1.0',
-          lastSync: new Date().toISOString().split('T')[0],
-          config: {
-            preferredVersion: CONFIG.DEFAULT_VERSION,
-            sourcePreference: CONFIG.SOURCE_PREFERENCE,
-            darkMode: state.theme === 'dark',
-            fontSize: 'medium',
-            activePlanId: null,
-            leapYearMode: 'gracia'
-          },
-          plans: [],
-          favorites: [],
-          notes: [],
-          history: {
-            readings: [],
-            searches: [],
-            chapters: []
-          }
-        };
-        
-        saveUserData(initialData);
-        state.user = initialData;
-      } else {
-        if (!data.config) data.config = {};
-        data.config.preferredVersion = normalizeVersionId(data.config.preferredVersion || CONFIG.DEFAULT_VERSION);
-        if (!data.config.sourcePreference) data.config.sourcePreference = CONFIG.SOURCE_PREFERENCE;
-        state.user = data;
-        state.version = data.config.preferredVersion || CONFIG.DEFAULT_VERSION;
-      }
-    }
+     function initUserData() {
+       migrateLegacyStorage();
+       const data = getUserData();
+       
+       if (!data) {
+         // Crear estructura inicial para Fase 3
+         const initialData = {
+           version: '1.0',
+           lastSync: new Date().toISOString().split('T')[0],
+           config: {
+             preferredVersion: CONFIG.DEFAULT_VERSION,
+             sourcePreference: CONFIG.SOURCE_PREFERENCE,
+             darkMode: state.theme === 'dark',
+             fontSize: 'medium',
+             activePlanId: null,
+             leapYearMode: 'gracia'
+           },
+           // Modelo mejorado de planes con progreso detallado
+           plans: [],
+           favorites: [],
+           notes: [],
+           // Servicio de rachas mejorado con regla de gracia
+           streak: {
+             current: 0,
+             longest: 0,
+             lastDate: null,
+             graceDaysUsed: 0, // Días de gracia utilizados en la semana actual
+             graceDaysAvailable: 1 // Días de gracia disponibles por semana
+           },
+           history: {
+             readings: [], // Últimas 20 lecturas
+             searches: [], // Últimas 10 búsquedas
+             chapters: [] // Últimos 15 capítulos visitados
+           }
+         };
+         
+         saveUserData(initialData);
+         state.user = initialData;
+       } else {
+         // Asegurar compatibilidad con versiones anteriores de datos
+         if (!data.config) data.config = {};
+         data.config.preferredVersion = normalizeVersionId(data.config.preferredVersion || CONFIG.DEFAULT_VERSION);
+         if (!data.config.sourcePreference) data.config.sourcePreference = CONFIG.SOURCE_PREFERENCE;
+         
+         // Inicializar campos de racha mejorados si no existen (migración)
+         if (!data.streak) {
+           data.streak = {
+             current: 0,
+             longest: 0,
+             lastDate: null,
+             graceDaysUsed: 0,
+             graceDaysAvailable: 1
+           };
+         } else {
+           // Asegurar que los campos mejorados existan en datos existentes
+           if (data.streak.graceDaysUsed === undefined) data.streak.graceDaysUsed = 0;
+           if (data.streak.graceDaysAvailable === undefined) data.streak.graceDaysAvailable = 1;
+         }
+         
+         state.user = data;
+         state.version = data.config.preferredVersion || CONFIG.DEFAULT_VERSION;
+       }
+     }
     
     // ==========================================
     // Actualización de UI
