@@ -1031,6 +1031,47 @@
       color: var(--accent-primary);
       border-color: rgba(88, 166, 255, 0.3);
     }
+
+    /* Formulario / Menús Desplegables Premium */
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      outline: none;
+      transition: all var(--transition-fast);
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 36px;
+    }
+    
+    [data-theme="dark"] select {
+      background-color: var(--bg-secondary);
+      border-color: var(--border-light);
+      color: var(--text-primary);
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9d1d9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    }
+    
+    select:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+    }
+    
+    [data-theme="dark"] select:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+    }
   ]]></b:skin>
 </head>
 
@@ -3188,8 +3229,8 @@
         return [
           '<div class="card">',
             '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span>Modo oscuro</span><button class="btn" id="mi-espacio-theme-toggle" type="button">' + (state.theme === 'dark' ? 'Desactivar' : 'Activar') + '</button></div>',
-            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span>Modo 29 de febrero</span><select id="mi-espacio-leap" style="padding:6px;border-radius:8px;"><option value="gracia"' + (userData.config.leapYearMode === 'gracia' ? ' selected' : '') + '>Gracia</option><option value="repetir"' + (userData.config.leapYearMode === 'repetir' ? ' selected' : '') + '>Repetir</option></select></div>',
-            '<div style="display:flex;justify-content:space-between;align-items:center;"><span>Tamaño de texto</span><select id="mi-espacio-font" style="padding:6px;border-radius:8px;"><option value="small"' + (userData.config.fontSize === 'small' ? ' selected' : '') + '>Pequeño</option><option value="medium"' + (userData.config.fontSize === 'medium' ? ' selected' : '') + '>Medio</option><option value="large"' + (userData.config.fontSize === 'large' ? ' selected' : '') + '>Grande</option></select></div>',
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span>Modo 29 de febrero</span><select id="mi-espacio-leap" style="width:auto;min-width:120px;padding:6px 28px 6px 10px;border-radius:8px;"><option value="gracia"' + (userData.config.leapYearMode === 'gracia' ? ' selected' : '') + '>Gracia</option><option value="repetir"' + (userData.config.leapYearMode === 'repetir' ? ' selected' : '') + '>Repetir</option></select></div>',
+            '<div style="display:flex;justify-content:space-between;align-items:center;"><span>Tamaño de texto</span><select id="mi-espacio-font" style="width:auto;min-width:120px;padding:6px 28px 6px 10px;border-radius:8px;"><option value="small"' + (userData.config.fontSize === 'small' ? ' selected' : '') + '>Pequeño</option><option value="medium"' + (userData.config.fontSize === 'medium' ? ' selected' : '') + '>Medio</option><option value="large"' + (userData.config.fontSize === 'large' ? ' selected' : '') + '>Grande</option></select></div>',
           '</div>'
         ].join('');
       }
