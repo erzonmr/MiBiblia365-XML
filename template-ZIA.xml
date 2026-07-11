@@ -2429,6 +2429,10 @@
           ].join('');
         }
 
+        const isCompleted = planState.completedDays.indexOf(targetDay) !== -1;
+        const markReadText = isCompleted ? 'Leído ✓' : 'Marcar como leído';
+        const markReadClass = isCompleted ? 'btn btn-secondary' : 'btn btn-primary';
+
         dynamic.innerHTML = [
           '<div class="page-container">',
             '<section class="card" style="margin-bottom:16px;">',
@@ -2461,7 +2465,7 @@
               '<h3 style="margin-bottom:12px;" id="chapter-title">' + firstReading.reference + ' (' + selectedVersion + ')</h3>',
               '<div id="chapter-verses">' + renderChapterVerses(chapterData.verses) + '</div>',
               '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;">',
-                '<button class="btn btn-primary" id="mark-read-btn" type="button">Marcar como leído</button>',
+                '<button class="' + markReadClass + '" id="mark-read-btn" type="button">' + markReadText + '</button>',
                 '<button class="btn" id="add-favorite-btn" type="button">Guardar favorito</button>',
                 '<button class="btn" id="add-note-btn" type="button">Añadir nota</button>',
               '</div>',
@@ -2551,20 +2555,29 @@
         const markBtn = $('#mark-read-btn');
         if (markBtn) {
           markBtn.addEventListener('click', function() {
-            if (planState.completedDays.indexOf(targetDay) === -1) {
+            const index = planState.completedDays.indexOf(targetDay);
+            const msg = $('#mark-read-msg');
+            if (index === -1) {
               planState.completedDays.push(targetDay);
               planState.completedDays.sort(function(a, b) { return a - b; });
               saveUserData(state.user);
+              updateStreakAfterReading(getTodayISODate());
+              trackHistory('readings', {
+                reference: parsedReadings.map(function(r) { return r.reference; }).join(' · '),
+                day: targetDay,
+                planId: planState.planId,
+                markedAt: new Date().toISOString()
+              });
+              markBtn.textContent = 'Leído ✓';
+              markBtn.className = 'btn btn-secondary';
+              if (msg) msg.textContent = '¡Bien! Un día más en Su Palabra.';
+            } else {
+              planState.completedDays.splice(index, 1);
+              saveUserData(state.user);
+              markBtn.textContent = 'Marcar como leído';
+              markBtn.className = 'btn btn-primary';
+              if (msg) msg.textContent = 'Lectura marcada como no leída.';
             }
-            updateStreakAfterReading(getTodayISODate());
-            trackHistory('readings', {
-              reference: parsedReadings.map(function(r) { return r.reference; }).join(' · '),
-              day: targetDay,
-              planId: planState.planId,
-              markedAt: new Date().toISOString()
-            });
-            const msg = $('#mark-read-msg');
-            if (msg) msg.textContent = '¡Bien! Un día más en Su Palabra.';
           });
         }
 
