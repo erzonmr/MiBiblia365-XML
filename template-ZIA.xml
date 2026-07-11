@@ -422,26 +422,36 @@
       align-items: center;
       justify-content: center;
       gap: var(--spacing-sm);
-      padding: var(--spacing-md) var(--spacing-xl);
+      padding: var(--spacing-sm) var(--spacing-md);
       font-family: var(--font-sans);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 600;
       border-radius: var(--radius-md);
-      border: none;
+      border: 1px solid var(--border-light);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
       cursor: pointer;
       text-decoration: none;
       transition: all var(--transition-fast);
     }
     
+    .btn:hover {
+      background: var(--bg-elevated);
+      border-color: var(--border-medium);
+      color: var(--text-primary);
+    }
+    
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       color: white;
+      border: 1px solid transparent;
       box-shadow: var(--shadow-md);
     }
     
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
+      color: white;
     }
     
     .btn-secondary {
@@ -1654,7 +1664,7 @@
           }
         }
 
-        const err = new Error('No se pudo cargar el capitulo solicitado desde ninguna API.');
+        const err = new Error('No se pudo cargar el capítulo solicitado desde ninguna API.');
         err.details = errors;
         throw err;
       }
@@ -2859,7 +2869,7 @@
         '<div class="page-container">',
           '<section style="margin-bottom:16px;">',
             '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Biblia</h1>',
-            '<p class="text-muted">Lectura libre por libro y capitulo.</p>',
+            '<p class="text-muted">Lectura libre por libro y capítulo.</p>',
           '</section>',
           '<section class="card" style="margin-bottom:12px;display:grid;grid-template-columns:1fr;gap:10px;">',
             '<select id="biblia-version">' + versions.map(function(v) { return '<option value="' + v.id + '"' + (v.id === selectedVersion ? ' selected' : '') + '>' + v.name + ' (' + v.id + ')</option>'; }).join('') + '</select>',
@@ -2869,9 +2879,9 @@
           '</section>',
           '<section class="card" id="biblia-reading">',
             '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px;">',
-              '<button class="btn" id="biblia-prev">Capitulo anterior</button>',
+              '<button class="btn" id="biblia-prev">Capítulo anterior</button>',
               '<p class="text-muted" style="margin:0;">' + selectedBook.name + ' ' + chapter + '</p>',
-              '<button class="btn" id="biblia-next">Capitulo siguiente</button>',
+              '<button class="btn" id="biblia-next">Capítulo siguiente</button>',
             '</div>',
             '<h3 style="margin-bottom:10px;">' + selectedBook.name + ' ' + chapter + ' (' + selectedVersion + ')</h3>',
             '<div id="biblia-verses"><p class="text-muted">Cargando texto...</p></div>',
@@ -2897,7 +2907,7 @@
             viewedAt: new Date().toISOString()
           });
         } catch (_) {
-          if (box) renderErrorState(box, 'No se pudo cargar el capitulo.', loadCurrentChapter);
+          if (box) renderErrorState(box, 'No se pudo cargar el capítulo.', loadCurrentChapter);
         }
       }
 
@@ -2939,7 +2949,7 @@
         '<div class="page-container">',
           '<section style="margin-bottom:16px;">',
             '<h1 style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;margin-bottom:6px;">Buscar</h1>',
-            '<p class="text-muted">Busca palabras o frases en los capitulos que ya has visitado.</p>',
+            '<p class="text-muted">Busca palabras o frases en los capítulos que ya has visitado.</p>',
           '</section>',
           '<section class="card" style="margin-bottom:12px;display:grid;grid-template-columns:1fr;gap:10px;">',
             '<input id="buscar-query" placeholder="Ej. amor, fe, esperanza" type="text" style="padding:10px;border-radius:8px;border:1px solid var(--border-light);background:var(--bg-secondary);color:var(--text-primary);"/>',
@@ -2987,7 +2997,7 @@
         }
 
         if (!hits.length) {
-          resultsEl.innerHTML = '<p class="text-muted">No encontramos resultados en los capitulos indexados localmente. Abre mas capitulos desde Biblia para ampliar la busqueda.</p>';
+          resultsEl.innerHTML = '<p class="text-muted">No encontramos resultados en los capítulos indexados localmente. Abre más capítulos desde Biblia para ampliar la búsqueda.</p>';
           return;
         }
 
@@ -3164,7 +3174,7 @@
         const items = (userData.notes || []).slice();
         if (!items.length) return '<div class="card"><p class="text-muted">Aún no tienes notas.</p></div>';
         return items.map(function(item) {
-          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong></p><p style="margin:6px 0;">' + item.content + '</p><p class="text-muted" style="font-size:0.8rem;">Actualizada: ' + (item.updatedAt || item.createdAt || '') + '</p><div style="display:flex;gap:8px;flex-wrap:wrap;"><a class="btn" href="/p/biblia.html?book=' + encodeURIComponent(item.bookId || 'GEN') + '&chapter=' + encodeURIComponent(item.chapter || 1) + '">Ir al capitulo</a><button class="btn" type="button" data-note-edit="' + item.id + '">Editar</button><button class="btn" type="button" data-note-remove="' + item.id + '">Eliminar</button></div></div>';
+          return '<div class="card" style="margin-bottom:10px;"><p><strong>' + item.reference + '</strong></p><p style="margin:6px 0;">' + item.content + '</p><p class="text-muted" style="font-size:0.8rem;">Actualizada: ' + (item.updatedAt || item.createdAt || '') + '</p><div style="display:flex;gap:8px;flex-wrap:wrap;"><a class="btn" href="/p/biblia.html?book=' + encodeURIComponent(item.bookId || 'GEN') + '&chapter=' + encodeURIComponent(item.chapter || 1) + '">Ir al capítulo</a><button class="btn" type="button" data-note-edit="' + item.id + '">Editar</button><button class="btn" type="button" data-note-remove="' + item.id + '">Eliminar</button></div></div>';
         }).join('');
       }
 
