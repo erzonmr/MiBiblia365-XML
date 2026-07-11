@@ -989,6 +989,38 @@
       font-size: 0.9rem;
       line-height: 1.7;
     }
+
+    /* Chips y Badges de Estado */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      border: 1px solid var(--border-light);
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    
+    .chip-active {
+      background: rgba(26, 54, 93, 0.08); /* Fondo sutil con tono de acento azul */
+      color: var(--accent-primary);
+      border-color: rgba(26, 54, 93, 0.2);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    [data-theme="dark"] .chip-active {
+      background: rgba(88, 166, 255, 0.15); /* Fondo sutil azul en modo oscuro */
+      color: var(--accent-primary);
+      border-color: rgba(88, 166, 255, 0.3);
+    }
   ]]></b:skin>
 </head>
 
@@ -2542,9 +2574,9 @@
 
           listEl.innerHTML = plans.map(function(plan) {
             const isActive = plan.id === activePlanId;
-            const label = isActive ? '<span class="chip" style="background:var(--accent-primary);color:#fff;font-size:0.75rem;">Activo</span>' : '';
-            const difficultyLabel = plan.difficulty ? '<span class="chip" style="font-size:0.7rem;background:var(--bg-tertiary);color:var(--text-tertiary);text-transform:capitalize;">' + plan.difficulty + '</span>' : '';
-            const categoryLabel = plan.category ? '<span class="chip" style="font-size:0.7rem;background:var(--bg-tertiary);color:var(--text-tertiary);">' + plan.category + '</span>' : '';
+            const label = isActive ? '<span class="chip chip-active">Activo</span>' : '';
+            const difficultyLabel = plan.difficulty ? '<span class="chip" style="text-transform:capitalize;">' + plan.difficulty + '</span>' : '';
+            const categoryLabel = plan.category ? '<span class="chip">' + plan.category + '</span>' : '';
             const desc = plan.description ? '<p class="text-muted" style="font-size:0.85rem;margin-top:6px;line-height:1.4;">' + plan.description + '</p>' : '';
 
             return [
@@ -3106,7 +3138,7 @@
             '<div class="card" style="margin-bottom:10px;">',
               '<div style="display:flex;justify-content:space-between;gap:8px;align-items:center;">',
                 '<strong>' + (plan.name || plan.planId) + '</strong>',
-                isActive ? '<span class="chip" style="background:var(--accent-primary);color:#fff;">Activo</span>' : (archived ? '<span class="chip">Archivado</span>' : ''),
+                isActive ? '<span class="chip chip-active">Activo</span>' : (archived ? '<span class="chip">Archivado</span>' : ''),
               '</div>',
               '<p class="text-muted" style="font-size:0.82rem;">Inicio: ' + (plan.startDate || '-') + ' · Día actual: ' + (plan.lastOpenedDay || 1) + '</p>',
               '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">',
